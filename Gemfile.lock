@@ -1,0 +1,17 @@
+PATH
+  remote: .
+  specs:
+    eac_ruby_utils (0.0.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  eac_ruby_utils!
+
+BUNDLED WITH
+   1.16.1
