@@ -16,4 +16,5 @@ Gem::Specification.new do |s|
   s.files = Dir['{lib}/**/*', 'MIT-LICENSE', 'README.rdoc']
 
   s.add_dependency 'colorize', '~> 0.8.1'
+  s.add_dependency 'docopt', '~> 0.6.1'
 end

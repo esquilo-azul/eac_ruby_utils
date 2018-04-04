@@ -3,11 +3,13 @@ PATH
   specs:
     eac_ruby_utils (0.0.0)
       colorize (~> 0.8.1)
+      docopt (~> 0.6.1)
 
 GEM
   remote: https://rubygems.org/
   specs:
     colorize (0.8.1)
+    docopt (0.6.1)
 
 PLATFORMS
   ruby
