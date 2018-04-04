@@ -10,5 +10,6 @@ module EacRubyUtils
   require 'eac_ruby_utils/console/speaker'
   require 'eac_ruby_utils/envs/base_env'
   require 'eac_ruby_utils/envs/command'
+  require 'eac_ruby_utils/envs/local_env'
   require 'eac_ruby_utils/envs/process'
 end
