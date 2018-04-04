@@ -4,4 +4,5 @@ require 'colorize'
 require 'docopt'
 
 module EacRubyUtils
+  require 'eac_ruby_utils/console/speaker'
 end
