@@ -8,6 +8,7 @@ require 'pp'
 module EacRubyUtils
   require 'eac_ruby_utils/console/docopt_runner'
   require 'eac_ruby_utils/console/speaker'
+  require 'eac_ruby_utils/envs'
   require 'eac_ruby_utils/envs/base_env'
   require 'eac_ruby_utils/envs/command'
   require 'eac_ruby_utils/envs/local_env'
