@@ -68,7 +68,7 @@ module EacRubyUtils
 
       def append_command_options(c, options)
         c = options[:input].command + ' | ' + c if options[:input]
-        c += ' < ' + Shellwords.escape(options[:input_file]) if options[:input_file]
+        c = "cat #{Shellwords.escape(options[:input_file])} | #{c}" if options[:input_file]
         c += ' > ' + Shellwords.escape(options[:output_file]) if options[:output_file]
         c
       end
