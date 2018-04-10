@@ -17,4 +17,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'colorize', '~> 0.8.1'
   s.add_dependency 'docopt', '~> 0.6.1'
+  s.add_dependency 'net-ssh', '~> 4.2'
 end

@@ -4,6 +4,7 @@ require 'colorize'
 require 'docopt'
 require 'open3'
 require 'pp'
+require 'net/ssh'
 
 module EacRubyUtils
   require 'eac_ruby_utils/console/docopt_runner'
