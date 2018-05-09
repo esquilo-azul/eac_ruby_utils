@@ -3,11 +3,8 @@ module EacRubyUtils
     class Process
       def initialize(command)
         @command = command
-        Open3.popen3(command) do |_stdin, stdout, stderr, wait_thr|
-          @exit_code = wait_thr.value.to_i
-          @stdout = stdout.read
-          @stderr = stderr.read
-        end
+        @stdout, @stderr, exit_code = Open3.capture3(command)
+        @exit_code = exit_code.to_i
       end
 
       def to_h
