@@ -7,6 +7,7 @@ require 'pp'
 require 'net/ssh'
 
 module EacRubyUtils
+  require 'eac_ruby_utils/options_consumer'
   require 'eac_ruby_utils/console/docopt_runner'
   require 'eac_ruby_utils/console/speaker'
   require 'eac_ruby_utils/envs'
