@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module EacRubyUtils
   module Envs
     class Command
@@ -36,6 +38,7 @@ module EacRubyUtils
       def execute!(options = {})
         er = ExecuteResult.new(execute(options), options)
         return er.result if er.success?
+
         raise "execute! command failed: #{self}\n#{er.r.pretty_inspect}"
       end
 
@@ -51,6 +54,7 @@ module EacRubyUtils
 
       def system!(options = {})
         return if system(options)
+
         raise "system! command failed: #{self}"
       end
 
@@ -66,30 +70,35 @@ module EacRubyUtils
         ENV['DEBUG'].to_s.strip != ''
       end
 
-      def append_command_options(c, options)
-        c = options[:input].command + ' | ' + c if options[:input]
-        c = "cat #{Shellwords.escape(options[:input_file])} | #{c}" if options[:input_file]
-        c += ' > ' + Shellwords.escape(options[:output_file]) if options[:output_file]
-        c
+      def append_command_options(command, options)
+        command = options[:input].command + ' | ' + command if options[:input]
+        if options[:input_file]
+          command = "cat #{Shellwords.escape(options[:input_file])}" \
+            " | #{command}"
+        end
+        command += ' > ' + Shellwords.escape(options[:output_file]) if options[:output_file]
+        command
       end
 
-      def escape(s)
-        raise "#{s}|#{s.class}" unless s.is_a?(String)
-        m = /^\@ESC_(.+)$/.match(s)
-        m ? m[1] : Shellwords.escape(s)
+      def escape(arg)
+        raise "#{arg}|#{arg.class}" unless arg.is_a?(String)
+
+        m = /^\@ESC_(.+)$/.match(arg)
+        m ? m[1] : Shellwords.escape(arg)
       end
 
       class ExecuteResult
         attr_reader :r, :options
 
-        def initialize(r, options)
-          @r = r
+        def initialize(result, options)
+          @r = result
           @options = options
         end
 
         def result
           return exit_code_zero_result if exit_code_zero?
           return expected_error_result if expected_error?
+
           raise 'Failed!'
         end
 
@@ -100,7 +109,7 @@ module EacRubyUtils
         private
 
         def exit_code_zero?
-          r[:exit_code] && r[:exit_code].zero?
+          r[:exit_code]&.zero?
         end
 
         def exit_code_zero_result

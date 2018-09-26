@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module EacRubyUtils
   module Envs
     class SshEnv < ::EacRubyUtils::Envs::BaseEnv
@@ -5,13 +7,14 @@ module EacRubyUtils
         def parse_uri(uri)
           r = parse_user_hostname(uri) || ::Addressable::URI.parse(uri)
           return r if r.scheme == 'ssh'
+
           raise "URI has no SSH scheme: #{uri}"
         end
 
         private
 
-        def parse_user_hostname(s)
-          m = /\A([^@]+)@([^@]+)\z/.match(s)
+        def parse_user_hostname(user_hostname)
+          m = /\A([^@]+)@([^@]+)\z/.match(user_hostname)
           m ? ::Addressable::URI.new(scheme: 'ssh', host: m[2], user: m[1]) : nil
         rescue Addressable::URI::InvalidURIError
           nil
@@ -44,7 +47,7 @@ module EacRubyUtils
 
       def ssh_command_line_options
         r = []
-        uri.query_values.each { |k, v| r += ['-o', "#{k}=#{v}"] } if uri.query_values
+        uri.query_values&.each { |k, v| r += ['-o', "#{k}=#{v}"] }
         r
       end
     end

@@ -1,33 +1,35 @@
+# frozen_string_literal: true
+
 module EacRubyUtils
   module Console
     # https://github.com/fazibear/colorize
     module Speaker
-      def puts(s = '')
-        STDERR.puts(s)
+      def puts(string = '')
+        STDERR.puts(string)
       end
 
-      def out(s = '')
-        STDOUT.write(s)
+      def out(string = '')
+        STDOUT.write(string)
       end
 
-      def fatal_error(s)
-        puts "ERROR: #{s}".white.on_red
+      def fatal_error(string)
+        puts "ERROR: #{string}".white.on_red
         Kernel.exit 1
       end
 
-      def title(s)
-        puts(('-' * (8 + s.length)).green)
-        puts("--- #{s} ---".green)
-        puts(('-' * (8 + s.length)).green)
+      def title(string)
+        puts(('-' * (8 + string.length)).green)
+        puts("--- #{string} ---".green)
+        puts(('-' * (8 + string.length)).green)
         puts
       end
 
-      def info(s)
-        puts s.white
+      def info(string)
+        puts string.white
       end
 
-      def warn(s)
-        puts s.yellow
+      def warn(string)
+        puts string.yellow
       end
 
       def infov(*args)
@@ -42,8 +44,8 @@ module EacRubyUtils
         puts r.join(', ')
       end
 
-      def success(s)
-        puts s.green
+      def success(string)
+        puts string.green
       end
     end
   end

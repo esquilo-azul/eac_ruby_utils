@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module EacRubyUtils
   module Envs
     class LocalEnv < ::EacRubyUtils::Envs::BaseEnv
