@@ -39,6 +39,7 @@ module EacRubyUtils
         c = c.map { |x| escape(x) }.join(' ') if c.is_a?(Enumerable)
         e = @envvars.map { |k, v| "#{Shellwords.escape(k)}=#{Shellwords.escape(v)}" }.join(' ')
         c = "#{e} #{c}" if e.present?
+        c = "#{c} | #{@pipe.command}" if @pipe.present?
         c = @env.command_line(c)
         append_command_options(c, options)
       end
@@ -58,6 +59,11 @@ module EacRubyUtils
         i = Time.now - t1
         puts "AFTER [#{i}]: #{c}".light_red if debug?
         r
+      end
+
+      def pipe(other_command)
+        @pipe = other_command
+        self
       end
 
       def system!(options = {})
