@@ -14,6 +14,7 @@ module EacRubyUtils
         else
           raise "Invalid argument command: #{command}|#{command.class}"
         end
+        @envvars = {}
       end
 
       def append(args)
@@ -28,9 +29,16 @@ module EacRubyUtils
         "#{@command} [ENV: #{@env}]"
       end
 
+      def envvar(name, value)
+        @envvars[name] = value
+        self
+      end
+
       def command(options = {})
         c = @command
         c = c.map { |x| escape(x) }.join(' ') if c.is_a?(Enumerable)
+        e = @envvars.map { |k, v| "#{Shellwords.escape(k)}=#{Shellwords.escape(v)}" }.join(' ')
+        c = "#{e} #{c}" if e.present?
         c = @env.command_line(c)
         append_command_options(c, options)
       end
