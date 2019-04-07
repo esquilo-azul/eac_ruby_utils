@@ -5,7 +5,7 @@ module EacRubyUtils
     # https://github.com/fazibear/colorize
     module Speaker
       def puts(string = '')
-        STDERR.puts(string)
+        STDERR.puts(string) # rubocop:disable Style/StderrPuts
       end
 
       def out(string = '')
