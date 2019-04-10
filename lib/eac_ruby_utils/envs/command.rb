@@ -37,7 +37,17 @@ module EacRubyUtils
       def command(options = {})
         c = @command
         c = c.map { |x| escape(x) }.join(' ') if c.is_a?(Enumerable)
-        append_command_options(@env.command_line(append_pipe(append_envvars(c))), options)
+        append_command_options(
+          @env.command_line(
+            append_chdir(append_pipe(append_envvars(c)))
+          ),
+          options
+        )
+      end
+
+      def chdir(dir)
+        @chdir = dir
+        self
       end
 
       def execute!(options = {})
@@ -87,6 +97,10 @@ module EacRubyUtils
 
       def append_pipe(command)
         @pipe.present? ? "#{command} | #{@pipe.command}" : command
+      end
+
+      def append_chdir(command)
+        @chdir.present? ? "(cd '#{@chdir}' ; #{command} )" : command
       end
 
       def append_command_options(command, options)
