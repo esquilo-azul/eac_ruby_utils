@@ -37,11 +37,7 @@ module EacRubyUtils
       def command(options = {})
         c = @command
         c = c.map { |x| escape(x) }.join(' ') if c.is_a?(Enumerable)
-        e = @envvars.map { |k, v| "#{Shellwords.escape(k)}=#{Shellwords.escape(v)}" }.join(' ')
-        c = "#{e} #{c}" if e.present?
-        c = "#{c} | #{@pipe.command}" if @pipe.present?
-        c = @env.command_line(c)
-        append_command_options(c, options)
+        append_command_options(@env.command_line(append_pipe(append_envvars(c))), options)
       end
 
       def execute!(options = {})
@@ -82,6 +78,15 @@ module EacRubyUtils
 
       def debug?
         ENV['DEBUG'].to_s.strip != ''
+      end
+
+      def append_envvars(command)
+        e = @envvars.map { |k, v| "#{Shellwords.escape(k)}=#{Shellwords.escape(v)}" }.join(' ')
+        e.present? ? "#{e} #{command}" : command
+      end
+
+      def append_pipe(command)
+        @pipe.present? ? "#{command} | #{@pipe.command}" : command
       end
 
       def append_command_options(command, options)
