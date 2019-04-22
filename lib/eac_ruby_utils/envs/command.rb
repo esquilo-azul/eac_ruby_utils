@@ -20,6 +20,10 @@ module EacRubyUtils
         end
       end
 
+      def args
+        @command
+      end
+
       def append(args)
         duplicate_by_command(@command + args)
       end
