@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
+require_relative 'command/extra_options'
+
 module EacRubyUtils
   module Envs
     class Command
       include EacRubyUtils::Console::Speaker
+      include EacRubyUtils::Envs::Command::ExtraOptions
 
       def initialize(env, command)
         @env = env
@@ -29,11 +32,6 @@ module EacRubyUtils
         "#{@command} [ENV: #{@env}]"
       end
 
-      def envvar(name, value)
-        @envvars[name] = value
-        self
-      end
-
       def command(options = {})
         c = @command
         c = c.map { |x| escape(x) }.join(' ') if c.is_a?(Enumerable)
@@ -43,11 +41,6 @@ module EacRubyUtils
           ),
           options
         )
-      end
-
-      def chdir(dir)
-        @chdir = dir
-        self
       end
 
       def execute!(options = {})
@@ -67,11 +60,6 @@ module EacRubyUtils
         r
       end
 
-      def pipe(other_command)
-        @pipe = other_command
-        self
-      end
-
       def system!(options = {})
         return if system(options)
 
@@ -88,19 +76,6 @@ module EacRubyUtils
 
       def debug?
         ENV['DEBUG'].to_s.strip != ''
-      end
-
-      def append_envvars(command)
-        e = @envvars.map { |k, v| "#{Shellwords.escape(k)}=#{Shellwords.escape(v)}" }.join(' ')
-        e.present? ? "#{e} #{command}" : command
-      end
-
-      def append_pipe(command)
-        @pipe.present? ? "#{command} | #{@pipe.command}" : command
-      end
-
-      def append_chdir(command)
-        @chdir.present? ? "(cd '#{@chdir}' ; #{command} )" : command
       end
 
       def append_command_options(command, options)
