@@ -5,33 +5,36 @@ module EacRubyUtils
     class Command
       module ExtraOptions
         def chdir(dir)
-          @chdir = dir
-          self
+          duplicate_by_extra_options(chdir: dir)
         end
 
         def envvar(name, value)
-          @envvars[name] = value
-          self
+          duplicate_by_extra_options(envvars: envvars.merge(name => value))
         end
 
         def pipe(other_command)
-          @pipe = other_command
-          self
+          duplicate_by_extra_options(pipe: other_command)
         end
 
         private
 
+        attr_reader :extra_options
+
+        def envvars
+          extra_options[:envvars] ||= {}.with_indifferent_access
+        end
+
         def append_envvars(command)
-          e = @envvars.map { |k, v| "#{Shellwords.escape(k)}=#{Shellwords.escape(v)}" }.join(' ')
+          e = envvars.map { |k, v| "#{Shellwords.escape(k)}=#{Shellwords.escape(v)}" }.join(' ')
           e.present? ? "#{e} #{command}" : command
         end
 
         def append_pipe(command)
-          @pipe.present? ? "#{command} | #{@pipe.command}" : command
+          extra_options[:pipe].present? ? "#{command} | #{extra_options[:pipe].command}" : command
         end
 
         def append_chdir(command)
-          @chdir.present? ? "(cd '#{@chdir}' ; #{command} )" : command
+          extra_options[:chdir].present? ? "(cd '#{extra_options[:chdir]}' ; #{command} )" : command
         end
       end
     end

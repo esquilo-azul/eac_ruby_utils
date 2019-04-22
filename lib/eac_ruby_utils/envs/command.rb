@@ -8,8 +8,9 @@ module EacRubyUtils
       include EacRubyUtils::Console::Speaker
       include EacRubyUtils::Envs::Command::ExtraOptions
 
-      def initialize(env, command)
+      def initialize(env, command, extra_options = {})
         @env = env
+        @extra_options = extra_options.with_indifferent_access
         if command.count == 1 && command.first.is_a?(Array)
           @command = command.first
         elsif command.is_a?(Array)
@@ -17,15 +18,14 @@ module EacRubyUtils
         else
           raise "Invalid argument command: #{command}|#{command.class}"
         end
-        @envvars = {}
       end
 
       def append(args)
-        self.class.new(@env, @command + args)
+        duplicate_by_command(@command + args)
       end
 
       def prepend(args)
-        self.class.new(@env, args + @command)
+        duplicate_by_command(args + @command)
       end
 
       def to_s
@@ -73,6 +73,16 @@ module EacRubyUtils
       end
 
       private
+
+      attr_reader :extra_options
+
+      def duplicate_by_command(new_command)
+        self.class.new(@env, new_command, @extra_options)
+      end
+
+      def duplicate_by_extra_options(set_extra_options)
+        self.class.new(@env, @command, @extra_options.merge(set_extra_options))
+      end
 
       def debug?
         ENV['DEBUG'].to_s.strip != ''
