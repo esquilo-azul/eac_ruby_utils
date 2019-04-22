@@ -99,8 +99,7 @@ module EacRubyUtils
       end
 
       def escape(arg)
-        raise "#{arg}|#{arg.class}" unless arg.is_a?(String)
-
+        arg = arg.to_s
         m = /^\@ESC_(.+)$/.match(arg)
         m ? m[1] : Shellwords.escape(arg)
       end
