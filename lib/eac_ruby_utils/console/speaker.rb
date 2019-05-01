@@ -5,11 +5,11 @@ module EacRubyUtils
     # https://github.com/fazibear/colorize
     module Speaker
       def puts(string = '')
-        STDERR.puts(string) # rubocop:disable Style/StderrPuts
+        STDERR.puts(string.to_s)
       end
 
       def out(string = '')
-        STDOUT.write(string)
+        STDOUT.write(string.to_s)
       end
 
       def fatal_error(string)
@@ -18,6 +18,7 @@ module EacRubyUtils
       end
 
       def title(string)
+        string = string.to_s
         puts(('-' * (8 + string.length)).green)
         puts("--- #{string} ---".green)
         puts(('-' * (8 + string.length)).green)
@@ -25,11 +26,11 @@ module EacRubyUtils
       end
 
       def info(string)
-        puts string.white
+        puts string.to_s.white
       end
 
       def warn(string)
-        puts string.yellow
+        puts string.to_s.yellow
       end
 
       def infov(*args)
@@ -45,7 +46,7 @@ module EacRubyUtils
       end
 
       def success(string)
-        puts string.green
+        puts string.to_s.green
       end
     end
   end
