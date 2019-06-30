@@ -29,6 +29,10 @@ module EacRubyUtils
         puts string.to_s.white
       end
 
+      def infom(string)
+        puts string.to_s.light_yellow
+      end
+
       def warn(string)
         puts string.to_s.yellow
       end
