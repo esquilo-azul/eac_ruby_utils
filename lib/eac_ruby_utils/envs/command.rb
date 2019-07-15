@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'command/extra_options'
+require 'active_support/core_ext/hash/indifferent_access'
+require 'eac_ruby_utils/console/speaker'
+require 'eac_ruby_utils/envs/command/extra_options'
+require 'eac_ruby_utils/envs/process'
+require 'pp'
+require 'shellwords'
 
 module EacRubyUtils
   module Envs

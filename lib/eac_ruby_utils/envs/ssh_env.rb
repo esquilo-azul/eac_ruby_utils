@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+require 'addressable'
+require 'eac_ruby_utils/envs/base_env'
+require 'net/ssh'
+require 'shellwords'
+
 module EacRubyUtils
   module Envs
     class SshEnv < ::EacRubyUtils::Envs::BaseEnv

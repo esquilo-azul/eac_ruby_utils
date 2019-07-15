@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'docopt'
+
 module EacRubyUtils
   module Console
     class DocoptRunner

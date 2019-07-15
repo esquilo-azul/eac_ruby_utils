@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/envs/command'
+
 module EacRubyUtils
   module Envs
     class BaseEnv

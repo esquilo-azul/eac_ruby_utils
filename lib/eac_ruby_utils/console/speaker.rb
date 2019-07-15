@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'colorize'
+
 module EacRubyUtils
   module Console
     # https://github.com/fazibear/colorize

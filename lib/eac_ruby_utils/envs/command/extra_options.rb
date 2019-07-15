@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'active_support/core_ext/hash/indifferent_access'
+require 'shellwords'
+
 module EacRubyUtils
   module Envs
     class Command

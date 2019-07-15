@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/envs/base_env'
+require 'eac_ruby_utils/envs/command'
+require 'eac_ruby_utils/envs/local_env'
+require 'eac_ruby_utils/envs/process'
+require 'eac_ruby_utils/envs/ssh_env'
+
 module EacRubyUtils
   module Envs
     class << self
