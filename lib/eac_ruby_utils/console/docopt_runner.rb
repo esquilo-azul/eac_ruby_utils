@@ -16,9 +16,6 @@ module EacRubyUtils
       def initialize(settings = {})
         @settings = settings.with_indifferent_access.freeze
         @options = Docopt.docopt(target_doc, docopt_options)
-        run
-      rescue Docopt::Exit => e
-        puts e.message
       end
 
       protected
