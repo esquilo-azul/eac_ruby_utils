@@ -40,7 +40,8 @@ module EacRubyUtils
         end
 
         def target_doc
-          super.gsub(SUBCOMMANDS_MACRO, "[#{SUBCOMMAND_ARG}] [#{SUBCOMMAND_ARGS_ARG}...]")
+          super.gsub(SUBCOMMANDS_MACRO, "[#{SUBCOMMAND_ARG}] [#{SUBCOMMAND_ARGS_ARG}...]") +
+            "\n" + subcommands_target_doc
         end
 
         def docopt_options
@@ -64,7 +65,13 @@ module EacRubyUtils
         end
 
         def available_subcommands
-          setting_value(:subcommands)
+          setting_value(:subcommands).sort
+        end
+
+        def subcommands_target_doc
+          available_subcommands.inject("Subcommands:\n") do |a, e|
+            a + "  #{e}\n"
+          end
         end
 
         def run_without_subcommand

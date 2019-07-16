@@ -10,7 +10,7 @@ module EacRubyUtils
       end
 
       def target_doc
-        source_doc.gsub(PROGRAM_MACRO, program_name)
+        source_doc.gsub(PROGRAM_MACRO, program_name).strip + "\n"
       end
 
       def program_name
