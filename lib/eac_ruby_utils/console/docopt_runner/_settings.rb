@@ -7,11 +7,12 @@ module EacRubyUtils
 
       private
 
-      def setting_value(key)
+      def setting_value(key, required = true)
         %i[setting_from_argument setting_from_constant].each do |method|
           value = send(method, key)
           return value if value
         end
+        return nil unless required
         raise "Setting \"#{key}\" not found. Declare #{setting_constant(key, true)} constant, " \
           "pass #{key.to_sym} option to #{self.class.name}.new() method."
       end

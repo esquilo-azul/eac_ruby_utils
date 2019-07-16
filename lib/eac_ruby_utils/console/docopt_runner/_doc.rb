@@ -10,7 +10,11 @@ module EacRubyUtils
       end
 
       def target_doc
-        source_doc.gsub(PROGRAM_MACRO, program)
+        source_doc.gsub(PROGRAM_MACRO, program_name)
+      end
+
+      def program_name
+        setting_value(:program_name, false) || ENV['PROGRAM_NAME'] || $PROGRAM_NAME
       end
     end
   end

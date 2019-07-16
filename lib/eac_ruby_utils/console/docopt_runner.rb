@@ -26,10 +26,6 @@ module EacRubyUtils
       def docopt_options
         settings.slice(:version, :argv, :help, :options_first).to_sym_keys_hash
       end
-
-      def program
-        ENV['MYSELF_PROGRAM'] || $PROGRAM_NAME
-      end
     end
   end
 end
