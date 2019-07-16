@@ -65,7 +65,15 @@ module EacRubyUtils
         end
 
         def available_subcommands
-          setting_value(:subcommands).sort
+          (setting_value(:subcommands, false) || auto_available_subcommands).sort
+        end
+
+        def auto_available_subcommands
+          self.class.constants
+              .map { |name| self.class.const_get(name) }
+              .select { |c| c.instance_of? Class }
+              .select { |c| c < ::EacRubyUtils::Console::DocoptRunner }
+              .map { |c| c.name.demodulize.underscore.dasherize }
         end
 
         def subcommands_target_doc

@@ -38,8 +38,6 @@ RSpec.describe ::EacRubyUtils::Console::DocoptRunner do
     class RunnerWithSubcommands < ::EacRubyUtils::Console::DocoptRunner
       attr_accessor :subarg_value, :suboption_value
 
-      SUBCOMMANDS = %w[my-sub-command].freeze
-
       DOC = <<~DOCUMENT
         A root runner with subcommands.
 
