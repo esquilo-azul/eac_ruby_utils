@@ -38,6 +38,8 @@ RSpec.describe ::EacRubyUtils::Console::DocoptRunner do
     class RunnerWithSubcommands < ::EacRubyUtils::Console::DocoptRunner
       attr_accessor :subarg_value, :suboption_value
 
+      SUBCOMMANDS = %w[my-sub-command].freeze
+
       DOC = <<~DOCUMENT
         A root runner with subcommands.
 
@@ -64,8 +66,7 @@ DOCUMENT
       end
     end
 
-    let(:argv) { %w[value0 my-sub-command value1 --suboption value2] }
-    let(:instance) { RunnerWithSubcommands.new(program: 'runner_with_subcommands', argv: argv) }
+    let(:instance) { RunnerWithSubcommands.new }
 
     context '#subcommands?' do
       it 'returns true' do
@@ -73,23 +74,39 @@ DOCUMENT
       end
     end
 
-    context '#subcommand' do
-      it 'is of subcommand class' do
-        expect(instance.subcommand).to be_a(RunnerWithSubcommands::MySubCommand)
+    context 'when subcommand is valid' do
+      let(:instance) do
+        RunnerWithSubcommands.new(argv: %w[value0 my-sub-command value1 --suboption value2])
+      end
+
+      context '#subcommand' do
+        it 'is of subcommand class' do
+          expect(instance.subcommand).to be_a(RunnerWithSubcommands::MySubCommand)
+        end
+      end
+
+      context '#context' do
+        it 'accesses instance methods by subcommand' do
+          expect(instance.subcommand.context(:parent_arg)).to eq('value0')
+        end
+      end
+
+      context '#run' do
+        it 'calls subcommand' do
+          instance.run
+          expect(instance.subarg_value).to eq('value1')
+          expect(instance.suboption_value).to eq('value2')
+        end
       end
     end
 
-    context '#context' do
-      it 'accesses instance methods by subcommand' do
-        expect(instance.subcommand.context(:parent_arg)).to eq('value0')
-      end
-    end
+    context 'when subcommand is invalid' do
+      let(:instance) { RunnerWithSubcommands.new(argv: %w[value0 invalid-subcommand]) }
 
-    context '#run' do
-      it 'calls subcommand' do
-        instance.run
-        expect(instance.subarg_value).to eq('value1')
-        expect(instance.suboption_value).to eq('value2')
+      context '#run' do
+        it 'raises Docopt::Exit' do
+          expect { instance.run }.to raise_error(::Docopt::Exit)
+        end
       end
     end
   end

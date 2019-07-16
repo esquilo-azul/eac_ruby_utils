@@ -24,6 +24,7 @@ module EacRubyUtils
       module SubcommandsSupport
         def run_with_subcommand
           if options.fetch(SUBCOMMAND_ARG)
+            check_valid_subcommand
             subcommand.run
           else
             run_without_subcommand
@@ -62,8 +63,20 @@ module EacRubyUtils
           options.fetch(SUBCOMMAND_ARG)
         end
 
+        def available_subcommands
+          setting_value(:subcommands)
+        end
+
         def run_without_subcommand
           "Method #{__method__} should be overrided in #{self.class.name}"
+        end
+
+        protected
+
+        def check_valid_subcommand
+          return if available_subcommands.include?(subcommand_name)
+          raise ::Docopt::Exit, "\"#{subcommand_name}\" is not a valid subcommand" \
+            " (Valid: #{available_subcommands.join(', ')})"
         end
       end
     end
