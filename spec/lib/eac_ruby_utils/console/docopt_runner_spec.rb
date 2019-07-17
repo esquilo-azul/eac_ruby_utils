@@ -77,6 +77,14 @@ DOCUMENT
         RunnerWithSubcommands.new(argv: %w[value0 my-sub-command value1 --suboption value2])
       end
 
+      describe '#subcommand_arg_as_list?' do
+        it { expect(instance.subcommand_arg_as_list?).to eq(false) }
+      end
+
+      describe '#target_doc' do
+        it { expect(instance.target_doc).to include('Subcommands:') }
+      end
+
       context '#subcommand' do
         it 'is of subcommand class' do
           expect(instance.subcommand).to be_a(RunnerWithSubcommands::MySubCommand)
@@ -105,6 +113,23 @@ DOCUMENT
         it 'raises Docopt::Exit' do
           expect { instance.run }.to raise_error(::Docopt::Exit)
         end
+      end
+    end
+
+    context 'when subcommand as arg list is enabled' do
+      let(:argv) { %w[value0 my-sub-command value1 --suboption value2] }
+      let(:instance) { RunnerWithSubcommands.new(argv: argv, subcommand_arg_as_list: true) }
+
+      describe '#subcommand_arg_as_list?' do
+        it { expect(instance.subcommand_arg_as_list?).to eq(true) }
+      end
+
+      describe '#target_doc' do
+        it { expect(instance.target_doc).to include('(my-sub-command)') }
+      end
+
+      describe '#subcommand_name' do
+        it { expect(instance.subcommand_name).to eq('my-sub-command') }
       end
     end
   end

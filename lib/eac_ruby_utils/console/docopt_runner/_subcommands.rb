@@ -17,11 +17,20 @@ module EacRubyUtils
       def check_subcommands
         return unless subcommands?
         singleton_class.include(SubcommandsSupport)
+        check_subcommands_arg
         return if singleton_class.method_defined?(:run)
         singleton_class.send(:alias_method, :run, :run_with_subcommand)
       end
 
       module SubcommandsSupport
+        def check_subcommands_arg
+          if subcommand_arg_as_list?
+            singleton_class.include(SubcommandsSupport::SubcommandArgAsList)
+          else
+            singleton_class.include(SubcommandsSupport::SubcommandArgAsArg)
+          end
+        end
+
         def run_with_subcommand
           if options.fetch(SUBCOMMAND_ARG)
             check_valid_subcommand
@@ -40,7 +49,8 @@ module EacRubyUtils
         end
 
         def target_doc
-          super.gsub(SUBCOMMANDS_MACRO, "[#{SUBCOMMAND_ARG}] [#{SUBCOMMAND_ARGS_ARG}...]") +
+          super.gsub(SUBCOMMANDS_MACRO,
+                     "#{target_doc_subcommand_arg} [#{SUBCOMMAND_ARGS_ARG}...]") +
             "\n" + subcommands_target_doc
         end
 
@@ -50,6 +60,10 @@ module EacRubyUtils
 
         def subcommand_class_name(subcommand)
           "#{self.class.name}::#{subcommand.underscore.camelize}"
+        end
+
+        def subcommand_arg_as_list?
+          setting_value(:subcommand_arg_as_list, false) || false
         end
 
         def subcommand_args
@@ -76,12 +90,6 @@ module EacRubyUtils
               .map { |c| c.name.demodulize.underscore.dasherize }
         end
 
-        def subcommands_target_doc
-          available_subcommands.inject("Subcommands:\n") do |a, e|
-            a + "  #{e}\n"
-          end
-        end
-
         def run_without_subcommand
           "Method #{__method__} should be overrided in #{self.class.name}"
         end
@@ -92,6 +100,39 @@ module EacRubyUtils
           return if available_subcommands.include?(subcommand_name)
           raise ::Docopt::Exit, "\"#{subcommand_name}\" is not a valid subcommand" \
             " (Valid: #{available_subcommands.join(', ')})"
+        end
+
+        module SubcommandArgAsArg
+          def target_doc_subcommand_arg
+            SUBCOMMAND_ARG
+          end
+
+          def subcommand_name
+            options.fetch(SUBCOMMAND_ARG)
+          end
+
+          def subcommands_target_doc
+            available_subcommands.inject("Subcommands:\n") do |a, e|
+              a + "  #{e}\n"
+            end
+          end
+        end
+
+        module SubcommandArgAsList
+          def target_doc_subcommand_arg
+            '(' + available_subcommands.join('|') + ')'
+          end
+
+          def subcommand_name
+            available_subcommands.each do |subcommand|
+              return subcommand if options.fetch(subcommand)
+            end
+            nil
+          end
+
+          def subcommands_target_doc
+            "\n"
+          end
         end
       end
     end
