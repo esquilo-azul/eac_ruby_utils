@@ -1,0 +1,38 @@
+pt-BR:
+  eac_ruby_utils:
+    listable:
+      stub:
+        inteiro:
+          a:
+            label: Inteiro A
+            description: Inteiro A Descr.
+          b:
+            label: Inteiro BB
+            description: Inteiro BB Descr.
+          c:
+            label: Inteiro CCC
+            description: Inteiro CCC Descr.
+        cadeia:
+          a:
+            label: Cadeia AAA
+            description: Cadeia AAA Descr.
+          b:
+            label: Cadeia BB
+            description: Cadeia BB Descr.
+          c:
+            label: Cadeia C
+            description: Cadeia C Descr.
+        code:
+          a:
+            label: Código A
+            description: Código A Descr.
+          b:
+            label: Código B
+            description: Código B Descr.
+        type:
+          a:
+            label: Tipo A
+            description: Tipo A Descr.
+          b:
+            label: Tipo B
+            description: Tipo B Descr.
