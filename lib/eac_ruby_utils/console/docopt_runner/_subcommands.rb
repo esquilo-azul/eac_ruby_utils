@@ -32,7 +32,7 @@ module EacRubyUtils
         end
 
         def run_with_subcommand
-          if options.fetch(SUBCOMMAND_ARG)
+          if subcommand_name
             check_valid_subcommand
             subcommand.run
           else
@@ -72,10 +72,6 @@ module EacRubyUtils
 
         def subcommand_program
           subcommand_name
-        end
-
-        def subcommand_name
-          options.fetch(SUBCOMMAND_ARG)
         end
 
         def available_subcommands
