@@ -8,6 +8,7 @@ module EacRubyUtils
   require 'eac_ruby_utils/listable'
   require 'eac_ruby_utils/options_consumer'
   require 'eac_ruby_utils/patches'
+  require 'eac_ruby_utils/paths_hash'
   require 'eac_ruby_utils/simple_cache'
   require 'eac_ruby_utils/yaml'
 end
