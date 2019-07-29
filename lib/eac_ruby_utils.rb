@@ -2,6 +2,7 @@
 
 module EacRubyUtils
   require 'eac_ruby_utils/arguments_consumer'
+  require 'eac_ruby_utils/configs'
   require 'eac_ruby_utils/console'
   require 'eac_ruby_utils/contextualizable'
   require 'eac_ruby_utils/envs'
