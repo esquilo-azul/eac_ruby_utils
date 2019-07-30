@@ -39,6 +39,17 @@ module EacRubyUtils
         puts string.to_s.yellow
       end
 
+      def request_input(question, options = {})
+        STDERR.write "#{question}: ".to_s.yellow
+        if options[:noecho]
+          r = STDIN.noecho(&:gets).chomp.strip
+          STDERR.write("\n")
+          r
+        else
+          gets.chomp.strip
+        end
+      end
+
       def infov(*args)
         r = []
         args.each_with_index do |v, i|
