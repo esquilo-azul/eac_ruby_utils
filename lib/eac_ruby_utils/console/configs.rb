@@ -8,6 +8,18 @@ module EacRubyUtils
     class Configs
       include ::EacRubyUtils::Console::Speaker
 
+      class << self
+        def entry_key_to_envvar_name(entry_key)
+          path = if entry_key.is_a?(::Array)
+                   entry_key
+                 else
+                   ::EacRubyUtils::PathsHash.parse_entry_key(entry_key)
+                 end
+          path.join('_').gsub(/[^a-z0-9_]/i, '').gsub(/\A_+/, '').gsub(/_+\z/, '')
+              .gsub(/_{2,}/, '_').upcase
+        end
+      end
+
       STORE_PASSWORDS_KEY = 'core.store_passwords'
 
       attr_reader :configs
@@ -26,6 +38,10 @@ module EacRubyUtils
       end
 
       def read_entry(entry_key, options = {})
+        unless options[:noenv]
+          envvar_value = envvar_read_entry(entry_key)
+          return envvar_value if envvar_value.present?
+        end
         stored_value = configs.read_entry(entry_key)
         return stored_value if stored_value
         return read_entry_from_console(entry_key, options) unless options[:noinput]
@@ -41,6 +57,10 @@ module EacRubyUtils
       end
 
       protected
+
+      def envvar_read_entry(entry_key)
+        ENV[self.class.entry_key_to_envvar_name(entry_key)]
+      end
 
       def read_entry_from_console(entry_key, options)
         options[:before_input].call if options[:before_input].present?
