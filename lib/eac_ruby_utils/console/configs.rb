@@ -28,10 +28,8 @@ module EacRubyUtils
       def read_entry(entry_key, options = {})
         stored_value = configs.read_entry(entry_key)
         return stored_value if stored_value
-        options[:before_input].call if options[:before_input].present?
-        entry_value = looped_entry_value_from_input(entry_key, options)
-        configs.write_entry(entry_key, entry_value)
-        entry_value
+        return read_entry_from_console(entry_key, options) unless options[:noinput]
+        raise "No value found for entry \"#{entry_key}\""
       end
 
       def store_passwords?
@@ -43,6 +41,13 @@ module EacRubyUtils
       end
 
       protected
+
+      def read_entry_from_console(entry_key, options)
+        options[:before_input].call if options[:before_input].present?
+        entry_value = looped_entry_value_from_input(entry_key, options)
+        configs.write_entry(entry_key, entry_value)
+        entry_value
+      end
 
       def store_password_banner
         infom 'Do you wanna to store passwords?'
