@@ -14,7 +14,7 @@ module EacRubyUtils
       end
 
       def program_name
-        setting_value(:program_name, false) || ENV['PROGRAM_NAME'] || $PROGRAM_NAME
+        [setting_value(:program_name, false), ENV['PROGRAM_NAME'], $PROGRAM_NAME].find(&:present?)
       end
     end
   end
