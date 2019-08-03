@@ -46,7 +46,7 @@ module EacRubyUtils
           STDERR.write("\n")
           r
         else
-          gets.chomp.strip
+          STDIN.gets.chomp.strip
         end
       end
 
