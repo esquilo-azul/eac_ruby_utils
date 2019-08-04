@@ -30,9 +30,9 @@ module EacRubyUtils
         end
       end
 
-      def setting_constant(key, _fullname = false)
+      def setting_constant(key, fullname = false)
         name = key.to_s.underscore.upcase
-        name = "#{self.class.name}::#{name}"
+        name = "#{self.class.name}::#{name}" if fullname
         name
       end
     end
