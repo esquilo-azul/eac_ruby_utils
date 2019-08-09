@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'colorize'
+require 'io/console'
 
 module EacRubyUtils
   module Console
