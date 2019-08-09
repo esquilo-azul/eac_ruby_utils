@@ -28,7 +28,7 @@ module EacRubyUtils
         @configs = ::EacRubyUtils::Configs.new(configs_key, autosave: true)
       end
 
-      def request_password(entry_key, options = {})
+      def read_password(entry_key, options = {})
         options = options.merge(noecho: true)
         if store_passwords?
           read_entry(entry_key, options)
