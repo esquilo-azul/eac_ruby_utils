@@ -2,6 +2,7 @@
 
 require 'colorize'
 require 'io/console'
+require 'eac_ruby_utils/options_consumer'
 
 module EacRubyUtils
   module Console
@@ -41,14 +42,10 @@ module EacRubyUtils
       end
 
       def request_input(question, options = {})
-        STDERR.write "#{question}: ".to_s.yellow
-        if options[:noecho]
-          r = STDIN.noecho(&:gets).chomp.strip
-          STDERR.write("\n")
-          r
-        else
-          STDIN.gets.chomp.strip
-        end
+        options = ::EacRubyUtils::OptionsConsumer.new(options)
+        noecho = options.consume(:noecho)
+        options.validate
+        request_string(question, noecho)
       end
 
       def infov(*args)
@@ -65,6 +62,19 @@ module EacRubyUtils
 
       def success(string)
         puts string.to_s.green
+      end
+
+      private
+
+      def request_string(question, noecho)
+        STDERR.write "#{question}: ".to_s.yellow
+        if noecho
+          r = STDIN.noecho(&:gets).chomp.strip
+          STDERR.write("\n")
+          r
+        else
+          STDIN.gets.chomp.strip
+        end
       end
     end
   end
