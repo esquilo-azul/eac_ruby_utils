@@ -16,6 +16,10 @@ module EacRubyUtils
       value
     end
 
+    def consume_all(*keys)
+      keys.map { |key| consume(key) }
+    end
+
     def validate
       return if data.empty?
 

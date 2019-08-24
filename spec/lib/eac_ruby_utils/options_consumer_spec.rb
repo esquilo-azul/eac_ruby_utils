@@ -30,4 +30,15 @@ RSpec.describe ::EacRubyUtils::OptionsConsumer do
       expect(instance.left_data.empty?).to eq(false)
     end
   end
+
+  context '#consume_all' do
+    subject(:instance) { described_class.new(a: 'a_value', b: 'b_value', c: 'c_value') }
+
+    it 'return all options in arguments' do
+      a, b, d = instance.consume_all(:a, :b, :d)
+      expect(a).to eq('a_value')
+      expect(b).to eq('b_value')
+      expect(d).to eq(nil)
+    end
+  end
 end
