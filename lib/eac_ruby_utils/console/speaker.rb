@@ -3,6 +3,7 @@
 require 'colorize'
 require 'io/console'
 require 'eac_ruby_utils/options_consumer'
+require 'eac_ruby_utils/console/speaker/list'
 
 module EacRubyUtils
   module Console
@@ -43,9 +44,13 @@ module EacRubyUtils
 
       def request_input(question, options = {})
         options = ::EacRubyUtils::OptionsConsumer.new(options)
-        noecho = options.consume(:noecho)
+        list, noecho = options.consume_all(:list, :noecho)
         options.validate
-        request_string(question, noecho)
+        if list
+          request_from_list(question, list, noecho)
+        else
+          request_string(question, noecho)
+        end
       end
 
       def infov(*args)
@@ -65,6 +70,29 @@ module EacRubyUtils
       end
 
       private
+
+      def list_value(list, input)
+        values = list_values(list)
+        return input, true unless values
+        return input, false unless values.include?(input)
+      end
+
+      def list_values(list)
+        if list.is_a?(::Hash)
+          list.keys.map(&:to_s)
+        elsif list.is_a?(::Array)
+          list.map(&:to_s)
+        end
+      end
+
+      def request_from_list(question, list, noecho)
+        list = ::EacRubyUtils::Console::Speaker::List.build(list)
+        loop do
+          input = request_string("#{question} [#{list.valid_labels.join('/')}]", noecho)
+          return list.build_value(input) if list.valid_value?(input)
+          warn "Invalid input: \"#{input}\" (Valid: #{list.valid_labels.join(', ')})"
+        end
+      end
 
       def request_string(question, noecho)
         STDERR.write "#{question}: ".to_s.yellow
