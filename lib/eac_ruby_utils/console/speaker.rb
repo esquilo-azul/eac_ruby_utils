@@ -44,10 +44,12 @@ module EacRubyUtils
 
       def request_input(question, options = {})
         options = ::EacRubyUtils::OptionsConsumer.new(options)
-        list, noecho = options.consume_all(:list, :noecho)
+        bool, list, noecho = options.consume_all(:bool, :list, :noecho)
         options.validate
         if list
           request_from_list(question, list, noecho)
+        elsif bool
+          request_from_bool(question, noecho)
         else
           request_string(question, noecho)
         end
@@ -83,6 +85,10 @@ module EacRubyUtils
         elsif list.is_a?(::Array)
           list.map(&:to_s)
         end
+      end
+
+      def request_from_bool(question, noecho)
+        request_from_list(question, { yes: true, y: true, no: false, n: false }, noecho)
       end
 
       def request_from_list(question, list, noecho)

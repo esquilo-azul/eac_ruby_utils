@@ -21,5 +21,16 @@ RSpec.describe ::EacRubyUtils::Console::Speaker do
       list = %w[opt1 opt2]
       expect(instance.request_input('Question', list: list)).to eq('opt1')
     end
+
+    {
+      'yes' => true, 'y' => true, 'Y' => true, 'NO' => false, 'no' => false, 'n' => false
+    }.each do |input, expected|
+      context "when bool: true and input is \"#{input}\"" do
+        it "return #{expected}" do
+          allow(instance).to receive(:request_string).and_return(input)
+          expect(instance.request_input('Question', bool: true)).to eq(expected)
+        end
+      end
+    end
   end
 end
