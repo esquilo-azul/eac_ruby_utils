@@ -168,4 +168,13 @@ RSpec.describe ::EacRubyUtils::Listable do
       it { expect(instance.type_description).to eq('Tipo B Descr.') }
     end
   end
+
+  describe '#value_validate!' do
+    it { expect { Stub.lists.inteiro.value_validate!(1) }.not_to raise_error }
+    it { expect { Stub.lists.inteiro.value_validate!('1') }.to raise_error }
+    it { expect { Stub.lists.inteiro.value_validate!(10) }.to raise_error(::StandardError) }
+    it { expect { Stub.lists.cadeia.value_validate!(:a) }.to raise_error }
+    it { expect { Stub.lists.cadeia.value_validate!('a') }.not_to raise_error }
+    it { expect { Stub.lists.cadeia.value_validate!(:z) }.to raise_error(::StandardError) }
+  end
 end

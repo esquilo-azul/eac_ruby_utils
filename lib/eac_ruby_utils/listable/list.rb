@@ -39,6 +39,19 @@ module EacRubyUtils
         raise "List value unkown: #{v} (Source: #{@lists.source}, Item: #{item})"
       end
 
+      def value_valid?(value)
+        values.include?(value)
+      end
+
+      def value_validate!(value, error_class = ::StandardError)
+        value_valid?(value) ||
+          raise(error_class, "Invalid value: \"#{value}\" (Valid: #{values_to_s})")
+      end
+
+      def values_to_s
+        values.map { |v| "\"#{v}\"" }.join(', ')
+      end
+
       private
 
       def class_i18n_key
