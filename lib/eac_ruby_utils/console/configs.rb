@@ -45,15 +45,16 @@ module EacRubyUtils
         stored_value = configs.read_entry(entry_key)
         return stored_value if stored_value
         return read_entry_from_console(entry_key, options) unless options[:noinput]
+
         raise "No value found for entry \"#{entry_key}\""
       end
 
       def store_passwords?
-        'yes' == read_entry(
+        read_entry(
           STORE_PASSWORDS_KEY,
           before_input: -> { store_password_banner },
           validator: ->(entry_value) { %w[yes no].include?(entry_value) }
-        )
+        ) == 'yes'
       end
 
       protected
@@ -80,6 +81,7 @@ module EacRubyUtils
           entry_value = entry_value_from_input(entry_key, options)
           next unless entry_value.present?
           next if options[:validator] && !options[:validator].call(entry_value)
+
           return entry_value
         end
       end

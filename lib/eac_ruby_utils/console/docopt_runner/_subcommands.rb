@@ -16,9 +16,11 @@ module EacRubyUtils
 
       def check_subcommands
         return unless subcommands?
+
         singleton_class.include(SubcommandsSupport)
         check_subcommands_arg
         return if singleton_class.method_defined?(:run)
+
         singleton_class.send(:alias_method, :run, :run_with_subcommand)
       end
 
@@ -94,6 +96,7 @@ module EacRubyUtils
 
         def check_valid_subcommand
           return if available_subcommands.include?(subcommand_name)
+
           raise ::Docopt::Exit, "\"#{subcommand_name}\" is not a valid subcommand" \
             " (Valid: #{available_subcommands.join(', ')})"
         end

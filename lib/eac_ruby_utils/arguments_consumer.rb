@@ -69,6 +69,7 @@ module EacRubyUtils
 
       def check_no_more_arguments(arg)
         return unless @options_found
+
         invalid_argument arg, 'Hash already found - no more positional allowed'
       end
 

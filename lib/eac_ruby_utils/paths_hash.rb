@@ -10,9 +10,11 @@ module EacRubyUtils
         r = entry_key.to_s.strip
         raise EntryKeyError, 'Entry key cannot start or end with dot' if
         r.start_with?('.') || r.end_with?('.')
+
         r = r.split('.').map(&:strip)
         raise EntryKeyError, "Entry key \"#{entry_key}\" is empty" if r.empty?
         return r.map(&:to_sym) unless r.any?(&:blank?)
+
         raise EntryKeyError, "Entry key \"#{entry_key}\" has at least one blank part"
       end
     end
@@ -59,6 +61,7 @@ module EacRubyUtils
         return (node.is_a?(Node) ? node.to_h : node) if path.empty?
         return nil if node.blank?
         return node.read_entry(path, current + [node_key]) if node.is_a?(Node)
+
         raise(EntryKeyError,
               "Path #{current.join(',')} is not a Node and path continues (#{current + path})")
       end

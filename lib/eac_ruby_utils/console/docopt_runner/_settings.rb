@@ -13,6 +13,7 @@ module EacRubyUtils
           return value if value
         end
         return nil unless required
+
         raise "Setting \"#{key}\" not found. Declare #{setting_constant(key, true)} constant, " \
           "pass #{key.to_sym} option to #{self.class.name}.new() method."
       end

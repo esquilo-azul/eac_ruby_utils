@@ -55,6 +55,7 @@ module EacRubyUtils
     def storage_path_uncached
       path = options[:storage_path] || default_storage_path
       return path if ::File.exist?(path)
+
       ::FileUtils.mkdir_p(::File.dirname(path))
       ::File.write(path, {}.to_yaml)
       path

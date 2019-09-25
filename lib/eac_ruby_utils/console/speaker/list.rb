@@ -11,6 +11,7 @@ module EacRubyUtils
           def build(list)
             return List.new(hash_to_values(list)) if list.is_a?(::Hash)
             return List.new(array_to_values(list)) if list.is_a?(::Array)
+
             raise "Invalid list: #{list} (#{list.class})"
           end
 

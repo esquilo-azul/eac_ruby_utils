@@ -23,7 +23,7 @@ RSpec.describe ::EacRubyUtils::Console::DocoptRunner do
 
           Usage:
             __PROGRAM__
-          DOCUMENT
+        DOCUMENT
       end
 
       let(:options_with_doc) { options.merge(doc: doc) }
@@ -43,7 +43,7 @@ RSpec.describe ::EacRubyUtils::Console::DocoptRunner do
 
         Usage:
           __PROGRAM__ <parent-arg> __SUBCOMMANDS__
-DOCUMENT
+      DOCUMENT
 
       def parent_arg
         options.fetch('<parent-arg>')
@@ -55,7 +55,7 @@ DOCUMENT
 
           Usage:
             __PROGRAM__ [--suboption=<suboption-value] <subarg-value>
-DOCUMENT
+        DOCUMENT
 
         def run
           parent.suboption_value = options.fetch('--suboption')

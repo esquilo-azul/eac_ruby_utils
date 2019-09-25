@@ -30,7 +30,7 @@ module EacRubyUtils
 
       def method_missing(name, *args, &block)
         list = find_list_by_method(name)
-        list ? list : super
+        list || super
       end
 
       def respond_to_missing?(name, include_all = false)
@@ -45,6 +45,7 @@ module EacRubyUtils
 
       def check_acts_as_listable_new_item(item)
         return unless acts_as_listable_items.key?(item)
+
         raise "Item já adicionado anteriormente: #{item} em #{self} " \
           "(#{acts_as_listable_items.keys})"
       end

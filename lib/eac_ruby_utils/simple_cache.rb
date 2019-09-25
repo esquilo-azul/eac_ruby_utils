@@ -2,7 +2,7 @@
 
 module EacRubyUtils
   module SimpleCache
-    UNCACHED_METHOD_PATTERN = /\A(\s+)_uncached\z/
+    UNCACHED_METHOD_PATTERN = /\A(\s+)_uncached\z/.freeze
 
     def method_missing(method, *args, &block)
       uncached_method = "#{method}_uncached"
@@ -29,6 +29,7 @@ module EacRubyUtils
 
     def call_method_with_cache(method, args, &block)
       raise 'Não é possível realizar o cache de métodos com bloco' if block
+
       key = ([method] + args).join('@@@')
       cache_keys[key] = send(method, *args) unless cache_keys.key?(key)
       cache_keys[key]

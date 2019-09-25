@@ -22,7 +22,7 @@ module EacRubyUtils
 
       def method_missing(name, *args, &block)
         list = find_list_by_method(name)
-        list ? list : super
+        list || super
       end
 
       def respond_to_missing?(name, include_all = false)
@@ -36,6 +36,7 @@ module EacRubyUtils
       def instance_value(instance)
         v = instance.send(item)
         return @values[v] if @values.key?(v)
+
         raise "List value unkown: #{v} (Source: #{@lists.source}, Item: #{item})"
       end
 

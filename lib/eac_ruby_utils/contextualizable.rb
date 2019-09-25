@@ -7,6 +7,7 @@ module EacRubyUtils
       current = self
       while current
         return current.send(method) if current.respond_to?(method)
+
         current = current.respond_to?(:parent) ? current.parent : nil
       end
       raise "Context method \"#{method}\" not found for #{self.class}"

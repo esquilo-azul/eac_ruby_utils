@@ -10,7 +10,7 @@ module EacRubyUtils
     # https://github.com/fazibear/colorize
     module Speaker
       def puts(string = '')
-        STDERR.puts(string.to_s)
+        STDERR.puts(string.to_s) # rubocop:disable Style/StderrPuts
       end
 
       def out(string = '')
@@ -96,6 +96,7 @@ module EacRubyUtils
         loop do
           input = request_string("#{question} [#{list.valid_labels.join('/')}]", noecho)
           return list.build_value(input) if list.valid_value?(input)
+
           warn "Invalid input: \"#{input}\" (Valid: #{list.valid_labels.join(', ')})"
         end
       end
