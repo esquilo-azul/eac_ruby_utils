@@ -5,6 +5,7 @@ require 'eac_ruby_utils/envs/command'
 require 'eac_ruby_utils/envs/local_env'
 require 'eac_ruby_utils/envs/process'
 require 'eac_ruby_utils/envs/ssh_env'
+require 'eac_ruby_utils/envs/executable'
 
 module EacRubyUtils
   module Envs
