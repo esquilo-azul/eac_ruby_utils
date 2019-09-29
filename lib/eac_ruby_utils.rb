@@ -14,6 +14,7 @@ module EacRubyUtils
   require 'eac_ruby_utils/patches'
   require 'eac_ruby_utils/paths_hash'
   require 'eac_ruby_utils/require_sub'
+  require 'eac_ruby_utils/rspec'
   require 'eac_ruby_utils/simple_cache'
   require 'eac_ruby_utils/yaml'
 end
