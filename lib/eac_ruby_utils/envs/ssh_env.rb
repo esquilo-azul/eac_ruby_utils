@@ -8,26 +8,34 @@ require 'shellwords'
 module EacRubyUtils
   module Envs
     class SshEnv < ::EacRubyUtils::Envs::BaseEnv
+      USER_PATTERN = /[a-z_][a-z0-9_-]*/.freeze
+      HOSTNAME_PATTERN = /[^@]+/.freeze
+      USER_HOSTNAME_PATTERN = /\A(?:(#{USER_PATTERN})@)?(#{HOSTNAME_PATTERN})\z/.freeze
+
       class << self
         def parse_uri(uri)
-          r = parse_user_hostname(uri) || ::Addressable::URI.parse(uri)
-          return r if r.scheme == 'ssh'
-
-          raise "URI has no SSH scheme: #{uri}"
+          uri_by_url(uri) || uri_by_user_hostname(uri) || raise("URI has no SSH scheme: #{uri}")
         end
 
         private
 
-        def parse_user_hostname(user_hostname)
-          m = /\A([^@]+)@([^@]+)\z/.match(user_hostname)
+        def uri_by_url(url)
+          r = ::Addressable::URI.parse(url)
+          r.scheme == 'ssh' && r.host.present? ? r : nil
+        end
+
+        def uri_by_user_hostname(user_hostname)
+          m = USER_HOSTNAME_PATTERN.match(user_hostname)
           m ? ::Addressable::URI.new(scheme: 'ssh', host: m[2], user: m[1]) : nil
         rescue Addressable::URI::InvalidURIError
           nil
         end
       end
 
+      attr_reader :uri
+
       def initialize(uri)
-        @uri = self.class.parse_uri(uri)
+        @uri = self.class.parse_uri(uri).freeze
       end
 
       def to_s
@@ -40,19 +48,23 @@ module EacRubyUtils
 
       private
 
-      attr_reader :uri
-
       def ssh_command_line
         r = %w[ssh]
         r += ['-p', uri.port] if uri.port.present?
         r += ssh_command_line_options
-        r << "#{uri.user}@#{uri.host}"
+        r << user_hostname_uri
         r.map { |a| Shellwords.escape(a) }.join(' ')
       end
 
       def ssh_command_line_options
         r = []
         uri.query_values&.each { |k, v| r += ['-o', "#{k}=#{v}"] }
+        r
+      end
+
+      def user_hostname_uri
+        r = uri.host
+        r = "#{uri.user}@#{r}" if uri.user.present?
         r
       end
     end
