@@ -4,6 +4,7 @@ require 'colorize'
 require 'io/console'
 require 'eac_ruby_utils/options_consumer'
 require 'eac_ruby_utils/console/speaker/list'
+require 'eac_ruby_utils/console/speaker/node'
 
 module EacRubyUtils
   module Console
