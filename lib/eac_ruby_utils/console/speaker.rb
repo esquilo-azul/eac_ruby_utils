@@ -3,6 +3,7 @@
 require 'colorize'
 require 'io/console'
 require 'eac_ruby_utils/options_consumer'
+require 'eac_ruby_utils/console/speaker/_class_methods'
 require 'eac_ruby_utils/console/speaker/list'
 require 'eac_ruby_utils/console/speaker/node'
 
@@ -11,11 +12,11 @@ module EacRubyUtils
     # https://github.com/fazibear/colorize
     module Speaker
       def puts(string = '')
-        STDERR.puts(string.to_s) # rubocop:disable Style/StderrPuts
+        current_node.stderr.puts(string.to_s)
       end
 
       def out(string = '')
-        STDOUT.write(string.to_s)
+        current_node.stdout.write(string.to_s)
       end
 
       def fatal_error(string)
@@ -103,14 +104,18 @@ module EacRubyUtils
       end
 
       def request_string(question, noecho)
-        STDERR.write "#{question}: ".to_s.yellow
+        current_node.stderr.write "#{question}: ".to_s.yellow
         if noecho
-          r = STDIN.noecho(&:gets).chomp.strip
-          STDERR.write("\n")
+          r = current_node.stdin.noecho(&:gets).chomp.strip
+          current_node.stderr.write("\n")
           r
         else
-          STDIN.gets.chomp.strip
+          current_node.stdin.gets.chomp.strip
         end
+      end
+
+      def current_node
+        ::EacRubyUtils::Console::Speaker.current_node
       end
     end
   end
