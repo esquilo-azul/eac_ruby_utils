@@ -17,6 +17,7 @@ module EacRubyUtils
 
         def pop
           return nodes_stack.pop if nodes_stack.count > 1
+
           raise "Cannot remove first node (nodes_stack.count: #{nodes_stack.count})"
         end
 

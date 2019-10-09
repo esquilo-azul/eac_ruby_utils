@@ -105,13 +105,17 @@ module EacRubyUtils
 
       def request_string(question, noecho)
         current_node.stderr.write "#{question}: ".to_s.yellow
-        if noecho
-          r = current_node.stdin.noecho(&:gets).chomp.strip
-          current_node.stderr.write("\n")
-          r
-        else
-          current_node.stdin.gets.chomp.strip
-        end
+        noecho ? request_string_noecho : request_string_echo
+      end
+
+      def request_string_noecho
+        r = current_node.stdin.noecho(&:gets).chomp.strip
+        current_node.stderr.write("\n")
+        r
+      end
+
+      def request_string_echo
+        current_node.stdin.gets.chomp.strip
       end
 
       def current_node
