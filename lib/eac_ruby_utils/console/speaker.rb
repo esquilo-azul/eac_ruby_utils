@@ -2,7 +2,7 @@
 
 require 'colorize'
 require 'io/console'
-require 'eac_ruby_utils/options_consumer'
+require 'eac_ruby_utils/patches/hash/options_consumer'
 require 'eac_ruby_utils/console/speaker/_class_methods'
 require 'eac_ruby_utils/console/speaker/list'
 require 'eac_ruby_utils/console/speaker/node'
@@ -49,9 +49,7 @@ module EacRubyUtils
       #   +list+ ([Hash] or [Array], default: +nil+): requires a answer from a list.
       #   +noecho+ ([Boolean], default: +false+): does not output answer.
       def request_input(question, options = {})
-        options = ::EacRubyUtils::OptionsConsumer.new(options)
-        bool, list, noecho = options.consume_all(:bool, :list, :noecho)
-        options.validate
+        bool, list, noecho = options.to_options_consumer.consume_all(:bool, :list, :noecho)
         if list
           request_from_list(question, list, noecho)
         elsif bool
