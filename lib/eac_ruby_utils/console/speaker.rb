@@ -44,6 +44,10 @@ module EacRubyUtils
         puts string.to_s.yellow
       end
 
+      # Options:
+      #   +bool+ ([Boolean], default: +false+): requires a answer "yes" or "no".
+      #   +list+ ([Hash] or [Array], default: +nil+): requires a answer from a list.
+      #   +noecho+ ([Boolean], default: +false+): does not output answer.
       def request_input(question, options = {})
         options = ::EacRubyUtils::OptionsConsumer.new(options)
         bool, list, noecho = options.consume_all(:bool, :list, :noecho)
