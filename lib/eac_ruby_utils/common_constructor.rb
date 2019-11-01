@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'active_support/callbacks'
+
 module EacRubyUtils
   class CommonConstructor
     attr_reader :args, :options
@@ -25,14 +27,18 @@ module EacRubyUtils
     end
 
     def setup_class_initialize(klass)
+      klass.include(::ActiveSupport::Callbacks)
+      klass.define_callbacks :initialize
       klass.class_eval initialize_method_code, __FILE__, __LINE__
     end
 
     def initialize_method_code
       b = "def initialize(#{initialize_method_args_code})\n"
+      b += "  run_callbacks :initialize do\n"
       initialize_method_args.each do |arg|
         b += "  self.#{arg} = #{arg}\n"
       end
+      b += "  end\n"
       b += "end\n"
       b
     end
