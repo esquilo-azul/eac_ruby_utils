@@ -50,7 +50,7 @@ module EacRubyUtils
         return stored_value if stored_value
         return read_entry_from_console(entry_key, options) unless options[:noinput]
 
-        raise "No value found for entry \"#{entry_key}\""
+        raise "No value found for entry \"#{entry_key}\"" if options[:required]
       end
 
       def store_passwords?
@@ -103,7 +103,7 @@ module EacRubyUtils
 
         DEFAULT_VALUES = {
           before_input: nil, bool: false, list: false, noecho: false, noenv: false, noinput: false,
-          validator: nil
+          required: true, validator: nil
         }.freeze
 
         def [](key)
