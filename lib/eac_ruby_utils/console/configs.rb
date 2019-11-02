@@ -4,6 +4,7 @@ require 'eac_ruby_utils/common_constructor'
 require 'eac_ruby_utils/configs'
 require 'eac_ruby_utils/console/speaker'
 require 'eac_ruby_utils/options_consumer'
+require 'eac_ruby_utils/patches/object/asserts'
 require 'eac_ruby_utils/simple_cache'
 
 module EacRubyUtils
@@ -27,8 +28,9 @@ module EacRubyUtils
 
       attr_reader :configs
 
-      def initialize(configs_key)
-        @configs = ::EacRubyUtils::Configs.new(configs_key, autosave: true)
+      def initialize(configs_key, options = {})
+        options.assert_argument(::Hash, 'options')
+        @configs = ::EacRubyUtils::Configs.new(configs_key, options.merge(autosave: true))
       end
 
       def read_password(entry_key, options = {})
