@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/common_constructor'
 require 'eac_ruby_utils/configs'
 require 'eac_ruby_utils/console/speaker'
+require 'eac_ruby_utils/options_consumer'
+require 'eac_ruby_utils/simple_cache'
 
 module EacRubyUtils
   module Console
@@ -38,6 +41,7 @@ module EacRubyUtils
       end
 
       def read_entry(entry_key, options = {})
+        options = ReadEntryOptions.new(options)
         unless options[:noenv]
           envvar_value = envvar_read_entry(entry_key)
           return envvar_value if envvar_value.present?
@@ -87,9 +91,42 @@ module EacRubyUtils
       end
 
       def entry_value_from_input(entry_key, options)
-        entry_value = request_input("Value for entry \"#{entry_key}\"", options)
+        entry_value = request_input("Value for entry \"#{entry_key}\"",
+                                    options.request_input_options)
         warn('Entered value is blank') if entry_value.blank?
         entry_value
+      end
+
+      class ReadEntryOptions
+        include ::EacRubyUtils::SimpleCache
+        ::EacRubyUtils::CommonConstructor.new(:options).setup_class(self)
+
+        DEFAULT_VALUES = {
+          before_input: nil, bool: false, list: false, noecho: false, noenv: false, noinput: false,
+          validator: nil
+        }.freeze
+
+        def [](key)
+          values.fetch(key.to_sym)
+        end
+
+        def request_input_options
+          values.slice(:bool, :list, :noecho)
+        end
+
+        private
+
+        def values_uncached
+          consumer = ::EacRubyUtils::OptionsConsumer.new(options)
+          r = {}
+          DEFAULT_VALUES.each do |key, default_value|
+            value = consumer.consume(key)
+            value = default_value if value.nil?
+            r[key] = value
+          end
+          consumer.validate
+          r
+        end
       end
     end
   end
