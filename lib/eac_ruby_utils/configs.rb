@@ -19,6 +19,10 @@ module EacRubyUtils
       load
     end
 
+    def clear
+      self.data = ::EacRubyUtils::PathsHash.new({})
+    end
+
     def save
       ::File.write(storage_path, data.to_h.to_yaml)
     end
