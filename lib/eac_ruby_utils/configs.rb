@@ -2,6 +2,7 @@
 
 require 'active_support/core_ext/string'
 require 'yaml'
+require 'eac_ruby_utils/configs/file'
 require 'eac_ruby_utils/patches/hash/sym_keys_hash'
 require 'eac_ruby_utils/paths_hash'
 require 'eac_ruby_utils/simple_cache'
@@ -20,15 +21,15 @@ module EacRubyUtils
     end
 
     def clear
-      self.data = ::EacRubyUtils::PathsHash.new({})
+      file.clear
     end
 
     def save
-      ::File.write(storage_path, data.to_h.to_yaml)
+      file.save
     end
 
     def load
-      self.data = ::EacRubyUtils::PathsHash.new(YAML.load_file(storage_path))
+      file.load
     end
 
     def []=(entry_key, entry_value)
@@ -36,8 +37,7 @@ module EacRubyUtils
     end
 
     def write_entry(entry_key, entry_value)
-      data[entry_key] = entry_value
-      save if autosave?
+      file.write(entry_key, entry_value)
     end
 
     def [](entry_key)
@@ -45,19 +45,25 @@ module EacRubyUtils
     end
 
     def read_entry(entry_key)
-      data[entry_key]
+      file.read(entry_key)
     end
 
     def autosave?
-      options[:autosave] ? true : false
+      file.autosave?
     end
 
     private
 
     attr_accessor :data
 
+    def file_uncached
+      ::EacRubyUtils::Configs::File.new(
+        storage_path, options
+      )
+    end
+
     def storage_path_uncached
-      path = options[:storage_path] || default_storage_path
+      path = options_storage_path || default_storage_path
       return path if ::File.exist?(path) && ::File.size(path).positive?
 
       ::FileUtils.mkdir_p(::File.dirname(path))
