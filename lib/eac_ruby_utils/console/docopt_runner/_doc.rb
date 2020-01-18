@@ -10,11 +10,15 @@ module EacRubyUtils
       end
 
       def target_doc
-        source_doc.gsub(PROGRAM_MACRO, program_name).strip + "\n"
+        source_doc.gsub(PROGRAM_MACRO, target_program_name).strip + "\n"
       end
 
-      def program_name
-        [setting_value(:program_name, false), ENV['PROGRAM_NAME'], $PROGRAM_NAME].find(&:present?)
+      def source_program_name
+        setting_value(:program_name, false)
+      end
+
+      def target_program_name
+        [source_program_name, ENV['PROGRAM_NAME'], $PROGRAM_NAME].find(&:present?)
       end
     end
   end
