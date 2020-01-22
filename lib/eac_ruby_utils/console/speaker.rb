@@ -16,7 +16,9 @@ module EacRubyUtils
       end
 
       def puts(string = '')
-        current_node.stderr.puts(string.to_s)
+        string.to_s.each_line do |line|
+          current_node.stderr.puts(current_node.stderr_line_prefix.to_s + line)
+        end
       end
 
       def out(string = '')
