@@ -11,6 +11,10 @@ module EacRubyUtils
   module Console
     # https://github.com/fazibear/colorize
     module Speaker
+      def on_speaker_node(&block)
+        ::EacRubyUtils::Console::Speaker.on_node(&block)
+      end
+
       def puts(string = '')
         current_node.stderr.puts(string.to_s)
       end

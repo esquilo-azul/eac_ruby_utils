@@ -10,6 +10,13 @@ module EacRubyUtils
           nodes_stack.last
         end
 
+        def on_node(&block)
+          push
+          yield(*(block.arity.zero? ? [] : [current_node]))
+        ensure
+          pop
+        end
+
         def push
           nodes_stack << ::EacRubyUtils::Console::Speaker::Node.new
           current_node
