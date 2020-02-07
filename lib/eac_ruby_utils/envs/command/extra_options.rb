@@ -12,7 +12,7 @@ module EacRubyUtils
           duplicate_by_extra_options(chdir: dir)
         end
 
-        def read_entry(name, value)
+        def envvar(name, value)
           duplicate_by_extra_options(envvars: envvars.merge(name => value))
         end
 
