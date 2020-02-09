@@ -11,6 +11,7 @@ module EacRubyUtils
   require 'eac_ruby_utils/fs_cache'
   require 'eac_ruby_utils/listable'
   require 'eac_ruby_utils/options_consumer'
+  require 'eac_ruby_utils/settings_provider'
   require 'eac_ruby_utils/patch'
   require 'eac_ruby_utils/patches'
   require 'eac_ruby_utils/paths_hash'
