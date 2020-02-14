@@ -6,13 +6,13 @@ module EacRubyUtils
   module Envs
     class Process
       def initialize(command)
-        @command = command
-        @stdout, @stderr, exit_code = Open3.capture3(command)
-        @exit_code = exit_code.to_i
+        @data = { command: command }
+        @data[:stdout], @data[:stderr], @data[:exit_code] = Open3.capture3(command)
+        @data[:exit_code] = @data[:exit_code].to_i
       end
 
       def to_h
-        { exit_code: @exit_code, stdout: @stdout, stderr: @stderr, command: @command }
+        @data.dup
       end
     end
   end
