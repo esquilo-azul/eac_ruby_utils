@@ -12,6 +12,7 @@ module EacRubyUtils
   require 'eac_ruby_utils/listable'
   require 'eac_ruby_utils/gem'
   require 'eac_ruby_utils/gem/minitest_test'
+  require 'eac_ruby_utils/gem/rspec_test'
   require 'eac_ruby_utils/gem/test'
   require 'eac_ruby_utils/gem/test_all'
   require 'eac_ruby_utils/options_consumer'
