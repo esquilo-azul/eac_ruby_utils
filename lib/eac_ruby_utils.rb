@@ -8,6 +8,7 @@ module EacRubyUtils
   require 'eac_ruby_utils/core_ext'
   require 'eac_ruby_utils/envs'
   require 'eac_ruby_utils/filesystem_cache'
+  require 'eac_ruby_utils/fs_cache'
   require 'eac_ruby_utils/listable'
   require 'eac_ruby_utils/options_consumer'
   require 'eac_ruby_utils/patch'
