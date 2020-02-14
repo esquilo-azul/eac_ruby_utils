@@ -10,6 +10,7 @@ module EacRubyUtils
   require 'eac_ruby_utils/filesystem_cache'
   require 'eac_ruby_utils/fs_cache'
   require 'eac_ruby_utils/listable'
+  require 'eac_ruby_utils/gem'
   require 'eac_ruby_utils/options_consumer'
   require 'eac_ruby_utils/settings_provider'
   require 'eac_ruby_utils/patch'
