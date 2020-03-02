@@ -5,7 +5,7 @@ require 'active_support/core_ext/hash/slice'
 require 'docopt'
 require 'eac_ruby_utils/contextualizable'
 require 'eac_ruby_utils/patches/hash/sym_keys_hash'
-Dir["#{__dir__}/#{::File.basename(__FILE__, '.*')}/_*.rb"].each do |partial|
+Dir["#{__dir__}/#{::File.basename(__FILE__, '.*')}/_*.rb"].sort.each do |partial|
   require partial
 end
 
