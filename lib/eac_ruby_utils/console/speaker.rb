@@ -3,9 +3,8 @@
 require 'colorize'
 require 'io/console'
 require 'eac_ruby_utils/patches/hash/options_consumer'
-require 'eac_ruby_utils/console/speaker/_class_methods'
-require 'eac_ruby_utils/console/speaker/list'
-require 'eac_ruby_utils/console/speaker/node'
+require 'eac_ruby_utils/require_sub'
+::EacRubyUtils.require_sub __FILE__
 
 module EacRubyUtils
   module Console
