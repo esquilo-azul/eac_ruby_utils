@@ -6,7 +6,7 @@ require 'ostruct'
 
 module EacRubyUtils
   class CommonConstructor
-    attr_reader :args, :options
+    attr_reader :args, :options, :after_set_block
 
     class << self
       def parse_args_options(args)
@@ -34,10 +34,11 @@ module EacRubyUtils
       end
     end
 
-    def initialize(*args)
+    def initialize(*args, &after_set_block)
       args_processed = self.class.parse_args_options(args)
       @args = args_processed.args
       @options = args_processed.options
+      @after_set_block = after_set_block
     end
 
     def args_count
@@ -94,6 +95,7 @@ module EacRubyUtils
         validate_args_count
         object.run_callbacks :initialize do
           object_attributes_set
+          object_after_callback
         end
       end
 
@@ -106,6 +108,12 @@ module EacRubyUtils
         else
           common_constructor.default_values[arg_index - common_constructor.args_count_min]
         end
+      end
+
+      def object_after_callback
+        return unless common_constructor.after_set_block
+
+        object.instance_eval(&common_constructor.after_set_block)
       end
 
       def object_attributes_set

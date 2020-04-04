@@ -4,9 +4,14 @@ require 'eac_ruby_utils/common_constructor'
 
 RSpec.describe ::EacRubyUtils::CommonConstructor do
   ARG_LIST = %i[a b c d].freeze
-  let(:instance) { described_class.new(*ARG_LIST, default: %w[Vcc Vd]) }
+  let(:instance) do
+    described_class.new(*ARG_LIST, default: %w[Vcc Vd]) do
+      @z = 'Vz'
+    end
+  end
 
   class MyClass
+    attr_reader :z
   end
 
   let(:subject) { MyClass.new('Va', 'Vb', 'Vc') }
@@ -14,6 +19,8 @@ RSpec.describe ::EacRubyUtils::CommonConstructor do
   before do
     instance.setup_class(::MyClass)
   end
+
+  it { expect(subject.z).to eq('Vz') }
 
   ARG_LIST.each do |attr|
     expected_value = "V#{attr}"
