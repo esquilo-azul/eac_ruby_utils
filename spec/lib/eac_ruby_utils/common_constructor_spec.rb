@@ -3,13 +3,13 @@
 require 'eac_ruby_utils/common_constructor'
 
 RSpec.describe ::EacRubyUtils::CommonConstructor do
-  ARG_LIST = %i[a b].freeze
-  let(:instance) { described_class.new(*ARG_LIST) }
+  ARG_LIST = %i[a b c d].freeze
+  let(:instance) { described_class.new(*ARG_LIST, default: %w[Vcc Vd]) }
 
   class MyClass
   end
 
-  let(:subject) { MyClass.new('Va', 'Vb') }
+  let(:subject) { MyClass.new('Va', 'Vb', 'Vc') }
 
   before do
     instance.setup_class(::MyClass)
