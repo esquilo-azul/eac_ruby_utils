@@ -22,14 +22,6 @@ module EacRubyUtils
       Parser.new(self, args).data
     end
 
-    def initialize2(args, positional, _default_options)
-      @positional = positional.dup
-      @positional.freeze
-      @args = args
-
-      @options_found = false
-    end
-
     class Parser
       attr_reader :data, :arguments_consumer
 
