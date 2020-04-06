@@ -74,7 +74,7 @@ module EacRubyUtils
       end
 
       def invalid_argument(arg, message)
-        raise InvalidArgumentError, self, arg, message
+        raise InvalidArgumentError.new(self, arg, message)
       end
     end
 
