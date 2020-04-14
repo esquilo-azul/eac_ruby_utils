@@ -9,10 +9,11 @@ class Object
 
     block_given? ? yield(self) : self
   end
-  
+
   # @return +yield+ if +self+ is blank.
   def if_blank
     return yield if blank? && block_given?
+
     self
   end
 end

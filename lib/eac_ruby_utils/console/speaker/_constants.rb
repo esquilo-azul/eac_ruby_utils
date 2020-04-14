@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'eac_ruby_utils/by_reference'
 
 module EacRubyUtils
