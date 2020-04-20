@@ -2,7 +2,7 @@
 
 module EacRubyUtils
   class FilesystemTraverser
-    attr_accessor :check_directory, :check_file, :recursive, :hidden_directories
+    attr_accessor :check_directory, :check_file, :recursive, :hidden_directories, :sort
 
     def check_path(path)
       path = ::Pathname.new(path.to_s) unless path.is_a?(::Pathname)
@@ -17,7 +17,19 @@ module EacRubyUtils
       recursive ? true : false
     end
 
+    def sort?
+      sort ? true : false
+    end
+
     private
+
+    def each_child(dir, &block)
+      if sort?
+        dir.each_child.sort_by { |p| [p.to_s] }.each(&block)
+      else
+        dir.each_child(&block)
+      end
+    end
 
     def process_directory?(level)
       level.zero? || recursive?
@@ -27,8 +39,7 @@ module EacRubyUtils
       return unless process_directory?(level)
 
       user_check_directory(dir)
-      dir.each_entry do |e|
-        next if %(. ..).include?(e.basename.to_s)
+      each_child(dir) do |e|
         next unless !e.basename.to_s.start_with?('.') || hidden_directories?
 
         internal_check_path(dir.join(e), level + 1)
