@@ -4,6 +4,7 @@ require 'active_support/core_ext/hash/indifferent_access'
 require 'eac_ruby_utils/console/speaker'
 require 'eac_ruby_utils/envs/command/extra_options'
 require 'eac_ruby_utils/envs/process'
+require 'eac_ruby_utils/envs/spawn'
 require 'pp'
 require 'shellwords'
 
@@ -67,6 +68,12 @@ module EacRubyUtils
         i = Time.now - t1
         puts "AFTER [#{i}]: #{c}".light_red if debug?
         r
+      end
+
+      def spawn(options = {})
+        c = command(options)
+        puts "SPAWN: #{c}".light_red if debug?
+        ::EacRubyUtils::Envs::Spawn.new(c)
       end
 
       def system!(options = {})
