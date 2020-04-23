@@ -7,7 +7,7 @@ module EacRubyUtils
     end
 
     def method_missing(method_name, *arguments, &block)
-      return object.send(method_name, *arguments) if object.respond_to?(method_name)
+      return object.send(method_name, *arguments, &block) if object.respond_to?(method_name)
 
       super
     end
