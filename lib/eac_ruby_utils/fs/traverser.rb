@@ -43,7 +43,7 @@ module EacRubyUtils
         each_child(dir) do |e|
           next unless !e.basename.to_s.start_with?('.') || hidden_directories?
 
-          internal_check_path(dir.join(e), level + 1)
+          internal_check_path(e, level + 1)
         end
       end
 
