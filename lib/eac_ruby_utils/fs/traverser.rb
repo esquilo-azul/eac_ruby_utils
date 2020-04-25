@@ -11,18 +11,23 @@ module EacRubyUtils
       end
 
       def hidden_directories?
-        hidden_directories ? true : false
+        boolean_value(hidden_directories)
       end
 
       def recursive?
-        recursive ? true : false
+        boolean_value(recursive)
       end
 
       def sort?
-        sort ? true : false
+        boolean_value(sort)
       end
 
       private
+
+      def boolean_value(source_value)
+        source_value = source_value.call if source_value.respond_to?(:call)
+        source_value ? true : false
+      end
 
       def each_child(dir, &block)
         if sort?
