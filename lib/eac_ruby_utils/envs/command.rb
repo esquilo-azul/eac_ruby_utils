@@ -88,16 +88,22 @@ module EacRubyUtils
         Kernel.system(c)
       end
 
+      protected
+
+      def duplicate(command, extra_options)
+        self.class.new(@env, command, extra_options)
+      end
+
       private
 
       attr_reader :extra_options
 
       def duplicate_by_command(new_command)
-        self.class.new(@env, new_command, @extra_options)
+        duplicate(new_command, @extra_options)
       end
 
       def duplicate_by_extra_options(set_extra_options)
-        self.class.new(@env, @command, @extra_options.merge(set_extra_options))
+        duplicate(@command, @extra_options.merge(set_extra_options))
       end
 
       def debug?
