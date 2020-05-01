@@ -27,4 +27,26 @@ RSpec.describe ::EacRubyUtils::Fs::Temp do
       expect(temp_path).not_to exist
     end
   end
+
+  describe '#on_directory' do
+    it do
+      temp_path = nil
+      described_class.on_directory do |path|
+        temp_path = path
+        expect(temp_path).to be_directory
+      end
+      expect(temp_path).not_to exist
+    end
+
+    it 'not fail if already removed' do
+      temp_path = nil
+      described_class.on_directory do |path|
+        temp_path = path
+        expect(temp_path).to be_directory
+        temp_path.rmtree
+        expect(temp_path).not_to exist
+      end
+      expect(temp_path).not_to exist
+    end
+  end
 end

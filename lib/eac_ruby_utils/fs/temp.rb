@@ -25,6 +25,17 @@ module EacRubyUtils
           ::EacRubyUtils::Fs::Temp::File.new(*tempfile_args)
         end
 
+        # Run a block while a temporary directory pathname is provided. The directory is deleted
+        # when the block is finished.
+        def on_directory(*tempfile_args)
+          temp_dir = directory(*tempfile_args)
+          begin
+            yield(temp_dir)
+          ensure
+            temp_dir.remove
+          end
+        end
+
         # Run a block while a temporary file pathname is providade. The file is deleted when block
         # is finished.
         def on_file(*tempfile_args)
