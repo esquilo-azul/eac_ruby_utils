@@ -11,6 +11,13 @@ module EacRubyUtils
       class << self
         ::EacRubyUtils.require_sub __FILE__
 
+        # Shortcut to +EacRubyUtils::Fs::Temp::Directory.new(*tempfile_args)+.
+        #
+        # @return [Pathname]
+        def directory(*tempfile_args)
+          ::EacRubyUtils::Fs::Temp::Directory.new(*tempfile_args)
+        end
+
         # Shortcut to +EacRubyUtils::Fs::Temp::File.new(*tempfile_args)+.
         #
         # @return [Pathname]
