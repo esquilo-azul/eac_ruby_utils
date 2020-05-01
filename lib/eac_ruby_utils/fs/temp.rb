@@ -11,23 +11,21 @@ module EacRubyUtils
       class << self
         ::EacRubyUtils.require_sub __FILE__
 
+        # Shortcut to +EacRubyUtils::Fs::Temp::File.new(*tempfile_args)+.
+        #
         # @return [Pathname]
         def file(*tempfile_args)
-          file = Tempfile.new(*tempfile_args)
-          r = ::Pathname.new(file.path)
-          file.close
-          file.unlink
-          r
+          ::EacRubyUtils::Fs::Temp::File.new(*tempfile_args)
         end
 
         # Run a block while a temporary file pathname is providade. The file is deleted when block
         # is finished.
         def on_file(*tempfile_args)
-          pathname = file(*tempfile_args)
+          temp_file = file(*tempfile_args)
           begin
-            yield(pathname)
+            yield(temp_file)
           ensure
-            pathname.unlink if pathname.exist?
+            temp_file.remove
           end
         end
       end
