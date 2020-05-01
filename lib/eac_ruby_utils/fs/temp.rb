@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/require_sub'
 require 'pathname'
 require 'tempfile'
 
@@ -8,6 +9,8 @@ module EacRubyUtils
     # Utilities for temporary files.
     module Temp
       class << self
+        ::EacRubyUtils.require_sub __FILE__
+
         # @return [Pathname]
         def file(*tempfile_args)
           file = Tempfile.new(*tempfile_args)
