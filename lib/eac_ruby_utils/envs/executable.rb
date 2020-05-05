@@ -31,9 +31,9 @@ module EacRubyUtils
         raise ProgramNotFoundError, message if message
       end
 
-      def command
+      def command(*command_args)
         validate!
-        env.command(name)
+        env.command(name, *command_args)
       end
 
       private
