@@ -3,7 +3,7 @@
 require 'eac_ruby_utils/require_sub'
 
 class Module
-  def require_sub(file_path)
-    ::EacRubyUtils.require_sub(file_path)
+  def require_sub(file_path, options = {})
+    ::EacRubyUtils.require_sub(file_path, { base: self }.merge(options))
   end
 end
