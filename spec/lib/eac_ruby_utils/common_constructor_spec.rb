@@ -27,6 +27,7 @@ RSpec.describe ::EacRubyUtils::CommonConstructor do
     it "attribute \"#{attr}\" equal to \"#{expected_value}\"" do
       expect(subject.send(attr)).to eq(expected_value)
     end
+
     [false, true].each do |include_all|
       it "respond_to?('#{attr}', #{include_all}) == #{include_all}" do
         expect(subject.respond_to?("#{attr}=", include_all)).to eq(include_all)

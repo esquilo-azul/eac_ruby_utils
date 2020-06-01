@@ -17,7 +17,7 @@ RSpec.describe ::Object do
     ::EacRubyUtils::Templates::Searcher.default.included_paths.delete(templates_path)
   end
 
-  context '#template' do
+  describe '#template' do
     it { expect(instance.template).to be_a(::EacRubyUtils::Templates::File) }
   end
 end

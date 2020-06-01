@@ -20,7 +20,7 @@ RSpec.describe ::EacRubyUtils::Templates::Searcher do
     }.each do |klass, subpaths|
       subpaths.each do |subpath|
         context "when subpath is \"#{subpath}\"" do
-          it "should return a #{klass}'s instance" do
+          it "returns a #{klass}'s instance" do
             expect(instance.template(subpath, false)).to be_a(klass)
           end
         end

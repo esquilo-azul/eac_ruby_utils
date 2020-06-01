@@ -5,6 +5,7 @@ require 'eac_ruby_utils/envs/local_env'
 
 RSpec.describe ::EacRubyUtils::Envs::Executable do
   let(:env) { ::EacRubyUtils::Envs::LocalEnv.new }
+
   context 'when program exist' do
     let(:instance) { described_class.new(env, 'cat', '--version') }
 
@@ -18,12 +19,15 @@ RSpec.describe ::EacRubyUtils::Envs::Executable do
     let(:instance) { described_class.new(env, 'this_cannot_exist', '--version') }
 
     it { expect(instance.exist?).to eq(false) }
+
     it {
       expect { instance.validate! }.to raise_error(
         described_class.const_get('ProgramNotFoundError')
       )
     }
+
     it { expect(instance.validate).to be_present }
+
     it {
       expect { instance.command }.to raise_error(
         described_class.const_get('ProgramNotFoundError')

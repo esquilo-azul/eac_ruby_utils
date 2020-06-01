@@ -7,6 +7,6 @@ RSpec.describe ::EacRubyUtils::Fs::Temp::Directory do
     let(:instance) { described_class.new }
 
     it { expect(instance).to be_directory }
-    it { expect { instance.remove! }.to_not raise_error }
+    it { expect { instance.remove! }.not_to raise_error }
   end
 end

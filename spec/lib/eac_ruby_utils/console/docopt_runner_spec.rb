@@ -66,7 +66,7 @@ RSpec.describe ::EacRubyUtils::Console::DocoptRunner do
 
     let(:instance) { RunnerWithSubcommands.new }
 
-    context '#subcommands?' do
+    describe '#subcommands?' do
       it 'returns true' do
         expect(instance.subcommands?).to eq(true)
       end
@@ -85,19 +85,19 @@ RSpec.describe ::EacRubyUtils::Console::DocoptRunner do
         it { expect(instance.target_doc).to include('Subcommands:') }
       end
 
-      context '#subcommand' do
+      describe '#subcommand' do
         it 'is of subcommand class' do
           expect(instance.subcommand).to be_a(RunnerWithSubcommands::MySubCommand)
         end
       end
 
-      context '#context' do
+      describe '#context' do
         it 'accesses instance methods by subcommand' do
           expect(instance.subcommand.context(:parent_arg)).to eq('value0')
         end
       end
 
-      context '#run' do
+      describe '#run' do
         it 'calls subcommand' do
           instance.run
           expect(instance.subarg_value).to eq('value1')
@@ -109,7 +109,7 @@ RSpec.describe ::EacRubyUtils::Console::DocoptRunner do
     context 'when subcommand is invalid' do
       let(:instance) { RunnerWithSubcommands.new(argv: %w[value0 invalid-subcommand]) }
 
-      context '#run' do
+      describe '#run' do
         it 'raises Docopt::Exit' do
           expect { instance.run }.to raise_error(::Docopt::Exit)
         end

@@ -9,7 +9,7 @@ RSpec.describe ::EacRubyUtils::Console::Speaker do
     r
   end
 
-  context '#request_input' do
+  describe '#request_input' do
     it 'recover value from hash list' do
       allow(instance).to receive(:request_string).and_return('opt1')
       list = { opt1: 'value1', opt2: 'value2' }

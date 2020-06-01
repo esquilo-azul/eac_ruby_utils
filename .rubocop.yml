@@ -1,3 +1,6 @@
+require:
+  - rubocop-rspec
+
 AllCops:
   TargetRubyVersion: 2.4
 
@@ -7,6 +10,61 @@ Layout/LineLength:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*_spec.rb'
+
+RSpec/ContextWording:
+  Exclude:
+    - spec/lib/eac_ruby_utils/console/docopt_runner_spec.rb
+    - spec/lib/eac_ruby_utils/listable_spec.rb
+    - spec/lib/eac_ruby_utils/options_consumer_spec.rb
+
+RSpec/ExampleLength:
+  Exclude:
+    - spec/lib/eac_ruby_utils/fs/temp_spec.rb
+    - spec/lib/eac_ruby_utils/options_consumer_spec.rb
+
+RSpec/FilePath:
+  Exclude:
+    - spec/lib/eac_ruby_utils/fs/temp/temp_spec.rb
+
+RSpec/LeakyConstantDeclaration:
+  Exclude:
+    - spec/lib/eac_ruby_utils/common_concern_spec.rb
+    - spec/lib/eac_ruby_utils/common_constructor_spec.rb
+    - spec/lib/eac_ruby_utils/console/docopt_runner_spec.rb
+    - spec/lib/eac_ruby_utils/patches/module/console_speaker_spec.rb
+    - spec/lib/eac_ruby_utils/patches/module/listable_spec.rb
+    - spec/lib/eac_ruby_utils/patches/module/simple_cache_spec.rb
+    - spec/lib/eac_ruby_utils/patches/object/template_spec.rb
+    - spec/lib/eac_ruby_utils/require_sub_spec.rb
+    - spec/lib/eac_ruby_utils/settings_provider_spec.rb
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - spec/lib/eac_ruby_utils/console/docopt_runner_spec.rb
+    - spec/lib/eac_ruby_utils/fs/temp_spec.rb
+    - spec/lib/eac_ruby_utils/options_consumer_spec.rb
+
+RSpec/NamedSubject:
+  Exclude:
+    - spec/lib/eac_ruby_utils/common_concern_spec.rb
+    - spec/lib/eac_ruby_utils/common_constructor_spec.rb
+
+RSpec/NestedGroups:
+  Exclude:
+    - spec/lib/eac_ruby_utils/console/docopt_runner_spec.rb
+
+RSpec/RepeatedExampleGroupDescription:
+  Exclude:
+    - spec/lib/eac_ruby_utils/listable_spec.rb
+
+RSpec/ScatteredLet:
+  Exclude:
+    - spec/lib/eac_ruby_utils/common_concern_spec.rb
+    - spec/lib/eac_ruby_utils/common_constructor_spec.rb
+
+RSpec/UnspecifiedException:
+  Exclude:
+    - spec/lib/eac_ruby_utils/listable_spec.rb
 
 Style/Documentation:
   Enabled: false

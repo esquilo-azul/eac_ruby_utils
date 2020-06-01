@@ -3,7 +3,7 @@
 require 'eac_ruby_utils/patches/object/if_present'
 
 RSpec.describe ::Object do
-  context '#if_present' do
+  describe '#if_present' do
     it { expect(nil.if_present).to eq(nil) }
     it { expect(nil.if_present('default')) .to eq('default') }
     it { expect(nil.if_present('default') { |_v| 'calculated' }).to eq('default') }

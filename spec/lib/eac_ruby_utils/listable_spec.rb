@@ -26,14 +26,17 @@ RSpec.describe ::EacRubyUtils::Listable do
       expect(Stub.lists.inteiro.options)
         .to eq([['Inteiro A', 1], ['Inteiro BB', 2], ['Inteiro CCC', 3]])
     }
+
     it {
       expect(Stub.lists.code.options)
         .to eq([['Código A', 7], ['Código B', 13]])
     }
+
     it {
       expect(Stub.lists.cadeia.options)
         .to eq([['Cadeia AAA', 'a'], ['Cadeia BB', 'b'], ['Cadeia C', 'c']])
     }
+
     it {
       expect(Stub.lists.type.options)
         .to eq([['Tipo A', 'Namespace::ClazzA'], ['Tipo B', 'Namespace::ClazzB']])
@@ -110,60 +113,70 @@ RSpec.describe ::EacRubyUtils::Listable do
 
     context 'when inteiro value is A' do
       before { instance.inteiro = Stub::INTEIRO_A }
+
       it { expect(instance.inteiro_label).to eq('Inteiro A') }
       it { expect(instance.inteiro_description).to eq('Inteiro A Descr.') }
     end
 
     context 'when inteiro value is A' do
       before { instance.inteiro = Stub::INTEIRO_B }
+
       it { expect(instance.inteiro_label).to eq('Inteiro BB') }
       it { expect(instance.inteiro_description).to eq('Inteiro BB Descr.') }
     end
 
     context 'when inteiro value is C' do
       before { instance.inteiro = Stub::INTEIRO_C }
+
       it { expect(instance.inteiro_label).to eq('Inteiro CCC') }
       it { expect(instance.inteiro_description).to eq('Inteiro CCC Descr.') }
     end
 
     context 'when code value is A' do
       before { instance.code = Stub::CODE_A }
+
       it { expect(instance.code_label).to eq('Código A') }
       it { expect(instance.code_description).to eq('Código A Descr.') }
     end
 
     context 'when code value is B' do
       before { instance.code = Stub::CODE_B }
+
       it { expect(instance.code_label).to eq('Código B') }
       it { expect(instance.code_description).to eq('Código B Descr.') }
     end
 
     context 'when cadeia value is A' do
       before { instance.cadeia = Stub::CADEIA_A }
+
       it { expect(instance.cadeia_label).to eq('Cadeia AAA') }
       it { expect(instance.cadeia_description).to eq('Cadeia AAA Descr.') }
     end
 
     context 'when cadeia value is B' do
       before { instance.cadeia = Stub::CADEIA_B }
+
       it { expect(instance.cadeia_label).to eq('Cadeia BB') }
       it { expect(instance.cadeia_description).to eq('Cadeia BB Descr.') }
     end
 
     context 'when cadeia value is C' do
       before { instance.cadeia = Stub::CADEIA_C }
+
       it { expect(instance.cadeia_label).to eq('Cadeia C') }
       it { expect(instance.cadeia_description).to eq('Cadeia C Descr.') }
     end
 
     context 'when type value is A' do
       before { instance.type = Stub::TYPE_A }
+
       it { expect(instance.type_label).to eq('Tipo A') }
       it { expect(instance.type_description).to eq('Tipo A Descr.') }
     end
 
     context 'when type value is B' do
       before { instance.type = Stub::TYPE_B }
+
       it { expect(instance.type_label).to eq('Tipo B') }
       it { expect(instance.type_description).to eq('Tipo B Descr.') }
     end
