@@ -5,7 +5,7 @@ require 'yaml'
 module EacRubyUtils
   class Yaml
     class << self
-      def load_common(string)
+      def load(string)
         ::YAML.safe_load(string, [::Symbol, ::Date])
       end
     end
