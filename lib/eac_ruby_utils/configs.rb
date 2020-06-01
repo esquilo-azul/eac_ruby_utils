@@ -20,17 +20,11 @@ module EacRubyUtils
       load
     end
 
-    def clear
-      file.clear
-    end
+    delegate :clear, to: :file
 
-    def save
-      file.save
-    end
+    delegate :save, to: :file
 
-    def load
-      file.load
-    end
+    delegate :load, to: :file
 
     def []=(entry_key, entry_value)
       write_entry(entry_key, entry_value)
@@ -48,9 +42,7 @@ module EacRubyUtils
       file.read(entry_key)
     end
 
-    def autosave?
-      file.autosave?
-    end
+    delegate :autosave?, to: :file
 
     private
 

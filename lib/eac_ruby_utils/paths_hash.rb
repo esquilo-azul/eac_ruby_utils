@@ -33,9 +33,7 @@ module EacRubyUtils
       root.write_entry(self.class.parse_entry_key(entry_key), entry_value, [])
     end
 
-    def to_h
-      root.to_h
-    end
+    delegate :to_h, to: :root
 
     private
 

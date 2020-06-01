@@ -85,7 +85,7 @@ module EacRubyUtils
       def looped_entry_value_from_input(entry_key, options)
         loop do
           entry_value = entry_value_from_input(entry_key, options)
-          next unless entry_value.present?
+          next if entry_value.blank?
           next if options[:validator] && !options[:validator].call(entry_value)
 
           return entry_value

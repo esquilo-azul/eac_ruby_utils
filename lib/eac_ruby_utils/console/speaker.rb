@@ -26,7 +26,7 @@ module EacRubyUtils
 
       def fatal_error(string)
         puts "ERROR: #{string}".white.on_red
-        Kernel.exit 1
+        Kernel.exit 1 # rubocop:disable Rails/Exit
       end
 
       def title(string)
