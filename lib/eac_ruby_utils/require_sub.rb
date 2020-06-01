@@ -10,6 +10,7 @@ module EacRubyUtils
   class RequireSub
     BASE_OPTION_KEY = :base
     INCLUDE_MODULES_OPTION_KEY = :include_modules
+    REQUIRE_DEPENDENCY_OPTION_KEY = :require_dependency
 
     attr_reader :file, :options
 
@@ -42,7 +43,11 @@ module EacRubyUtils
 
     def require_sub_files
       Dir["#{File.dirname(file)}/#{::File.basename(file, '.*')}/*.rb"].sort.each do |path|
-        require path
+        if options[REQUIRE_DEPENDENCY_OPTION_KEY]
+          require_dependency path
+        else
+          require path
+        end
       end
     end
   end
