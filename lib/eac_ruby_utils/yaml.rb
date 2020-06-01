@@ -3,6 +3,7 @@
 require 'yaml'
 
 module EacRubyUtils
+  # A safe YAML loader/dumper with common types included.
   class Yaml
     class << self
       def load(string)
