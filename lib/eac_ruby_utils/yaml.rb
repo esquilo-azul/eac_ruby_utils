@@ -25,6 +25,16 @@ module EacRubyUtils
         Sanitizer.new(object).result
       end
 
+      def yaml?(object)
+        return false unless object.is_a?(::String)
+        return false unless object.start_with?('---')
+
+        load(object)
+        true
+      rescue ::Psych::SyntaxError
+        false
+      end
+
       class Sanitizer
         attr_reader :source
 

@@ -58,4 +58,18 @@ RSpec.describe ::EacRubyUtils::Yaml do
   describe '#sanitize' do
     it { expect(described_class.sanitize(target)).to eq(target) }
   end
+
+  describe '#yaml' do
+    {
+      ['text'] => false,
+      'text' => false,
+      "--- Text\n\n" => true,
+      "---\n" + ":index: 0\n" + ":codec_name: h264\n" + ":codec_type: video\n" => true,
+      '--- - \n bla bla bla' => false
+    }.each do |source, result|
+      it "return #{result} to source \"#{source}\"" do
+        expect(described_class.yaml?(source)).to eq(result)
+      end
+    end
+  end
 end
