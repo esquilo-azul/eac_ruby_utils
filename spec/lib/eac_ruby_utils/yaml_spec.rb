@@ -51,6 +51,10 @@ RSpec.describe ::EacRubyUtils::Yaml do
     }
   end
 
+  describe '#dump' do
+    it { expect(described_class.load(described_class.dump(source))).to eq(target) }
+  end
+
   describe '#sanitize' do
     it { expect(described_class.sanitize(target)).to eq(target) }
   end

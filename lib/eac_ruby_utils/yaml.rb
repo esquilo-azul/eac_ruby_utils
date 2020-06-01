@@ -9,6 +9,10 @@ module EacRubyUtils
       DEFAULT_PERMITTED_CLASSES = [::Array, ::Date, ::FalseClass, ::Hash, ::NilClass, ::Numeric,
                                    ::String, ::Symbol, ::Time, ::TrueClass].freeze
 
+      def dump(object)
+        ::YAML.dump(sanitize(object))
+      end
+
       def load(string)
         ::YAML.safe_load(string, permitted_classes)
       end
