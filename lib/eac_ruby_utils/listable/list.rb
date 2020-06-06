@@ -12,6 +12,10 @@ module EacRubyUtils
         apply_constants
       end
 
+      def each_value(&block)
+        values.each(&block)
+      end
+
       def values
         @values.values.map(&:value)
       end
