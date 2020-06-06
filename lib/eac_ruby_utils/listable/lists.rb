@@ -4,6 +4,7 @@ require 'active_support/hash_with_indifferent_access'
 require 'active_support/core_ext/string/inflections'
 require_relative 'integer_list'
 require_relative 'string_list'
+require_relative 'symbol_list'
 
 module EacRubyUtils
   module Listable
@@ -14,7 +15,7 @@ module EacRubyUtils
         @source = source
       end
 
-      %w[integer string].each do |list_type|
+      %w[integer string symbol].each do |list_type|
         define_method "add_#{list_type}" do |item, *labels|
           add(::EacRubyUtils::Listable.const_get("#{list_type}_list".camelize), item, labels)
         end

@@ -11,6 +11,8 @@ class Stub
   lists.add_integer :code, 7 => :a, 13 => :b
   lists.add_string :cadeia, :a, :b, :c
   lists.add_string :type, 'Namespace::ClazzA' => :a, 'Namespace::ClazzB' => :b
+  lists.add_symbol :simbolo, :a, :b, :c
+  lists.add_symbol :tipado, :tipo_aaa => :a, 'tipo_bbb' => :b
 end
 
 RSpec.describe ::EacRubyUtils::Listable do
@@ -19,6 +21,8 @@ RSpec.describe ::EacRubyUtils::Listable do
     it { expect(Stub.lists.code.values).to eq([7, 13]) }
     it { expect(Stub.lists.cadeia.values).to eq(%w[a b c]) }
     it { expect(Stub.lists.type.values).to eq(%w[Namespace::ClazzA Namespace::ClazzB]) }
+    it { expect(Stub.lists.simbolo.values).to eq(%i[a b c]) }
+    it { expect(Stub.lists.tipado.values).to eq(%i[tipo_aaa tipo_bbb]) }
   end
 
   context 'value instance options' do
@@ -41,6 +45,16 @@ RSpec.describe ::EacRubyUtils::Listable do
       expect(Stub.lists.type.options)
         .to eq([['Tipo A', 'Namespace::ClazzA'], ['Tipo B', 'Namespace::ClazzB']])
     }
+
+    it {
+      expect(Stub.lists.simbolo.options)
+        .to eq([['Simbolo A', :a], ['Simbolo B', :b], ['Simbolo C', :c]])
+    }
+
+    it {
+      expect(Stub.lists.tipado.options)
+        .to eq([['Tipado A', :tipo_aaa], ['Tipado B', :tipo_bbb]])
+    }
   end
 
   context 'constants' do
@@ -53,6 +67,11 @@ RSpec.describe ::EacRubyUtils::Listable do
     it { expect(Stub::CADEIA_C).to eq('c') }
     it { expect(Stub::TYPE_A).to eq('Namespace::ClazzA') }
     it { expect(Stub::TYPE_B).to eq('Namespace::ClazzB') }
+    it { expect(Stub::SIMBOLO_A).to eq(:a) }
+    it { expect(Stub::SIMBOLO_B).to eq(:b) }
+    it { expect(Stub::SIMBOLO_C).to eq(:c) }
+    it { expect(Stub::TIPADO_A).to eq(:tipo_aaa) }
+    it { expect(Stub::TIPADO_B).to eq(:tipo_bbb) }
   end
 
   context 'values instances' do

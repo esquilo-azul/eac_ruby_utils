@@ -36,3 +36,20 @@ pt-BR:
           b:
             label: Tipo B
             description: Tipo B Descr.
+        simbolo:
+          a:
+            label: Simbolo A
+            description: Simbolo A Descr.
+          b:
+            label: Simbolo B
+            description: Simbolo B Descr.
+          c:
+            label: Simbolo C
+            description: Simbolo C Descr.
+        tipado:
+          a:
+            label: Tipado A
+            description: Tipado A Descr.
+          b:
+            label: Tipado B
+            description: Tipado B Descr.
