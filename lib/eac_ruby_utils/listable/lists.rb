@@ -14,18 +14,10 @@ module EacRubyUtils
         @source = source
       end
 
-      def add_integer(item, *labels)
-        check_acts_as_listable_new_item(item)
-        acts_as_listable_items[item] = ::EacRubyUtils::Listable::IntegerList.new(
-          self, item, labels
-        )
-      end
-
-      def add_string(item, *labels)
-        check_acts_as_listable_new_item(item)
-        acts_as_listable_items[item] = ::EacRubyUtils::Listable::StringList.new(
-          self, item, labels
-        )
+      %w[integer string].each do |list_type|
+        define_method "add_#{list_type}" do |item, *labels|
+          add(::EacRubyUtils::Listable.const_get("#{list_type}_list".camelize), item, labels)
+        end
       end
 
       def method_missing(name, *args, &block)
@@ -42,6 +34,11 @@ module EacRubyUtils
       end
 
       private
+
+      def add(list_class, item, labels)
+        check_acts_as_listable_new_item(item)
+        acts_as_listable_items[item] = list_class.new(self, item, labels)
+      end
 
       def check_acts_as_listable_new_item(item)
         return unless acts_as_listable_items.key?(item)
