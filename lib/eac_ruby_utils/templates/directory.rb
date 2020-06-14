@@ -10,7 +10,7 @@ module EacRubyUtils
       attr_reader :path
 
       def initialize(path)
-        @path = path
+        @path = path.is_a?(::Pathname) ? path : ::Pathname.new(path.to_s)
       end
 
       def apply(variables_source, directory)
@@ -23,6 +23,12 @@ module EacRubyUtils
         return ::EacRubyUtils::Templates::Directory.new(child_path) if ::File.directory?(child_path)
 
         raise "Child \"#{subpath}\" from \"#{path}\" not found"
+      end
+
+      def children
+        path.children.map do |path_child|
+          child(path_child.basename.to_path)
+        end
       end
 
       private
