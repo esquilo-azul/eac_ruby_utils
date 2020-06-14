@@ -4,6 +4,7 @@ require 'active_support/core_ext/hash/indifferent_access'
 require 'eac_ruby_utils/simple_cache'
 require 'eac_ruby_utils/templates/variable_providers/base'
 require 'eac_ruby_utils/templates/variable_providers/entries_reader'
+require 'eac_ruby_utils/templates/variable_providers/hash'
 
 module EacRubyUtils
   module Templates
@@ -48,7 +49,8 @@ module EacRubyUtils
       end
 
       def build_variables_provider(variables_source)
-        return HashVariablesProvider.new(variables_source) if variables_source.is_a?(::Hash)
+        return ::EacRubyUtils::Templates::VariableProviders::Hash.new(variables_source) if
+        variables_source.is_a?(::Hash)
         return ::EacRubyUtils::Templates::VariableProviders::EntriesReader.new(variables_source) if
         variables_source.respond_to?(:read_entry)
 
@@ -57,20 +59,6 @@ module EacRubyUtils
 
       def variable_pattern(name)
         /#{VARIABLE_DELIMITER}#{::Regexp.quote(name)}#{VARIABLE_DELIMITER}/i
-      end
-
-      class HashVariablesProvider < ::EacRubyUtils::Templates::VariableProviders::Base
-        def initialize(source)
-          super(source.with_indifferent_access)
-        end
-
-        def variable_exist?(name)
-          source.key?(name)
-        end
-
-        def variable_fetch(name)
-          source.fetch(name)
-        end
       end
     end
   end
