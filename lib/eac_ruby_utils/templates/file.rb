@@ -12,7 +12,9 @@ module EacRubyUtils
       VARIABLE_PATTERN = /#{VARIABLE_DELIMITER}([a-z0-9\._]*)#{VARIABLE_DELIMITER}/i.freeze
 
       enable_simple_cache
-      common_constructor :path
+      common_constructor :path do
+        self.path = path.to_pathname
+      end
 
       # +variables_provider+ A [Hash] or object which responds to +read_entry(entry_name)+.
       def apply(variables_source)
@@ -23,7 +25,7 @@ module EacRubyUtils
       end
 
       def apply_to_file(variables_source, output_file_path)
-        ::File.write(output_file_path, apply(variables_source))
+        output_file_path.to_pathname.write(apply(variables_source))
       end
 
       private
@@ -35,7 +37,7 @@ module EacRubyUtils
       end
 
       def content_uncached
-        ::File.read(path)
+        path.read
       end
 
       def sanitize_variable_name(variable_name)
