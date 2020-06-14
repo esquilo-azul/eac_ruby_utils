@@ -7,7 +7,7 @@ module EacRubyUtils
     module VariableProviders
       require_sub __FILE__
 
-      PROVIDERS = %w[entries_reader hash].map do |name|
+      PROVIDERS = %w[entries_reader hash generic].map do |name|
         "eac_ruby_utils/templates/variable_providers/#{name}".camelize.constantize
       end
 
