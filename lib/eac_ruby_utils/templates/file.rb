@@ -2,7 +2,7 @@
 
 require 'active_support/core_ext/hash/indifferent_access'
 require 'eac_ruby_utils/simple_cache'
-require 'eac_ruby_utils/templates/variable_not_found_error'
+require 'eac_ruby_utils/templates/variable_providers/base'
 
 module EacRubyUtils
   module Templates
@@ -58,21 +58,7 @@ module EacRubyUtils
         /#{VARIABLE_DELIMITER}#{::Regexp.quote(name)}#{VARIABLE_DELIMITER}/i
       end
 
-      class BaseVariablesProvider
-        attr_reader :source
-
-        def initialize(source)
-          @source = source
-        end
-
-        def variable_value(name)
-          return variable_fetch(name) if variable_exist?(name)
-
-          raise VariableNotFoundError, "Variable \"#{name}\" not found in #{source}"
-        end
-      end
-
-      class HashVariablesProvider < BaseVariablesProvider
+      class HashVariablesProvider < ::EacRubyUtils::Templates::VariableProviders::Base
         def initialize(source)
           super(source.with_indifferent_access)
         end
@@ -86,7 +72,7 @@ module EacRubyUtils
         end
       end
 
-      class EntriesReaderVariablesProvider < BaseVariablesProvider
+      class EntriesReaderVariablesProvider < ::EacRubyUtils::Templates::VariableProviders::Base
         def variable_exist?(_name)
           true
         end
