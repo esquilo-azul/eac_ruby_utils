@@ -2,6 +2,7 @@
 
 require 'active_support/core_ext/hash/indifferent_access'
 require 'eac_ruby_utils/simple_cache'
+require 'eac_ruby_utils/templates/variable_not_found_error'
 
 module EacRubyUtils
   module Templates
@@ -94,8 +95,6 @@ module EacRubyUtils
           source.read_entry(name)
         end
       end
-
-      class VariableNotFoundError < StandardError; end
     end
   end
 end
