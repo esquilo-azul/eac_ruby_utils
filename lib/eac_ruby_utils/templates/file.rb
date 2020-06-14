@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/templates/variable_providers/base'
-require 'eac_ruby_utils/templates/variable_providers/entries_reader'
-require 'eac_ruby_utils/templates/variable_providers/hash'
+require 'eac_ruby_utils/templates/variable_providers'
 
 module EacRubyUtils
   module Templates
@@ -18,7 +16,7 @@ module EacRubyUtils
 
       # +variables_provider+ A [Hash] or object which responds to +read_entry(entry_name)+.
       def apply(variables_source)
-        variables_provider = build_variables_provider(variables_source)
+        variables_provider = ::EacRubyUtils::Templates::VariableProviders.build(variables_source)
         variables.inject(content) do |a, e|
           a.gsub(variable_pattern(e), variables_provider.variable_value(e).to_s)
         end
@@ -42,15 +40,6 @@ module EacRubyUtils
 
       def sanitize_variable_name(variable_name)
         variable_name.to_s.downcase
-      end
-
-      def build_variables_provider(variables_source)
-        return ::EacRubyUtils::Templates::VariableProviders::Hash.new(variables_source) if
-        variables_source.is_a?(::Hash)
-        return ::EacRubyUtils::Templates::VariableProviders::EntriesReader.new(variables_source) if
-        variables_source.respond_to?(:read_entry)
-
-        raise "Variables provider not found for #{variables_source}"
       end
 
       def variable_pattern(name)

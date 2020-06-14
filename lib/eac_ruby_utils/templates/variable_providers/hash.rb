@@ -6,6 +6,12 @@ module EacRubyUtils
   module Templates
     module VariableProviders
       class Hash < ::EacRubyUtils::Templates::VariableProviders::Base
+        class << self
+          def accept?(variables_source)
+            variables_source.is_a?(::Hash)
+          end
+        end
+
         def initialize(source)
           super(source.with_indifferent_access)
         end
