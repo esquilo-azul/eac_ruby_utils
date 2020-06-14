@@ -3,6 +3,7 @@
 require 'active_support/core_ext/hash/indifferent_access'
 require 'eac_ruby_utils/simple_cache'
 require 'eac_ruby_utils/templates/variable_providers/base'
+require 'eac_ruby_utils/templates/variable_providers/entries_reader'
 
 module EacRubyUtils
   module Templates
@@ -48,7 +49,7 @@ module EacRubyUtils
 
       def build_variables_provider(variables_source)
         return HashVariablesProvider.new(variables_source) if variables_source.is_a?(::Hash)
-        return EntriesReaderVariablesProvider.new(variables_source) if
+        return ::EacRubyUtils::Templates::VariableProviders::EntriesReader.new(variables_source) if
         variables_source.respond_to?(:read_entry)
 
         raise "Variables provider not found for #{variables_source}"
@@ -69,16 +70,6 @@ module EacRubyUtils
 
         def variable_fetch(name)
           source.fetch(name)
-        end
-      end
-
-      class EntriesReaderVariablesProvider < ::EacRubyUtils::Templates::VariableProviders::Base
-        def variable_exist?(_name)
-          true
-        end
-
-        def variable_fetch(name)
-          source.read_entry(name)
         end
       end
     end
