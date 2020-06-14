@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/configs'
 require 'eac_ruby_utils/templates/file'
 
 RSpec.describe ::EacRubyUtils::Templates::File do
