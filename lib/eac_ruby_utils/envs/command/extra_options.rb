@@ -16,6 +16,10 @@ module EacRubyUtils
           duplicate_by_extra_options(envvars: envvars.merge(name => value))
         end
 
+        def status_result(status_code, result)
+          duplicate_by_extra_options(status_results: status_results.merge(status_code => result))
+        end
+
         def pipe(other_command)
           duplicate_by_extra_options(pipe: other_command)
         end
@@ -26,6 +30,10 @@ module EacRubyUtils
 
         def envvars
           extra_options[:envvars] ||= {}.with_indifferent_access
+        end
+
+        def status_results
+          extra_options[:status_results] ||= {}.with_indifferent_access
         end
 
         def append_envvars(command)

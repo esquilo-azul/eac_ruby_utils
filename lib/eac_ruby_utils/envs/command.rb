@@ -54,6 +54,7 @@ module EacRubyUtils
       end
 
       def execute!(options = {})
+        options[:exit_outputs] = status_results.merge(options[:exit_outputs].presence || {})
         er = ExecuteResult.new(execute(options), options)
         return er.result if er.success?
 
