@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'active_support/inflector'
+
 module EacRubyUtils
   class << self
     def require_sub(file, options = {})
@@ -33,6 +35,16 @@ module EacRubyUtils
       true
     end
 
+    def autoload_require(path)
+      return false unless base?
+
+      basename = ::File.basename(path, '.*')
+      return false if basename.start_with?('_')
+
+      base.autoload ::ActiveSupport::Inflector.camelize(basename), path
+      true
+    end
+
     def include_modules
       return unless options[INCLUDE_MODULES_OPTION_KEY]
 
@@ -48,6 +60,10 @@ module EacRubyUtils
       options[BASE_OPTION_KEY] || raise('Option :base not setted')
     end
 
+    def base?
+      options[BASE_OPTION_KEY] ? true : false
+    end
+
     def kernel_require(path)
       ::Kernel.require(path)
     end
@@ -59,7 +75,7 @@ module EacRubyUtils
     end
 
     def require_sub_file(path)
-      active_support_require(path) || kernel_require(path)
+      active_support_require(path) || autoload_require(path) || kernel_require(path)
     end
   end
 end
