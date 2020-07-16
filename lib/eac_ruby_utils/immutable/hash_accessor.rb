@@ -11,6 +11,10 @@ module EacRubyUtils
         apply_set(klass)
       end
 
+      def immutable_value_get(object)
+        super || {}
+      end
+
       def immutable_value_set(object, key, value)
         duplicate_object(object) do |old_value|
           (old_value || {}).merge(key => value)
