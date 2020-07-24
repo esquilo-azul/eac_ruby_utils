@@ -18,7 +18,7 @@ module EacRubyUtils
 
     def initialize(file, options = {})
       @file = file
-      @options = options
+      @options = self.class.lists.option.hash_keys_validate!(options)
     end
 
     def apply
