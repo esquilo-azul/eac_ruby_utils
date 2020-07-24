@@ -33,6 +33,11 @@ module EacRubyUtils
         find_list_by_method(name) || super
       end
 
+      def hash_keys_validate!(hash, error_class = ::StandardError)
+        hash.keys.each { |key| value_validate!(key, error_class) }
+        hash
+      end
+
       def i18n_key
         "eac_ruby_utils.listable.#{class_i18n_key}.#{item}"
       end
