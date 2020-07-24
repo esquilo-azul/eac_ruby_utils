@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support/inflector'
+require 'eac_ruby_utils/listable'
 
 module EacRubyUtils
   class << self
@@ -10,9 +11,8 @@ module EacRubyUtils
   end
 
   class RequireSub
-    BASE_OPTION_KEY = :base
-    INCLUDE_MODULES_OPTION_KEY = :include_modules
-    REQUIRE_DEPENDENCY_OPTION_KEY = :require_dependency
+    include ::EacRubyUtils::Listable
+    lists.add_symbol :option, :base, :include_modules, :require_dependency
 
     attr_reader :file, :options
 
@@ -29,7 +29,7 @@ module EacRubyUtils
     private
 
     def active_support_require(path)
-      return false unless options[REQUIRE_DEPENDENCY_OPTION_KEY]
+      return false unless options[OPTION_REQUIRE_DEPENDENCY]
 
       ::Kernel.require_dependency(path)
       true
@@ -46,7 +46,7 @@ module EacRubyUtils
     end
 
     def include_modules
-      return unless options[INCLUDE_MODULES_OPTION_KEY]
+      return unless options[OPTION_INCLUDE_MODULES]
 
       base.constants.each do |constant_name|
         constant = base.const_get(constant_name)
@@ -57,11 +57,11 @@ module EacRubyUtils
     end
 
     def base
-      options[BASE_OPTION_KEY] || raise('Option :base not setted')
+      options[OPTION_BASE] || raise('Option :base not setted')
     end
 
     def base?
-      options[BASE_OPTION_KEY] ? true : false
+      options[OPTION_BASE] ? true : false
     end
 
     def kernel_require(path)
