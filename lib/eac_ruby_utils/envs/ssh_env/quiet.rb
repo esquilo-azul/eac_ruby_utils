@@ -2,6 +2,7 @@
 
 require 'active_support/concern'
 require 'eac_ruby_utils/boolean'
+require 'eac_ruby_utils/envs/ssh_env/dasho_options'
 
 module EacRubyUtils
   module Envs
@@ -10,6 +11,7 @@ module EacRubyUtils
         extend ::ActiveSupport::Concern
 
         included do
+          include ::EacRubyUtils::Envs::SshEnv::DashoOptions
           add_nodasho_option('Quiet')
         end
 
