@@ -3,7 +3,7 @@
 module EacRubyUtils
   module Console
     class DocoptRunner
-      DOCOPT_ERROR_EXIT_CODE = 0x22220000
+      DOCOPT_ERROR_EXIT_CODE = 0xC0
 
       class << self
         def run(options = {})
