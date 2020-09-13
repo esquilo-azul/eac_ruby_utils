@@ -25,6 +25,8 @@ module EacRubyUtils
       end
 
       module SubcommandsSupport
+        EXTRA_AVAILABLE_SUBCOMMANDS_METHOD_NAME = :extra_available_subcommands
+
         def check_subcommands_arg
           if subcommand_arg_as_list?
             singleton_class.include(SubcommandsSupport::SubcommandArgAsList)
@@ -77,7 +79,11 @@ module EacRubyUtils
         end
 
         def available_subcommands
-          (setting_value(:subcommands, false) || auto_available_subcommands).sort
+          r = ::Set.new(setting_value(:subcommands, false) || auto_available_subcommands)
+          if respond_to?(EXTRA_AVAILABLE_SUBCOMMANDS_METHOD_NAME, true)
+            r += send(EXTRA_AVAILABLE_SUBCOMMANDS_METHOD_NAME)
+          end
+          r.sort
         end
 
         def auto_available_subcommands
