@@ -14,6 +14,12 @@ module EacRubyUtils
     class DocoptRunner
       include ::EacRubyUtils::Contextualizable
 
+      class << self
+        def create(settings = {})
+          new(settings)
+        end
+      end
+
       attr_reader :settings
 
       def initialize(settings = {})

@@ -45,7 +45,7 @@ module EacRubyUtils
         end
 
         def subcommand
-          @subcommand ||= subcommand_class_name(subcommand_name).constantize.new(
+          @subcommand ||= subcommand_class_name(subcommand_name).constantize.create(
             argv: subcommand_args,
             program_name: subcommand_program,
             parent: self

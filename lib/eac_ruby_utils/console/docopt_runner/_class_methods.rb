@@ -7,7 +7,7 @@ module EacRubyUtils
 
       class << self
         def run(options = {})
-          new(options).send(:run)
+          create(options).send(:run)
         rescue Docopt::Exit => e
           STDERR.write(e.message + "\n")
           ::Kernel.exit(DOCOPT_ERROR_EXIT_CODE) # rubocop:disable Rails/Exit
