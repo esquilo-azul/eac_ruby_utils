@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/inflector'
+
 module EacRubyUtils
   module Listable
     class Value
@@ -16,8 +18,7 @@ module EacRubyUtils
       end
 
       def constant_name
-        "#{@list.item}_#{@key}".gsub(/[^a-z0-9_]/, '_').gsub(/_+/, '_')
-                               .gsub(/(?:\A_|_\z)/, '').upcase
+        ::EacRubyUtils::Inflector.variableize("#{@list.item}_#{@key}").upcase
       end
 
       def label
