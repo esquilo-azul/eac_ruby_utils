@@ -21,10 +21,10 @@ module EacRubyUtils
 
     class Setup
       include ::EacRubyUtils::SimpleCache
-      attr_reader :a_module, :common_constructor
+      attr_reader :a_module, :common_concern
 
-      def initialize(common_constructor, a_module)
-        @common_constructor = common_constructor
+      def initialize(common_concern, a_module)
+        @common_concern = common_concern
         @a_module = a_module
       end
 
@@ -47,7 +47,7 @@ module EacRubyUtils
       end
 
       def setup_after_callback(base)
-        common_constructor.after_callback.if_present do |v|
+        common_concern.after_callback.if_present do |v|
           base.instance_eval(&v)
         end
       end
