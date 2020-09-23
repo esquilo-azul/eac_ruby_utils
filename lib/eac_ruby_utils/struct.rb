@@ -31,6 +31,8 @@ module EacRubyUtils
       data.dup
     end
 
+    delegate :to_s, to: :data
+
     private
 
     attr_accessor :data
