@@ -27,6 +27,10 @@ module EacRubyUtils
       property_method?(method_name) || super
     end
 
+    def to_h
+      data.dup
+    end
+
     private
 
     attr_accessor :data
