@@ -21,8 +21,12 @@ module EacRubyUtils
       end
     end
 
-    def reset_cache
-      @cache_keys = nil
+    def reset_cache(*keys)
+      if keys.any?
+        keys.each { |key| cache_keys.delete(key) }
+      else
+        @cache_keys = nil
+      end
     end
 
     private
