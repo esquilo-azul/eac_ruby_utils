@@ -8,7 +8,8 @@ module EacRubyUtils
     # A [EacRubyUtils::Envs::Command] which runs in a clean Ruby environment.
     class Command < ::EacRubyUtils::Envs::Command
       def initialize(bundle_args, extra_options = {})
-        super(::EacRubyUtils::Envs.local, bundle_args, extra_options)
+        host_env = extra_options.delete(:host_env)
+        super(host_env || ::EacRubyUtils::Envs.local, bundle_args, extra_options)
       end
 
       %w[system execute].each do |method_prefix|
