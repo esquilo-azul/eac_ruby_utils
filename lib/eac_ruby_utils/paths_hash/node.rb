@@ -22,6 +22,17 @@ module EacRubyUtils
         false # Paths continue and there is not available nodes
       end
 
+      def fetch(path_search)
+        if data.key?(path_search.cursor)
+          node = data.fetch(path_search.cursor)
+          return (node.is_a?(Node) ? node.to_h : node) if path_search.ended?
+          return nil if node.blank?
+          return node.fetch(path_search.succeeding) if node.is_a?(Node)
+        end
+
+        path_search.raise_error(PATH_SEARCH_UNENDED_ERROR_MESSAGE)
+      end
+
       def to_h
         data.map { |k, v| [k, v.is_a?(Node) ? v.to_h : v] }.to_h
       end

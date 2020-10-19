@@ -39,6 +39,10 @@ module EacRubyUtils
       )
     end
 
+    def fetch(entry_key)
+      root.fetch(::EacRubyUtils::PathsHash::PathSearch.parse_entry_key(entry_key))
+    end
+
     def key?(entry_key)
       root.entry?(::EacRubyUtils::PathsHash::PathSearch.parse_entry_key(entry_key))
     end
