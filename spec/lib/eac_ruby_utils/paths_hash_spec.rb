@@ -46,4 +46,18 @@ RSpec.describe ::EacRubyUtils::PathsHash do
 
     it { expect(instance.to_h).to eq(a: { b: { c: '123' } }) }
   end
+
+  describe '#key?' do
+    {
+      'parent.child1.child1_1' => true,
+      'parent.child1.child1_2' => true,
+      'parent.child1.child1_2.no_exist' => false,
+      'parent.child1.child1_3' => false,
+      'parent.child2' => true,
+      'no_exist' => false,
+      'parent.child1' => true
+    }.each do |entry_key, expected_value|
+      it { expect(instance.key?(entry_key)).to eq(expected_value) }
+    end
+  end
 end

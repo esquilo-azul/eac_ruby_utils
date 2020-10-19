@@ -13,6 +13,15 @@ module EacRubyUtils
         @data = source_hash.map { |k, v| [k.to_sym, v.is_a?(Hash) ? Node.new(v) : v] }.to_h
       end
 
+      def entry?(path_search)
+        return false unless data.key?(path_search.cursor)
+        return true if path_search.ended?
+        return data.fetch(path_search.cursor).entry?(path_search.succeeding) if
+          data.fetch(path_search.cursor).is_a?(Node)
+
+        false # Paths continue and there is not available nodes
+      end
+
       def to_h
         data.map { |k, v| [k, v.is_a?(Node) ? v.to_h : v] }.to_h
       end

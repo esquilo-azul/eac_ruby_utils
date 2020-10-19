@@ -39,6 +39,10 @@ module EacRubyUtils
       )
     end
 
+    def key?(entry_key)
+      root.entry?(::EacRubyUtils::PathsHash::PathSearch.parse_entry_key(entry_key))
+    end
+
     delegate :to_h, to: :root
 
     private
