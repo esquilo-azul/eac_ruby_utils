@@ -30,11 +30,13 @@ module EacRubyUtils
     end
 
     def [](entry_key)
-      root.read_entry(self.class.parse_entry_key(entry_key), [])
+      root.read_entry(::EacRubyUtils::PathsHash::PathSearch.parse_entry_key(entry_key))
     end
 
     def []=(entry_key, entry_value)
-      root.write_entry(self.class.parse_entry_key(entry_key), entry_value, [])
+      root.write_entry(
+        ::EacRubyUtils::PathsHash::PathSearch.parse_entry_key(entry_key), entry_value
+      )
     end
 
     delegate :to_h, to: :root
