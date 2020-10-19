@@ -1,27 +1,18 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/string'
+require 'eac_ruby_utils/configs/base'
 require 'yaml'
-require 'eac_ruby_utils/patches/hash/sym_keys_hash'
-require 'eac_ruby_utils/paths_hash'
-require 'eac_ruby_utils/simple_cache'
 
 module EacRubyUtils
   class Configs
-    class File
-      include ::EacRubyUtils::SimpleCache
-
+    class File < ::EacRubyUtils::Configs::Base
       attr_reader :path, :options
 
       # Valid options: [:autosave]
       def initialize(path, options = {})
         @path = path
         @options = options.to_sym_keys_hash.freeze
-        load
-      end
-
-      def clear
-        self.data = ::EacRubyUtils::PathsHash.new({})
+        super(raw_data_from_file)
       end
 
       def save
@@ -30,28 +21,12 @@ module EacRubyUtils
       end
 
       def load
-        self.data = if ::File.exist?(path) && ::File.size(path).positive?
-                      ::EacRubyUtils::PathsHash.new(YAML.load_file(path))
-                    else
-                      {}
-                    end
-      end
-
-      def []=(entry_key, entry_value)
-        write(entry_key, entry_value)
+        replace(raw_data_from_file)
       end
 
       def write(entry_key, entry_value)
-        data[entry_key] = entry_value
+        super
         save if autosave?
-      end
-
-      def [](entry_key)
-        read(entry_key)
-      end
-
-      def read(entry_key)
-        data[entry_key]
       end
 
       def autosave?
@@ -60,7 +35,13 @@ module EacRubyUtils
 
       private
 
-      attr_accessor :data
+      def raw_data_from_file
+        if ::File.exist?(path) && ::File.size(path).positive?
+          ::YAML.load_file(path)
+        else
+          {}
+        end
+      end
     end
   end
 end
