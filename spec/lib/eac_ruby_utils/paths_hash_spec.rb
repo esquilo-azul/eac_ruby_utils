@@ -3,20 +3,20 @@
 require 'eac_ruby_utils/paths_hash'
 
 RSpec.describe ::EacRubyUtils::PathsHash do
-  describe '#[]' do
-    let(:source_hash) do
-      {
-        parent: {
-          child1: {
-            child1_1: 'v1_1',
-            child1_2: 'v1_2'
-          },
-          child2: 'v2'
-        }
+  let(:source_hash) do
+    {
+      parent: {
+        child1: {
+          child1_1: 'v1_1',
+          child1_2: 'v1_2'
+        },
+        child2: 'v2'
       }
-    end
-    let(:instance) { described_class.new(source_hash) }
+    }
+  end
+  let(:instance) { described_class.new(source_hash) }
 
+  describe '#[]' do
     {
       'parent.child1.child1_1' => 'v1_1',
       'parent.child1.child1_2' => 'v1_2',
@@ -38,7 +38,7 @@ RSpec.describe ::EacRubyUtils::PathsHash do
   end
 
   describe '#[]=' do
-    let(:instance) { described_class.new }
+    let(:source_hash) { {} }
 
     before do
       instance['a.b.c'] = '123'
