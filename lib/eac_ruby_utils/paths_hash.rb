@@ -1,21 +1,25 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/object'
-require 'eac_ruby_utils/patches/object/asserts'
+require 'eac_ruby_utils/core_ext'
 
 module EacRubyUtils
   class PathsHash
+    require_sub __FILE__
+
     class << self
       def parse_entry_key(entry_key)
         r = entry_key.to_s.strip
-        raise EntryKeyError, 'Entry key cannot start or end with dot' if
+        raise ::EacRubyUtils::PathsHash::EntryKeyError, 'Entry key cannot start or end with dot' if
         r.start_with?('.') || r.end_with?('.')
 
         r = r.split('.').map(&:strip)
-        raise EntryKeyError, "Entry key \"#{entry_key}\" is empty" if r.empty?
+        if r.empty?
+          raise ::EacRubyUtils::PathsHash::EntryKeyError, "Entry key \"#{entry_key}\" is empty"
+        end
         return r.map(&:to_sym) unless r.any?(&:blank?)
 
-        raise EntryKeyError, "Entry key \"#{entry_key}\" has at least one blank part"
+        raise ::EacRubyUtils::PathsHash::EntryKeyError,
+              "Entry key \"#{entry_key}\" has at least one blank part"
       end
     end
 
@@ -39,9 +43,6 @@ module EacRubyUtils
 
     attr_reader :data
 
-    class EntryKeyError < StandardError
-    end
-
     class Node
       def initialize(source_hash)
         source_hash.assert_argument(Hash, 'source_hash')
@@ -60,7 +61,7 @@ module EacRubyUtils
         return nil if node.blank?
         return node.read_entry(path, current + [node_key]) if node.is_a?(Node)
 
-        raise(EntryKeyError,
+        raise(::EacRubyUtils::PathsHash::EntryKeyError,
               "Path #{current.join(',')} is not a Node and path continues (#{current + path})")
       end
 
@@ -84,7 +85,7 @@ module EacRubyUtils
       def validate_path(path, current)
         path.assert_argument(Array, 'path')
         current.assert_argument(Array, 'current')
-        raise EntryKeyError, 'Path is empty' if path.empty?
+        raise ::EacRubyUtils::PathsHash::EntryKeyError, 'Path is empty' if path.empty?
       end
 
       attr_reader :data
