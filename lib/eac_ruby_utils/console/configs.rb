@@ -66,7 +66,10 @@ module EacRubyUtils
       protected
 
       def envvar_read_entry(entry_key)
-        ENV[self.class.entry_key_to_envvar_name(entry_key)]
+        env_entry_key = self.class.entry_key_to_envvar_name(entry_key)
+        return nil unless ENV.key?(env_entry_key)
+
+        ENV.fetch(env_entry_key).if_present(::EacRubyUtils::BlankNotBlank.instance)
       end
 
       def read_entry_from_console(entry_key, options)
