@@ -28,4 +28,19 @@ RSpec.describe ::EacRubyUtils::Configs do
 
     it { expect(::YAML.load_file(storage_path)).to eq(parent: { child: 'value1' }) }
   end
+
+  describe '#read' do
+    let(:present_key) { 'a.present.key' }
+    let(:blank_key) { 'a.blank.key' }
+
+    before do
+      instance[present_key] = 'A value'
+      instance[blank_key] = ''
+      instance.save
+      instance.load
+    end
+
+    it { expect(instance[present_key]).to be_present }
+    it { expect(instance[blank_key]).to be_present }
+  end
 end
