@@ -27,6 +27,10 @@ module EacRubyUtils
       property_method?(method_name) || super
     end
 
+    def slice_fetch(*keys)
+      self.class.new(keys.map { |key| [key, fetch(key)] }.to_h)
+    end
+
     def to_h
       data.dup
     end
