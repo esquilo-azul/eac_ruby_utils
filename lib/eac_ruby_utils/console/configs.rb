@@ -31,7 +31,7 @@ module EacRubyUtils
       end
 
       def read_password(entry_key, options = {})
-        options = options.merge(noecho: true)
+        options = ReadEntryOptions.new(options.merge(noecho: true))
         if store_passwords?
           read_entry(entry_key, options)
         else
