@@ -1,16 +1,12 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/common_constructor'
 require 'eac_ruby_utils/configs'
-require 'eac_ruby_utils/console/speaker'
-require 'eac_ruby_utils/options_consumer'
-require 'eac_ruby_utils/patches/object/asserts'
-require 'eac_ruby_utils/simple_cache'
+require 'eac_ruby_utils/core_ext'
 
 module EacRubyUtils
   module Console
     class Configs
-      include ::EacRubyUtils::Console::Speaker
+      enable_console_speaker
 
       class << self
         def entry_key_to_envvar_name(entry_key)
@@ -103,8 +99,8 @@ module EacRubyUtils
       end
 
       class ReadEntryOptions
-        include ::EacRubyUtils::SimpleCache
-        ::EacRubyUtils::CommonConstructor.new(:options).setup_class(self)
+        enable_simple_cache
+        common_constructor :options
 
         DEFAULT_VALUES = {
           before_input: nil, bool: false, list: false, noecho: false, noenv: false, noinput: false,
@@ -122,7 +118,7 @@ module EacRubyUtils
         private
 
         def values_uncached
-          consumer = ::EacRubyUtils::OptionsConsumer.new(options)
+          consumer = options.to_options_consumer
           r = {}
           DEFAULT_VALUES.each do |key, default_value|
             value = consumer.consume(key)
