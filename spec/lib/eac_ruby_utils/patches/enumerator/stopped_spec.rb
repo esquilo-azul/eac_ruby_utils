@@ -8,12 +8,14 @@ RSpec.describe ::Enumerator do
 
   it { expect(instance).to be_a(described_class) }
   it { expect(instance.peek).to eq('a') }
+  it { expect(instance).to be_ongoing }
   it { expect(instance).not_to be_stopped }
 
   context 'with first next' do
     before { instance.next }
 
     it { expect(instance.peek).to eq('b') }
+    it { expect(instance).to be_ongoing }
     it { expect(instance).not_to be_stopped }
   end
 
@@ -24,6 +26,7 @@ RSpec.describe ::Enumerator do
     end
 
     it { expect { instance.peek }.to raise_error(::StopIteration) }
+    it { expect(instance).not_to be_ongoing }
     it { expect(instance).to be_stopped }
   end
 end
