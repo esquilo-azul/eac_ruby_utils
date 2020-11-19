@@ -9,15 +9,8 @@ module EacRubyUtils
         ENTRY_KEY = 'core.store_passwords'
 
         def initialize(console_configs, entry_key, options = {})
-          super(console_configs, entry_key, options.merge(noecho: true))
-        end
-
-        def read
-          if console_configs.store_passwords?
-            super
-          else
-            looped_entry_value_from_input
-          end
+          super(console_configs, entry_key, options.merge(noecho: true,
+                                                          store: console_configs.store_passwords?))
         end
       end
     end

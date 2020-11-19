@@ -14,7 +14,7 @@ module EacRubyUtils
 
         DEFAULT_VALUES = {
           before_input: nil, bool: false, list: false, noecho: false, noenv: false, noinput: false,
-          required: true, validator: nil
+          required: true, store: true, validator: nil
         }.freeze
 
         delegate :to_h, to: :options

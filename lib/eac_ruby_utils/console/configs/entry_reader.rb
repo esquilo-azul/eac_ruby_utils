@@ -53,7 +53,7 @@ module EacRubyUtils
 
           options[:before_input].if_present(&:call)
           entry_value = looped_entry_value_from_input
-          console_configs.configs.write_entry(entry_key, entry_value)
+          console_configs.configs.write_entry(entry_key, entry_value) if options[:store]
           entry_value
         end
 
