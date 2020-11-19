@@ -23,12 +23,7 @@ module EacRubyUtils
       end
 
       def read_password(entry_key, options = {})
-        options = ReadEntryOptions.new(options.merge(noecho: true))
-        if store_passwords?
-          read_entry(entry_key, options)
-        else
-          looped_entry_value_from_input(entry_key, options)
-        end
+        ::EacRubyUtils::Console::Configs::PasswordEntryReader.new(self, entry_key, options).read
       end
 
       def read_entry(entry_key, options = {})
