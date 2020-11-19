@@ -17,6 +17,8 @@ module EacRubyUtils
           required: true, validator: nil
         }.freeze
 
+        delegate :to_h, to: :options
+
         def [](key)
           values.fetch(key.to_sym)
         end
