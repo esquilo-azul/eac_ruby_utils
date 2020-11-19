@@ -15,8 +15,6 @@ module EacRubyUtils
         end
       end
 
-      STORE_PASSWORDS_KEY = 'core.store_passwords'
-
       attr_reader :configs
 
       def initialize(configs_key, options = {})
@@ -38,19 +36,7 @@ module EacRubyUtils
       end
 
       def store_passwords?
-        read_entry(
-          STORE_PASSWORDS_KEY,
-          before_input: -> { store_password_banner },
-          validator: ->(entry_value) { %w[yes no].include?(entry_value) }
-        ) == 'yes'
-      end
-
-      protected
-
-      def store_password_banner
-        infom 'Do you wanna to store passwords?'
-        infom "Warning: the passwords will be store in clear text in \"#{configs.storage_path}\""
-        infom 'Enter "yes" or "no"'
+        ::EacRubyUtils::Console::Configs::StorePasswordsEntryReader.new(self) == 'yes'
       end
     end
   end
