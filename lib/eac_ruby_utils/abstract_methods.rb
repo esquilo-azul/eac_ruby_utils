@@ -29,10 +29,11 @@ module EacRubyUtils
 
     module ClassMethods
       def abstract_methods(*methods_names)
-        @abstract_methods ||= Set.new
-        @abstract_methods += methods_names.map(&:to_sym)
-
-        @abstract_methods.to_enum
+        methods_names.each do |method_name|
+          define_method method_name do
+            raise_abstract_method(method_name)
+          end
+        end
       end
     end
 
