@@ -37,4 +37,59 @@ RSpec.describe ::EacRubyUtils::CommonConstructor do
       end
     end
   end
+
+  context 'with super class' do
+    let(:super_class) do
+      ::Class.new do
+        attr_reader :super_a, :super_b
+
+        def initialize(a, b) # rubocop:disable Naming/MethodParameterName
+          @super_a = a
+          @super_b = b
+        end
+      end
+    end
+
+    let(:sub_class) do
+      sub_constructor.setup_class(::Class.new(super_class))
+    end
+
+    let(:sub_object) { sub_class.new(1, 2, 3, 4) }
+
+    context 'with super_args parameter' do
+      let(:sub_constructor) do
+        described_class.new(:c, :a, :b, :d, super_args: -> { [c, a] })
+      end
+
+      it { expect(sub_object.a).to eq(2) }
+      it { expect(sub_object.b).to eq(3) }
+      it { expect(sub_object.c).to eq(1) }
+      it { expect(sub_object.d).to eq(4) }
+      it { expect(sub_object.super_a).to eq(1) }
+      it { expect(sub_object.super_b).to eq(2) }
+    end
+
+    context 'without super_args parameter' do
+      let(:sub_constructor) do
+        described_class.new(:c, :a, :b, :d)
+      end
+
+      it { expect(sub_object.a).to eq(2) }
+      it { expect(sub_object.b).to eq(3) }
+      it { expect(sub_object.c).to eq(1) }
+      it { expect(sub_object.d).to eq(4) }
+      it { expect(sub_object.super_a).to eq(2) }
+      it { expect(sub_object.super_b).to eq(3) }
+    end
+
+    context 'with undefined super arguments' do
+      let(:sub_constructor) do
+        described_class.new(:x, :y, :w, :a)
+      end
+
+      it do
+        expect { sub_object }.to raise_error(::ArgumentError)
+      end
+    end
+  end
 end
