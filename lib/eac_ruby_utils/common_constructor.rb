@@ -61,6 +61,8 @@ module EacRubyUtils
       setup_class_attr_readers(klass)
       setup_class_attr_writers(klass)
       setup_class_initialize(klass)
+
+      klass
     end
 
     def setup_class_attr_readers(klass)
