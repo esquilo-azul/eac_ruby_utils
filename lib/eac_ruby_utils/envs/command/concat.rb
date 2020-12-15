@@ -12,6 +12,10 @@ module EacRubyUtils
           ))
         end
 
+        def or(other_command)
+          concat('||', other_command)
+        end
+
         def pipe(other_command)
           concat('|', other_command)
         end
