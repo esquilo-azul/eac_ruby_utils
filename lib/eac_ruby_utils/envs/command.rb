@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/hash/indifferent_access'
-require 'eac_ruby_utils/console/speaker'
-require 'eac_ruby_utils/envs/command/extra_options'
+require 'eac_ruby_utils/core_ext'
 require 'eac_ruby_utils/envs/process'
 require 'eac_ruby_utils/envs/spawn'
 require 'pp'
@@ -11,8 +9,8 @@ require 'shellwords'
 module EacRubyUtils
   module Envs
     class Command
-      include EacRubyUtils::Console::Speaker
-      include EacRubyUtils::Envs::Command::ExtraOptions
+      require_sub __FILE__, include_modules: true
+      enable_console_speaker
 
       def initialize(env, command, extra_options = {})
         @env = env
