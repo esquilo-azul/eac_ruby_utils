@@ -12,10 +12,6 @@ module EacRubyUtils
           duplicate_by_extra_options(chdir: dir)
         end
 
-        def envvar(name, value)
-          duplicate_by_extra_options(envvars: envvars.merge(name => value))
-        end
-
         def status_result(status_code, result)
           duplicate_by_extra_options(status_results: status_results.merge(status_code => result))
         end
@@ -24,17 +20,8 @@ module EacRubyUtils
 
         attr_reader :extra_options
 
-        def envvars
-          extra_options[:envvars] ||= {}.with_indifferent_access
-        end
-
         def status_results
           extra_options[:status_results] ||= {}.with_indifferent_access
-        end
-
-        def append_envvars(command)
-          e = envvars.map { |k, v| "#{Shellwords.escape(k)}=#{Shellwords.escape(v)}" }.join(' ')
-          e.present? ? "#{e} #{command}" : command
         end
 
         def append_chdir(command)
