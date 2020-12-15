@@ -20,10 +20,6 @@ module EacRubyUtils
           duplicate_by_extra_options(status_results: status_results.merge(status_code => result))
         end
 
-        def pipe(other_command)
-          duplicate_by_extra_options(pipe: other_command)
-        end
-
         private
 
         attr_reader :extra_options
@@ -39,10 +35,6 @@ module EacRubyUtils
         def append_envvars(command)
           e = envvars.map { |k, v| "#{Shellwords.escape(k)}=#{Shellwords.escape(v)}" }.join(' ')
           e.present? ? "#{e} #{command}" : command
-        end
-
-        def append_pipe(command)
-          extra_options[:pipe].present? ? "#{command} | #{extra_options[:pipe].command}" : command
         end
 
         def append_chdir(command)
