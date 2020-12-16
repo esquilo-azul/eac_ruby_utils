@@ -8,11 +8,12 @@ module EacRubyUtils
   class CommonConcern
     class ClassSetup
       include ::EacRubyUtils::SimpleCache
-      attr_reader :a_class, :module_setup
+      attr_reader :a_class, :module_setup, :include_method
 
-      def initialize(module_setup, a_class)
+      def initialize(module_setup, a_class, include_method)
         @module_setup = module_setup
         @a_class = a_class
+        @include_method = include_method
       end
 
       def run
@@ -26,7 +27,7 @@ module EacRubyUtils
       end
 
       def setup_instance_methods
-        instance_methods_module.if_present { |v| a_class.include v }
+        instance_methods_module.if_present { |v| a_class.send(include_method, v) }
       end
 
       def setup_after_callback

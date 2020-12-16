@@ -20,7 +20,10 @@ module EacRubyUtils
         setup = self
         a_module.extend(::ActiveSupport::Concern)
         a_module.included do
-          ::EacRubyUtils::CommonConcern::ClassSetup.new(setup, self).run
+          ::EacRubyUtils::CommonConcern::ClassSetup.new(setup, self, :include).run
+        end
+        a_module.prepended do
+          ::EacRubyUtils::CommonConcern::ClassSetup.new(setup, self, :prepend).run
         end
       end
     end
