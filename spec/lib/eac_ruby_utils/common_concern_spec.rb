@@ -30,6 +30,10 @@ RSpec.describe ::EacRubyUtils::CommonConcern do
       class << self
         attr_accessor :valor
       end
+
+      def method1
+        'from_stub_module'
+      end
     end
   end
 
@@ -37,10 +41,15 @@ RSpec.describe ::EacRubyUtils::CommonConcern do
 
   before do
     instance.setup(stub_module)
-    stub_class.include stub_module
   end
 
-  it { expect(stub_class_instance.my_instance_method).to eq('instance') }
-  it { expect(stub_class_instance.class.my_class_method).to eq('class') }
-  it { expect(stub_class_instance.class.valor).to eq('changed') }
+  context 'when included' do
+    before do
+      stub_class.include stub_module
+    end
+
+    it { expect(stub_class_instance.my_instance_method).to eq('instance') }
+    it { expect(stub_class_instance.class.my_class_method).to eq('class') }
+    it { expect(stub_class_instance.class.valor).to eq('changed') }
+  end
 end
