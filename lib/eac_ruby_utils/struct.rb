@@ -7,7 +7,7 @@ require 'active_support/core_ext/object/blank'
 module EacRubyUtils
   class Struct
     def initialize(initial_data = {})
-      self.data = ::ActiveSupport::HashWithIndifferentAccess.new(initial_data)
+      self.data = initial_data.symbolize_keys
     end
 
     def [](key)

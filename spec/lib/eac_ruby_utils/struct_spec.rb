@@ -3,7 +3,7 @@
 require 'eac_ruby_utils/struct'
 
 RSpec.describe ::EacRubyUtils::Struct do
-  let(:instance) { described_class.new(a: 1, b: '') }
+  let(:instance) { described_class.new('a' => 1, b: '') }
 
   describe '#[]' do
     it { expect(instance[:a]).to eq(1) }
@@ -42,5 +42,9 @@ RSpec.describe ::EacRubyUtils::Struct do
     it { expect(instance.b?).to eq(false) }
     it { expect { instance.c }.to raise_error(::NoMethodError) }
     it { expect { instance.c? }.to raise_error(::NoMethodError) }
+  end
+
+  describe '#to_h' do
+    it { expect(instance.to_h).to eq(a: 1, b: '') }
   end
 end
