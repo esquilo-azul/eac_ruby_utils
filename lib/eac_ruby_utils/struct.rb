@@ -20,6 +20,11 @@ module EacRubyUtils
       bool ? fetch(key).present? : data.fetch(key)
     end
 
+    def merge(other)
+      other = self.class.new(other) unless other.is_a?(self.class)
+      self.class.new(to_h.merge(other.to_h))
+    end
+
     def method_missing(method_name, *arguments, &block)
       property_method?(method_name) ? fetch(method_name) : super
     end
