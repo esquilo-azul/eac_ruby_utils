@@ -38,7 +38,6 @@ RSpec/FilePath:
 
 RSpec/LeakyConstantDeclaration:
   Exclude:
-    - spec/lib/eac_ruby_utils/common_concern_spec.rb
     - spec/lib/eac_ruby_utils/console/docopt_runner_spec.rb
     - spec/lib/eac_ruby_utils/patches/module/console_speaker_spec.rb
     - spec/lib/eac_ruby_utils/patches/module/listable_spec.rb
@@ -53,10 +52,6 @@ RSpec/MultipleExpectations:
     - spec/lib/eac_ruby_utils/fs/temp_spec.rb
     - spec/lib/eac_ruby_utils/options_consumer_spec.rb
 
-RSpec/NamedSubject:
-  Exclude:
-    - spec/lib/eac_ruby_utils/common_concern_spec.rb
-
 RSpec/NestedGroups:
   Exclude:
     - spec/lib/eac_ruby_utils/console/docopt_runner_spec.rb
@@ -64,10 +59,6 @@ RSpec/NestedGroups:
 RSpec/RepeatedExampleGroupDescription:
   Exclude:
     - spec/lib/eac_ruby_utils/listable_spec.rb
-
-RSpec/ScatteredLet:
-  Exclude:
-    - spec/lib/eac_ruby_utils/common_concern_spec.rb
 
 RSpec/UnspecifiedException:
   Exclude:
