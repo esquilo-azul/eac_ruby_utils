@@ -19,7 +19,7 @@ RSpec.describe ::EacRubyUtils::CommonConcern do
 
       module InstanceMethods # rubocop:disable RSpec/LeakyConstantDeclaration
         def my_instance_method
-          'instance'
+          'from_module'
         end
       end
     end
@@ -31,8 +31,8 @@ RSpec.describe ::EacRubyUtils::CommonConcern do
         attr_accessor :valor
       end
 
-      def method1
-        'from_stub_module'
+      def my_instance_method
+        'from_class'
       end
     end
   end
@@ -48,7 +48,17 @@ RSpec.describe ::EacRubyUtils::CommonConcern do
       stub_class.include stub_module
     end
 
-    it { expect(stub_class_instance.my_instance_method).to eq('instance') }
+    it { expect(stub_class_instance.my_instance_method).to eq('from_class') }
+    it { expect(stub_class_instance.class.my_class_method).to eq('class') }
+    it { expect(stub_class_instance.class.valor).to eq('changed') }
+  end
+
+  context 'when prepended' do
+    before do
+      stub_class.prepend stub_module
+    end
+
+    it { expect(stub_class_instance.my_instance_method).to eq('from_module') }
     it { expect(stub_class_instance.class.my_class_method).to eq('class') }
     it { expect(stub_class_instance.class.valor).to eq('changed') }
   end
