@@ -20,7 +20,7 @@ module EacRubyUtils
             class_initialize.common_constructor, args, self
           ).run
           super(*::EacRubyUtils::CommonConstructor::SuperArgs.new(
-            class_initialize.common_constructor, args, self
+            class_initialize, args, self
           ).result)
         end
       end

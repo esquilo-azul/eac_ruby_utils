@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
+require 'active_support/core_ext/module/delegation'
+
 module EacRubyUtils
   class CommonConstructor
     class SuperArgs
-      attr_reader :common_constructor, :args, :object
+      attr_reader :class_initialize, :args, :object
+      delegate :common_constructor, to: :class_initialize
 
-      def initialize(common_constructor, args, object)
-        @common_constructor = common_constructor
+      def initialize(class_initialize, args, object)
+        @class_initialize = class_initialize
         @args = args
         @object = object
       end
@@ -44,7 +47,7 @@ module EacRubyUtils
       end
 
       def super_method
-        object.class.superclass ? object.class.superclass.instance_method(:initialize) : nil
+        class_initialize.klass.superclass&.instance_method(:initialize)
       end
     end
   end

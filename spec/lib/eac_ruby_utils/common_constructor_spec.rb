@@ -92,4 +92,34 @@ RSpec.describe ::EacRubyUtils::CommonConstructor do
       end
     end
   end
+
+  context 'with class hierarchy mixed with and without common_constructor' do
+    let(:klass_0) do
+      described_class.new(:a_param).setup_class(::Class.new)
+    end
+
+    let(:klass_1) do
+      ::Class.new(klass_0) do
+        def initialize(a_param)
+          super(a_param)
+        end
+      end
+    end
+
+    let(:klass_2) do
+      ::Class.new(klass_1)
+    end
+
+    let(:klass_3) do
+      described_class.new(:a_param).setup_class(::Class.new(klass_2))
+    end
+
+    4.times.each do |i|
+      context "wit #{i}-th class" do
+        let(:class_instance) { send("klass_#{i}").new(:a) }
+
+        it { expect(class_instance.a_param).to eq(:a) }
+      end
+    end
+  end
 end
