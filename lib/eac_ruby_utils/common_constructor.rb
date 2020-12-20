@@ -2,8 +2,7 @@
 
 require 'active_support/callbacks'
 require 'eac_ruby_utils/arguments_consumer'
-require 'eac_ruby_utils/common_constructor/instance_initialize'
-require 'eac_ruby_utils/common_constructor/super_args'
+require 'eac_ruby_utils/common_constructor/class_initialize'
 require 'ostruct'
 
 module EacRubyUtils
@@ -78,14 +77,9 @@ module EacRubyUtils
     end
 
     def setup_class_initialize(klass)
-      common_constructor = self
       klass.include(::ActiveSupport::Callbacks)
       klass.define_callbacks :initialize
-      klass.send(:define_method, :initialize) do |*args|
-        ::EacRubyUtils::CommonConstructor::InstanceInitialize.new(common_constructor, args, self)
-                                                             .run
-        super(*SuperArgs.new(common_constructor, args, self).result)
-      end
+      ::EacRubyUtils::CommonConstructor::ClassInitialize.new(self, klass).run
     end
 
     def super_args
