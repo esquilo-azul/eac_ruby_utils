@@ -3,7 +3,7 @@
 require 'pathname'
 
 class Pathname
-  def basename_sub
-    parent.join(yield(basename))
+  def basename_sub(suffix = '')
+    parent.join(yield(basename(suffix)))
   end
 end
