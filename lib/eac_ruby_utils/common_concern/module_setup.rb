@@ -17,13 +17,17 @@ module EacRubyUtils
       end
 
       def run
-        setup = self
         a_module.extend(::ActiveSupport::Concern)
-        a_module.included do
-          ::EacRubyUtils::CommonConcern::ClassSetup.new(setup, self, :include).run
-        end
-        a_module.prepended do
-          ::EacRubyUtils::CommonConcern::ClassSetup.new(setup, self, :prepend).run
+        include_or_prepend(:included, :include)
+        include_or_prepend(:prepended, :prepend)
+      end
+
+      private
+
+      def include_or_prepend(module_method, class_setup_method)
+        setup = self
+        a_module.send(module_method) do
+          ::EacRubyUtils::CommonConcern::ClassSetup.new(setup, self, class_setup_method).run
         end
       end
     end
