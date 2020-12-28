@@ -38,7 +38,7 @@ module EacRubyUtils
         def run_with_subcommand
           if subcommand_name
             check_valid_subcommand
-            subcommand.run
+            subcommand_run
           else
             run_without_subcommand
           end
@@ -50,6 +50,15 @@ module EacRubyUtils
             program_name: subcommand_program,
             parent: self
           )
+        end
+
+        def subcommand_run
+          if !subcommand.is_a?(::EacRubyUtils::Console::DocoptRunner) &&
+             subcommand.respond_to?(:run_run)
+            subcommand.run_run
+          else
+            subcommand.run
+          end
         end
 
         def target_doc
