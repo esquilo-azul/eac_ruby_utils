@@ -14,6 +14,10 @@ module EacRubyUtils
         ::YAML.dump(sanitize(object))
       end
 
+      def dump_file(path, object)
+        ::File.write(path.to_s, dump(object))
+      end
+
       def load(string)
         ::YAML.safe_load(string, permitted_classes)
       end
