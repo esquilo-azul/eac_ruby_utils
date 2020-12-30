@@ -22,6 +22,10 @@ module EacRubyUtils
         ::YAML.safe_load(string, permitted_classes)
       end
 
+      def load_file(path)
+        load(::File.read(path.to_s))
+      end
+
       def permitted_classes
         DEFAULT_PERMITTED_CLASSES
       end
