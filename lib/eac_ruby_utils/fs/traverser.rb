@@ -57,8 +57,6 @@ module EacRubyUtils
           user_check_file(path)
         elsif path.directory?
           inner_check_directory(path, level)
-        else
-          raise "Unknown filesystem object: #{path}"
         end
       end
 
