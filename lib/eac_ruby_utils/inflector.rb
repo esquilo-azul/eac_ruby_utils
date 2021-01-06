@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
+require 'active_support/inflector'
+
 module EacRubyUtils
   class Inflector
     class << self
       VARIABLE_NAME_PATTERN = /[_a-z][_a-z0-9]*/i.freeze
 
       def variableize(string)
-        r = string.gsub(/[^_a-z0-9]/i, '_').gsub(/_+/, '_').gsub(/_\z/, '').gsub(/\A_/, '').downcase
+        r = ::ActiveSupport::Inflector.transliterate(string).gsub(/[^_a-z0-9]/i, '_')
+                                      .gsub(/_+/, '_').gsub(/_\z/, '').gsub(/\A_/, '').downcase
         m = VARIABLE_NAME_PATTERN.match(r)
         return r if m
 
