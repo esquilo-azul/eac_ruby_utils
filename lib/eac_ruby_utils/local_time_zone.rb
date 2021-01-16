@@ -7,8 +7,12 @@ module EacRubyUtils
     class << self
       TIMEDATECTL_TIMEZONE_LINE_PATTERN = %r{\s*Time zone:\s*(\S+/\S+)\s}.freeze
 
+      def by_offset
+        ::ActiveSupport::TimeZone[::Time.now.getlocal.gmt_offset].name
+      end
+
       def local_time_zone
-        local_time_zone_by_timedatectl || local_time_zone_by_offset
+        local_time_zone_by_timedatectl || by_offset
       end
 
       def local_time_zone_by_timedatectl
@@ -16,10 +20,6 @@ module EacRubyUtils
         return nil unless executable.exist?
 
         TIMEDATECTL_TIMEZONE_LINE_PATTERN.if_match(executable.command.execute!) { |m| m[1] }
-      end
-
-      def local_time_zone_by_offset
-        ::ActiveSupport::TimeZone[::Time.now.getlocal.gmt_offset].name
       end
     end
   end
