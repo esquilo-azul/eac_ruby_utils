@@ -8,7 +8,7 @@ module EacRubyUtils
       TIMEDATECTL_TIMEZONE_LINE_PATTERN = %r{\s*Time zone:\s*(\S+/\S+)\s}.freeze
 
       def auto
-        %w[timedatectl offset].lazy.map { |s| send("by_#{s}") }.find(&:present?)
+        %w[offset].lazy.map { |s| send("by_#{s}") }.find(&:present?)
       end
 
       def by_offset
