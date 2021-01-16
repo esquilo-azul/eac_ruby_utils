@@ -11,7 +11,7 @@ module EacRubyUtils
       TIMEDATECTL_TIMEZONE_LINE_PATTERN = %r{\s*Time zone:\s*(\S+/\S+)\s}.freeze
 
       def auto
-        %w[debian_config offset].lazy.map { |s| send("by_#{s}") }.find(&:present?)
+        %w[tz_env debian_config offset].lazy.map { |s| send("by_#{s}") }.find(&:present?)
       end
 
       def by_debian_config
@@ -28,6 +28,10 @@ module EacRubyUtils
         return nil unless executable.exist?
 
         TIMEDATECTL_TIMEZONE_LINE_PATTERN.if_match(executable.command.execute!) { |m| m[1] }
+      end
+
+      def by_tz_env
+        ENV['TZ'].presence
       end
     end
   end
