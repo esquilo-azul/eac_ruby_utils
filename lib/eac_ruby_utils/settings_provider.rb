@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/string/inflections'
-require 'eac_ruby_utils/options_consumer'
+require 'eac_ruby_utils/require_sub'
 
 module EacRubyUtils
   # Provide a option by constant, method or options object.
   module SettingsProvider
+    ::EacRubyUtils.require_sub __FILE__, base: self
+
     def setting_constant_name(key, fullname = false)
-      name = key.to_s.underscore.upcase
-      name = "#{self.class.name}::#{name}" if fullname
-      name
+      setting_value_instance(key).constant_name(fullname)
     end
 
     def setting_search_order
@@ -25,41 +24,23 @@ module EacRubyUtils
     end
 
     def setting_value(key, options = {})
-      options = parse_setting_value_options(options)
-      options.order.each do |method|
-        value = send("setting_value_by_#{method}", key)
-        return value if value
-      end
-      return nil unless options.required
-
-      raise "Setting \"#{key}\" not found. Supply in #{settings_object_name}, implement a " \
-        "\"#{key}\" method or declare a #{setting_constant_name(key, true)} constant."
+      setting_value_instance(key, options).value
     end
 
     def setting_value_by_constant(key)
-      constant_name = setting_constant_name(key)
-      begin
-        self.class.const_get(constant_name)
-      rescue NameError
-        nil
-      end
+      setting_value_instance(key).value_by_constant
     end
 
     def setting_value_by_method(key)
-      respond_to?(key) ? send(key) : nil
+      setting_value_instance(key).value_by_method
     end
 
     def setting_value_by_settings_object(key)
-      settings_object[key.to_s] || settings_object[key.to_sym]
+      setting_value_instance(key).value_by_settings_object
     end
 
-    private
-
-    def parse_setting_value_options(options)
-      r = ::EacRubyUtils::OptionsConsumer.new(options).consume_all(:required, :order, ostruct: true)
-      r.required = true if r.required.nil?
-      r.order = setting_search_order if r.order.nil?
-      r
+    def setting_value_instance(key, options = {})
+      ::EacRubyUtils::SettingsProvider::SettingValue.new(self, key, options)
     end
   end
 end
