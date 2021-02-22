@@ -1,15 +1,18 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/string/inflections'
-require 'eac_ruby_utils/options_consumer'
+require 'eac_ruby_utils/listable'
 require 'eac_ruby_utils/simple_cache'
+require 'eac_ruby_utils/struct'
 
 module EacRubyUtils
   module SettingsProvider
     class SettingValue
+      include ::EacRubyUtils::Listable
       include ::EacRubyUtils::SimpleCache
 
       attr_reader :source, :key, :options
+      lists.add_symbol :option, :order, :required
 
       def initialize(source, key, options)
         @source = source
@@ -50,11 +53,10 @@ module EacRubyUtils
       private
 
       def parsed_options_uncached
-        r = ::EacRubyUtils::OptionsConsumer.new(options).consume_all(:required, :order,
-                                                                     ostruct: true)
-        r.required = true if r.required.nil?
-        r.order = source.setting_search_order if r.order.nil?
-        r
+        r = self.class.lists.option.hash_keys_validate!(options.symbolize_keys)
+        r[:required] = true unless r.key?(OPTION_REQUIRED)
+        r[:order] = source.setting_search_order if r[OPTION_ORDER].nil?
+        ::EacRubyUtils::Struct.new(r)
       end
 
       def raise_key_not_found
