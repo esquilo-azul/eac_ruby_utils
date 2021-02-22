@@ -12,7 +12,7 @@ module EacRubyUtils
       include ::EacRubyUtils::SimpleCache
 
       attr_reader :source, :key, :options
-      lists.add_symbol :option, :order, :required
+      lists.add_symbol :option, :default, :order, :required
 
       def initialize(source, key, options)
         @source = source
@@ -31,6 +31,7 @@ module EacRubyUtils
           value = send("value_by_#{method}")
           return value if value
         end
+        return parsed_options.default if parsed_options.respond_to?(OPTION_DEFAULT)
         return nil unless parsed_options.required
 
         raise_key_not_found

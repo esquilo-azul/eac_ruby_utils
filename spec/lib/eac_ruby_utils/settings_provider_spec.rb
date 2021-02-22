@@ -42,5 +42,13 @@ RSpec.describe ::EacRubyUtils::SettingsProvider do
     it do
       expect(stub.setting_value('key_e', required: false)).to eq(nil)
     end
+
+    it do
+      expect(stub.setting_value('key_e', default: nil)).to eq(nil)
+    end
+
+    it do
+      expect(stub.setting_value('key_e', default: 'default_e')).to eq('default_e')
+    end
   end
 end
