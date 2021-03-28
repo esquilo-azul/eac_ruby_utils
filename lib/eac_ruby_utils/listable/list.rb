@@ -54,8 +54,9 @@ module EacRubyUtils
       end
 
       def value_validate!(value, error_class = ::StandardError)
-        value_valid?(value) ||
-          raise(error_class, "Invalid value: \"#{value}\" (Valid: #{values_to_s})")
+        return value if value_valid?(value)
+
+        raise(error_class, "Invalid value: \"#{value}\" (Valid: #{values_to_s})")
       end
 
       def values_to_s
