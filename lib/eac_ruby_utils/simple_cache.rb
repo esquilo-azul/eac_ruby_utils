@@ -2,10 +2,17 @@
 
 module EacRubyUtils
   module SimpleCache
-    UNCACHED_METHOD_PATTERN = /\A(\s+)_uncached\z/.freeze
+    UNCACHED_METHOD_NAME_SUFFIX = '_uncached'
+    UNCACHED_METHOD_PATTERN = /\A(\s+)_#{::Regexp.quote(UNCACHED_METHOD_NAME_SUFFIX)}\z/.freeze
+
+    class << self
+      def uncached_method_name(method_name)
+        "#{method_name}#{UNCACHED_METHOD_NAME_SUFFIX}"
+      end
+    end
 
     def method_missing(method, *args, &block)
-      uncached_method = "#{method}_uncached"
+      uncached_method = ::EacRubyUtils::SimpleCache.uncached_method_name(method)
       if respond_to?(uncached_method, true)
         call_method_with_cache(uncached_method, args, &block)
       else
