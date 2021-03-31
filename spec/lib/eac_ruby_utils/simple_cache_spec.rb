@@ -16,6 +16,11 @@ class CacheableObject
     "#{arg1}/#{@counter2}"
   end
 
+  def method_with_reset_uncached
+    reset_cache
+    'result'
+  end
+
   private
 
   def private_method_uncached
@@ -38,6 +43,10 @@ RSpec.describe ::EacRubyUtils::SimpleCache do
 
     it 'is able to call private uncached as cached' do
       expect(instance.private_method).to eq(instance.private_method)
+    end
+
+    it 'return value even if reset cache' do
+      expect(instance.method_with_reset).to eq('result')
     end
   end
 
