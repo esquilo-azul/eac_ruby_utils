@@ -24,6 +24,12 @@ module EacRubyUtils
       ::File.read(content_path)
     end
 
+    def read_or_cache
+      write(yield) unless cached?
+
+      read
+    end
+
     def write(value)
       assert_directory_on_path
       ::File.write(content_path, value)
