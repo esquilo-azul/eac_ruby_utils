@@ -21,5 +21,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'docopt', '~> 0.6.1'
   s.add_dependency 'filesize'
   s.add_dependency 'net-ssh', '~> 4.2'
-  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.1', '>= 0.1.1'
+  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.2'
 end
