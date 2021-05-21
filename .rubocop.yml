@@ -23,7 +23,6 @@ Rails/TimeZone:
 
 RSpec/ContextWording:
   Exclude:
-    - spec/lib/eac_ruby_utils/console/docopt_runner_spec.rb
     - spec/lib/eac_ruby_utils/listable_spec.rb
     - spec/lib/eac_ruby_utils/options_consumer_spec.rb
 
@@ -38,7 +37,6 @@ RSpec/FilePath:
 
 RSpec/LeakyConstantDeclaration:
   Exclude:
-    - spec/lib/eac_ruby_utils/console/docopt_runner_spec.rb
     - spec/lib/eac_ruby_utils/patches/module/console_speaker_spec.rb
     - spec/lib/eac_ruby_utils/patches/module/listable_spec.rb
     - spec/lib/eac_ruby_utils/patches/module/simple_cache_spec.rb
@@ -48,13 +46,8 @@ RSpec/LeakyConstantDeclaration:
 
 RSpec/MultipleExpectations:
   Exclude:
-    - spec/lib/eac_ruby_utils/console/docopt_runner_spec.rb
     - spec/lib/eac_ruby_utils/fs/temp_spec.rb
     - spec/lib/eac_ruby_utils/options_consumer_spec.rb
-
-RSpec/NestedGroups:
-  Exclude:
-    - spec/lib/eac_ruby_utils/console/docopt_runner_spec.rb
 
 RSpec/RepeatedExampleGroupDescription:
   Exclude:
