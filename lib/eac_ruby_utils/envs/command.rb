@@ -10,7 +10,6 @@ module EacRubyUtils
   module Envs
     class Command
       require_sub __FILE__, include_modules: true
-      enable_console_speaker
 
       def initialize(env, command, extra_options = {})
         @env = env
@@ -111,7 +110,8 @@ module EacRubyUtils
 
       # Print a message if debugging is enabled.
       def debug_print(message)
-        puts message.to_s.light_red if debug?
+        message = message.to_s
+        puts message.if_respond(:light_red, message) if debug?
       end
 
       def append_command_options(command, options)
