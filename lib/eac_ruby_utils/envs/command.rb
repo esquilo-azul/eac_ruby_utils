@@ -61,17 +61,17 @@ module EacRubyUtils
 
       def execute(options = {})
         c = command(options)
-        puts "BEFORE: #{c}".light_red if debug?
+        debug_print("BEFORE: #{c}")
         t1 = Time.now
         r = ::EacRubyUtils::Envs::Process.new(c).to_h
         i = Time.now - t1
-        puts "AFTER [#{i}]: #{c}".light_red if debug?
+        debug_print("AFTER [#{i}]: #{c}")
         r
       end
 
       def spawn(options = {})
         c = command(options)
-        puts "SPAWN: #{c}".light_red if debug?
+        debug_print("SPAWN: #{c}")
         ::EacRubyUtils::Envs::Spawn.new(c)
       end
 
@@ -83,7 +83,7 @@ module EacRubyUtils
 
       def system(options = {})
         c = command(options)
-        puts c.light_red if debug?
+        debug_print(c)
         Kernel.system(c)
       end
 
@@ -107,6 +107,11 @@ module EacRubyUtils
 
       def debug?
         ENV['DEBUG'].to_s.strip != ''
+      end
+
+      # Print a message if debugging is enabled.
+      def debug_print(message)
+        puts message.to_s.light_red if debug?
       end
 
       def append_command_options(command, options)
