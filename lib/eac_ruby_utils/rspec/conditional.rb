@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/object/blank'
-require 'eac_ruby_utils/console/speaker'
 
 module EacRubyUtils
   module Rspec
     class Conditional
-      include ::EacRubyUtils::Console::Speaker
-
       def self.default
         @default ||= new
       end
@@ -24,7 +21,7 @@ module EacRubyUtils
         tags.each do |tag, condition|
           message = condition.call
           if message.present?
-            warn("Excluded tag: #{tag}: #{message}")
+            puts("[WARN] Excluded tag: #{tag}: #{message}")
             rspec_config.filter_run_excluding tag
           end
         end
