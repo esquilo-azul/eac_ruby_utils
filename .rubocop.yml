@@ -37,7 +37,6 @@ RSpec/FilePath:
 
 RSpec/LeakyConstantDeclaration:
   Exclude:
-    - spec/lib/eac_ruby_utils/patches/module/console_speaker_spec.rb
     - spec/lib/eac_ruby_utils/patches/module/listable_spec.rb
     - spec/lib/eac_ruby_utils/patches/module/simple_cache_spec.rb
     - spec/lib/eac_ruby_utils/patches/object/template_spec.rb
