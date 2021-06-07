@@ -10,6 +10,14 @@ class CacheableObject
     @counter += 1
   end
 
+  def method_with_question_uncached?
+    'question'
+  end
+
+  def method_with_exclamation_uncached!
+    'exclamation'
+  end
+
   def method_with_args_uncached(arg1)
     @counter2 ||= 0
     @counter2 += 1
@@ -71,6 +79,16 @@ RSpec.describe ::EacRubyUtils::SimpleCache do
 
     it do
       expect(instance.method_with_args('456')).not_to eq(instance.method_with_args('123'))
+    end
+  end
+
+  describe 'method with marks' do
+    it 'found uncached method with exclamation mark' do
+      expect(instance.method_with_exclamation!).to eq('exclamation')
+    end
+
+    it 'found uncached method with question mark' do
+      expect(instance.method_with_question?).to eq('question')
     end
   end
 

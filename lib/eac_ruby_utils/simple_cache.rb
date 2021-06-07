@@ -3,11 +3,19 @@
 module EacRubyUtils
   module SimpleCache
     UNCACHED_METHOD_NAME_SUFFIX = '_uncached'
-    UNCACHED_METHOD_PATTERN = /\A(\s+)_#{::Regexp.quote(UNCACHED_METHOD_NAME_SUFFIX)}\z/.freeze
+    UNCACHED_METHOD_PATTERN = /
+      \A(\s+)_#{::Regexp.quote(UNCACHED_METHOD_NAME_SUFFIX)}([\!\?]?)\z
+    /x.freeze
 
     class << self
       def uncached_method_name(method_name)
-        "#{method_name}#{UNCACHED_METHOD_NAME_SUFFIX}"
+        method_name = method_name.to_s
+        end_mark = nil
+        if %w[! ?].any? { |mark| method_name.end_with?(mark) }
+          end_mark = method_name[-1]
+          method_name = method_name[0..-2]
+        end
+        "#{method_name}#{UNCACHED_METHOD_NAME_SUFFIX}#{end_mark}"
       end
     end
 
