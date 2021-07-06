@@ -6,7 +6,7 @@ module EacRubyUtils
       def parse(value)
         return parse_string(value) if value.is_a?(::String)
         return parse_string(value.to_s) if value.is_a?(::Symbol)
-        return parse_number(value) if value.is_a?(::Number)
+        return parse_number(value) if value.is_a?(::Numeric)
 
         value ? true : false
       end
