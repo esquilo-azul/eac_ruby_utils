@@ -22,7 +22,7 @@ module EacRubyUtils
       def validate
         return nil if exist?
 
-        "Program \"#{name}\" not found in environment #{env}"
+        "Program \"#{::Shellwords.join(executable_args)}\" not found in environment #{env}"
       end
 
       def validate!
@@ -33,13 +33,25 @@ module EacRubyUtils
 
       def command(*command_args)
         validate!
-        env.command(name, *command_args)
+        env.command(*executable_args, *command_args)
+      end
+
+      def executable_args
+        executable_args_from_envvar || [name]
+      end
+
+      def executable_args_envvar
+        "#{name}_command".variableize.upcase
+      end
+
+      def executable_args_from_envvar
+        ENV[executable_args_envvar].if_present { |v| ::Shellwords.split(v) }
       end
 
       private
 
       def exist_uncached
-        env.command(name, *check_args).execute!
+        env.command(*executable_args, *check_args).execute!
         true
       rescue Errno::ENOENT
         false
