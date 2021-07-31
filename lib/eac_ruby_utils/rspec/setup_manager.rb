@@ -36,8 +36,7 @@ module EacRubyUtils
 
       def include_registry
         gems_registry.registered.each do |gem|
-          singleton_class.include(gem.registered_module)
-          gem.registered_module.setup(self) if gem.registered_module.respond_to?(:setup)
+          gem.registered_module.new(self).perform
         end
       end
     end
