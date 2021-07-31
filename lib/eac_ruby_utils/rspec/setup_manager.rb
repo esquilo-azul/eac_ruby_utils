@@ -6,7 +6,7 @@ require 'eac_ruby_utils/patches/object/to_pathname'
 
 module EacRubyUtils
   module Rspec
-    class Setup
+    class SetupManager
       GEMS_REGISTRY_SUFFIX = 'Rspec::SetupInclude'
 
       class << self
