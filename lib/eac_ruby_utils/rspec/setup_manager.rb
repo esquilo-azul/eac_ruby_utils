@@ -7,7 +7,7 @@ require 'eac_ruby_utils/patches/object/to_pathname'
 module EacRubyUtils
   module Rspec
     class SetupManager
-      GEMS_REGISTRY_SUFFIX = 'Rspec::SetupInclude'
+      GEMS_REGISTRY_SUFFIX = 'Rspec::Setup'
 
       class << self
         def create(app_root_path, rspec_config = nil)
