@@ -2,7 +2,7 @@
 
 module EacRubyUtils
   module Rspec
-    class Setup
+    module Setup
       module Conditionals
         def conditional(tag, &condition)
           message = condition.call
