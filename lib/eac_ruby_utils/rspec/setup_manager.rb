@@ -36,8 +36,13 @@ module EacRubyUtils
 
       def include_registry
         gems_registry.registered.each do |gem|
-          gem.registered_module.new(self).perform
+          include_gem_registered(gem.registered_module)
         end
+      end
+
+      # @param gem [EacRubyUtils::GemsRegistry::Gem]
+      def include_gem_registered(registered_module)
+        registered_module.new(self).perform
       end
     end
   end
