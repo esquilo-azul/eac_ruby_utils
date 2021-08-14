@@ -8,7 +8,6 @@ module EacRubyUtils
   module Rspec
     class SetupManager
       GEMS_REGISTRY_SUFFIX = 'Rspec::Setup'
-      REGISTERED_MODULE_PERFORM_METHOD = :perform
 
       class << self
         def create(app_root_path, rspec_config = nil)
@@ -44,8 +43,6 @@ module EacRubyUtils
       # @param gem [EacRubyUtils::GemsRegistry::Gem]
       def include_gem_registered(registered_module)
         extend(registered_module)
-        registered_module.send(REGISTERED_MODULE_PERFORM_METHOD, self) if
-          registered_module.respond_to?(REGISTERED_MODULE_PERFORM_METHOD)
       end
     end
   end
