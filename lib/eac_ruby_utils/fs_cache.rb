@@ -6,7 +6,7 @@ require 'tmpdir'
 module EacRubyUtils
   class << self
     def fs_cache
-      @fs_cache ||= ::EacRubyUtils::FilesystemCache.new(::Dir.tmpdir, 'eac_ruby_utils', '.cache')
+      @fs_cache ||= ::EacRubyUtils::FilesystemCache.new(::Dir.tmpdir, 'eac_ruby_utils_fs_cache')
     end
   end
 end
