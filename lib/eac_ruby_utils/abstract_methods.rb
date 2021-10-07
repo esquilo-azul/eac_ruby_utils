@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/patches/class/self_included_modules'
 require 'eac_ruby_utils/patches/module/common_concern'
 
 module EacRubyUtils
@@ -26,6 +27,12 @@ module EacRubyUtils
   #   SubClass.new.mymethod # return "Implemented"
   module AbstractMethods
     common_concern
+
+    class << self
+      def abstract?(a_class)
+        a_class.self_included_modules.include?(::EacRubyUtils::AbstractMethods)
+      end
+    end
 
     module ClassMethods
       def abstract_methods(*methods_names)
