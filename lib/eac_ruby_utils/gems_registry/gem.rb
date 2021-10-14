@@ -57,6 +57,10 @@ module EacRubyUtils
         gemspec.name.gsub('-', '/') + '/' + registry.module_suffix.underscore
       end
 
+      def to_s
+        "#{self.class.name}[#{gemspec.name}]"
+      end
+
       private
 
       def dependencies_uncached
