@@ -21,7 +21,7 @@ module EacRubyUtils
 
     # @return [Array<EacRubyUtils::GemsRegistry::Gem>]
     def registered
-      @registered ||= all_gems.select(&:found?)
+      @registered ||= all_gems.select(&:found?).sort
     end
 
     private
