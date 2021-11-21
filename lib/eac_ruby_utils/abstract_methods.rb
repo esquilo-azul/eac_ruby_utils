@@ -60,7 +60,8 @@ module EacRubyUtils
       end
 
       def raise_abstract_method(method_name)
-        raise ::NoMethodError, "Abstract method \"#{method_name}\" hit in \"#{self}\""
+        raise ::NoMethodError, "Abstract method \"#{method_name}\" hit in \"#{self}\"" \
+          " (Class: #{self.class})"
       end
     end
   end
