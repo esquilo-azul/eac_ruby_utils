@@ -8,7 +8,7 @@ class Object
   end
 
   def to_debug
-    "|#{self.class}|#{self}|"
+    "|#{::Object.instance_method(:to_s).bind(self).call}|#{self}|"
   end
 
   def raise_debug
