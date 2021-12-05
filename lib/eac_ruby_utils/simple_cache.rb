@@ -20,7 +20,7 @@ module EacRubyUtils
     end
 
     def method_missing(method, *args, &block)
-      if respond_to?(::EacRubyUtils::SimpleCache.uncached_method_name(method), true)
+      if respond_to?(uncached_method_name(method), true)
         call_method_with_cache(method, args, &block)
       else
         super
@@ -43,6 +43,12 @@ module EacRubyUtils
       end
     end
 
+    protected
+
+    def uncached_method_name(original_method_name)
+      ::EacRubyUtils::SimpleCache.uncached_method_name(original_method_name)
+    end
+
     private
 
     def call_method_with_cache(method, args, &block)
@@ -57,7 +63,7 @@ module EacRubyUtils
     end
 
     def call_uncached_method(method, args)
-      send(::EacRubyUtils::SimpleCache.uncached_method_name(method), *args)
+      send(uncached_method_name(method), *args)
     end
 
     def cache_keys
