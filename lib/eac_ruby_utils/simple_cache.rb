@@ -37,10 +37,14 @@ module EacRubyUtils
 
     def reset_cache(*keys)
       if keys.any?
-        keys.each { |key| cache_keys.delete(key) }
+        keys.each { |key| cache_keys.delete(sanitize_cache_key(key)) }
       else
         @cache_keys = nil
       end
+    end
+
+    def sanitize_cache_key(key)
+      key.to_s.to_sym
     end
 
     protected
@@ -55,11 +59,11 @@ module EacRubyUtils
       raise 'Não é possível realizar o cache de métodos com bloco' if block
 
       key = ([method] + args).join('@@@')
-      unless cache_keys.key?(key)
+      unless cache_keys.key?(sanitize_cache_key(key))
         uncached_value = call_uncached_method(method, args)
-        cache_keys[key] = uncached_value
+        cache_keys[sanitize_cache_key(key)] = uncached_value
       end
-      cache_keys[key]
+      cache_keys[sanitize_cache_key(key)]
     end
 
     def call_uncached_method(method, args)
