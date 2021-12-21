@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{lib}/**/*', 'MIT-LICENSE', 'README.rdoc']
 
-  s.add_dependency 'activesupport', '>= 4.0'
+  s.add_dependency 'activesupport', '>= 4', '< 7'
   s.add_dependency 'addressable', '~> 2.6'
   s.add_dependency 'filesize'
   s.add_dependency 'net-ssh', '~> 4.2'
