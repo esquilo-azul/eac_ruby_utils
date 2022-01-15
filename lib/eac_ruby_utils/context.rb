@@ -2,6 +2,8 @@
 
 module EacRubyUtils
   class Context
+    delegate :any?, to: :stack
+
     def current
       optional_current || raise('No elements in context')
     end
