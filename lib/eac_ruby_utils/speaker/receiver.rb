@@ -5,7 +5,14 @@ require 'eac_ruby_utils/abstract_methods'
 module EacRubyUtils
   module Speaker
     module Receiver
+      extend ::ActiveSupport::Concern
       extend ::EacRubyUtils::AbstractMethods
+
+      module ClassMethods
+        def on(*args, &block)
+          ::EacRubyUtils::Speaker.context.on(new(*args), &block)
+        end
+      end
 
       def error(_string)
         raise_abstract_method(__method__)
