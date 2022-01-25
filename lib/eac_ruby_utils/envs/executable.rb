@@ -9,7 +9,9 @@ module EacRubyUtils
       include ::EacRubyUtils::Listable
       include ::EacRubyUtils::SimpleCache
 
-      lists.add_symbol :option, :check_args
+      lists.add_symbol :option, :check_args, :auto_validate
+
+      DEFAULT_AUTO_VALIDATE = true
 
       attr_reader :env, :name, :options
 
@@ -19,6 +21,10 @@ module EacRubyUtils
         self.options = self.class.lists.option.hash_keys_validate!(check_args.extract_options!)
         options[OPTION_CHECK_ARGS] = check_args unless options.key?(OPTION_CHECK_ARGS)
         options.freeze
+      end
+
+      def auto_validate?
+        options.key?(OPTION_AUTO_VALIDATE) ? options[OPTION_AUTO_VALIDATE] : DEFAULT_AUTO_VALIDATE
       end
 
       def check_args
@@ -42,7 +48,7 @@ module EacRubyUtils
       end
 
       def command(*command_args)
-        validate!
+        validate! if auto_validate?
         env.command(*executable_args, *command_args)
       end
 
