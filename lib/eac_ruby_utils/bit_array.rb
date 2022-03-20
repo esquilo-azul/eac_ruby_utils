@@ -27,6 +27,10 @@ module EacRubyUtils
       push(value)
     end
 
+    def push_array(other_bit_array)
+      @values_array += other_bit_array.values_array
+    end
+
     # @param value [EacRubyUtils::Bit]
     # @return [EacRubyUtils::Bit]
     def push(value)
