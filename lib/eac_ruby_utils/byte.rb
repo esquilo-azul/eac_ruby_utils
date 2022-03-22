@@ -77,8 +77,9 @@ module EacRubyUtils
       self.class.new(bit.zero? ? value & ~mask : value | mask)
     end
 
-    def to_bit_array
-      BIT_INDEX_RANGE.map { |bit_index| self[bit_index] }
+    # @return [EacRubyUtils::BitArray]
+    def to_bit_array(range = BIT_INDEX_RANGE)
+      ::EacRubyUtils::BitArray.new(range.map { |bit_index| self[bit_index] })
     end
 
     # @return [Integer]
