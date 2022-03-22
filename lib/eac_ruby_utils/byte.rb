@@ -87,6 +87,11 @@ module EacRubyUtils
       value
     end
 
+    # @return [String]
+    def to_hex
+      value.to_s(16).upcase.rjust(2, '0')
+    end
+
     private
 
     attr_writer :value
