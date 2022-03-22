@@ -6,6 +6,7 @@ require 'eac_ruby_utils/patches/module/compare_by'
 
 module EacRubyUtils
   class Byte
+    ASSEMBLY_HEXADECIMAL_PREFIX = '$'
     BIT_COUNT = 8
     BIT_INDEX_RANGE = (0..7).freeze
     VALUE_RANGE = (0..255).freeze
@@ -85,6 +86,11 @@ module EacRubyUtils
     # @return [Integer]
     def to_i
       value
+    end
+
+    # @return [String]
+    def to_asm_hex
+      ASSEMBLY_HEXADECIMAL_PREFIX + to_hex
     end
 
     # @return [String]
