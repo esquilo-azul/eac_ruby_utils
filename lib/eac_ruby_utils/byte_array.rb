@@ -5,7 +5,7 @@ require 'eac_ruby_utils/patches/module/compare_by'
 
 module EacRubyUtils
   class ByteArray
-    delegate :to_a, :size, :count, :length, :[], :fetch, to: :values_array
+    delegate :to_a, :size, :count, :length, :[], :fetch, :map, to: :values_array
     compare_by :values_array
 
     def initialize(values = [])
