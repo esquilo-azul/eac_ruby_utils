@@ -5,15 +5,23 @@ require 'open3'
 module EacRubyUtils
   module Envs
     class Process
+      EXIT_CODE_KEY = :exit_code
+      ERR_KEY = :stderr
+      OUT_KEY = :stdout
+
       def initialize(command)
-        @data = { command: command }
-        @data[:stdout], @data[:stderr], @data[:exit_code] = Open3.capture3(command)
-        @data[:exit_code] = @data[:exit_code].to_i
+        self.data = { command: command }
+        data[OUT_KEY], data[ERR_KEY], data[EXIT_CODE_KEY] = Open3.capture3(command)
+        data[EXIT_CODE_KEY] = data[EXIT_CODE_KEY].to_i
       end
 
       def to_h
-        @data.dup
+        data.dup
       end
+
+      private
+
+      attr_accessor :data
     end
   end
 end
