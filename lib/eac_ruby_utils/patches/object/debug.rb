@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class Object
+  def pretty_debug
+    STDERR.write(pretty_inspect)
+
+    self
+  end
+
   def print_debug
     STDERR.write(to_debug + "\n")
 
