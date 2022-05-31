@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/listable/value'
+
 module EacRubyUtils
   module Listable
     class List
+      BLANK_VALUE = nil
+      BLANK_KEY = :__blank
+
       attr_reader :item
 
       def initialize(lists, item, labels)
@@ -10,6 +15,10 @@ module EacRubyUtils
         @item = item
         @values = build_values(labels)
         apply_constants
+      end
+
+      def blank_value
+        @blank_value ||= ::EacRubyUtils::Listable::Value.new(self, BLANK_VALUE, BLANK_KEY, false)
       end
 
       def each_value(&block)
@@ -42,8 +51,10 @@ module EacRubyUtils
         "eac_ruby_utils.listable.#{class_i18n_key}.#{item}"
       end
 
+      # @return [EacRubyUtils::Listable::Value, nil]
       def instance_value(instance)
         v = instance.send(item)
+        return blank_value if v.blank?
         return @values[v] if @values.key?(v)
 
         raise "List value unkown: #{v} (Source: #{@lists.source}, Item: #{item})"

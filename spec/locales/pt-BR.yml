@@ -12,6 +12,9 @@ pt-BR:
           c:
             label: Inteiro CCC
             description: Inteiro CCC Descr.
+          __blank:
+            label: Inteiro em branco
+            description: Inteiro em branco Descr.
         cadeia:
           a:
             label: Cadeia AAA
