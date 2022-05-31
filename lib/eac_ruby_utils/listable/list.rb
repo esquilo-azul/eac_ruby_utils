@@ -57,7 +57,8 @@ module EacRubyUtils
         return blank_value if v.blank?
         return @values[v] if @values.key?(v)
 
-        raise "List value unkown: #{v} (Source: #{@lists.source}, Item: #{item})"
+        raise "List value unkown: \"#{v}\" (Source: #{@lists.source}, Item: #{item}, Instance: " \
+          "#{instance.to_debug}, Values: #{@values.keys})"
       end
 
       def value_valid?(value)
