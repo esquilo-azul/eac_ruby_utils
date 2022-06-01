@@ -26,7 +26,6 @@ Rails/TimeZone:
 
 RSpec/ContextWording:
   Exclude:
-    - spec/lib/eac_ruby_utils/listable_spec.rb
     - spec/lib/eac_ruby_utils/options_consumer_spec.rb
 
 RSpec/ExampleLength:
@@ -49,14 +48,6 @@ RSpec/MultipleExpectations:
   Exclude:
     - spec/lib/eac_ruby_utils/fs/temp_spec.rb
     - spec/lib/eac_ruby_utils/options_consumer_spec.rb
-
-RSpec/RepeatedExampleGroupDescription:
-  Exclude:
-    - spec/lib/eac_ruby_utils/listable_spec.rb
-
-RSpec/UnspecifiedException:
-  Exclude:
-    - spec/lib/eac_ruby_utils/listable_spec.rb
 
 Style/Documentation:
   Enabled: false

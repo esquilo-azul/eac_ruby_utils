@@ -16,7 +16,7 @@ class Stub
 end
 
 RSpec.describe ::EacRubyUtils::Listable do
-  context 'attribute values' do
+  describe 'attribute values' do
     it { expect(Stub.lists.inteiro.values).to eq([1, 2, 3]) }
     it { expect(Stub.lists.code.values).to eq([7, 13]) }
     it { expect(Stub.lists.cadeia.values).to eq(%w[a b c]) }
@@ -25,7 +25,7 @@ RSpec.describe ::EacRubyUtils::Listable do
     it { expect(Stub.lists.tipado.values).to eq(%i[tipo_aaa tipo_bbb]) }
   end
 
-  context 'value instance options' do
+  describe 'value instance options' do
     it {
       expect(Stub.lists.inteiro.options)
         .to eq([['Inteiro A', 1], ['Inteiro BB', 2], ['Inteiro CCC', 3]])
@@ -57,7 +57,7 @@ RSpec.describe ::EacRubyUtils::Listable do
     }
   end
 
-  context 'constants' do
+  describe 'constants' do
     it { expect(Stub::INTEIRO_A).to eq(1) }
     it { expect(Stub::INTEIRO_B).to eq(2) }
     it { expect(Stub::INTEIRO_C).to eq(3) }
@@ -74,7 +74,7 @@ RSpec.describe ::EacRubyUtils::Listable do
     it { expect(Stub::TIPADO_B).to eq(:tipo_bbb) }
   end
 
-  context 'values instances' do
+  describe 'values instances' do
     it { expect(Stub.lists.is_a?(::EacRubyUtils::Listable::Lists)).to eq(true) }
     it { expect(Stub.lists.inteiro.value_a.is_a?(::EacRubyUtils::Listable::Value)).to eq(true) }
     it { expect(Stub.lists.inteiro.value_b.is_a?(::EacRubyUtils::Listable::Value)).to eq(true) }
@@ -88,7 +88,7 @@ RSpec.describe ::EacRubyUtils::Listable do
     it { expect(Stub.lists.type.value_b.is_a?(::EacRubyUtils::Listable::Value)).to eq(true) }
   end
 
-  context 'value instance label' do
+  describe 'value instance label' do
     it { expect(Stub.lists.inteiro.value_a.label).to eq('Inteiro A') }
     it { expect(Stub.lists.inteiro.value_b.label).to eq('Inteiro BB') }
     it { expect(Stub.lists.inteiro.value_c.label).to eq('Inteiro CCC') }
@@ -101,7 +101,7 @@ RSpec.describe ::EacRubyUtils::Listable do
     it { expect(Stub.lists.type.value_b.label).to eq('Tipo B') }
   end
 
-  context 'value instance description' do
+  describe 'value instance description' do
     it { expect(Stub.lists.inteiro.value_a.description).to eq('Inteiro A Descr.') }
     it { expect(Stub.lists.inteiro.value_b.description).to eq('Inteiro BB Descr.') }
     it { expect(Stub.lists.inteiro.value_c.description).to eq('Inteiro CCC Descr.') }
@@ -114,7 +114,7 @@ RSpec.describe ::EacRubyUtils::Listable do
     it { expect(Stub.lists.type.value_b.description).to eq('Tipo B Descr.') }
   end
 
-  context 'value instance constant name' do
+  describe 'value instance constant name' do
     it { expect(Stub.lists.inteiro.value_a.constant_name).to eq('INTEIRO_A') }
     it { expect(Stub.lists.inteiro.value_b.constant_name).to eq('INTEIRO_B') }
     it { expect(Stub.lists.inteiro.value_c.constant_name).to eq('INTEIRO_C') }
@@ -127,7 +127,7 @@ RSpec.describe ::EacRubyUtils::Listable do
     it { expect(Stub.lists.type.value_b.constant_name).to eq('TYPE_B') }
   end
 
-  context 'instance label and descriptions' do
+  describe 'instance label and descriptions' do
     let(:instance) { Stub.new }
 
     context 'when inteiro value is A' do
@@ -137,7 +137,7 @@ RSpec.describe ::EacRubyUtils::Listable do
       it { expect(instance.inteiro_description).to eq('Inteiro A Descr.') }
     end
 
-    context 'when inteiro value is A' do
+    context 'when inteiro value is B' do
       before { instance.inteiro = Stub::INTEIRO_B }
 
       it { expect(instance.inteiro_label).to eq('Inteiro BB') }
@@ -203,9 +203,9 @@ RSpec.describe ::EacRubyUtils::Listable do
 
   describe '#value_validate!' do
     it { expect { Stub.lists.inteiro.value_validate!(1) }.not_to raise_error }
-    it { expect { Stub.lists.inteiro.value_validate!('1') }.to raise_error }
+    it { expect { Stub.lists.inteiro.value_validate!('1') }.to raise_error(::StandardError) }
     it { expect { Stub.lists.inteiro.value_validate!(10) }.to raise_error(::StandardError) }
-    it { expect { Stub.lists.cadeia.value_validate!(:a) }.to raise_error }
+    it { expect { Stub.lists.cadeia.value_validate!(:a) }.to raise_error(::StandardError)  }
     it { expect { Stub.lists.cadeia.value_validate!('a') }.not_to raise_error }
     it { expect { Stub.lists.cadeia.value_validate!(:z) }.to raise_error(::StandardError) }
   end
