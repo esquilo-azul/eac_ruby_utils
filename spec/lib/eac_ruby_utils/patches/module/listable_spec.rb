@@ -3,11 +3,13 @@
 require 'eac_ruby_utils/patches/module/listable'
 
 RSpec.describe ::Module do
-  class StubClass
-    enable_listable
+  let(:stub_class) do
+    ::Class.new do
+      enable_listable
+    end
   end
 
   describe '#enable_listable' do
-    it { expect(StubClass.included_modules).to include(::EacRubyUtils::Listable) }
+    it { expect(stub_class.included_modules).to include(::EacRubyUtils::Listable) }
   end
 end
