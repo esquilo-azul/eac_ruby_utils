@@ -32,10 +32,6 @@ RSpec/ExampleLength:
   Exclude:
     - spec/lib/eac_ruby_utils/options_consumer_spec.rb
 
-RSpec/FilePath:
-  Exclude:
-    - spec/lib/eac_ruby_utils/fs/temp/temp_spec.rb
-
 RSpec/LeakyConstantDeclaration:
   Exclude:
     - spec/lib/eac_ruby_utils/patches/module/simple_cache_spec.rb
