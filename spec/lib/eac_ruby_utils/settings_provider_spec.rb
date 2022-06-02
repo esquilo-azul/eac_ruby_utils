@@ -3,26 +3,29 @@
 require 'eac_ruby_utils/settings_provider'
 
 RSpec.describe ::EacRubyUtils::SettingsProvider do
-  class MyStubSettingsProvided
-    include ::EacRubyUtils::SettingsProvider
+  let(:stub_class) do
+    the_described_class = described_class
+    r = ::Class.new do
+      include the_described_class
 
-    KEY_A = 'constant_a'
-    KEY_D = 'constant_d'
+      def key_a
+        'method_a'
+      end
 
-    def key_a
-      'method_a'
+      def key_b
+        'method_b'
+      end
+
+      def settings
+        { 'key_b' => 'setting_b', key_c: 'setting_c' }
+      end
     end
-
-    def key_b
-      'method_b'
-    end
-
-    def settings
-      { 'key_b' => 'setting_b', key_c: 'setting_c' }
-    end
+    r.const_set(:KEY_A, 'constant_a')
+    r.const_set(:KEY_D, 'constant_d')
+    r
   end
 
-  let(:stub) { MyStubSettingsProvided.new }
+  let(:stub) { stub_class.new }
 
   describe '#setting_value' do
     {
