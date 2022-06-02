@@ -30,7 +30,6 @@ RSpec/ContextWording:
 
 RSpec/ExampleLength:
   Exclude:
-    - spec/lib/eac_ruby_utils/fs/temp_spec.rb
     - spec/lib/eac_ruby_utils/options_consumer_spec.rb
 
 RSpec/FilePath:
@@ -45,7 +44,6 @@ RSpec/LeakyConstantDeclaration:
 
 RSpec/MultipleExpectations:
   Exclude:
-    - spec/lib/eac_ruby_utils/fs/temp_spec.rb
     - spec/lib/eac_ruby_utils/options_consumer_spec.rb
 
 Style/Documentation:

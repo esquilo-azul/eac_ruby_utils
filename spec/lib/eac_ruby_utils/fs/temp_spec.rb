@@ -4,7 +4,7 @@ require 'eac_ruby_utils/fs/temp'
 
 RSpec.describe ::EacRubyUtils::Fs::Temp do
   describe '#on_file' do
-    it do
+    it do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
       temp_path = nil
       described_class.on_file do |path|
         temp_path = path
@@ -15,7 +15,7 @@ RSpec.describe ::EacRubyUtils::Fs::Temp do
       expect(temp_path).not_to exist
     end
 
-    it 'not fail if already removed' do
+    it 'not fail if already removed' do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
       temp_path = nil
       described_class.on_file do |path|
         temp_path = path
@@ -29,7 +29,7 @@ RSpec.describe ::EacRubyUtils::Fs::Temp do
   end
 
   describe '#on_directory' do
-    it do
+    it do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
       temp_path = nil
       described_class.on_directory do |path|
         temp_path = path
@@ -38,7 +38,7 @@ RSpec.describe ::EacRubyUtils::Fs::Temp do
       expect(temp_path).not_to exist
     end
 
-    it 'not fail if already removed' do
+    it 'not fail if already removed' do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
       temp_path = nil
       described_class.on_directory do |path|
         temp_path = path
