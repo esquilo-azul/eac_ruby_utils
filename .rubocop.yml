@@ -27,7 +27,6 @@ Rails/TimeZone:
 RSpec/LeakyConstantDeclaration:
   Exclude:
     - spec/lib/eac_ruby_utils/patches/module/simple_cache_spec.rb
-    - spec/lib/eac_ruby_utils/require_sub_spec.rb
     - spec/lib/eac_ruby_utils/settings_provider_spec.rb
 
 Style/Documentation:

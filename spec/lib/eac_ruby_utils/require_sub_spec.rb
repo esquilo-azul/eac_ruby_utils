@@ -2,10 +2,10 @@
 
 require 'eac_ruby_utils/require_sub'
 
-RSpec.describe ::EacRubyUtils::RequireSub do
-  class RequireSubStubClass
-  end
+class RequireSubStubClass
+end
 
+RSpec.describe ::EacRubyUtils::RequireSub do
   let(:instance) { described_class.new(__FILE__, base: RequireSubStubClass, include_modules: true) }
 
   before do
