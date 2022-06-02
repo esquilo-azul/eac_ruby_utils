@@ -24,10 +24,6 @@ Rails/SkipsModelValidations:
 Rails/TimeZone:
   Enabled: false
 
-RSpec/LeakyConstantDeclaration:
-  Exclude:
-    - spec/lib/eac_ruby_utils/patches/module/simple_cache_spec.rb
-
 Style/Documentation:
   Enabled: false
 

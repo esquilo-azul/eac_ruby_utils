@@ -3,11 +3,13 @@
 require 'eac_ruby_utils/patches/module/simple_cache'
 
 RSpec.describe ::Module do
-  class StubClass
-    enable_simple_cache
+  let(:stub_class) do
+    ::Class.new do
+      enable_simple_cache
+    end
   end
 
   describe '#enable_simple_cache' do
-    it { expect(StubClass.included_modules).to include(::EacRubyUtils::SimpleCache) }
+    it { expect(stub_class.included_modules).to include(::EacRubyUtils::SimpleCache) }
   end
 end
