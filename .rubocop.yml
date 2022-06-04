@@ -3,14 +3,19 @@ require:
   - rubocop-rspec
 
 AllCops:
+  TargetRailsVersion: 5.2
   TargetRubyVersion: 2.7
+
+Metrics/BlockLength:
+  Exclude:
+    - '**/*.gemspec'
+    - 'spec/**/*_spec.rb'
 
 Layout/LineLength:
   Max: 100
 
-Metrics/BlockLength:
-  Exclude:
-    - 'spec/**/*_spec.rb'
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
 
 Rails/DynamicFindBy:
   Enabled: false
@@ -24,17 +29,17 @@ Rails/SkipsModelValidations:
 Rails/TimeZone:
   Enabled: false
 
-Style/Documentation:
-  Enabled: false
-
 Style/AsciiComments:
   Enabled: false
 
-Style/HashEachMethods:
+Style/Documentation:
   Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
 
 Style/HashTransformKeys:
-  Enabled: false
+  Enabled: true
 
 Style/HashTransformValues:
-  Enabled: false
+  Enabled: true

@@ -36,7 +36,7 @@ module EacRubyUtils
         return nil unless executable.exist?
 
         TIMEDATECTL_TIMEZONE_LINE_PATTERN.if_match(executable.command.execute!) { |m| m[1] }
-                                         .if_present { |v| ::ActiveSupport::TimeZone[v] }
+          .if_present { |v| ::ActiveSupport::TimeZone[v] }
       end
 
       # @return [ActiveSupport::TimeZone]

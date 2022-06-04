@@ -16,7 +16,7 @@ module EacRubyUtils
       # @raise [ArgumentError]
       def variableize(string, validate = true)
         r = ::ActiveSupport::Inflector.transliterate(string).gsub(/[^_a-z0-9]/i, '_')
-                                      .gsub(/_+/, '_').gsub(/_\z/, '').gsub(/\A_/, '').downcase
+              .gsub(/_+/, '_').gsub(/_\z/, '').gsub(/\A_/, '').downcase
         m = VARIABLE_NAME_PATTERN.match(r)
         return r if m
         return nil unless validate

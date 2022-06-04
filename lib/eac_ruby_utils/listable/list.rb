@@ -43,7 +43,7 @@ module EacRubyUtils
       end
 
       def hash_keys_validate!(hash, error_class = ::StandardError)
-        hash.keys.each { |key| value_validate!(key, error_class) }
+        hash.each_key { |key| value_validate!(key, error_class) }
         hash
       end
 
@@ -82,7 +82,7 @@ module EacRubyUtils
       end
 
       def find_list_by_method(method)
-        @values.values.each do |v|
+        @values.each_value do |v|
           return v if method.to_s == "value_#{v.key}"
         end
         nil
@@ -93,7 +93,7 @@ module EacRubyUtils
       end
 
       def apply_constants
-        @values.values.each do |v|
+        @values.each_value do |v|
           @lists.source.const_set(v.constant_name, v.value)
         end
       end

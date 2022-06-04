@@ -12,7 +12,7 @@ module EacRubyUtils
 
       def on_clean_envvars(*start_with_vars)
         old_values = envvars_starting_with(start_with_vars)
-        old_values.keys.each { |k| ENV.delete(k) }
+        old_values.each_key { |k| ENV.delete(k) }
         yield
       ensure
         old_values&.each { |k, v| ENV[k] = v }

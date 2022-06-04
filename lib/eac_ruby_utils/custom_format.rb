@@ -9,7 +9,7 @@ module EacRubyUtils
     attr_reader :mapping
 
     def initialize(mapping)
-      @mapping = mapping.map { |k, v| [k.to_sym, v] }.to_h.freeze
+      @mapping = mapping.transform_keys(&:to_sym).freeze
     end
 
     def format(string)

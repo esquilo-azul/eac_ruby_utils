@@ -29,7 +29,7 @@ module EacRubyUtils
     # @return [Array<EacRubyUtils::GemsRegistry::Gem>]
     def all_gems
       ::Gem::Specification.map { |gemspec| ::EacRubyUtils::GemsRegistry::Gem.new(self, gemspec) }
-                          .sort
+        .sort
     end
   end
 end
