@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support/inflector'
+require 'active_support/dependencies'
 require 'eac_ruby_utils/listable'
 
 module EacRubyUtils
