@@ -11,6 +11,15 @@ module EacRubyUtils
 
       common_constructor :the_module, :entry_suffix, :values, default: [{}]
 
+      def ancestor_i18n_translate(ancestor)
+        t = self.class.new(ancestor, entry_suffix, values)
+        t.exists? ? t.i18n_translate : nil
+      end
+
+      def ancestors_i18n_translate
+        the_module.ancestors.lazy.map { |v| ancestor_i18n_translate(v) }.find(&:present?)
+      end
+
       def exists?
         ::I18n.exists?(i18n_key)
       end
@@ -47,7 +56,7 @@ module EacRubyUtils
 
       def result
         on_locale do
-          i18n_translate
+          ancestors_i18n_translate || i18n_translate
         end
       end
     end
