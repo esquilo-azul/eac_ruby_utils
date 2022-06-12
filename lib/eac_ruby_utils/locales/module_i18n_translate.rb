@@ -11,6 +11,10 @@ module EacRubyUtils
 
       common_constructor :the_module, :entry_suffix, :values, default: [{}]
 
+      def exists?
+        ::I18n.exists?(i18n_key)
+      end
+
       def i18n_key
         "#{module_entry_prefix}.#{entry_suffix}"
       end
