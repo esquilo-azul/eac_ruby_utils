@@ -44,19 +44,29 @@ module EacRubyUtils
         the_module.name.underscore.gsub('/', '.')
       end
 
-      def on_locale
-        old_locale = ::I18n.locale
-        begin
-          ::I18n.locale = locale
-          yield
-        ensure
-          ::I18n.locale = old_locale
+      def on_locale(&block)
+        if locale.present?
+          on_present_locale(&block)
+        else
+          block.call
         end
       end
 
       def result
         on_locale do
           ancestors_i18n_translate || i18n_translate
+        end
+      end
+
+      private
+
+      def on_present_locale(&block)
+        old_locale = ::I18n.locale
+        begin
+          ::I18n.locale = locale
+          block.call
+        ensure
+          ::I18n.locale = old_locale
         end
       end
     end
