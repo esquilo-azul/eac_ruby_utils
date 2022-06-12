@@ -12,6 +12,14 @@ module EacRubyUtils
   end
 
   class RequireSub
+    INCLUDE_MODULES_MAP = {
+      nil => nil,
+      false => nil,
+      true => :include,
+      include: :include,
+      prepend: :prepend
+    }.freeze
+
     include ::EacRubyUtils::Listable
     lists.add_symbol :option, :base, :include_modules, :require_dependency
 
@@ -37,6 +45,14 @@ module EacRubyUtils
 
     def include_modules
       sub_files.each(&:include_module)
+    end
+
+    def include_or_prepend_method
+      return INCLUDE_MODULES_MAP.fetch(options[OPTION_INCLUDE_MODULES]) if
+        INCLUDE_MODULES_MAP.key?(options[OPTION_INCLUDE_MODULES])
+
+      raise ::ArgumentError, "Invalid value for 'options[OPTION_INCLUDE_MODULES]':" \
+         " \"#{options[OPTION_INCLUDE_MODULES]}\""
     end
 
     def require_sub_files
@@ -69,10 +85,18 @@ module EacRubyUtils
       end
 
       def include_module
-        return unless owner.options[OPTION_INCLUDE_MODULES]
         return unless module?
 
-        owner.base.include(base_constant)
+        owner.include_or_prepend_method.if_present do |v|
+          owner.base.send(v, base_constant)
+        end
+      end
+
+      def include_or_prepend_method
+        return :include if owner.options[OPTION_INCLUDE_MODULES]
+        return :prepend if owner.options[OPTION_PREPEND_MODULES]
+
+        nil
       end
 
       def module?
