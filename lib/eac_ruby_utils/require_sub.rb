@@ -27,23 +27,12 @@ module EacRubyUtils
       include_modules
     end
 
-    private
-
-    def active_support_require(path)
-      return false unless options[OPTION_REQUIRE_DEPENDENCY]
-
-      ::Kernel.require_dependency(path)
-      true
+    def base
+      options[OPTION_BASE] || raise('Option :base not setted')
     end
 
-    def autoload_require(path)
-      return false unless base?
-
-      basename = ::File.basename(path, '.*')
-      return false if basename.start_with?('_')
-
-      base.autoload ::ActiveSupport::Inflector.camelize(basename), path
-      true
+    def base?
+      options[OPTION_BASE] ? true : false
     end
 
     def include_modules
@@ -57,26 +46,49 @@ module EacRubyUtils
       end
     end
 
-    def base
-      options[OPTION_BASE] || raise('Option :base not setted')
-    end
-
-    def base?
-      options[OPTION_BASE] ? true : false
-    end
-
-    def kernel_require(path)
-      ::Kernel.require(path)
-    end
-
     def require_sub_files
-      Dir["#{File.dirname(file)}/#{::File.basename(file, '.*')}/*.rb"].sort.each do |path|
-        require_sub_file(path)
-      end
+      sub_files.each(&:require_file)
     end
 
-    def require_sub_file(path)
-      active_support_require(path) || autoload_require(path) || kernel_require(path)
+    def sub_files
+      @sub_files ||= Dir["#{File.dirname(file)}/#{::File.basename(file, '.*')}/*.rb"].sort
+                       .map { |path| SubFile.new(self, path) }
+    end
+
+    class SubFile
+      attr_reader :owner, :path
+
+      def initialize(owner, path)
+        @owner = owner
+        @path = path
+      end
+
+      def require_file
+        active_support_require || autoload_require || kernel_require
+      end
+
+      private
+
+      def active_support_require
+        return false unless owner.options[OPTION_REQUIRE_DEPENDENCY]
+
+        ::Kernel.require_dependency(path)
+        true
+      end
+
+      def autoload_require
+        return false unless owner.base?
+
+        basename = ::File.basename(path, '.*')
+        return false if basename.start_with?('_')
+
+        owner.base.autoload ::ActiveSupport::Inflector.camelize(basename), path
+        true
+      end
+
+      def kernel_require
+        ::Kernel.require(path)
+      end
     end
   end
 end
