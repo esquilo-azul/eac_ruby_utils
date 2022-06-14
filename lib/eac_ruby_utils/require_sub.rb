@@ -36,14 +36,7 @@ module EacRubyUtils
     end
 
     def include_modules
-      return unless options[OPTION_INCLUDE_MODULES]
-
-      base.constants.each do |constant_name|
-        constant = base.const_get(constant_name)
-        next unless constant.is_a?(::Module) && !constant.is_a?(::Class)
-
-        base.include(constant)
-      end
+      sub_files.each(&:include_module)
     end
 
     def require_sub_files
@@ -61,6 +54,29 @@ module EacRubyUtils
       def initialize(owner, path)
         @owner = owner
         @path = path
+      end
+
+      def base_constant
+        return nil unless owner.base?
+
+        owner.base.const_get(constant_name)
+      rescue ::NameError
+        nil
+      end
+
+      def constant_name
+        ::ActiveSupport::Inflector.camelize(::File.basename(path, '.rb'))
+      end
+
+      def include_module
+        return unless owner.options[OPTION_INCLUDE_MODULES]
+        return unless module?
+
+        owner.base.include(base_constant)
+      end
+
+      def module?
+        base_constant.is_a?(::Module) && !base_constant.is_a?(::Class)
       end
 
       def require_file
