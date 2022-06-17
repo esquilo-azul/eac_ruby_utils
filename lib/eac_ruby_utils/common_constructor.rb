@@ -68,12 +68,12 @@ module EacRubyUtils
 
     def setup_class_attr_readers(klass)
       klass.send(:attr_reader, *args)
-      klass.send(:public, *args)
+      klass.send(:public, *args) if args.any?
     end
 
     def setup_class_attr_writers(klass)
       klass.send(:attr_writer, *args)
-      klass.send(:private, *args.map { |a| "#{a}=" })
+      klass.send(:private, *args.map { |a| "#{a}=" }) if args.any?
     end
 
     def setup_class_initialize(klass)
