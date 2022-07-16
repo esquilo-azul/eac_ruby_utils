@@ -1,14 +1,26 @@
 # frozen_string_literal: true
 
+require 'bundler'
+
 module EacRubyUtils
   module Ruby
     class << self
       # Executes a block in an environment when the variables BUNDLE* and RUBY* are removed.
       def on_clean_environment
-        on_clean_envvars('BUNDLE', 'RUBY') { yield }
+        bundler_with_unbundled_env do
+          on_clean_envvars('BUNDLE', 'RUBY') { yield }
+        end
       end
 
       private
+
+      def bundler_with_unbundled_env(&block)
+        if ::Bundler.respond_to?(:with_unbundled_env)
+          ::Bundler.with_unbundled_env(&block)
+        else
+          ::Bundler.with_clean_env(&block)
+        end
+      end
 
       def on_clean_envvars(*start_with_vars)
         old_values = envvars_starting_with(start_with_vars)
