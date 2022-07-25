@@ -22,7 +22,7 @@ module EacRubyUtils
       def apply_singular(klass)
         accessor = self
         klass.send(:define_method, name) do |value|
-          accessor.immutable_value_set(self, value)
+          accessor.immutable_value_push(self, value)
         end
       end
 
@@ -30,7 +30,7 @@ module EacRubyUtils
         super || []
       end
 
-      def immutable_value_set(object, value)
+      def immutable_value_push(object, value)
         duplicate_object(object) do |old_value|
           (old_value || []) + [value]
         end
