@@ -9,7 +9,10 @@ module EacRubyUtils
     class ArrayAccessor < ::EacRubyUtils::Immutable::BaseAccessor
       def apply(klass)
         apply_singular(klass)
+        apply_plural(klass)
+      end
 
+      def apply_plural(klass)
         accessor = self
         klass.send(:define_method, ::ActiveSupport::Inflector.pluralize(name)) do
           accessor.immutable_value_get(self)
