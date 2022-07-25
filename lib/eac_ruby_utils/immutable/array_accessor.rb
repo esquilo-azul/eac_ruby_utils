@@ -8,13 +8,18 @@ module EacRubyUtils
   module Immutable
     class ArrayAccessor < ::EacRubyUtils::Immutable::BaseAccessor
       def apply(klass)
+        apply_singular(klass)
+
+        accessor = self
+        klass.send(:define_method, ::ActiveSupport::Inflector.pluralize(name)) do
+          accessor.immutable_value_get(self)
+        end
+      end
+
+      def apply_singular(klass)
         accessor = self
         klass.send(:define_method, name) do |value|
           accessor.immutable_value_set(self, value)
-        end
-
-        klass.send(:define_method, ::ActiveSupport::Inflector.pluralize(name)) do
-          accessor.immutable_value_get(self)
         end
       end
 
