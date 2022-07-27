@@ -92,13 +92,6 @@ module EacRubyUtils
           end
         end
 
-        def include_or_prepend_method
-          return :include if owner.options[OPTION_INCLUDE_MODULES]
-          return :prepend if owner.options[OPTION_PREPEND_MODULES]
-
-          nil
-        end
-
         def module?
           base_constant.is_a?(::Module) && !base_constant.is_a?(::Class)
         end
