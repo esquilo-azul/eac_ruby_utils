@@ -25,6 +25,11 @@ module EacRubyUtils
         @options = self.class.lists.option.hash_keys_validate!(options)
       end
 
+      # @return [Boolean]
+      def active_support_require?
+        options[OPTION_REQUIRE_DEPENDENCY] ? true : false
+      end
+
       def apply
         require_sub_files
         include_modules
@@ -105,7 +110,7 @@ module EacRubyUtils
         private
 
         def active_support_require
-          return false unless owner.options[OPTION_REQUIRE_DEPENDENCY]
+          return false unless owner.active_support_require?
 
           ::Kernel.require_dependency(path)
           true
