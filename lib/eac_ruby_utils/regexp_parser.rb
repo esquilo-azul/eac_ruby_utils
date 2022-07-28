@@ -20,6 +20,11 @@ module EacRubyUtils
       raise ::ArgumentError, "String \"#{string}\" does not match pattern \"#{pattern}\""
     end
 
+    # @return [Boolean]
+    def parse?(string)
+      internal_parse(string).first
+    end
+
     private
 
     def internal_parse(string)
