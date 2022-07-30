@@ -179,88 +179,38 @@ RSpec.describe ::EacRubyUtils::Listable do
   describe 'instance label and descriptions' do
     let(:instance) { stub_class.new }
 
-    context 'when inteiro value is A' do
-      before { instance.inteiro = stub_class::INTEIRO_A }
+    {
+      inteiro: {
+        INTEIRO_A: ['Inteiro A', 'Inteiro A Descr.'],
+        INTEIRO_B: ['Inteiro BB', 'Inteiro BB Descr.'],
+        INTEIRO_C: ['Inteiro CCC', 'Inteiro CCC Descr.'],
+        nil => ['Inteiro em branco', 'Inteiro em branco Descr.']
+      },
+      code: {
+        CODE_A: ['Código A', 'Código A Descr.'],
+        CODE_B: ['Código B', 'Código B Descr.'],
+        nil => ['', '']
+      },
+      cadeia: {
+        CADEIA_A: ['Cadeia AAA', 'Cadeia AAA Descr.'],
+        CADEIA_B: ['Cadeia BB', 'Cadeia BB Descr.'],
+        CADEIA_C: ['Cadeia C', 'Cadeia C Descr.']
+      },
+      type: {
+        TYPE_A: ['Tipo A', 'Tipo A Descr.'],
+        TYPE_B: ['Tipo B', 'Tipo B Descr.']
+      }
+    }.each do |attr, attr_values|
+      attr_values.each do |attr_value_const, expected_values|
+        context "when #{attr} value is #{attr_value_const}" do
+          let(:attr_value) { attr_value_const ? stub_class.const_get(attr_value_const) : nil }
 
-      it { expect(instance.inteiro_label).to eq('Inteiro A') }
-      it { expect(instance.inteiro_description).to eq('Inteiro A Descr.') }
-    end
+          before { instance.send("#{attr}=", attr_value) }
 
-    context 'when inteiro value is B' do
-      before { instance.inteiro = stub_class::INTEIRO_B }
-
-      it { expect(instance.inteiro_label).to eq('Inteiro BB') }
-      it { expect(instance.inteiro_description).to eq('Inteiro BB Descr.') }
-    end
-
-    context 'when inteiro value is C' do
-      before { instance.inteiro = stub_class::INTEIRO_C }
-
-      it { expect(instance.inteiro_label).to eq('Inteiro CCC') }
-      it { expect(instance.inteiro_description).to eq('Inteiro CCC Descr.') }
-    end
-
-    context 'when inteiro value is blank' do
-      before { instance.inteiro = nil }
-
-      it { expect(instance.inteiro_label).to eq('Inteiro em branco') }
-      it { expect(instance.inteiro_description).to eq('Inteiro em branco Descr.') }
-    end
-
-    context 'when code value is A' do
-      before { instance.code = stub_class::CODE_A }
-
-      it { expect(instance.code_label).to eq('Código A') }
-      it { expect(instance.code_description).to eq('Código A Descr.') }
-    end
-
-    context 'when code value is B' do
-      before { instance.code = stub_class::CODE_B }
-
-      it { expect(instance.code_label).to eq('Código B') }
-      it { expect(instance.code_description).to eq('Código B Descr.') }
-    end
-
-    context 'when code value is blank' do
-      before { instance.code = nil }
-
-      it { expect(instance.code_label).to eq('') }
-      it { expect(instance.code_description).to eq('') }
-    end
-
-    context 'when cadeia value is A' do
-      before { instance.cadeia = stub_class::CADEIA_A }
-
-      it { expect(instance.cadeia_label).to eq('Cadeia AAA') }
-      it { expect(instance.cadeia_description).to eq('Cadeia AAA Descr.') }
-    end
-
-    context 'when cadeia value is B' do
-      before { instance.cadeia = stub_class::CADEIA_B }
-
-      it { expect(instance.cadeia_label).to eq('Cadeia BB') }
-      it { expect(instance.cadeia_description).to eq('Cadeia BB Descr.') }
-    end
-
-    context 'when cadeia value is C' do
-      before { instance.cadeia = stub_class::CADEIA_C }
-
-      it { expect(instance.cadeia_label).to eq('Cadeia C') }
-      it { expect(instance.cadeia_description).to eq('Cadeia C Descr.') }
-    end
-
-    context 'when type value is A' do
-      before { instance.type = stub_class::TYPE_A }
-
-      it { expect(instance.type_label).to eq('Tipo A') }
-      it { expect(instance.type_description).to eq('Tipo A Descr.') }
-    end
-
-    context 'when type value is B' do
-      before { instance.type = stub_class::TYPE_B }
-
-      it { expect(instance.type_label).to eq('Tipo B') }
-      it { expect(instance.type_description).to eq('Tipo B Descr.') }
+          it { expect(instance.send("#{attr}_label")).to eq(expected_values[0]) }
+          it { expect(instance.send("#{attr}_description")).to eq(expected_values[1]) }
+        end
+      end
     end
   end
 
