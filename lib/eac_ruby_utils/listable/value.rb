@@ -30,6 +30,11 @@ module EacRubyUtils
         translate('description')
       end
 
+      # @return [Array] A two-item array in format `[label, value]`.
+      def to_option
+        [label, value]
+      end
+
       def translation_required?
         @translation_required
       end
