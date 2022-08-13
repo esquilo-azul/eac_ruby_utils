@@ -30,7 +30,7 @@ module EacRubyUtils
       end
 
       def options
-        @values.values.map { |v| [v.label, v.value] }
+        @values.values.map(&:to_option)
       end
 
       def method_missing(name, *args, &block)
