@@ -29,6 +29,10 @@ module EacRubyUtils
         @values.values.map(&:value)
       end
 
+      def values_with_blank
+        [blank_value.value] + values
+      end
+
       def options
         @values.values.map(&:to_option)
       end
