@@ -33,6 +33,10 @@ module EacRubyUtils
         @values.values.map(&:to_option)
       end
 
+      def options_with_blank
+        [blank_value.to_option] + options
+      end
+
       def method_missing(name, *args, &block)
         list = find_list_by_method(name)
         list || super
