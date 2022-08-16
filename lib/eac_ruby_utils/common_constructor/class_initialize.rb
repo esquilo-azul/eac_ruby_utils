@@ -13,7 +13,7 @@ module EacRubyUtils
         @klass = klass
       end
 
-      def run
+      def perform
         class_initialize = self
         klass.send(:define_method, :initialize) do |*args|
           ::EacRubyUtils::CommonConstructor::InstanceInitialize.new(

@@ -74,7 +74,7 @@ module EacRubyUtils
     def setup_class_initialize(klass)
       klass.include(::ActiveSupport::Callbacks)
       klass.define_callbacks :initialize
-      ::EacRubyUtils::CommonConstructor::ClassInitialize.new(self, klass).run
+      ::EacRubyUtils::CommonConstructor::ClassInitialize.new(self, klass).perform
     end
 
     def super_args
