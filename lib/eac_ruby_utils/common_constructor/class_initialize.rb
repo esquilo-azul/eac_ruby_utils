@@ -23,7 +23,7 @@ module EacRubyUtils
         klass.send(:define_method, :initialize) do |*args|
           ::EacRubyUtils::CommonConstructor::InstanceInitialize.new(
             class_initialize.common_constructor, args, self
-          ).run
+          ).perform
           super(*::EacRubyUtils::CommonConstructor::SuperArgs.new(
             class_initialize, args, self
           ).result)

@@ -11,7 +11,7 @@ module EacRubyUtils
         @object = object
       end
 
-      def run
+      def perform
         validate_args_count
         object.run_callbacks :initialize do
           object_attributes_set
