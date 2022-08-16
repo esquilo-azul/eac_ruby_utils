@@ -36,9 +36,13 @@ module EacRubyUtils
         object.instance_eval(&common_constructor.after_set_block)
       end
 
+      def object_attribute_set(attr_name, attr_value)
+        object.send("#{attr_name}=", attr_value)
+      end
+
       def object_attributes_set
         common_constructor.args.each do |arg_name|
-          object.send("#{arg_name}=", arg_value(arg_name))
+          object_attribute_set(arg_name, arg_value(arg_name))
         end
       end
 
