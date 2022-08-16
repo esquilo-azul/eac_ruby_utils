@@ -2,6 +2,7 @@
 
 require 'active_support/callbacks'
 require 'eac_ruby_utils/arguments_consumer'
+require 'eac_ruby_utils/common_constructor/class_accessors'
 require 'eac_ruby_utils/common_constructor/class_initialize'
 require 'ostruct'
 
@@ -59,21 +60,15 @@ module EacRubyUtils
     end
 
     def setup_class(klass)
-      setup_class_attr_readers(klass)
-      setup_class_attr_writers(klass)
+      setup_class_accessors(klass)
+
       setup_class_initialize(klass)
 
       klass
     end
 
-    def setup_class_attr_readers(klass)
-      klass.send(:attr_reader, *args)
-      klass.send(:public, *args) if args.any?
-    end
-
-    def setup_class_attr_writers(klass)
-      klass.send(:attr_writer, *args)
-      klass.send(:private, *args.map { |a| "#{a}=" }) if args.any?
+    def setup_class_accessors(klass)
+      ::EacRubyUtils::CommonConstructor::ClassAccessors.new(self, klass).perform
     end
 
     def setup_class_initialize(klass)
