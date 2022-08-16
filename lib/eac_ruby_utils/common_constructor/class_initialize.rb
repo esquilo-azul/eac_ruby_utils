@@ -13,6 +13,11 @@ module EacRubyUtils
         @klass = klass
       end
 
+      def define_initialize_callbacks
+        klass.include(::ActiveSupport::Callbacks)
+        klass.define_callbacks :initialize
+      end
+
       def define_initialize_method
         class_initialize = self
         klass.send(:define_method, :initialize) do |*args|
@@ -26,6 +31,7 @@ module EacRubyUtils
       end
 
       def perform
+        define_initialize_callbacks
         define_initialize_method
       end
     end
