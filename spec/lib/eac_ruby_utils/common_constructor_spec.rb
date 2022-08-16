@@ -93,6 +93,32 @@ RSpec.describe ::EacRubyUtils::CommonConstructor do
     end
   end
 
+  context 'with block argument' do
+    let(:instance) do
+      described_class.new(:first, :second, :last, block_arg: true, default: ['second'])
+    end
+
+    let(:block) do
+      ::Proc.new { first + second }
+    end
+
+    let(:a_class) do
+      ::Class.new do
+        def result
+          last.run
+        end
+      end
+    end
+
+    let(:a_class_instance) { a_class.new('first') { 'last' } }
+
+    it { expect(a_class_instance.last).to be_a(::Proc) }
+    it { expect(a_class_instance.last.call).to eq('last') }
+
+    it { expect(a_class_instance.first).to eq('first') }
+    it { expect(a_class_instance.second).to eq('second') }
+  end
+
   context 'with class hierarchy mixed with and without common_constructor' do
     let(:klass_0) do
       described_class.new(:a_param).setup_class(::Class.new)

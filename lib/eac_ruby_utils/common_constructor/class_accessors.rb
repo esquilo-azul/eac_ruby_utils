@@ -13,7 +13,9 @@ module EacRubyUtils
         @klass = klass
       end
 
-      delegate :args, to: :common_constructor
+      def args
+        common_constructor.all_args
+      end
 
       def perform
         setup_class_attr_readers

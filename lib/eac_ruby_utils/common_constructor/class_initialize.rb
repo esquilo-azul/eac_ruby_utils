@@ -20,9 +20,9 @@ module EacRubyUtils
 
       def define_initialize_method
         class_initialize = self
-        klass.send(:define_method, :initialize) do |*args|
+        klass.send(:define_method, :initialize) do |*args, &block|
           ::EacRubyUtils::CommonConstructor::InstanceInitialize.new(
-            class_initialize.common_constructor, args, self
+            class_initialize.common_constructor, args, self, block
           ).perform
           super(*::EacRubyUtils::CommonConstructor::SuperArgs.new(
             class_initialize, args, self

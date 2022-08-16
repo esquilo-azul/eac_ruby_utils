@@ -8,7 +8,7 @@ require 'ostruct'
 
 module EacRubyUtils
   class CommonConstructor
-    attr_reader :args, :options, :after_set_block
+    attr_reader :all_args, :options, :after_set_block
 
     class << self
       def parse_args_options(args)
@@ -38,9 +38,13 @@ module EacRubyUtils
 
     def initialize(*args, &after_set_block)
       args_processed = self.class.parse_args_options(args)
-      @args = args_processed.args
+      @all_args = args_processed.args
       @options = args_processed.options
       @after_set_block = after_set_block
+    end
+
+    def args
+      block_arg? ? all_args[0..-2] : all_args
     end
 
     def args_count
@@ -53,6 +57,14 @@ module EacRubyUtils
 
     def args_count_max
       args.count
+    end
+
+    def block_arg
+      block_arg? ? all_args.last : nil
+    end
+
+    def block_arg?
+      options[:block_arg] || false
     end
 
     def default_values
