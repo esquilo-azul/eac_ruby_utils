@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'activesupport', '>= 4', '< 7'
   s.add_dependency 'addressable', '~> 2.8'
   s.add_dependency 'bundler'
-  s.add_dependency 'filesize'
+  s.add_dependency 'filesize', '~> 0.2'
   s.add_dependency 'net-ssh', '~> 4.2'
   s.add_development_dependency 'eac_ruby_gem_support', '~> 0.5.1'
 end
