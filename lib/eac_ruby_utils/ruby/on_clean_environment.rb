@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'bundler'
+require 'eac_ruby_utils/ruby/on_replace_objects'
 
 module EacRubyUtils
   module Ruby
@@ -34,7 +35,9 @@ module EacRubyUtils
         private
 
         def bundler_with_unbundled_env(&block)
-          ::Bundler.send(bundler_with_env_method_name, &block)
+          with_bundler_modified do
+            ::Bundler.send(bundler_with_env_method_name, &block)
+          end
         end
 
         def bundler_with_env_method_name
@@ -53,6 +56,14 @@ module EacRubyUtils
 
         def on_clean_envvars
           ::Bundler.send('with_env', clean_env) { block.call }
+        end
+
+        def with_bundler_modified(&block)
+          cloned_env = original_env.dup
+          ::EacRubyUtils::Ruby.on_replace_objects do |replacer|
+            replacer.replace_self_method(::Bundler, :original_env) { cloned_env }
+            block.call
+          end
         end
       end
     end

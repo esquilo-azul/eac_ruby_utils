@@ -6,9 +6,12 @@ RSpec.describe ::EacRubyUtils::Ruby do
   describe '#on_clean_environment' do
     let(:envvar_name) { 'BUNDLE_NOT_EXISTENT_ENV_VAR' }
     let(:envvar_value) { 'any value' }
+    let(:noruby_envvar_name) { 'ANY_ENVIRONMENT_VARIABLE' }
+    let(:noruby_envvar_value) { 'another any value' }
 
     before do
       ENV[envvar_name] = envvar_value
+      ENV[noruby_envvar_name] = noruby_envvar_value
     end
 
     it do # rubocop:disable RSpec/MultipleExpectations
@@ -17,6 +20,14 @@ RSpec.describe ::EacRubyUtils::Ruby do
         expect(ENV[envvar_name]).to eq(nil)
       end
       expect(ENV[envvar_name]).to eq(envvar_value)
+    end
+
+    it do # rubocop:disable RSpec/MultipleExpectations
+      expect(ENV[noruby_envvar_name]).to eq(noruby_envvar_value)
+      described_class.on_clean_environment do
+        expect(ENV[noruby_envvar_name]).to eq(noruby_envvar_value)
+      end
+      expect(ENV[noruby_envvar_name]).to eq(noruby_envvar_value)
     end
   end
 end
