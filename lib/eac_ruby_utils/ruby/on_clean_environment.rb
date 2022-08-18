@@ -44,16 +44,14 @@ module EacRubyUtils
           end
         end
 
-        def on_clean_envvars
-          old_values = envvars_starting_with
-          old_values.each_key { |k| ENV.delete(k) }
-          block.call
-        ensure
-          old_values&.each { |k, v| ENV[k] = v }
+        def clean_env
+          r = ::ENV.clone
+          r.delete_if { |k, _| envvars_prefixes_to_clean.any? { |prefix| k.start_with?(prefix) } }
+          r
         end
 
-        def envvars_starting_with
-          ENV.select { |k, _v| envvars_prefixes_to_clean.any? { |var| k.start_with?(var) } }
+        def on_clean_envvars
+          ::Bundler.send('with_env', clean_env) { block.call }
         end
       end
     end
