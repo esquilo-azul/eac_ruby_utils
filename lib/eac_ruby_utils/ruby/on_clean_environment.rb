@@ -13,10 +13,11 @@ module EacRubyUtils
       class OnCleanEnvironment
         ENVVARS_PREFIXES_TO_CLEAN = %w[BUNDLE RUBY].freeze
 
-        attr_reader :block
+        attr_reader :block, :original_env
 
         def initialize(&block)
           @block = block
+          @original_env = ::ENV.to_h
         end
 
         # @return [Array<String>]
@@ -45,7 +46,7 @@ module EacRubyUtils
         end
 
         def clean_env
-          r = ::ENV.clone
+          r = original_env.dup
           r.delete_if { |k, _| envvars_prefixes_to_clean.any? { |prefix| k.start_with?(prefix) } }
           r
         end
