@@ -26,10 +26,14 @@ module EacRubyUtils
         private
 
         def bundler_with_unbundled_env(&block)
+          ::Bundler.send(bundler_with_env_method_name, &block)
+        end
+
+        def bundler_with_env_method_name
           if ::Bundler.respond_to?(:with_unbundled_env)
-            ::Bundler.with_unbundled_env(&block)
+            :with_unbundled_env
           else
-            ::Bundler.with_clean_env(&block)
+            :with_clean_env
           end
         end
 
