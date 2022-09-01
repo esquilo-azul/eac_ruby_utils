@@ -3,6 +3,7 @@
 require 'active_support/core_ext/module/introspection'
 require 'eac_ruby_utils/patches/class/common_constructor'
 require 'eac_ruby_utils/patches/module/common_concern'
+require 'eac_ruby_utils/patches/module/module_parent'
 require 'eac_ruby_utils/patches/string/inflector'
 
 module EacRubyUtils
