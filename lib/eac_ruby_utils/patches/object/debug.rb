@@ -16,8 +16,13 @@ class Object
     self
   end
 
+  def print_debug_label(label)
+    STDERR.write("#{label}: ")
+  end
+
   def print_debug_options(options)
     options[:title].if_present { |v| print_debug_title(v) }
+    options[:label].if_present { |v| print_debug_label(v) }
   end
 
   def print_debug_title(title)
