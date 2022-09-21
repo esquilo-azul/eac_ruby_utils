@@ -13,7 +13,7 @@ module EacRubyUtils
     end
 
     class Setup
-      common_constructor :method_class do
+      common_constructor :method_class, :static_method, default: [false] do
         perform
       end
 
@@ -29,7 +29,9 @@ module EacRubyUtils
       end
 
       def sender_module
-        method_class.module_parent
+        r = method_class.module_parent
+        r = r.singleton_class if static_method
+        r
       end
     end
   end
