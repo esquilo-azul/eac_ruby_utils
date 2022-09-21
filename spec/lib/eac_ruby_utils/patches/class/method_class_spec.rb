@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/method_class'
-require 'eac_ruby_utils/patches/module/method_class'
+require 'eac_ruby_utils/patches/class/method_class'
 
 RSpec.describe ::Class do
   let(:stub_method_class) do
