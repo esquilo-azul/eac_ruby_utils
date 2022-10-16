@@ -55,7 +55,8 @@ module EacRubyUtils
         er = ExecuteResult.new(execute(options), options)
         return er.result if er.success?
 
-        raise "execute! command failed: #{self}\n#{er.r.pretty_inspect}"
+        raise ::EacRubyUtils::Envs::Command::ExecError,
+              "execute! command failed: #{self}\n#{er.r.pretty_inspect}"
       end
 
       def execute(options = {})
@@ -77,7 +78,7 @@ module EacRubyUtils
       def system!(options = {})
         return if system(options)
 
-        raise "system! command failed: #{self}"
+        raise ::EacRubyUtils::Envs::Command::ExecError, "system! command failed: #{self}"
       end
 
       def system(options = {})

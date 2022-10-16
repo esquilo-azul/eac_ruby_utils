@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/envs/command/exec_error'
+
 module EacRubyUtils
   module Envs
     class Command
@@ -15,7 +17,7 @@ module EacRubyUtils
           return exit_code_zero_result if exit_code_zero?
           return expected_error_result if expected_error?
 
-          raise 'Failed!'
+          raise ::EacRubyUtils::Envs::Command::ExecError, 'Failed!'
         end
 
         def success?
