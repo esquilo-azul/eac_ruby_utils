@@ -49,7 +49,7 @@ module EacRubyUtils
         return nil unless lib_file_found?
 
         require path_to_require
-        path_to_require.classify.constantize
+        path_to_require.camelize.constantize
       end
 
       # @return [String]
