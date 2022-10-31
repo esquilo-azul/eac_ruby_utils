@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'active_support/hash_with_indifferent_access'
 require 'eac_ruby_utils/require_sub'
 
 module EacRubyUtils
@@ -15,8 +16,11 @@ module EacRubyUtils
       %w[settings_object method constant]
     end
 
+    # return [ActiveSupport::HashWithIndifferentAccess]
     def settings_object
-      respond_to?(settings_object_name) ? send(settings_object_name) : {}
+      ActiveSupport::HashWithIndifferentAccess.new(
+        respond_to?(settings_object_name) ? send(settings_object_name) : {}
+      )
     end
 
     def settings_object_name

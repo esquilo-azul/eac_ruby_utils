@@ -48,7 +48,7 @@ module EacRubyUtils
       end
 
       def value_by_settings_object
-        source.settings_object[key.to_s] || source.settings_object[key.to_sym]
+        source.settings_object[key]
       end
 
       private
