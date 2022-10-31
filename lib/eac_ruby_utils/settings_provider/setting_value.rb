@@ -28,8 +28,7 @@ module EacRubyUtils
 
       def value
         parsed_options.order.each do |method|
-          value = send("value_by_#{method}")
-          return value if value
+          return send("value_by_#{method}") if send("value_by_#{method}?")
         end
         return parsed_options.default if parsed_options.respond_to?(OPTION_DEFAULT)
         return nil unless parsed_options.required
@@ -39,16 +38,26 @@ module EacRubyUtils
 
       def value_by_constant
         source.class.const_get(constant_name)
-      rescue NameError
-        nil
+      end
+
+      def value_by_constant?
+        source.class.const_defined?(constant_name)
       end
 
       def value_by_method
-        source.respond_to?(key, true) ? source.send(key) : nil
+        source.send(key)
+      end
+
+      def value_by_method?
+        source.respond_to?(key, true)
       end
 
       def value_by_settings_object
-        source.settings_object[key]
+        source.settings_object.fetch(key)
+      end
+
+      def value_by_settings_object?
+        source.settings_object.key?(key)
       end
 
       private

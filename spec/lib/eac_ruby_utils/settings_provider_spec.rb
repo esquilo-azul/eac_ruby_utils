@@ -16,6 +16,10 @@ RSpec.describe ::EacRubyUtils::SettingsProvider do
         'method_b'
       end
 
+      def key_f
+        nil
+      end
+
       def settings
         { 'key_b' => 'setting_b', key_c: 'setting_c' }
       end
@@ -33,7 +37,8 @@ RSpec.describe ::EacRubyUtils::SettingsProvider do
       [:key_b] => 'setting_b',
       ['key_b', { order: %w[constant method settings_object] }] => 'method_b',
       ['key_c'] => 'setting_c',
-      ['key_d'] => 'constant_d'
+      ['key_d'] => 'constant_d',
+      ['key_f'] => nil
     }.each do |args, expected_value|
       context "when args are \"#{args}\"" do
         it { expect(stub.setting_value(*args)).to eq(expected_value) }
