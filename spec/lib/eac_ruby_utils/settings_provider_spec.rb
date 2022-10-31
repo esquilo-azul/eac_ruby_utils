@@ -35,7 +35,9 @@ RSpec.describe ::EacRubyUtils::SettingsProvider do
       ['key_c'] => 'setting_c',
       ['key_d'] => 'constant_d'
     }.each do |args, expected_value|
-      it { expect(stub.setting_value(*args)).to eq(expected_value) }
+      context "when args are \"#{args}\"" do
+        it { expect(stub.setting_value(*args)).to eq(expected_value) }
+      end
     end
 
     it do
