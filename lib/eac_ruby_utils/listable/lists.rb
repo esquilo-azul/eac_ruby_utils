@@ -37,15 +37,7 @@ module EacRubyUtils
       private
 
       def add(list_class, item, labels)
-        check_acts_as_listable_new_item(item)
         acts_as_listable_items[item] = list_class.new(self, item, labels)
-      end
-
-      def check_acts_as_listable_new_item(item)
-        return unless acts_as_listable_items.key?(item)
-
-        raise "Item já adicionado anteriormente: #{item} em #{self} " \
-          "(#{acts_as_listable_items.keys})"
       end
 
       def find_list_by_method(method)
