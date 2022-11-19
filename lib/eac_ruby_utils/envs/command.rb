@@ -22,12 +22,9 @@ module EacRubyUtils
         end
       end
 
-      attr_reader :args, :env, :extra_options
-
-      def initialize(env, args, extra_options = {})
-        @env = env
-        @extra_options = extra_options.with_indifferent_access
-        @args = self.class.sanitize_initialize_arguments(args)
+      common_constructor :env, :args, :extra_options, default: [{}] do
+        self.extra_options = extra_options.with_indifferent_access
+        self.args = self.class.sanitize_initialize_arguments(args)
       end
 
       def append(args)
