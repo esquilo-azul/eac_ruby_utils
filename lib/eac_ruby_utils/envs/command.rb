@@ -22,7 +22,7 @@ module EacRubyUtils
         end
       end
 
-      attr_reader :args, :env
+      attr_reader :args, :env, :extra_options
 
       def initialize(env, args, extra_options = {})
         @env = env
@@ -61,14 +61,12 @@ module EacRubyUtils
 
       private
 
-      attr_reader :extra_options
-
       def duplicate_by_command(new_command)
-        duplicate(new_command, @extra_options)
+        duplicate(new_command, extra_options)
       end
 
       def duplicate_by_extra_options(set_extra_options)
-        duplicate(args, @extra_options.merge(set_extra_options))
+        duplicate(args, extra_options.merge(set_extra_options))
       end
 
       def escape(arg)
