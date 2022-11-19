@@ -22,7 +22,7 @@ module EacRubyUtils
         end
       end
 
-      attr_reader :args
+      attr_reader :args, :env
 
       def initialize(env, args, extra_options = {})
         @env = env
@@ -39,14 +39,14 @@ module EacRubyUtils
       end
 
       def to_s
-        "#{args} [ENV: #{@env}]"
+        "#{args} [ENV: #{env}]"
       end
 
       def command(options = {})
         c = args
         c = c.map { |x| escape(x) }.join(' ') if c.is_a?(Enumerable)
         append_command_options(
-          @env.command_line(
+          env.command_line(
             append_chdir(append_concat(append_envvars(c)))
           ),
           options
@@ -56,7 +56,7 @@ module EacRubyUtils
       protected
 
       def duplicate(command, extra_options)
-        self.class.new(@env, command, extra_options)
+        self.class.new(env, command, extra_options)
       end
 
       private
