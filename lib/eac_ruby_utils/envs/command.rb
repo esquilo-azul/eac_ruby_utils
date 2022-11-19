@@ -8,16 +8,24 @@ module EacRubyUtils
     class Command
       require_sub __FILE__, include_modules: true, require_dependency: true
 
+      class << self
+        # @param command [Array]
+        # @return [Array]
+        def sanitize_initialize_arguments(arguments)
+          if arguments.count == 1 && arguments.first.is_a?(Array)
+            arguments.first
+          elsif arguments.is_a?(Array)
+            arguments
+          else
+            raise "Invalid argument command: #{arguments}|#{arguments.class}"
+          end
+        end
+      end
+
       def initialize(env, command, extra_options = {})
         @env = env
         @extra_options = extra_options.with_indifferent_access
-        if command.count == 1 && command.first.is_a?(Array)
-          @command = command.first
-        elsif command.is_a?(Array)
-          @command = command
-        else
-          raise "Invalid argument command: #{command}|#{command.class}"
-        end
+        @command = self.class.sanitize_initialize_arguments(command)
       end
 
       def args
