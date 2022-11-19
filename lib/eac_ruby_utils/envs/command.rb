@@ -22,30 +22,28 @@ module EacRubyUtils
         end
       end
 
-      def initialize(env, command, extra_options = {})
+      attr_reader :args
+
+      def initialize(env, args, extra_options = {})
         @env = env
         @extra_options = extra_options.with_indifferent_access
-        @command = self.class.sanitize_initialize_arguments(command)
-      end
-
-      def args
-        @command
+        @args = self.class.sanitize_initialize_arguments(args)
       end
 
       def append(args)
-        duplicate_by_command(@command + args)
+        duplicate_by_command(self.args + args)
       end
 
       def prepend(args)
-        duplicate_by_command(args + @command)
+        duplicate_by_command(args + self.args)
       end
 
       def to_s
-        "#{@command} [ENV: #{@env}]"
+        "#{args} [ENV: #{@env}]"
       end
 
       def command(options = {})
-        c = @command
+        c = args
         c = c.map { |x| escape(x) }.join(' ') if c.is_a?(Enumerable)
         append_command_options(
           @env.command_line(
@@ -70,7 +68,7 @@ module EacRubyUtils
       end
 
       def duplicate_by_extra_options(set_extra_options)
-        duplicate(@command, @extra_options.merge(set_extra_options))
+        duplicate(args, @extra_options.merge(set_extra_options))
       end
 
       def escape(arg)
