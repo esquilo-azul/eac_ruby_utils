@@ -107,16 +107,6 @@ module EacRubyUtils
         duplicate(@command, @extra_options.merge(set_extra_options))
       end
 
-      def debug?
-        ENV['DEBUG'].to_s.strip != ''
-      end
-
-      # Print a message if debugging is enabled.
-      def debug_print(message)
-        message = message.to_s
-        puts message.if_respond(:light_red, message) if debug?
-      end
-
       def escape(arg)
         arg = arg.to_s
         m = /^\@ESC_(.+)$/.match(arg)
