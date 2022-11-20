@@ -6,6 +6,8 @@ module EacRubyUtils
   module Envs
     class Command
       module Concat
+        OR_OPERATOR = '||'
+
         def concat(operator, other_command)
           duplicate_by_extra_options(concat: ::EacRubyUtils::Struct.new(
             operator: operator, command: other_command
@@ -13,7 +15,7 @@ module EacRubyUtils
         end
 
         def or(other_command)
-          concat('||', other_command)
+          concat(OR_OPERATOR, other_command)
         end
 
         def pipe(other_command)
