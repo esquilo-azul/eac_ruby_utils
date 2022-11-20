@@ -6,6 +6,7 @@ module EacRubyUtils
   module Envs
     class Command
       module Concat
+        AND_OPERATOR = '&&'
         OR_OPERATOR = '||'
         PIPE_OPERATOR = '|'
 
@@ -13,6 +14,11 @@ module EacRubyUtils
           duplicate_by_extra_options(concat: ::EacRubyUtils::Struct.new(
             operator: operator, command: other_command
           ))
+        end
+
+        # @return [EacRubyUtils::Envs::Command]
+        def and(other_command)
+          concat(AND_OPERATOR, other_command)
         end
 
         def or(other_command)
