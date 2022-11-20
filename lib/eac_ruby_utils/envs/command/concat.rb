@@ -7,6 +7,7 @@ module EacRubyUtils
     class Command
       module Concat
         AND_OPERATOR = '&&'
+        BEFORE_OPERATOR = ';'
         OR_OPERATOR = '||'
         PIPE_OPERATOR = '|'
 
@@ -19,6 +20,11 @@ module EacRubyUtils
         # @return [EacRubyUtils::Envs::Command]
         def and(other_command)
           concat(AND_OPERATOR, other_command)
+        end
+
+        # @return [EacRubyUtils::Envs::Command]
+        def before(other_command)
+          concat(BEFORE_OPERATOR, other_command)
         end
 
         def or(other_command)
