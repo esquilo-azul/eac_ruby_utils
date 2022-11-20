@@ -44,7 +44,7 @@ module EacRubyUtils
       def command_line_without_env
         c = args
         c = c.map { |x| escape(x) }.join(' ') if c.is_a?(Enumerable)
-        append_chdir(append_concat(append_envvars(c)))
+        append_chdir(append_envvars(c))
       end
 
       protected

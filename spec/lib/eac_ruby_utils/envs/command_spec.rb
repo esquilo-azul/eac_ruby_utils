@@ -68,7 +68,7 @@ RSpec.describe ::EacRubyUtils::Envs::Command do
     end
 
     it do
-      assert_execute_result(error_command.before(ok_command).execute, true, ok_command_output)
+      assert_execute_result(error_command.before(ok_command).execute, false, '')
     end
   end
 
@@ -88,7 +88,7 @@ RSpec.describe ::EacRubyUtils::Envs::Command do
     end
 
     it do
-      assert_execute_result(error_command.pipe(ok_command).execute, true, ok_command_output)
+      assert_execute_result(error_command.pipe(ok_command).execute, false, ok_command_output)
     end
   end
 
