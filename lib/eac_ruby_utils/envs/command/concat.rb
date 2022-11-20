@@ -7,6 +7,7 @@ module EacRubyUtils
     class Command
       module Concat
         OR_OPERATOR = '||'
+        PIPE_OPERATOR = '|'
 
         def concat(operator, other_command)
           duplicate_by_extra_options(concat: ::EacRubyUtils::Struct.new(
@@ -19,7 +20,7 @@ module EacRubyUtils
         end
 
         def pipe(other_command)
-          concat('|', other_command)
+          concat(PIPE_OPERATOR, other_command)
         end
 
         private
