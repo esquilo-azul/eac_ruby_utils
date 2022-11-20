@@ -2,7 +2,7 @@
 
 module EacRubyUtils
   module Envs
-    class Command
+    module BaseCommand
       module Debugging
         def debug?
           ENV['DEBUG'].to_s.strip != ''

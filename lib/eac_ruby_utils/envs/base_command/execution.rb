@@ -8,7 +8,7 @@ require 'pp'
 
 module EacRubyUtils
   module Envs
-    class Command
+    module BaseCommand
       module Execution
         def execute!(options = {})
           options[:exit_outputs] = status_results.merge(options[:exit_outputs].presence || {})

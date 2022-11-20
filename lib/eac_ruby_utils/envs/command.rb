@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
-require 'shellwords'
+require 'eac_ruby_utils/envs/base_command'
 
 module EacRubyUtils
   module Envs
     class Command
       require_sub __FILE__, include_modules: true, require_dependency: true
+      include ::EacRubyUtils::Envs::BaseCommand
 
       class << self
         # @param command [Array]
@@ -39,13 +40,6 @@ module EacRubyUtils
         "#{args} [ENV: #{env}]"
       end
 
-      def command(options = {})
-        append_command_options(
-          env.command_line(command_line_without_env),
-          options
-        )
-      end
-
       # @return [String]
       def command_line_without_env
         c = args
@@ -67,12 +61,6 @@ module EacRubyUtils
 
       def duplicate_by_extra_options(set_extra_options)
         duplicate(args, extra_options.merge(set_extra_options))
-      end
-
-      def escape(arg)
-        arg = arg.to_s
-        m = /^\@ESC_(.+)$/.match(arg)
-        m ? m[1] : Shellwords.escape(arg)
       end
     end
   end

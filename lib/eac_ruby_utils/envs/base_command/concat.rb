@@ -4,7 +4,7 @@ require 'eac_ruby_utils/struct'
 
 module EacRubyUtils
   module Envs
-    class Command
+    module BaseCommand
       module Concat
         AND_OPERATOR = '&&'
         BEFORE_OPERATOR = ';'

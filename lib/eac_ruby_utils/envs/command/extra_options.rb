@@ -12,17 +12,7 @@ module EacRubyUtils
           duplicate_by_extra_options(chdir: dir)
         end
 
-        def status_result(status_code, result)
-          duplicate_by_extra_options(status_results: status_results.merge(status_code => result))
-        end
-
         private
-
-        attr_reader :extra_options
-
-        def status_results
-          extra_options[:status_results] ||= {}.with_indifferent_access
-        end
 
         def append_chdir(command)
           extra_options[:chdir].present? ? "(cd '#{extra_options[:chdir]}' ; #{command} )" : command

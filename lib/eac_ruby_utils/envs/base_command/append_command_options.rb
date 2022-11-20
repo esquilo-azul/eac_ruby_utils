@@ -5,7 +5,7 @@ require 'shellwords'
 
 module EacRubyUtils
   module Envs
-    class Command
+    module BaseCommand
       class AppendCommandOptions
         enable_method_class
         common_constructor :command, :command_line, :options
