@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_utils/envs/command/execute_result'
+require 'eac_ruby_utils/envs/execution_error'
 require 'eac_ruby_utils/envs/process'
 require 'eac_ruby_utils/envs/spawn'
 require 'pp'
@@ -52,10 +54,10 @@ module EacRubyUtils
 
       def execute!(options = {})
         options[:exit_outputs] = status_results.merge(options[:exit_outputs].presence || {})
-        er = ExecuteResult.new(execute(options), options)
+        er = ::EacRubyUtils::Envs::Command::ExecuteResult.new(execute(options), options)
         return er.result if er.success?
 
-        raise ::EacRubyUtils::Envs::Command::ExecError,
+        raise ::EacRubyUtils::Envs::ExecutionError,
               "execute! command failed: #{self}\n#{er.r.pretty_inspect}"
       end
 
@@ -78,7 +80,7 @@ module EacRubyUtils
       def system!(options = {})
         return if system(options)
 
-        raise ::EacRubyUtils::Envs::Command::ExecError, "system! command failed: #{self}"
+        raise ::EacRubyUtils::Envs::ExecutionError, "system! command failed: #{self}"
       end
 
       def system(options = {})

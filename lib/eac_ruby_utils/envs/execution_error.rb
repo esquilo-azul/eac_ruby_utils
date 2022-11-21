@@ -2,9 +2,7 @@
 
 module EacRubyUtils
   module Envs
-    class Command
-      class ExecError < ::RuntimeError
-      end
+    class ExecutionError < ::RuntimeError
     end
   end
 end

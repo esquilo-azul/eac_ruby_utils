@@ -37,7 +37,7 @@ RSpec.describe ::EacRubyUtils::Envs::Command do
 
     it do
       expect { error_command.execute! }.to(
-        raise_error(::EacRubyUtils::Envs::Command::ExecError)
+        raise_error(::EacRubyUtils::Envs::ExecutionError)
       )
     end
   end
@@ -52,7 +52,7 @@ RSpec.describe ::EacRubyUtils::Envs::Command do
 
     it do
       expect { error_command.system! }.to(
-        raise_error(::EacRubyUtils::Envs::Command::ExecError)
+        raise_error(::EacRubyUtils::Envs::ExecutionError)
       )
     end
   end
