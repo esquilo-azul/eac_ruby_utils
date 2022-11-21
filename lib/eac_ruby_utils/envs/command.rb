@@ -40,14 +40,17 @@ module EacRubyUtils
       end
 
       def command(options = {})
-        c = args
-        c = c.map { |x| escape(x) }.join(' ') if c.is_a?(Enumerable)
         append_command_options(
-          env.command_line(
-            append_chdir(append_concat(append_envvars(c)))
-          ),
+          env.command_line(command_line_without_env),
           options
         )
+      end
+
+      # @return [String]
+      def command_line_without_env
+        c = args
+        c = c.map { |x| escape(x) }.join(' ') if c.is_a?(Enumerable)
+        append_chdir(append_concat(append_envvars(c)))
       end
 
       protected
