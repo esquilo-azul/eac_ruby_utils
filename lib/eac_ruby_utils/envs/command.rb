@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/envs/command/execute_result'
 require 'eac_ruby_utils/envs/execution_error'
+require 'eac_ruby_utils/envs/execution_result'
 require 'eac_ruby_utils/envs/process'
 require 'eac_ruby_utils/envs/spawn'
 require 'pp'
@@ -54,7 +54,7 @@ module EacRubyUtils
 
       def execute!(options = {})
         options[:exit_outputs] = status_results.merge(options[:exit_outputs].presence || {})
-        er = ::EacRubyUtils::Envs::Command::ExecuteResult.new(execute(options), options)
+        er = ::EacRubyUtils::Envs::ExecutionResult.new(execute(options), options)
         return er.result if er.success?
 
         raise ::EacRubyUtils::Envs::ExecutionError,
