@@ -13,10 +13,7 @@ module EacRubyUtils
         def result # rubocop:disable Metrics/AbcSize
           r = command_line
           r = input.command + ' | ' + r if input
-          if options[:input_file]
-            r = "cat #{Shellwords.escape(options[:input_file])}" \
-              " | #{r}"
-          end
+          r = "cat #{Shellwords.escape(input_file)} | #{r}" if input_file
           r += ' > ' + Shellwords.escape(options[:output_file]) if options[:output_file]
           r
         end
@@ -24,6 +21,11 @@ module EacRubyUtils
         # @return [EacRubyUtils::Envs::Command, nil]
         def input
           options[:input]
+        end
+
+        # @return [Pathname,  nil]
+        def input_file
+          options[:input_file].if_present(&:to_pathname)
         end
       end
     end
