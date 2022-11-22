@@ -11,7 +11,7 @@ require 'shellwords'
 module EacRubyUtils
   module Envs
     class Command
-      require_sub __FILE__, include_modules: true
+      require_sub __FILE__, include_modules: true, require_dependency: true
 
       def initialize(env, command, extra_options = {})
         @env = env
@@ -115,16 +115,6 @@ module EacRubyUtils
       def debug_print(message)
         message = message.to_s
         puts message.if_respond(:light_red, message) if debug?
-      end
-
-      def append_command_options(command, options)
-        command = options[:input].command + ' | ' + command if options[:input]
-        if options[:input_file]
-          command = "cat #{Shellwords.escape(options[:input_file])}" \
-            " | #{command}"
-        end
-        command += ' > ' + Shellwords.escape(options[:output_file]) if options[:output_file]
-        command
       end
 
       def escape(arg)
