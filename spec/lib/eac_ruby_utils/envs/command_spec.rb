@@ -52,6 +52,16 @@ RSpec.describe ::EacRubyUtils::Envs::Command do
     end
   end
 
+  describe '#and' do
+    it do
+      assert_execute_result(ok_command.and(error_command).execute, false, ok_command_output)
+    end
+
+    it do
+      assert_execute_result(error_command.and(ok_command).execute, false, '')
+    end
+  end
+
   describe '#or' do
     it do
       assert_execute_result(ok_command.or(error_command).execute, true, ok_command_output)
