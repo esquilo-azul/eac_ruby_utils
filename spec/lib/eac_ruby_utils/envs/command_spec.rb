@@ -62,6 +62,16 @@ RSpec.describe ::EacRubyUtils::Envs::Command do
     end
   end
 
+  describe '#before' do
+    it do
+      assert_execute_result(ok_command.before(error_command).execute, false, ok_command_output)
+    end
+
+    it do
+      assert_execute_result(error_command.before(ok_command).execute, true, ok_command_output)
+    end
+  end
+
   describe '#or' do
     it do
       assert_execute_result(ok_command.or(error_command).execute, true, ok_command_output)
