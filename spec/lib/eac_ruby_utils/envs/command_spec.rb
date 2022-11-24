@@ -19,16 +19,11 @@ RSpec.describe ::EacRubyUtils::Envs::Command do
 
   describe '#execute' do
     it do
-      expect(ok_command.execute).to(
-        eq({ command: 'echo -n THE\\ OUTPUT', stdout: ok_command_output, stderr: '', exit_code: 0 })
-      )
+      assert_execute_result(ok_command.execute, true, ok_command_output)
     end
 
     it do
-      expect(error_command.execute).to(
-        eq({ command: 'cat a_file_that_not_exists', stdout: '',
-             stderr: "cat: a_file_that_not_exists: No such file or directory\n", exit_code: 256 })
-      )
+      assert_execute_result(error_command.execute, false, '')
     end
   end
 
@@ -59,35 +54,27 @@ RSpec.describe ::EacRubyUtils::Envs::Command do
 
   describe '#or' do
     it do
-      expect(ok_command.or(error_command).execute).to(
-        eq({ command: 'echo -n THE\\ OUTPUT || cat a_file_that_not_exists',
-             stdout: ok_command_output, stderr: '', exit_code: 0 })
-      )
+      assert_execute_result(ok_command.or(error_command).execute, true, ok_command_output)
     end
 
     it do
-      expect(error_command.or(ok_command).execute).to(
-        eq({ command: 'cat a_file_that_not_exists || echo -n THE\\ OUTPUT',
-             stdout: ok_command_output,
-             stderr: "cat: a_file_that_not_exists: No such file or directory\n", exit_code: 0 })
-      )
+      assert_execute_result(error_command.or(ok_command).execute, true, ok_command_output)
     end
   end
 
   describe '#pipe' do
     it do
-      expect(ok_command.pipe(error_command).execute).to(
-        eq({ command: 'echo -n THE\\ OUTPUT | cat a_file_that_not_exists', stdout: '',
-             stderr: "cat: a_file_that_not_exists: No such file or directory\n", exit_code: 256 })
-      )
+      assert_execute_result(ok_command.pipe(error_command).execute, false, '')
     end
 
     it do
-      expect(error_command.pipe(ok_command).execute).to(
-        eq({ command: 'cat a_file_that_not_exists | echo -n THE\\ OUTPUT',
-             stdout: ok_command_output,
-             stderr: "cat: a_file_that_not_exists: No such file or directory\n", exit_code: 0 })
-      )
+      assert_execute_result(error_command.pipe(ok_command).execute, true, ok_command_output)
     end
+  end
+
+  def assert_execute_result(actual, expected_successful, expected_stdout)
+    expect(successful: actual.fetch(:exit_code).zero?, stdout: actual.fetch(:stdout)).to(
+      eq(successful: expected_successful, stdout: expected_stdout)
+    )
   end
 end
