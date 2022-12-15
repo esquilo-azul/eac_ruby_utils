@@ -25,8 +25,12 @@ module EacRubyUtils
 
       # @return [String]
       def bash_command
-        ['set', '-euo', 'pipefail', OPERATOR_BEFORE, left_command.command, operator,
+        ['set', '-euo', 'pipefail', OPERATOR_BEFORE, left_command_line, operator,
          right_command.command].join(' ')
+      end
+
+      def left_command_line
+        left_command.command
       end
     end
   end
