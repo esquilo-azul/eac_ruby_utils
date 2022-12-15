@@ -30,7 +30,7 @@ module EacRubyUtils
       end
 
       def left_command_line
-        left_command.command
+        left_command.command_line_without_env
       end
     end
   end
