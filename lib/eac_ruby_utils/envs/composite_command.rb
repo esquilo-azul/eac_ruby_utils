@@ -34,7 +34,11 @@ module EacRubyUtils
       end
 
       def right_command_line
-        right_command.command
+        if right_command.env == left_command.env
+          right_command.command_line_without_env
+        else
+          right_command.command
+        end
       end
     end
   end
