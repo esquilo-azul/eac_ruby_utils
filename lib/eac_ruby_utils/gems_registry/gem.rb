@@ -69,8 +69,9 @@ module EacRubyUtils
           .result
       end
 
+      # @return [Array<Gem::Dependency>]
       def gem_item_dependencies(item)
-        ::Gem::Specification.find_by_name(item.name).dependencies
+        ::Gem::Specification.find_by_name(item.name).dependencies.select(&:runtime?)
       rescue ::Gem::MissingSpecError
         []
       end
