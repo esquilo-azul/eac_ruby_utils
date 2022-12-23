@@ -25,6 +25,11 @@ module EacRubyUtils
         values.each(&block)
       end
 
+      # @return [EacRubyUtils::Listable::Item, nil]
+      def item_by_value(value)
+        @values.values.find { |item| item.value == value }
+      end
+
       def values
         @values.values.map(&:value)
       end
