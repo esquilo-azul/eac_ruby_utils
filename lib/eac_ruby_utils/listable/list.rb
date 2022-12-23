@@ -30,6 +30,11 @@ module EacRubyUtils
         @values.values.find { |item| item.value == value }
       end
 
+      # @return [EacRubyUtils::Listable::Item]
+      def item_by_value!(value)
+        item_by_value(value) || raise(::KeyError, "Value not found: #{value}")
+      end
+
       def values
         @values.values.map(&:value)
       end
