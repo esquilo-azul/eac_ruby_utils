@@ -1,25 +1,19 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/common_constructor'
 require 'eac_ruby_utils/inflector'
 
 module EacRubyUtils
   module Listable
     class Item
-      attr_reader :value, :key
-
-      def initialize(list, value, key, translation_required = true)
-        @list = list
-        @value = value
-        @key = key
-        @translation_required = translation_required
-      end
+      common_constructor :list, :value, :key, :translation_required, default: [true]
 
       def to_s
-        "I: #{@list.item}, V: #{@value}, K: #{@key}"
+        "I: #{list.item}, V: #{value}, K: #{key}"
       end
 
       def constant_name
-        ::EacRubyUtils::Inflector.variableize("#{@list.item}_#{@key}").upcase
+        ::EacRubyUtils::Inflector.variableize("#{list.item}_#{key}").upcase
       end
 
       def label
@@ -36,13 +30,13 @@ module EacRubyUtils
       end
 
       def translation_required?
-        @translation_required
+        translation_required
       end
 
       private
 
       def translate(translate_key)
-        full_translate_key = "#{@list.i18n_key}.#{@key}.#{translate_key}"
+        full_translate_key = "#{list.i18n_key}.#{key}.#{translate_key}"
         if !::I18n.exists?(full_translate_key) && !translation_required?
           ''
         else
