@@ -4,7 +4,7 @@ require 'eac_ruby_utils/inflector'
 
 module EacRubyUtils
   module Listable
-    class Value
+    class Item
       attr_reader :value, :key
 
       def initialize(list, value, key, translation_required = true)

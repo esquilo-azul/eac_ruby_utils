@@ -87,52 +87,52 @@ RSpec.describe ::EacRubyUtils::Listable do
     it { expect(stub_class.lists.is_a?(::EacRubyUtils::Listable::Lists)).to eq(true) }
 
     it {
-      expect(stub_class.lists.inteiro.value_a.is_a?(::EacRubyUtils::Listable::Value))
+      expect(stub_class.lists.inteiro.value_a.is_a?(::EacRubyUtils::Listable::Item))
         .to eq(true)
     }
 
     it {
-      expect(stub_class.lists.inteiro.value_b.is_a?(::EacRubyUtils::Listable::Value))
+      expect(stub_class.lists.inteiro.value_b.is_a?(::EacRubyUtils::Listable::Item))
         .to eq(true)
     }
 
     it {
-      expect(stub_class.lists.inteiro.value_c.is_a?(::EacRubyUtils::Listable::Value))
+      expect(stub_class.lists.inteiro.value_c.is_a?(::EacRubyUtils::Listable::Item))
         .to eq(true)
     }
 
     it {
-      expect(stub_class.lists.code.value_a.is_a?(::EacRubyUtils::Listable::Value))
+      expect(stub_class.lists.code.value_a.is_a?(::EacRubyUtils::Listable::Item))
         .to eq(true)
     }
 
     it {
-      expect(stub_class.lists.code.value_b.is_a?(::EacRubyUtils::Listable::Value))
+      expect(stub_class.lists.code.value_b.is_a?(::EacRubyUtils::Listable::Item))
         .to eq(true)
     }
 
     it {
-      expect(stub_class.lists.cadeia.value_a.is_a?(::EacRubyUtils::Listable::Value))
+      expect(stub_class.lists.cadeia.value_a.is_a?(::EacRubyUtils::Listable::Item))
         .to eq(true)
     }
 
     it {
-      expect(stub_class.lists.cadeia.value_b.is_a?(::EacRubyUtils::Listable::Value))
+      expect(stub_class.lists.cadeia.value_b.is_a?(::EacRubyUtils::Listable::Item))
         .to eq(true)
     }
 
     it {
-      expect(stub_class.lists.cadeia.value_c.is_a?(::EacRubyUtils::Listable::Value))
+      expect(stub_class.lists.cadeia.value_c.is_a?(::EacRubyUtils::Listable::Item))
         .to eq(true)
     }
 
     it {
-      expect(stub_class.lists.type.value_a.is_a?(::EacRubyUtils::Listable::Value))
+      expect(stub_class.lists.type.value_a.is_a?(::EacRubyUtils::Listable::Item))
         .to eq(true)
     }
 
     it {
-      expect(stub_class.lists.type.value_b.is_a?(::EacRubyUtils::Listable::Value))
+      expect(stub_class.lists.type.value_b.is_a?(::EacRubyUtils::Listable::Item))
         .to eq(true)
     }
   end
