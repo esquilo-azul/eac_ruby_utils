@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/common_constructor'
+require 'eac_ruby_utils/patches/class/common_constructor'
 require 'eac_ruby_utils/inflector'
 
 module EacRubyUtils
