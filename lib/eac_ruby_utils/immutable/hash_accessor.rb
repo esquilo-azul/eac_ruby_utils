@@ -8,7 +8,7 @@ module EacRubyUtils
     class HashAccessor < ::EacRubyUtils::Immutable::BaseAccessor
       def apply(klass)
         apply_plural(klass)
-        apply_set(klass)
+        apply_singular(klass)
       end
 
       def immutable_value_get(object)
@@ -36,7 +36,7 @@ module EacRubyUtils
         end
       end
 
-      def apply_set(klass)
+      def apply_singular(klass)
         accessor = self
         klass.send(:define_method, name) do |*args|
           case args.count
