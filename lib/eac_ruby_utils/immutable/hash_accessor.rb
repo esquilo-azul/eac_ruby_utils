@@ -7,7 +7,7 @@ module EacRubyUtils
   module Immutable
     class HashAccessor < ::EacRubyUtils::Immutable::BaseAccessor
       def apply(klass)
-        apply_get(klass)
+        apply_plural(klass)
         apply_set(klass)
       end
 
@@ -29,7 +29,7 @@ module EacRubyUtils
 
       private
 
-      def apply_get(klass)
+      def apply_plural(klass)
         accessor = self
         klass.send(:define_method, ::ActiveSupport::Inflector.pluralize(name)) do
           accessor.immutable_value_get(self)
