@@ -25,5 +25,18 @@ require 'eac_ruby_utils/immutable'
     it { expect(initial_instance.the_hash('key_a')).to be_nil }
     it { expect(change1_instance.the_hashes).to eq({ 'key_a' => 'A' }) }
     it { expect(change1_instance.the_hash('key_a')).to eq('A') }
+
+    context 'when all valuesare set' do
+      let(:change2_instance) { initial_instance.the_hashes('key_b' => 'B') }
+
+      before { change2_instance }
+
+      it { expect(change1_instance.the_hashes).to eq({ 'key_a' => 'A' }) }
+      it { expect(change1_instance.the_hash('key_a')).to eq('A') }
+      it { expect(change1_instance.the_hash('key_b')).to be_nil }
+      it { expect(change2_instance.the_hashes).to eq({ 'key_b' => 'B' }) }
+      it { expect(change2_instance.the_hash('key_a')).to be_nil }
+      it { expect(change2_instance.the_hash('key_b')).to eq('B') }
+    end
   end
 end
