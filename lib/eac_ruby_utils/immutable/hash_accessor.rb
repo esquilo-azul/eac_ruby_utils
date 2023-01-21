@@ -16,7 +16,7 @@ module EacRubyUtils
       end
 
       def immutable_value_get_single(object, key)
-        immutable_value_get(object, key)
+        immutable_value_get(object)[key]
       end
 
       def immutable_value_set(object, key, value)
