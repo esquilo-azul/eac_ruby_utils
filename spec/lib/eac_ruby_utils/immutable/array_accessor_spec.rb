@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-::RSpec.describe ::EacRubyUtils::Immutable do
+require 'eac_ruby_utils/immutable'
+
+::RSpec.describe ::EacRubyUtils::Immutable::ArrayAccessor do
   let(:stub_class) do
-    the_described_class = described_class
     ::Class.new do
-      include the_described_class
+      include ::EacRubyUtils::Immutable
 
       immutable_accessor :array_attr, type: :array
     end
