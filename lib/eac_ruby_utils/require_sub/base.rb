@@ -16,6 +16,7 @@ module EacRubyUtils
 
       include ::EacRubyUtils::Listable
       lists.add_symbol :option, :base, :include_modules, :require_dependency
+      lists.add_symbol :require_mode, :active_support, :autoload, :kernel
 
       attr_reader :file, :options
 
@@ -52,6 +53,14 @@ module EacRubyUtils
 
         raise ::ArgumentError, "Invalid value for 'options[OPTION_INCLUDE_MODULES]':" \
           " \"#{options[OPTION_INCLUDE_MODULES]}\""
+      end
+
+      # @return [Symbol]
+      def require_mode
+        return REQUIRE_MODE_ACTIVE_SUPPORT if active_support_require?
+        return REQUIRE_MODE_AUTOLOAD if base?
+
+        REQUIRE_MODE_KERNEL
       end
 
       def require_sub_files

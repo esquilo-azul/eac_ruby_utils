@@ -38,23 +38,17 @@ module EacRubyUtils
       end
 
       def require_file
-        active_support_require || autoload_require || kernel_require
+        send("#{owner.require_mode}_require")
       end
 
       private
 
       def active_support_require
-        return false unless owner.active_support_require?
-
         ::Kernel.require_dependency(path)
-        true
       end
 
       def autoload_require
-        return false unless owner.base?
-
         owner.base.autoload ::ActiveSupport::Inflector.camelize(::File.basename(path, '.*')), path
-        true
       end
 
       def kernel_require
