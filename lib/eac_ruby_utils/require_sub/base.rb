@@ -15,7 +15,7 @@ module EacRubyUtils
       }.freeze
 
       include ::EacRubyUtils::Listable
-      lists.add_symbol :option, :base, :include_modules, :require_dependency
+      lists.add_symbol :option, :base, :include_modules, :require_dependency, :require_mode
       lists.add_symbol :require_mode, :active_support, :autoload, :kernel
 
       attr_reader :file, :options
@@ -23,6 +23,9 @@ module EacRubyUtils
       def initialize(file, options = {})
         @file = file
         @options = self.class.lists.option.hash_keys_validate!(options)
+        return unless options[OPTION_REQUIRE_MODE]
+
+        self.class.lists.require_mode.value_validate!(options[OPTION_REQUIRE_MODE])
       end
 
       # @return [Boolean]
@@ -57,6 +60,7 @@ module EacRubyUtils
 
       # @return [Symbol]
       def require_mode
+        return options[OPTION_REQUIRE_MODE] if options[OPTION_REQUIRE_MODE]
         return REQUIRE_MODE_ACTIVE_SUPPORT if active_support_require?
         return REQUIRE_MODE_AUTOLOAD if base?
 
