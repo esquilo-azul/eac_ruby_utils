@@ -53,10 +53,7 @@ module EacRubyUtils
       def autoload_require
         return false unless owner.base?
 
-        basename = ::File.basename(path, '.*')
-        return false if basename.start_with?('_')
-
-        owner.base.autoload ::ActiveSupport::Inflector.camelize(basename), path
+        owner.base.autoload ::ActiveSupport::Inflector.camelize(::File.basename(path, '.*')), path
         true
       end
 
