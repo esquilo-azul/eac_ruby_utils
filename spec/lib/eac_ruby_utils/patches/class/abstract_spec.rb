@@ -5,7 +5,7 @@ require 'eac_ruby_utils/patches/class/abstract'
 RSpec.describe ::Class do
   let(:abstract_class) do
     described_class.new do
-      enable_abstract_methods
+      acts_as_abstract
     end
   end
 
