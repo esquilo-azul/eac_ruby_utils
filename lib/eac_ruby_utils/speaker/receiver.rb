@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/abstract_methods'
+require 'eac_ruby_utils/acts_as_abstract'
 
 module EacRubyUtils
   module Speaker
     module Receiver
       extend ::ActiveSupport::Concern
-      extend ::EacRubyUtils::AbstractMethods
+      extend ::EacRubyUtils::ActsAsAbstract
 
       module ClassMethods
         def on(*args, &block)

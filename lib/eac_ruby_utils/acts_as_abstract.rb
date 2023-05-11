@@ -8,10 +8,10 @@ module EacRubyUtils
   #
   # Usage:
   #
-  #   require 'eac_ruby_utils/abstract_methods'
+  #   require 'eac_ruby_utils/acts_as_abstract'
   #
   #   class BaseClass
-  #     include EacRubyUtils::AbstractMethods
+  #     include EacRubyUtils::ActsAsAbstract
   #
   #     abstract_methods :mymethod
   #   end
@@ -25,12 +25,12 @@ module EacRubyUtils
   #   end
   #
   #   SubClass.new.mymethod # return "Implemented"
-  module AbstractMethods
+  module ActsAsAbstract
     common_concern
 
     class << self
       def abstract?(a_class)
-        a_class.self_included_modules.include?(::EacRubyUtils::AbstractMethods)
+        a_class.self_included_modules.include?(::EacRubyUtils::ActsAsAbstract)
       end
     end
 

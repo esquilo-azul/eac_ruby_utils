@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/abstract_methods'
+require 'eac_ruby_utils/acts_as_abstract'
 
-RSpec.describe(::EacRubyUtils::AbstractMethods) do
+RSpec.describe(::EacRubyUtils::ActsAsAbstract) do
   let(:base_class) do
     the_module = described_class
     ::Class.new do
