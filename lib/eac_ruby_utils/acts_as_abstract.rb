@@ -44,10 +44,24 @@ module EacRubyUtils
         end
       end
 
+      # @param methods_names [Enumerable<Object>] Each item can be a symbolizable or a hash.
+      # @return [void]
       def abstract_methods(*methods_names)
         methods_names.each do |method_name|
-          abstract_method(method_name)
+          if method_name.is_a?(::Hash)
+            abstract_methods_from_hash(method_name)
+          else
+            abstract_method(method_name)
+          end
         end
+      end
+
+      private
+
+      # @param hash [Hash]
+      # @return [void]
+      def abstract_methods_from_hash(hash)
+        hash.each { |name, arguments| abstract_method(name, *arguments) }
       end
     end
 
