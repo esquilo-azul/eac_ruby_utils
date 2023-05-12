@@ -59,9 +59,9 @@ module EacRubyUtils
         self.class.abstract_methods.include?(method_name.to_sym)
       end
 
-      def raise_abstract_method(method_name)
-        raise ::NoMethodError, "Abstract method \"#{method_name}\" hit in \"#{self}\"" \
-          " (Class: #{self.class})"
+      def raise_abstract_method(method_name, arguments = [])
+        raise ::NoMethodError, "Abstract method #{method_name}(#{arguments.join(', ')}) hit in " \
+          "#{self}\" (Class: #{self.class})"
       end
     end
   end
