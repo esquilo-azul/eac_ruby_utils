@@ -35,11 +35,18 @@ module EacRubyUtils
     end
 
     module ClassMethods
+      # @param name [Symbol]
+      # @param arguments [Enumerable<Symbol>]
+      # @return [void]
+      def abstract_method(name, *arguments)
+        define_method name.to_sym do |*_the_args|
+          raise_abstract_method(name.to_sym, arguments)
+        end
+      end
+
       def abstract_methods(*methods_names)
         methods_names.each do |method_name|
-          define_method method_name do
-            raise_abstract_method(method_name)
-          end
+          abstract_method(method_name)
         end
       end
     end
