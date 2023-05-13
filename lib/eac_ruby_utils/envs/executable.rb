@@ -9,7 +9,7 @@ module EacRubyUtils
       include ::EacRubyUtils::Listable
       include ::EacRubyUtils::SimpleCache
 
-      lists.add_symbol :option, :check_args, :auto_validate
+      lists.add_symbol :option, :check_args, :exec_args, :auto_validate
 
       DEFAULT_AUTO_VALIDATE = true
 
@@ -53,7 +53,7 @@ module EacRubyUtils
       end
 
       def executable_args
-        executable_args_from_envvar || executable_args_from_name
+        executable_args_from_envvar || executable_args_from_options || executable_args_from_name
       end
 
       def executable_args_envvar
@@ -67,6 +67,13 @@ module EacRubyUtils
       # @return [Enumerable<String>]
       def executable_args_from_name
         ::Shellwords.split(name)
+      end
+
+      # @return [Enumerable<String>]
+      def executable_args_from_options
+        options[OPTION_EXEC_ARGS].if_present do |v|
+          v.is_a?(::Enumerable) ? v.map(&:to_s) : ::Shellwords.split(v.to_s)
+        end
       end
 
       private
