@@ -85,8 +85,10 @@ module EacRubyUtils
         super
       end
 
+      # @param method_name [Symbol]
+      # @return [Boolean]
       def abstract_method?(method_name)
-        self.class.abstract_methods.include?(method_name.to_sym)
+        self.class.send(:abstract_methods_hash).key?(method_name.to_sym)
       end
 
       def raise_abstract_method(method_name, arguments = [])
