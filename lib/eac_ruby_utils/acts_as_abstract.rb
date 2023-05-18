@@ -2,6 +2,7 @@
 
 require 'eac_ruby_utils/patches/class/self_included_modules'
 require 'eac_ruby_utils/patches/module/common_concern'
+require 'eac_ruby_utils/unimplemented_method_error'
 
 module EacRubyUtils
   # Support to abstract methods.
@@ -81,8 +82,9 @@ module EacRubyUtils
       end
 
       def raise_abstract_method(method_name, arguments = [])
-        raise ::NoMethodError, "Abstract method #{method_name}(#{arguments.join(', ')}) hit in " \
-          "#{self}\" (Class: #{self.class})"
+        raise ::EacRubyUtils::UnimplementedMethodError,
+              "Abstract method #{method_name}(#{arguments.join(', ')}) hit in " \
+              "#{self}\" (Class: #{self.class})"
       end
     end
   end

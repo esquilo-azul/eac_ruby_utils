@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/acts_as_abstract'
+require 'eac_ruby_utils/unimplemented_method_error'
 
 ::RSpec.describe(::EacRubyUtils::ActsAsAbstract) do
   let(:base_class) do
@@ -72,8 +73,9 @@ require 'eac_ruby_utils/acts_as_abstract'
 
   {
     method_missing: {
-      base: [::NoMethodError, ::NoMethodError, 'base result', ::NoMethodError],
-      sub: ['a result', ::NoMethodError, 'base result', 'sub result']
+      base: [::EacRubyUtils::UnimplementedMethodError, ::EacRubyUtils::UnimplementedMethodError,
+             'base result', ::NoMethodError],
+      sub: ['a result', ::EacRubyUtils::UnimplementedMethodError, 'base result', 'sub result']
     },
     respond_to_missing: {
       base: [true, true, true, false],
