@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/module_ancestors_variable/hash'
 require 'eac_ruby_utils/patches/class/self_included_modules'
 require 'eac_ruby_utils/patches/module/common_concern'
 require 'eac_ruby_utils/unimplemented_method_error'
@@ -43,6 +44,7 @@ module EacRubyUtils
         define_method name.to_sym do |*_the_args|
           raise_abstract_method(name.to_sym, arguments)
         end
+        abstract_methods_hash[name.to_sym] = arguments
       end
 
       # @param methods_names [Enumerable<Object>] Each item can be a symbolizable or a hash.
@@ -63,6 +65,12 @@ module EacRubyUtils
       # @return [void]
       def abstract_methods_from_hash(hash)
         hash.each { |name, arguments| abstract_method(name, *arguments) }
+      end
+
+      # @return [Hash<Symbol, Array]
+      def abstract_methods_hash
+        @abstract_methods_hash ||=
+          ::EacRubyUtils::ModuleAncestorsVariable::Hash.new(self, __method__)
       end
     end
 
