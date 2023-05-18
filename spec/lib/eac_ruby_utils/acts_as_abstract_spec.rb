@@ -9,12 +9,20 @@ require 'eac_ruby_utils/acts_as_abstract'
       include the_module
 
       abstract_methods :method1, :method2
+
+      def method3
+        'base result'
+      end
     end
   end
   let(:sub_class) do
     ::Class.new(base_class) do
       def method1
         'a result'
+      end
+
+      def method4
+        'sub result'
       end
     end
   end
@@ -60,8 +68,8 @@ require 'eac_ruby_utils/acts_as_abstract'
 
   {
     method_missing: {
-      base: [::NoMethodError, ::NoMethodError],
-      sub: ['a result', ::NoMethodError]
+      base: [::NoMethodError, ::NoMethodError, 'base result', ::NoMethodError],
+      sub: ['a result', ::NoMethodError, 'base result', 'sub result']
     }
   }.each do |test_target, instances_hash|
     specs_for_target(test_target, instances_hash)
