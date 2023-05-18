@@ -6,6 +6,7 @@ module EacRubyUtils
   module ActsAsImmutable
     class BaseAccessor
       FILTER_GET_METHOD_NAME_FORMAT = '%s_get_filter'
+      FILTER_SET_METHOD_NAME_FORMAT = '%s_set_filter'
 
       common_constructor :name do
         self.name = name.to_sym
@@ -36,6 +37,20 @@ module EacRubyUtils
       # @return [Symbol]
       def immutable_value_get_filtered_method_name
         format(FILTER_GET_METHOD_NAME_FORMAT, name)
+      end
+
+      # @param object [Object]
+      # @return [Object]
+      def immutable_value_set_filtered(object, value)
+        if object.respond_to?(immutable_value_set_filtered_method_name, true)
+          value = object.send(immutable_value_set_filtered_method_name, value)
+        end
+        immutable_value_set(object, value)
+      end
+
+      # @return [Symbol]
+      def immutable_value_set_filtered_method_name
+        format(FILTER_SET_METHOD_NAME_FORMAT, name)
       end
     end
   end

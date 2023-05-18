@@ -12,6 +12,10 @@ require 'eac_ruby_utils/acts_as_immutable'
       def attr1_get_filter(value)
         value || 'DEFAULT'
       end
+
+      def attr2_set_filter(value)
+        "#{value}_FILTERED"
+      end
     end
   end
 
@@ -36,7 +40,7 @@ require 'eac_ruby_utils/acts_as_immutable'
       it { expect(change2_instance).to be_a(change1_instance.class) }
       it { expect(change2_instance.object_id).not_to eq(change1_instance.object_id) }
       it { expect(change2_instance.attr1).to eq('A') }
-      it { expect(change2_instance.attr2).to eq('B') }
+      it { expect(change2_instance.attr2).to eq('B_FILTERED') }
       it { expect(change2_instance.attr3).to eq(nil) }
     end
 
