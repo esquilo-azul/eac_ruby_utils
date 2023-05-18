@@ -41,9 +41,6 @@ module EacRubyUtils
       # @param arguments [Enumerable<Symbol>]
       # @return [void]
       def abstract_method(name, *arguments)
-        define_method name.to_sym do |*_the_args|
-          raise_abstract_method(name.to_sym, arguments)
-        end
         abstract_methods_hash[name.to_sym] = arguments
       end
 
@@ -88,6 +85,8 @@ module EacRubyUtils
       # @param method_name [Symbol]
       # @return [Boolean]
       def abstract_method?(method_name)
+        return false if self.class.method_defined?(method_name)
+
         self.class.send(:abstract_methods_hash).key?(method_name.to_sym)
       end
 

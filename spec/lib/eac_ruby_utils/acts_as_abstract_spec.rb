@@ -54,6 +54,10 @@ require 'eac_ruby_utils/unimplemented_method_error'
       end
     end
 
+    def specs_for_abstract_method(method_name, expected_value)
+      it { expect(instance.abstract_method?(method_name)).to eq(expected_value) }
+    end
+
     def specs_for_method_missing(method_name, expected_value)
       if expected_value.is_a?(::Class) && expected_value < ::Exception
         it do
@@ -70,8 +74,11 @@ require 'eac_ruby_utils/unimplemented_method_error'
       it { expect(instance.respond_to?(method_name)).to eq(expected_value) }
     end
   end
-
   {
+    abstract_method: {
+      base: [true, true, false, false],
+      sub: [false, true, false, false]
+    },
     method_missing: {
       base: [::EacRubyUtils::UnimplementedMethodError, ::EacRubyUtils::UnimplementedMethodError,
              'base result', ::NoMethodError],
