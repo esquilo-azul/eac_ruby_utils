@@ -16,7 +16,7 @@ module EacRubyUtils
         accessor = self
         klass.send(:define_method, ::ActiveSupport::Inflector.pluralize(name)) do |*args|
           case args.count
-          when 0 then next accessor.immutable_value_get(self)
+          when 0 then next accessor.immutable_value_get_filtered(self)
           when 1 then next accessor.immutable_value_set(self, args.first)
           else
             raise ::ArgumentError, "wrong number of arguments (given #{args.count}, expected 0..1)"

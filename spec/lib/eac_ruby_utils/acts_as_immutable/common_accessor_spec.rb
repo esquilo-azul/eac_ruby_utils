@@ -8,12 +8,16 @@ require 'eac_ruby_utils/acts_as_immutable'
       include ::EacRubyUtils::ActsAsImmutable
 
       immutable_accessor :attr1, :attr2, :attr3
+
+      def attr1_get_filter(value)
+        value || 'DEFAULT'
+      end
     end
   end
 
   let(:initial_instance) { stub_class.new }
 
-  it { expect(initial_instance.attr1).to eq(nil) }
+  it { expect(initial_instance.attr1).to eq('DEFAULT') }
   it { expect(initial_instance.attr2).to eq(nil) }
   it { expect(initial_instance.attr3).to eq(nil) }
 
