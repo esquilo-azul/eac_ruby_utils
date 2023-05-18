@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EacRubyUtils
-  module Immutable
+  module ActsAsImmutable
     class BaseAccessor
       common_constructor :name do
         self.name = name.to_sym

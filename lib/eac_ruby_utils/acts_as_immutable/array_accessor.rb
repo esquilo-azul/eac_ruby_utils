@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require 'active_support/inflector'
-require 'eac_ruby_utils/immutable/base_accessor'
+require 'eac_ruby_utils/acts_as_immutable/base_accessor'
 require 'eac_ruby_utils/patches/class/common_constructor'
 
 module EacRubyUtils
-  module Immutable
-    class ArrayAccessor < ::EacRubyUtils::Immutable::BaseAccessor
+  module ActsAsImmutable
+    class ArrayAccessor < ::EacRubyUtils::ActsAsImmutable::BaseAccessor
       def apply(klass)
         apply_singular(klass)
         apply_plural(klass)

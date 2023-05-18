@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/immutable'
+require 'eac_ruby_utils/acts_as_immutable'
 
-::RSpec.describe ::EacRubyUtils::Immutable::HashAccessor do
+::RSpec.describe ::EacRubyUtils::ActsAsImmutable::HashAccessor do
   let(:stub_class) do
     ::Class.new do
-      include ::EacRubyUtils::Immutable
+      include ::EacRubyUtils::ActsAsImmutable
 
       immutable_accessor :the_hash, type: :hash
     end

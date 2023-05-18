@@ -4,7 +4,7 @@ require 'eac_ruby_utils/patches/module/common_concern'
 require 'eac_ruby_utils/require_sub'
 
 module EacRubyUtils
-  module Immutable
+  module ActsAsImmutable
     ::EacRubyUtils.require_sub __FILE__
 
     common_concern do

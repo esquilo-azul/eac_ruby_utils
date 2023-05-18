@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EacRubyUtils
-  module Immutable
+  module ActsAsImmutable
     module InstanceMethods
       def immutable_constructor_args
         []

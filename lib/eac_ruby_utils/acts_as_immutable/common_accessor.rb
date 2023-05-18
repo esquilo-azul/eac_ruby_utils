@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/immutable/base_accessor'
+require 'eac_ruby_utils/acts_as_immutable/base_accessor'
 require 'eac_ruby_utils/patches/class/common_constructor'
 
 module EacRubyUtils
-  module Immutable
-    class CommonAccessor < ::EacRubyUtils::Immutable::BaseAccessor
+  module ActsAsImmutable
+    class CommonAccessor < ::EacRubyUtils::ActsAsImmutable::BaseAccessor
       def apply(klass)
         accessor = self
         klass.send(:define_method, name) do |*args|
