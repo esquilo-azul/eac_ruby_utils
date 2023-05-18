@@ -64,12 +64,20 @@ require 'eac_ruby_utils/acts_as_abstract'
         end
       end
     end
+
+    def specs_for_respond_to_missing(method_name, expected_value)
+      it { expect(instance.respond_to?(method_name)).to eq(expected_value) }
+    end
   end
 
   {
     method_missing: {
       base: [::NoMethodError, ::NoMethodError, 'base result', ::NoMethodError],
       sub: ['a result', ::NoMethodError, 'base result', 'sub result']
+    },
+    respond_to_missing: {
+      base: [true, true, true, false],
+      sub: [true, true, true, true]
     }
   }.each do |test_target, instances_hash|
     specs_for_target(test_target, instances_hash)
