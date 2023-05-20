@@ -4,6 +4,12 @@ require 'eac_ruby_utils/patches/object/if_present'
 require 'pp'
 
 class Object
+  def compact_debug(*methods_names)
+    methods_names.each do |method_name|
+      send(method_name).print_debug(label: method_name)
+    end
+  end
+
   def pretty_debug(options = {})
     print_debug_options(options)
 
