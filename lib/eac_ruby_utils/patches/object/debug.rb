@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/patches/object/if_present'
+require 'pp'
+
 class Object
   def pretty_debug(options = {})
     print_debug_options(options)
