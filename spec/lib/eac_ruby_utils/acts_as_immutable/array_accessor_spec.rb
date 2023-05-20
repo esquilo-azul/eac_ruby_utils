@@ -31,5 +31,13 @@ require 'eac_ruby_utils/acts_as_immutable'
       it { expect(change2_instance.object_id).not_to eq(change1_instance.object_id) }
       it { expect(change2_instance.array_attrs).to eq(%w[B]) }
     end
+
+    context 'when array_attrs sets for a non array' do
+      let(:change2_instance) { initial_instance.array_attrs('B') }
+
+      it { expect(change2_instance).to be_a(initial_instance.class) }
+      it { expect(change2_instance.object_id).not_to eq(change1_instance.object_id) }
+      it { expect(change2_instance.array_attrs).to eq(%w[B]) }
+    end
   end
 end

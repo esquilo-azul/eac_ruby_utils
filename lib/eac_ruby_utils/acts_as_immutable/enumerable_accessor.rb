@@ -7,6 +7,7 @@ require 'eac_ruby_utils/patches/class/common_constructor'
 module EacRubyUtils
   module ActsAsImmutable
     # Should implement in concrect classes:
+    # * immutable_value_set_assert(value)
     # * initial_value()
     class EnumerableAccessor < ::EacRubyUtils::ActsAsImmutable::BaseAccessor
       def apply(klass)
@@ -44,7 +45,7 @@ module EacRubyUtils
       end
 
       def immutable_value_set(object, value)
-        duplicate_object(object) { |_old_value| value }
+        duplicate_object(object) { |_old_value| immutable_value_set_assert(value) }
       end
     end
   end
