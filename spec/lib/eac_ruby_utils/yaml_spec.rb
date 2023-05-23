@@ -65,7 +65,8 @@ RSpec.describe ::EacRubyUtils::Yaml do
       'text' => false,
       "--- Text\n\n" => true,
       "---\n" + ":index: 0\n" + ":codec_name: h264\n" + ":codec_type: video\n" => true,
-      '--- - \n bla bla bla' => false
+      '--- - \n bla bla bla' => false,
+      "---\n*STRING" => false
     }.each do |source, result|
       it "return #{result} to source \"#{source}\"" do
         expect(described_class.yaml?(source)).to eq(result)

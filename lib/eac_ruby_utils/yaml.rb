@@ -40,7 +40,7 @@ module EacRubyUtils
 
         load(object)
         true
-      rescue ::Psych::SyntaxError
+      rescue ::Psych::Exception
         false
       end
 
