@@ -3,7 +3,7 @@
 require 'eac_ruby_utils/patches/module/require_sub'
 
 module EacRubyUtils
-  class ModuleAncestorsVariable
+  module ModuleAncestorsVariable
     require_sub __FILE__
   end
 end
