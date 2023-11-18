@@ -1,45 +1,322 @@
-require:
-  - rubocop-rails
-  - rubocop-rspec
-
-AllCops:
-  TargetRailsVersion: 5.2
-  TargetRubyVersion: 2.7
-
-Metrics/BlockLength:
+---
+inherit_gem:
+  eac_ruby_gem_support: ".rubocop.yml"
+Gemspec/RequiredRubyVersion:
   Exclude:
-    - '**/*.gemspec'
-    - 'spec/**/*_spec.rb'
-
-Layout/LineLength:
-  Max: 100
-
-Layout/MultilineMethodCallIndentation:
-  EnforcedStyle: indented_relative_to_receiver
-
-Rails/DynamicFindBy:
-  Enabled: false
-
-Rails/Output:
-  Enabled: false
-
-Rails/SkipsModelValidations:
-  Enabled: false
-
-Rails/TimeZone:
-  Enabled: false
-
-Style/AsciiComments:
-  Enabled: false
-
-Style/Documentation:
-  Enabled: false
-
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: true
+  - eac_ruby_utils.gemspec
+Layout/EmptyLinesAroundAttributeAccessor:
+  Exclude:
+  - lib/eac_ruby_utils/bit.rb
+  - lib/eac_ruby_utils/byte.rb
+  - lib/eac_ruby_utils/common_constructor/super_args.rb
+  - lib/eac_ruby_utils/settings_provider/setting_value.rb
+  - spec/lib/eac_ruby_utils/compare_by_spec.rb
+  - spec/lib/eac_ruby_utils/enum_spec.rb
+  - spec/lib/eac_ruby_utils/patches/module/compare_by_spec.rb
+Layout/LineContinuationLeadingSpace:
+  Exclude:
+  - lib/eac_ruby_utils/common_constructor/instance_initialize.rb
+  - lib/eac_ruby_utils/patches/addressable/uri/query_value.rb
+  - lib/eac_ruby_utils/require_sub/base.rb
+Layout/LineContinuationSpacing:
+  Exclude:
+  - lib/eac_ruby_utils/settings_provider/setting_value.rb
+Layout/LineEndStringConcatenationIndentation:
+  Exclude:
+  - lib/eac_ruby_utils/common_constructor/instance_initialize.rb
+  - lib/eac_ruby_utils/inflector.rb
+  - lib/eac_ruby_utils/listable/list.rb
+  - lib/eac_ruby_utils/patches/addressable/uri/query_value.rb
+  - lib/eac_ruby_utils/require_sub/base.rb
+  - lib/eac_ruby_utils/settings_provider/setting_value.rb
+Layout/SpaceAroundMethodCallOperator:
+  Exclude:
+  - spec/lib/eac_ruby_utils/patches/object/if_present_spec.rb
+Lint/AmbiguousOperatorPrecedence:
+  Exclude:
+  - lib/eac_ruby_utils/patches/object/debug.rb
+Lint/ConstantDefinitionInBlock:
+  Exclude:
+  - spec/lib/eac_ruby_utils/common_concern_spec.rb
+  - spec/lib/eac_ruby_utils/common_constructor_spec.rb
+  - spec/lib/eac_ruby_utils/module_ancestors_variable/hash_spec.rb
+  - spec/lib/eac_ruby_utils/module_ancestors_variable/set_spec.rb
+  - spec/lib/eac_ruby_utils/patches/module/speaker_spec.rb
+Lint/EmptyClass:
+  Exclude:
+  - spec/lib/eac_ruby_utils/require_sub/base_spec/stubbed_not_module.rb
+  - spec/lib/eac_ruby_utils/require_sub/base_spec.rb
+Lint/MissingSuper:
+  Exclude:
+  - lib/eac_ruby_utils/envs/ssh_env.rb
+Lint/RedundantCopDisableDirective:
+  Exclude:
+  - lib/eac_ruby_utils/speaker/receiver.rb
+  - spec/lib/eac_ruby_utils/acts_as_abstract_spec.rb
+  - spec/lib/eac_ruby_utils/custom_format_spec.rb
+  - spec/lib/eac_ruby_utils/envs/command/base_example.rb
+  - spec/lib/eac_ruby_utils/wildcards_spec.rb
+Lint/UselessMethodDefinition:
+  Exclude:
+  - spec/lib/eac_ruby_utils/common_constructor_spec.rb
+Naming/VariableNumber:
+  Exclude:
+  - spec/lib/eac_ruby_utils/common_constructor_spec.rb
+RSpec/BeEq:
+  Exclude:
+  - spec/lib/eac_ruby_utils/acts_as_immutable/common_accessor_spec.rb
+  - spec/lib/eac_ruby_utils/arguments_consumer_spec.rb
+  - spec/lib/eac_ruby_utils/envs/command/base_example.rb
+  - spec/lib/eac_ruby_utils/envs/executable_spec.rb
+  - spec/lib/eac_ruby_utils/listable_spec.rb
+  - spec/lib/eac_ruby_utils/options_consumer_spec.rb
+  - spec/lib/eac_ruby_utils/patches/enumerator/current_spec.rb
+  - spec/lib/eac_ruby_utils/patches/object/call_if_proc_spec.rb
+  - spec/lib/eac_ruby_utils/patches/object/if_present_spec.rb
+  - spec/lib/eac_ruby_utils/ruby/on_clean_environment_spec.rb
+  - spec/lib/eac_ruby_utils/settings_provider_spec.rb
+  - spec/lib/eac_ruby_utils/struct_spec.rb
+RSpec/ContextWording:
+  Exclude:
+  - spec/lib/eac_ruby_utils/common_constructor_spec.rb
+RSpec/FilePath:
+  Exclude:
+  - spec/lib/eac_ruby_utils/envs/command/local_env_spec.rb
+  - spec/lib/eac_ruby_utils/envs/command/ssh_env_spec.rb
+  - spec/lib/eac_ruby_utils/fs/extname_spec.rb
+  - spec/lib/eac_ruby_utils/patches/addressable/uri/query_value_spec.rb
+  - spec/lib/eac_ruby_utils/patches/class/abstract_spec.rb
+  - spec/lib/eac_ruby_utils/patches/class/acts_as_abstract_spec.rb
+  - spec/lib/eac_ruby_utils/patches/class/self_included_modules_spec.rb
+  - spec/lib/eac_ruby_utils/patches/enumerable/boolean_combinations_spec.rb
+  - spec/lib/eac_ruby_utils/patches/enumerator/current_spec.rb
+  - spec/lib/eac_ruby_utils/patches/enumerator/stopped_spec.rb
+  - spec/lib/eac_ruby_utils/patches/hash/options_consumer_spec.rb
+  - spec/lib/eac_ruby_utils/patches/module/compare_by_spec.rb
+  - spec/lib/eac_ruby_utils/patches/module/listable_spec.rb
+  - spec/lib/eac_ruby_utils/patches/module/simple_cache_spec.rb
+  - spec/lib/eac_ruby_utils/patches/module/speaker_spec.rb
+  - spec/lib/eac_ruby_utils/patches/object/call_if_proc_spec.rb
+  - spec/lib/eac_ruby_utils/patches/object/compact_spec.rb
+  - spec/lib/eac_ruby_utils/patches/object/if_present_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/assert_parent_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/basename_noext_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/basename_sub_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/child_of_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/parent_n_spec.rb
+  - spec/lib/eac_ruby_utils/patches/string/delimited_spec.rb
+  - spec/lib/eac_ruby_utils/ruby/on_clean_environment_spec.rb
+  - spec/lib/eac_ruby_utils/ruby/on_replace_objects_spec.rb
+RSpec/IdenticalEqualityAssertion:
+  Exclude:
+  - spec/lib/eac_ruby_utils/simple_cache_spec.rb
+RSpec/IndexedLet:
+  Exclude:
+  - spec/lib/eac_ruby_utils/common_constructor_spec.rb
+  - spec/lib/eac_ruby_utils/compare_by_spec.rb
+  - spec/lib/eac_ruby_utils/patches/module/compare_by_spec.rb
+RSpec/SpecFilePathFormat:
+  Exclude:
+  - spec/lib/eac_ruby_utils/envs/command/local_env_spec.rb
+  - spec/lib/eac_ruby_utils/envs/command/ssh_env_spec.rb
+  - spec/lib/eac_ruby_utils/fs/extname_spec.rb
+  - spec/lib/eac_ruby_utils/patches/addressable/uri/query_value_spec.rb
+  - spec/lib/eac_ruby_utils/patches/class/abstract_spec.rb
+  - spec/lib/eac_ruby_utils/patches/class/acts_as_abstract_spec.rb
+  - spec/lib/eac_ruby_utils/patches/class/self_included_modules_spec.rb
+  - spec/lib/eac_ruby_utils/patches/enumerable/boolean_combinations_spec.rb
+  - spec/lib/eac_ruby_utils/patches/enumerator/current_spec.rb
+  - spec/lib/eac_ruby_utils/patches/enumerator/stopped_spec.rb
+  - spec/lib/eac_ruby_utils/patches/hash/options_consumer_spec.rb
+  - spec/lib/eac_ruby_utils/patches/module/compare_by_spec.rb
+  - spec/lib/eac_ruby_utils/patches/module/listable_spec.rb
+  - spec/lib/eac_ruby_utils/patches/module/simple_cache_spec.rb
+  - spec/lib/eac_ruby_utils/patches/module/speaker_spec.rb
+  - spec/lib/eac_ruby_utils/patches/object/call_if_proc_spec.rb
+  - spec/lib/eac_ruby_utils/patches/object/compact_spec.rb
+  - spec/lib/eac_ruby_utils/patches/object/if_present_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/assert_parent_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/basename_noext_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/basename_sub_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/child_of_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/parent_n_spec.rb
+  - spec/lib/eac_ruby_utils/patches/string/delimited_spec.rb
+  - spec/lib/eac_ruby_utils/ruby/on_clean_environment_spec.rb
+  - spec/lib/eac_ruby_utils/ruby/on_replace_objects_spec.rb
+Rails/Delegate:
+  Exclude:
+  - lib/eac_ruby_utils/envs/ssh_env.rb
+Rails/I18nLocaleAssignment:
+  Exclude:
+  - spec/spec_helper.rb
+Rails/IndexWith:
+  Exclude:
+  - lib/eac_ruby_utils/options_consumer.rb
+  - lib/eac_ruby_utils/struct.rb
+Rails/ShortI18n:
+  Exclude:
+  - lib/eac_ruby_utils/locales/module_i18n_translate.rb
+Style/ArgumentsForwarding:
+  Exclude:
+  - lib/eac_ruby_utils/patches/class/common_constructor.rb
+Style/EmptyLiteral:
+  Exclude:
+  - spec/lib/eac_ruby_utils/module_ancestors_variable/hash_spec.rb
+Style/FetchEnvVar:
+  Exclude:
+  - spec/lib/eac_ruby_utils/ruby/on_clean_environment_spec.rb
+Style/GlobalStdStream:
+  Exclude:
+  - lib/eac_ruby_utils/patches/object/debug.rb
+Style/HashAsLastArrayItem:
+  Exclude:
+  - spec/lib/eac_ruby_utils/arguments_consumer_spec.rb
+Style/HashConversion:
+  Exclude:
+  - lib/eac_ruby_utils/listable/integer_list.rb
+  - lib/eac_ruby_utils/listable/string_list.rb
+  - lib/eac_ruby_utils/listable/symbol_list.rb
+Style/IfWithBooleanLiteralBranches:
+  Exclude:
+  - lib/eac_ruby_utils/boolean.rb
+Style/MapToHash:
+  Exclude:
+  - lib/eac_ruby_utils/common_constructor/super_args.rb
+  - lib/eac_ruby_utils/compact.rb
+  - lib/eac_ruby_utils/options_consumer.rb
+  - lib/eac_ruby_utils/struct.rb
+  - lib/eac_ruby_utils/yaml.rb
+Style/OpenStructUse:
+  Exclude:
+  - lib/eac_ruby_utils/arguments_consumer.rb
+  - lib/eac_ruby_utils/common_constructor.rb
+  - lib/eac_ruby_utils/options_consumer.rb
+  - spec/lib/eac_ruby_utils/compact_spec.rb
+  - spec/lib/eac_ruby_utils/patches/object/compact_spec.rb
+Style/OptionalBooleanParameter:
+  Exclude:
+  - lib/eac_ruby_utils/bit_array.rb
+  - lib/eac_ruby_utils/byte.rb
+  - lib/eac_ruby_utils/inflector.rb
+  - lib/eac_ruby_utils/patches/regexp/if_match.rb
+  - lib/eac_ruby_utils/patches/string/inflector.rb
+  - lib/eac_ruby_utils/settings_provider/setting_value.rb
+  - lib/eac_ruby_utils/settings_provider.rb
+Style/Proc:
+  Exclude:
+  - spec/lib/eac_ruby_utils/common_constructor_spec.rb
+  - spec/lib/eac_ruby_utils/ruby/on_replace_objects_spec.rb
+Style/RedundantArgument:
+  Exclude:
+  - lib/eac_ruby_utils/string_delimited.rb
+Style/RedundantConstantBase:
+  Exclude:
+  - Gemfile
+  - eac_ruby_utils.gemspec
+  - lib/eac_ruby_utils/listable.rb
+  - lib/eac_ruby_utils/locales/from_all_gems.rb
+  - lib/eac_ruby_utils/patches/addressable/uri.rb
+  - lib/eac_ruby_utils/patches/addressable.rb
+  - lib/eac_ruby_utils/patches/class.rb
+  - lib/eac_ruby_utils/patches/enumerable.rb
+  - lib/eac_ruby_utils/patches/enumerator.rb
+  - lib/eac_ruby_utils/patches/hash.rb
+  - lib/eac_ruby_utils/patches/kernel.rb
+  - lib/eac_ruby_utils/patches/module/module_parent.rb
+  - lib/eac_ruby_utils/patches/module.rb
+  - lib/eac_ruby_utils/patches/object.rb
+  - lib/eac_ruby_utils/patches/pathname.rb
+  - lib/eac_ruby_utils/patches/regexp.rb
+  - lib/eac_ruby_utils/patches/string.rb
+  - lib/eac_ruby_utils/patches/time.rb
+  - lib/eac_ruby_utils/patches.rb
+  - lib/eac_ruby_utils/rspec.rb
+  - spec/lib/eac_ruby_utils/acts_as_abstract_spec.rb
+  - spec/lib/eac_ruby_utils/acts_as_immutable/array_accessor_spec.rb
+  - spec/lib/eac_ruby_utils/acts_as_immutable/common_accessor_spec.rb
+  - spec/lib/eac_ruby_utils/acts_as_immutable/hash_accessor_spec.rb
+  - spec/lib/eac_ruby_utils/acts_as_immutable/set_accessor_spec.rb
+  - spec/lib/eac_ruby_utils/arguments_consumer_spec.rb
+  - spec/lib/eac_ruby_utils/bit_array_spec.rb
+  - spec/lib/eac_ruby_utils/blank_not_blank_spec.rb
+  - spec/lib/eac_ruby_utils/byte_spec.rb
+  - spec/lib/eac_ruby_utils/common_concern_spec.rb
+  - spec/lib/eac_ruby_utils/common_constructor_spec.rb
+  - spec/lib/eac_ruby_utils/compact_spec.rb
+  - spec/lib/eac_ruby_utils/compare_by_spec.rb
+  - spec/lib/eac_ruby_utils/custom_format_spec.rb
+  - spec/lib/eac_ruby_utils/enum_spec.rb
+  - spec/lib/eac_ruby_utils/enumerables_methods_spec.rb
+  - spec/lib/eac_ruby_utils/envs/command/base_example.rb
+  - spec/lib/eac_ruby_utils/envs/command/local_env_spec.rb
+  - spec/lib/eac_ruby_utils/envs/command/ssh_env_spec.rb
+  - spec/lib/eac_ruby_utils/envs/executable_spec.rb
+  - spec/lib/eac_ruby_utils/envs/ssh_env_spec.rb
+  - spec/lib/eac_ruby_utils/fs/extname_spec.rb
+  - spec/lib/eac_ruby_utils/fs/temp/directory_spec.rb
+  - spec/lib/eac_ruby_utils/fs/temp_spec.rb
+  - spec/lib/eac_ruby_utils/inflector_spec.rb
+  - spec/lib/eac_ruby_utils/listable_spec.rb
+  - spec/lib/eac_ruby_utils/local_time_zone_spec.rb
+  - spec/lib/eac_ruby_utils/method_class_spec.rb
+  - spec/lib/eac_ruby_utils/module_ancestors_variable/hash_spec.rb
+  - spec/lib/eac_ruby_utils/module_ancestors_variable/set_spec.rb
+  - spec/lib/eac_ruby_utils/options_consumer_spec.rb
+  - spec/lib/eac_ruby_utils/patches/addressable/uri/query_value_spec.rb
+  - spec/lib/eac_ruby_utils/patches/class/abstract_spec.rb
+  - spec/lib/eac_ruby_utils/patches/class/acts_as_abstract_spec.rb
+  - spec/lib/eac_ruby_utils/patches/class/method_class_spec.rb
+  - spec/lib/eac_ruby_utils/patches/class/self_included_modules_spec.rb
+  - spec/lib/eac_ruby_utils/patches/class/static_method_class_spec.rb
+  - spec/lib/eac_ruby_utils/patches/enumerable/boolean_combinations_spec.rb
+  - spec/lib/eac_ruby_utils/patches/enumerator/current_spec.rb
+  - spec/lib/eac_ruby_utils/patches/enumerator/stopped_spec.rb
+  - spec/lib/eac_ruby_utils/patches/hash/options_consumer_spec.rb
+  - spec/lib/eac_ruby_utils/patches/hash/sym_keys_hash_spec.rb
+  - spec/lib/eac_ruby_utils/patches/module/compare_by_spec.rb
+  - spec/lib/eac_ruby_utils/patches/module/listable_spec.rb
+  - spec/lib/eac_ruby_utils/patches/module/simple_cache_spec.rb
+  - spec/lib/eac_ruby_utils/patches/module/speaker_spec.rb
+  - spec/lib/eac_ruby_utils/patches/object/call_if_proc_spec.rb
+  - spec/lib/eac_ruby_utils/patches/object/compact_spec.rb
+  - spec/lib/eac_ruby_utils/patches/object/if_present_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/assert_parent_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/basename_noext_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/basename_sub_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/child_of_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/parent_n_spec.rb
+  - spec/lib/eac_ruby_utils/patches/string/delimited_spec.rb
+  - spec/lib/eac_ruby_utils/recursive_builder_spec.rb
+  - spec/lib/eac_ruby_utils/require_sub/base_spec.rb
+  - spec/lib/eac_ruby_utils/rspec/setup/setup_manager_spec.rb
+  - spec/lib/eac_ruby_utils/ruby/on_clean_environment_spec.rb
+  - spec/lib/eac_ruby_utils/ruby/on_replace_objects_spec.rb
+  - spec/lib/eac_ruby_utils/settings_provider_spec.rb
+  - spec/lib/eac_ruby_utils/simple_cache_spec.rb
+  - spec/lib/eac_ruby_utils/static_method_class_spec.rb
+  - spec/lib/eac_ruby_utils/struct_spec.rb
+  - spec/lib/eac_ruby_utils/wildcards_spec.rb
+  - spec/lib/eac_ruby_utils/yaml_spec.rb
+  - spec/rubocop_check_spec.rb
+  - spec/spec_helper.rb
+Style/RedundantException:
+  Exclude:
+  - lib/eac_ruby_utils/patches/pathname/reqdir_glob.rb
+Style/RedundantInitialize:
+  Exclude:
+  - spec/lib/eac_ruby_utils/common_constructor_spec.rb
+Style/RedundantRegexpEscape:
+  Exclude:
+  - lib/eac_ruby_utils/envs/base_command.rb
+Style/RedundantStringEscape:
+  Exclude:
+  - spec/lib/eac_ruby_utils/acts_as_abstract_spec.rb
+Style/StringConcatenation:
+  Exclude:
+  - lib/eac_ruby_utils/acts_as_immutable/class_methods.rb
+  - lib/eac_ruby_utils/envs/base_command/append_command_options.rb
+  - lib/eac_ruby_utils/gems_registry/gem.rb
+  - lib/eac_ruby_utils/patches/object/debug.rb
+  - spec/lib/eac_ruby_utils/patches/object/if_present_spec.rb
+  - spec/lib/eac_ruby_utils/patches/pathname/basename_sub_spec.rb
+  - spec/lib/eac_ruby_utils/yaml_spec.rb
