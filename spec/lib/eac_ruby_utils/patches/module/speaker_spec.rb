@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/patches/module/speaker'
 
-RSpec.describe ::Module do
+RSpec.describe ::Module, '#speaker' do
   let(:stub_class) do
     ::Class.new do
       enable_speaker

@@ -1,34 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/FilePath:
-  Exclude:
-  - spec/lib/eac_ruby_utils/envs/command/local_env_spec.rb
-  - spec/lib/eac_ruby_utils/envs/command/ssh_env_spec.rb
-  - spec/lib/eac_ruby_utils/fs/extname_spec.rb
-  - spec/lib/eac_ruby_utils/patches/addressable/uri/query_value_spec.rb
-  - spec/lib/eac_ruby_utils/patches/class/abstract_spec.rb
-  - spec/lib/eac_ruby_utils/patches/class/acts_as_abstract_spec.rb
-  - spec/lib/eac_ruby_utils/patches/class/self_included_modules_spec.rb
-  - spec/lib/eac_ruby_utils/patches/enumerable/boolean_combinations_spec.rb
-  - spec/lib/eac_ruby_utils/patches/enumerator/current_spec.rb
-  - spec/lib/eac_ruby_utils/patches/enumerator/stopped_spec.rb
-  - spec/lib/eac_ruby_utils/patches/hash/options_consumer_spec.rb
-  - spec/lib/eac_ruby_utils/patches/module/compare_by_spec.rb
-  - spec/lib/eac_ruby_utils/patches/module/listable_spec.rb
-  - spec/lib/eac_ruby_utils/patches/module/simple_cache_spec.rb
-  - spec/lib/eac_ruby_utils/patches/module/speaker_spec.rb
-  - spec/lib/eac_ruby_utils/patches/object/call_if_proc_spec.rb
-  - spec/lib/eac_ruby_utils/patches/object/compact_spec.rb
-  - spec/lib/eac_ruby_utils/patches/object/if_present_spec.rb
-  - spec/lib/eac_ruby_utils/patches/pathname/assert_parent_spec.rb
-  - spec/lib/eac_ruby_utils/patches/pathname/basename_noext_spec.rb
-  - spec/lib/eac_ruby_utils/patches/pathname/basename_sub_spec.rb
-  - spec/lib/eac_ruby_utils/patches/pathname/child_of_spec.rb
-  - spec/lib/eac_ruby_utils/patches/pathname/parent_n_spec.rb
-  - spec/lib/eac_ruby_utils/patches/string/delimited_spec.rb
-  - spec/lib/eac_ruby_utils/ruby/on_clean_environment_spec.rb
-  - spec/lib/eac_ruby_utils/ruby/on_replace_objects_spec.rb
 RSpec/IdenticalEqualityAssertion:
   Exclude:
   - spec/lib/eac_ruby_utils/simple_cache_spec.rb

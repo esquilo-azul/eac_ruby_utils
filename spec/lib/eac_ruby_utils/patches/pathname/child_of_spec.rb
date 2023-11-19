@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/patches/pathname/child_of'
 
-RSpec.describe ::Pathname do
+RSpec.describe ::Pathname, '#child_of' do
   describe 'child_of?' do
     [
       ['/foo/bar/baz', '/foo/bar', true],

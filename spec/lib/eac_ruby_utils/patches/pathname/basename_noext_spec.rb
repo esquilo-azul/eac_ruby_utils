@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/patches/pathname/basename_noext'
 
-RSpec.describe ::Pathname do
+RSpec.describe ::Pathname, '#basename_noext' do
   describe '#basename_noext' do
     {
       'After.Life.S01E01.WEBRip.x264-ION10.mp4' =>

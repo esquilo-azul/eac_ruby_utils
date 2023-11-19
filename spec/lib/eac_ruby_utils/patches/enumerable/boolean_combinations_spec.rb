@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/patches/enumerable/boolean_combinations'
 
-RSpec.describe ::Enumerable do
+RSpec.describe ::Enumerable, '#boolean_combinations' do
   let(:empty_instance) { [].to_enum }
   let(:a_instance) { [:a].to_enum }
   let(:ab_instance) { %i[a b].to_enum }

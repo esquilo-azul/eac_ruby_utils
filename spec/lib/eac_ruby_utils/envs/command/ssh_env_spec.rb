@@ -5,7 +5,7 @@ require 'eac_ruby_utils/envs/command'
 require 'eac_ruby_utils/envs/ssh_env'
 require_relative 'base_example'
 
-::RSpec.describe ::EacRubyUtils::Envs::Command do
+::RSpec.describe ::EacRubyUtils::Envs::Command, '#ssh_env' do
   let(:ssh_server) { ::Avm::EacUbuntuBase0::Rspec::SshDockerServer.new }
   let(:env) { ssh_server.env }
 

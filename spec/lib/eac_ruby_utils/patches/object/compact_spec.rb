@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/patches/object/compact'
 
-::RSpec.describe ::Object do
+::RSpec.describe ::Object, '#compact' do
   let(:instance) { ::OpenStruct.new(a_attr: 'a_value', b_attr: 'b_value') }
   let(:attributes) { %w[a_attr b_attr] }
 

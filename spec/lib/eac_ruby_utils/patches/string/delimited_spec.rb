@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/patches/string/delimited'
 
-::RSpec.describe ::String do
+::RSpec.describe ::String, '#delimeted' do # rubocop:disable RSpec/FilePath
   let(:instance) { 'A text with <b>content between</b> tags.' }
 
   {

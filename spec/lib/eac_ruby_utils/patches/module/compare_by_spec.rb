@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/patches/module/compare_by'
 
-RSpec.describe ::Module do
+RSpec.describe ::Module, '#compare_by' do
   let(:klass) do
     ::Class.new do
       compare_by :field1, :field2

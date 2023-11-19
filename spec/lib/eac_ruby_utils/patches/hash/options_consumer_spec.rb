@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/patches/hash/options_consumer'
 
-RSpec.describe ::Hash do
+RSpec.describe ::Hash, '#options_consumer' do
   let(:a_hash) { { a: 'a_value', b: 'b_value', c: 'c_value' } }
   let(:instance) { a_hash.to_options_consumer }
 

@@ -3,7 +3,7 @@
 require 'eac_ruby_utils/method_class'
 require 'eac_ruby_utils/patches/class/method_class'
 
-RSpec.describe ::Class do
+RSpec.describe ::Class, '#method_class' do
   let(:stub_method_class) do
     described_class.new do
       def self.name
