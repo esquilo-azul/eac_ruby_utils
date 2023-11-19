@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/ArgumentsForwarding:
-  Exclude:
-  - lib/eac_ruby_utils/patches/class/common_constructor.rb
 Style/EmptyLiteral:
   Exclude:
   - spec/lib/eac_ruby_utils/module_ancestors_variable/hash_spec.rb
