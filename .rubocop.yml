@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/ContextWording:
-  Exclude:
-  - spec/lib/eac_ruby_utils/common_constructor_spec.rb
 RSpec/FilePath:
   Exclude:
   - spec/lib/eac_ruby_utils/envs/command/local_env_spec.rb

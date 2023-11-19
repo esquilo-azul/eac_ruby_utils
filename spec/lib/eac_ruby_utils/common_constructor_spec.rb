@@ -141,7 +141,7 @@ RSpec.describe ::EacRubyUtils::CommonConstructor do
     end
 
     4.times.each do |i|
-      context "wit #{i}-th class" do
+      context "with #{i}-th class" do
         let(:class_instance) { send("klass_#{i}").new(:a) }
 
         it { expect(class_instance.a_param).to eq(:a) }
