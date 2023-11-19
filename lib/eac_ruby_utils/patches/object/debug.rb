@@ -13,20 +13,20 @@ class Object
   def pretty_debug(options = {})
     print_debug_options(options)
 
-    STDERR.write(pretty_inspect)
+    $stderr.write(pretty_inspect)
 
     self
   end
 
   def print_debug(options = {})
     print_debug_options(options)
-    STDERR.write(to_debug + "\n")
+    $stderr.write(to_debug + "\n")
 
     self
   end
 
   def print_debug_label(label)
-    STDERR.write("#{label}: ")
+    $stderr.write("#{label}: ")
   end
 
   def print_debug_options(options)
@@ -36,9 +36,9 @@ class Object
 
   def print_debug_title(title)
     char = '='
-    STDERR.write((char * (4 + title.length)) + "\n")
-    STDERR.write("#{char} #{title} #{char}\n")
-    STDERR.write((char * (4 + title.length)) + "\n")
+    $stderr.write((char * (4 + title.length)) + "\n")
+    $stderr.write("#{char} #{title} #{char}\n")
+    $stderr.write((char * (4 + title.length)) + "\n")
   end
 
   def to_debug
