@@ -52,7 +52,7 @@ module EacRubyUtils
     def without_join(*strings)
       return string if strings.any?(&:nil?)
 
-      strings.join('')
+      strings.join
     end
 
     def end_index
