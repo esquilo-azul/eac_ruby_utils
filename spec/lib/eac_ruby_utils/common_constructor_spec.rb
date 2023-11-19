@@ -120,11 +120,11 @@ RSpec.describe ::EacRubyUtils::CommonConstructor do
   end
 
   context 'with class hierarchy mixed with and without common_constructor' do
-    let(:klass_0) do # rubocop:disable Naming/VariableNumber
+    let(:klass_0) do # rubocop:disable Naming/VariableNumber, RSpec/IndexedLet
       described_class.new(:a_param).setup_class(::Class.new)
     end
 
-    let(:klass_1) do # rubocop:disable Naming/VariableNumber
+    let(:klass_1) do # rubocop:disable Naming/VariableNumber, RSpec/IndexedLet
       ::Class.new(klass_0) do
         def initialize(a_param) # rubocop:disable Lint/UselessMethodDefinition
           super(a_param)
@@ -132,11 +132,11 @@ RSpec.describe ::EacRubyUtils::CommonConstructor do
       end
     end
 
-    let(:klass_2) do # rubocop:disable Naming/VariableNumber
+    let(:klass_2) do # rubocop:disable Naming/VariableNumber, RSpec/IndexedLet
       ::Class.new(klass_1)
     end
 
-    let(:klass_3) do # rubocop:disable Naming/VariableNumber
+    let(:klass_3) do # rubocop:disable Naming/VariableNumber, RSpec/IndexedLet
       described_class.new(:a_param).setup_class(::Class.new(klass_2))
     end
 

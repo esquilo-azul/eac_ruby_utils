@@ -14,9 +14,9 @@ RSpec.describe ::EacRubyUtils::CompareBy do
       end
     end
   end
-  let(:o1) { klass.new(1, 2) }
-  let(:o2) { klass.new(2, 1) }
-  let(:o3) { klass.new(1, 1) }
+  let(:o1) { klass.new(1, 2) } # rubocop:disable RSpec/IndexedLet
+  let(:o2) { klass.new(2, 1) } # rubocop:disable RSpec/IndexedLet
+  let(:o3) { klass.new(1, 1) } # rubocop:disable RSpec/IndexedLet
 
   before { instance.apply(klass) }
 
