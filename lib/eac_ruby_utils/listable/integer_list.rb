@@ -9,9 +9,9 @@ module EacRubyUtils
 
       def parse_labels(labels)
         if labels.first.is_a?(Hash)
-          Hash[labels.first.map { |k, v| [k.to_i, v.to_s] }]
+          labels.first.to_h { |k, v| [k.to_i, v.to_s] }
         else
-          Hash[labels.each_with_index.map { |v, i| [i + 1, v.to_s] }]
+          labels.each_with_index.to_h { |v, i| [i + 1, v.to_s] }
         end
       end
 

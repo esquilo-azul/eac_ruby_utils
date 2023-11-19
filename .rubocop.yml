@@ -1,11 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/HashConversion:
-  Exclude:
-  - lib/eac_ruby_utils/listable/integer_list.rb
-  - lib/eac_ruby_utils/listable/string_list.rb
-  - lib/eac_ruby_utils/listable/symbol_list.rb
 Style/IfWithBooleanLiteralBranches:
   Exclude:
   - lib/eac_ruby_utils/boolean.rb
