@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Rails/Delegate:
-  Exclude:
-  - lib/eac_ruby_utils/envs/ssh_env.rb
 Rails/I18nLocaleAssignment:
   Exclude:
   - spec/spec_helper.rb

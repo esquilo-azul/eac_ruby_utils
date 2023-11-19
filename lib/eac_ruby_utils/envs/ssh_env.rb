@@ -43,9 +43,7 @@ module EacRubyUtils
         @uri = self.class.parse_uri(uri).freeze
       end
 
-      def to_s
-        uri.to_s
-      end
+      delegate :to_s, to: :uri
 
       def command_line(line)
         "#{ssh_command_line} #{Shellwords.escape(line)}"
