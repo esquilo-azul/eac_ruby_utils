@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/byte'
 
-RSpec.describe ::EacRubyUtils::Byte do
+RSpec.describe EacRubyUtils::Byte do
   describe '#[]' do
     let(:instance) { described_class.new(0xDC) }
 
@@ -48,7 +48,7 @@ RSpec.describe ::EacRubyUtils::Byte do
 
     it do
       expect { described_class.from_bit_array([0, 0, 1, 1, 1, 0, 1]) }
-        .to raise_error(::ArgumentError)
+        .to raise_error(ArgumentError)
     end
   end
 end

@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/patches/addressable/uri/query_value'
 
-RSpec.describe ::Addressable::URI, '#query_value' do
+RSpec.describe Addressable::URI, '#query_value' do
   subject(:instance) { described_class.parse('http://example.net') }
 
   it { expect(instance.query_values).to be_nil }

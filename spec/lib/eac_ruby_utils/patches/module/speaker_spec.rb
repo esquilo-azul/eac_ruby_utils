@@ -2,14 +2,14 @@
 
 require 'eac_ruby_utils/patches/module/speaker'
 
-RSpec.describe ::Module, '#speaker' do
+RSpec.describe Module, '#speaker' do
   let(:stub_class) do
-    ::Class.new do
+    Class.new do
       enable_speaker
     end
   end
 
   describe '#enable_speaker' do
-    it { expect(stub_class.included_modules).to include(::EacRubyUtils::Speaker::Sender) }
+    it { expect(stub_class.included_modules).to include(EacRubyUtils::Speaker::Sender) }
   end
 end

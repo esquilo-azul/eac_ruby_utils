@@ -3,7 +3,7 @@
 require 'active_support/hash_with_indifferent_access'
 require 'eac_ruby_utils/yaml'
 
-RSpec.describe ::EacRubyUtils::Yaml do
+RSpec.describe EacRubyUtils::Yaml do
   let(:unpermitted_class) do
     Class.new do
       def initialize(value)
@@ -35,7 +35,7 @@ RSpec.describe ::EacRubyUtils::Yaml do
         'f',
         {
           g: 'g',
-          h: ::ActiveSupport::HashWithIndifferentAccess.new(
+          h: ActiveSupport::HashWithIndifferentAccess.new(
             'i' => ['i', unpermitted_class.new('j')],
             k: arrayliable_class.new('k')
           )

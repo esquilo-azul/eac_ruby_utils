@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/patches/class/abstract'
 
-RSpec.describe ::Class, '#abstract' do
+RSpec.describe Class, '#abstract' do
   let(:abstract_class) do
     described_class.new do
       acts_as_abstract

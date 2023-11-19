@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/fs/extname'
 
-RSpec.describe ::EacRubyUtils::Fs, '#extname' do
+RSpec.describe EacRubyUtils::Fs, '#extname' do
   describe '#extname' do
     {
       'After.Life.S01E01.WEBRip.x264-ION10.mp4' => '.mp4',

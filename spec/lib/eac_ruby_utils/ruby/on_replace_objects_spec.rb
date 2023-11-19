@@ -2,9 +2,9 @@
 
 require 'eac_ruby_utils/ruby'
 
-RSpec.describe ::EacRubyUtils::Ruby do
+RSpec.describe EacRubyUtils::Ruby, '#on_replace_objects' do
   let(:stub_class) do
-    ::Class.new do
+    Class.new do
       def self.my_class_method
         'Original'
       end

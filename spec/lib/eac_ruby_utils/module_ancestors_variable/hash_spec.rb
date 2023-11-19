@@ -2,9 +2,9 @@
 
 require 'eac_ruby_utils/module_ancestors_variable/hash'
 
-::RSpec.describe(::EacRubyUtils::ModuleAncestorsVariable::Hash) do
+RSpec.describe(EacRubyUtils::ModuleAncestorsVariable::Hash) do
   let(:included_module) do
-    ::Module.new do
+    Module.new do
       def self.included(base)
         base.extend(ClassMethods)
       end
@@ -18,13 +18,13 @@ require 'eac_ruby_utils/module_ancestors_variable/hash'
   end
 
   let(:super_class) do
-    r = ::Class.new
+    r = Class.new
     r.include included_module
     r
   end
 
   let(:sub_class) do
-    ::Class.new(super_class)
+    Class.new(super_class)
   end
 
   it { expect(super_class.hash_variable).to be_a(described_class) }

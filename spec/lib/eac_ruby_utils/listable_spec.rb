@@ -2,10 +2,10 @@
 
 require 'eac_ruby_utils/listable'
 
-RSpec.describe ::EacRubyUtils::Listable do
+RSpec.describe EacRubyUtils::Listable do
   let(:stub_class) do
     the_described_class = described_class
-    ::Class.new do
+    Class.new do
       class << self
         def name
           'Stub'
@@ -84,55 +84,55 @@ RSpec.describe ::EacRubyUtils::Listable do
   end
 
   describe 'values instances' do
-    it { expect(stub_class.lists.is_a?(::EacRubyUtils::Listable::Lists)).to be(true) }
+    it { expect(stub_class.lists.is_a?(EacRubyUtils::Listable::Lists)).to be(true) }
 
     it {
-      expect(stub_class.lists.inteiro.value_a.is_a?(::EacRubyUtils::Listable::Item))
+      expect(stub_class.lists.inteiro.value_a.is_a?(EacRubyUtils::Listable::Item))
         .to be(true)
     }
 
     it {
-      expect(stub_class.lists.inteiro.value_b.is_a?(::EacRubyUtils::Listable::Item))
+      expect(stub_class.lists.inteiro.value_b.is_a?(EacRubyUtils::Listable::Item))
         .to be(true)
     }
 
     it {
-      expect(stub_class.lists.inteiro.value_c.is_a?(::EacRubyUtils::Listable::Item))
+      expect(stub_class.lists.inteiro.value_c.is_a?(EacRubyUtils::Listable::Item))
         .to be(true)
     }
 
     it {
-      expect(stub_class.lists.code.value_a.is_a?(::EacRubyUtils::Listable::Item))
+      expect(stub_class.lists.code.value_a.is_a?(EacRubyUtils::Listable::Item))
         .to be(true)
     }
 
     it {
-      expect(stub_class.lists.code.value_b.is_a?(::EacRubyUtils::Listable::Item))
+      expect(stub_class.lists.code.value_b.is_a?(EacRubyUtils::Listable::Item))
         .to be(true)
     }
 
     it {
-      expect(stub_class.lists.cadeia.value_a.is_a?(::EacRubyUtils::Listable::Item))
+      expect(stub_class.lists.cadeia.value_a.is_a?(EacRubyUtils::Listable::Item))
         .to be(true)
     }
 
     it {
-      expect(stub_class.lists.cadeia.value_b.is_a?(::EacRubyUtils::Listable::Item))
+      expect(stub_class.lists.cadeia.value_b.is_a?(EacRubyUtils::Listable::Item))
         .to be(true)
     }
 
     it {
-      expect(stub_class.lists.cadeia.value_c.is_a?(::EacRubyUtils::Listable::Item))
+      expect(stub_class.lists.cadeia.value_c.is_a?(EacRubyUtils::Listable::Item))
         .to be(true)
     }
 
     it {
-      expect(stub_class.lists.type.value_a.is_a?(::EacRubyUtils::Listable::Item))
+      expect(stub_class.lists.type.value_a.is_a?(EacRubyUtils::Listable::Item))
         .to be(true)
     }
 
     it {
-      expect(stub_class.lists.type.value_b.is_a?(::EacRubyUtils::Listable::Item))
+      expect(stub_class.lists.type.value_b.is_a?(EacRubyUtils::Listable::Item))
         .to be(true)
     }
   end
@@ -216,10 +216,10 @@ RSpec.describe ::EacRubyUtils::Listable do
 
   describe '#value_validate!' do
     it { expect { stub_class.lists.inteiro.value_validate!(1) }.not_to raise_error }
-    it { expect { stub_class.lists.inteiro.value_validate!('1') }.to raise_error(::StandardError) }
-    it { expect { stub_class.lists.inteiro.value_validate!(10) }.to raise_error(::StandardError) }
-    it { expect { stub_class.lists.cadeia.value_validate!(:a) }.to raise_error(::StandardError)  }
+    it { expect { stub_class.lists.inteiro.value_validate!('1') }.to raise_error(StandardError) }
+    it { expect { stub_class.lists.inteiro.value_validate!(10) }.to raise_error(StandardError) }
+    it { expect { stub_class.lists.cadeia.value_validate!(:a) }.to raise_error(StandardError)  }
     it { expect { stub_class.lists.cadeia.value_validate!('a') }.not_to raise_error }
-    it { expect { stub_class.lists.cadeia.value_validate!(:z) }.to raise_error(::StandardError) }
+    it { expect { stub_class.lists.cadeia.value_validate!(:z) }.to raise_error(StandardError) }
   end
 end

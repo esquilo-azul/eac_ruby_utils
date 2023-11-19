@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/enumerables_methods'
 
-::RSpec.describe ::EacRubyUtils::EnumerablesMethods do
+RSpec.describe EacRubyUtils::EnumerablesMethods do
   describe '#write_method?' do
     it do
       expect(described_class).to be_write_method(:'[]=')

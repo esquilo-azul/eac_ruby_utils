@@ -2,10 +2,10 @@
 
 require 'eac_ruby_utils/compare_by'
 
-RSpec.describe ::EacRubyUtils::CompareBy do
+RSpec.describe EacRubyUtils::CompareBy do
   let(:instance) { described_class.new(%i[field1 field2]) }
   let(:klass) do
-    ::Class.new do
+    Class.new do
       attr_reader :field1, :field2
 
       def initialize(field1, field2)

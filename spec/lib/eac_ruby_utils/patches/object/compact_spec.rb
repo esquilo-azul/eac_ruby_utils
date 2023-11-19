@@ -2,8 +2,8 @@
 
 require 'eac_ruby_utils/patches/object/compact'
 
-::RSpec.describe ::Object, '#compact' do
-  let(:instance) { ::Struct.new(:a_attr, :b_attr).new('a_value', 'b_value') }
+RSpec.describe Object, '#compact' do
+  let(:instance) { Struct.new(:a_attr, :b_attr).new('a_value', 'b_value') }
   let(:attributes) { %w[a_attr b_attr] }
 
   describe '#compact' do

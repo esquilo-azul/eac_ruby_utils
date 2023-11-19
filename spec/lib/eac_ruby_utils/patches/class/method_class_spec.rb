@@ -3,7 +3,7 @@
 require 'eac_ruby_utils/method_class'
 require 'eac_ruby_utils/patches/class/method_class'
 
-RSpec.describe ::Class, '#method_class' do
+RSpec.describe Class, '#method_class' do
   let(:stub_method_class) do
     described_class.new do
       def self.name
@@ -15,6 +15,6 @@ RSpec.describe ::Class, '#method_class' do
   end
 
   describe '#enable_simple_cache' do
-    it { expect(stub_method_class.included_modules).to include(::EacRubyUtils::MethodClass) }
+    it { expect(stub_method_class.included_modules).to include(EacRubyUtils::MethodClass) }
   end
 end

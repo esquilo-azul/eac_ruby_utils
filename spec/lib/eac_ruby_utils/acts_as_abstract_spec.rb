@@ -3,10 +3,10 @@
 require 'eac_ruby_utils/acts_as_abstract'
 require 'eac_ruby_utils/unimplemented_method_error'
 
-::RSpec.describe(::EacRubyUtils::ActsAsAbstract) do
+RSpec.describe(EacRubyUtils::ActsAsAbstract) do
   let(:base_class) do
     the_module = described_class
-    ::Class.new do
+    Class.new do
       include the_module
 
       abstract_methods :method1, :method2
@@ -17,7 +17,7 @@ require 'eac_ruby_utils/unimplemented_method_error'
     end
   end
   let(:sub_class) do
-    ::Class.new(base_class) do
+    Class.new(base_class) do
       def method1
         'a result'
       end
@@ -59,7 +59,7 @@ require 'eac_ruby_utils/unimplemented_method_error'
     end
 
     def specs_for_method_missing(method_name, expected_value)
-      if expected_value.is_a?(::Class) && expected_value < ::Exception
+      if expected_value.is_a?(Class) && expected_value < Exception
         it do
           expect { instance.send(method_name) }.to raise_error(expected_value)
         end
@@ -80,9 +80,9 @@ require 'eac_ruby_utils/unimplemented_method_error'
       sub: [false, true, false, false]
     },
     method_missing: {
-      base: [::EacRubyUtils::UnimplementedMethodError, ::EacRubyUtils::UnimplementedMethodError,
-             'base result', ::NoMethodError],
-      sub: ['a result', ::EacRubyUtils::UnimplementedMethodError, 'base result', 'sub result']
+      base: [EacRubyUtils::UnimplementedMethodError, EacRubyUtils::UnimplementedMethodError,
+             'base result', NoMethodError],
+      sub: ['a result', EacRubyUtils::UnimplementedMethodError, 'base result', 'sub result']
     },
     respond_to_missing: {
       base: [true, true, true, false],

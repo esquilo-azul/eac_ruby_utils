@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/inflector'
 
-RSpec.describe ::EacRubyUtils::Inflector do
+RSpec.describe EacRubyUtils::Inflector do
   describe '#variableize' do
     {
       '_A_variableName' => 'a_variablename',

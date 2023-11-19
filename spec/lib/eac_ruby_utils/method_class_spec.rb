@@ -2,9 +2,9 @@
 
 require 'eac_ruby_utils/method_class'
 
-::RSpec.describe ::EacRubyUtils::MethodClass do
+RSpec.describe EacRubyUtils::MethodClass do
   let(:sender_class) do
-    ::Class.new do
+    Class.new do
       attr_accessor :sender_value
 
       def initialize(sender_value)
@@ -15,7 +15,7 @@ require 'eac_ruby_utils/method_class'
 
   let(:method_class) do
     the_described_class = described_class
-    ::Class.new do
+    Class.new do
       def self.name
         'TheSender::PerformX'
       end
@@ -37,7 +37,7 @@ require 'eac_ruby_utils/method_class'
   let(:sender_instance) { sender_class.new('AAA') }
 
   before do
-    ::Object.const_set('TheSender', sender_class)
+    Object.const_set('TheSender', sender_class)
     sender_class.const_set('PerformX', method_class)
   end
 

@@ -2,10 +2,10 @@
 
 require 'eac_ruby_utils/acts_as_immutable'
 
-::RSpec.describe ::EacRubyUtils::ActsAsImmutable::CommonAccessor do
+RSpec.describe EacRubyUtils::ActsAsImmutable::CommonAccessor do
   let(:stub_class) do
-    ::Class.new do
-      include ::EacRubyUtils::ActsAsImmutable
+    Class.new do
+      include EacRubyUtils::ActsAsImmutable
 
       immutable_accessor :attr1, :attr2, :attr3
 

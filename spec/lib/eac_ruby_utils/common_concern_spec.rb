@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/common_concern'
 
-RSpec.describe ::EacRubyUtils::CommonConcern do
+RSpec.describe EacRubyUtils::CommonConcern do
   let(:instance) do
     described_class.new do
       self.valor = 'changed'
@@ -10,7 +10,7 @@ RSpec.describe ::EacRubyUtils::CommonConcern do
   end
 
   let(:stub_module) do
-    ::Module.new do
+    Module.new do
       module ClassMethods # rubocop:disable Lint/ConstantDefinitionInBlock, RSpec/LeakyConstantDeclaration,
         def my_class_method
           'class'
@@ -26,7 +26,7 @@ RSpec.describe ::EacRubyUtils::CommonConcern do
   end
 
   let(:stub_class) do
-    ::Class.new do
+    Class.new do
       class << self
         attr_accessor :valor
       end

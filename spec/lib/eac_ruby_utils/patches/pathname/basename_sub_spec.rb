@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/patches/pathname/basename_sub'
 
-RSpec.describe ::Pathname, '#basename_sub' do
+RSpec.describe Pathname, '#basename_sub' do
   it do
     expect(described_class.new('/absolute/path/to/file').basename_sub { |_b| 'other_file' }).to eq(
       described_class.new('/absolute/path/to/other_file')

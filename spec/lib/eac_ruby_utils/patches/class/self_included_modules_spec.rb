@@ -2,9 +2,9 @@
 
 require 'eac_ruby_utils/patches/class/self_included_modules'
 
-RSpec.describe ::Class, '#self_included_modules' do
+RSpec.describe Class, '#self_included_modules' do
   let(:includeable_module) do
-    ::Module.new
+    Module.new
   end
 
   let(:parent_class) do

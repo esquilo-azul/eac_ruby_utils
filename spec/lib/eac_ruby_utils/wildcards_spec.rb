@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/wildcards'
 
-::RSpec.describe ::EacRubyUtils::Wildcards do
+RSpec.describe EacRubyUtils::Wildcards do
   describe '#match' do
     {
       'h*llo' => { 'hello' => true, 'hallo' => true, 'hxllo' => true, 'hillo' => true },

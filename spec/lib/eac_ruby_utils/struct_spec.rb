@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/struct'
 
-RSpec.describe ::EacRubyUtils::Struct do
+RSpec.describe EacRubyUtils::Struct do
   let(:instance) { described_class.new('a' => 1, b: '') }
   let(:other) { described_class.new('a' => 'm1', c: 'm2') }
 
@@ -30,10 +30,10 @@ RSpec.describe ::EacRubyUtils::Struct do
     it { expect(instance.fetch('b')).to eq('') }
     it { expect(instance.fetch(:b?)).to be(false) }
     it { expect(instance.fetch('b?')).to be(false) }
-    it { expect { instance.fetch(:c) }.to raise_error(::KeyError) }
-    it { expect { instance.fetch('c') }.to raise_error(::KeyError) }
-    it { expect { instance.fetch(:c?) }.to raise_error(::KeyError) }
-    it { expect { instance.fetch('c?') }.to raise_error(::KeyError) }
+    it { expect { instance.fetch(:c) }.to raise_error(KeyError) }
+    it { expect { instance.fetch('c') }.to raise_error(KeyError) }
+    it { expect { instance.fetch(:c?) }.to raise_error(KeyError) }
+    it { expect { instance.fetch('c?') }.to raise_error(KeyError) }
   end
 
   describe '#merge' do
@@ -47,8 +47,8 @@ RSpec.describe ::EacRubyUtils::Struct do
     it { expect(instance.a?).to be(true) }
     it { expect(instance.b).to eq('') }
     it { expect(instance.b?).to be(false) }
-    it { expect { instance.c }.to raise_error(::NoMethodError) }
-    it { expect { instance.c? }.to raise_error(::NoMethodError) }
+    it { expect { instance.c }.to raise_error(NoMethodError) }
+    it { expect { instance.c? }.to raise_error(NoMethodError) }
   end
 
   describe '#to_h' do

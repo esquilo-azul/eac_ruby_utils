@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/patches/enumerator/stopped'
 
-RSpec.describe ::Enumerator, '#stopped' do
+RSpec.describe Enumerator, '#stopped' do
   let(:list) { %w[a b] }
   let(:instance) { list.each }
 
@@ -25,7 +25,7 @@ RSpec.describe ::Enumerator, '#stopped' do
       instance.next
     end
 
-    it { expect { instance.peek }.to raise_error(::StopIteration) }
+    it { expect { instance.peek }.to raise_error(StopIteration) }
     it { expect(instance).not_to be_ongoing }
     it { expect(instance).to be_stopped }
   end

@@ -12,7 +12,7 @@ class StubObjectData
   end
 end
 
-RSpec.describe ::EacRubyUtils::CustomFormat do
+RSpec.describe EacRubyUtils::CustomFormat do
   let(:instance) { described_class.new(x: :x_value, y: :y_value, z: :unexistent) }
   let(:ok_format) { instance.format('|%%|%y|%x|%y|') }
   let(:ok_string_expected) { '|%|Y1|X1|Y1|' }
@@ -43,7 +43,7 @@ RSpec.describe ::EacRubyUtils::CustomFormat do
   end
 
   context 'when object source is not a hash' do
-    let(:object_source) { ::StubObjectData.new }
+    let(:object_source) { StubObjectData.new }
 
     context 'when object has all methods' do
       it do
@@ -53,7 +53,7 @@ RSpec.describe ::EacRubyUtils::CustomFormat do
 
     context 'when object has not all methods' do
       it do
-        expect { fail_format.with(object_source) }.to raise_error(::ArgumentError)
+        expect { fail_format.with(object_source) }.to raise_error(ArgumentError)
       end
     end
   end

@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/patches/pathname/parent_n'
 
-RSpec.describe ::Pathname, '#parent_n' do
+RSpec.describe Pathname, '#parent_n' do
   [
     ['/absolute/path/to/file', 0, '/absolute/path/to/file'],
     ['/absolute/path/to/file', 1, '/absolute/path/to'],

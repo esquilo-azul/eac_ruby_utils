@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/options_consumer'
 
-RSpec.describe ::EacRubyUtils::OptionsConsumer do
+RSpec.describe EacRubyUtils::OptionsConsumer do
   context 'with instance created with some data' do
     subject(:instance) { described_class.new(a: 'a_value', b: 'b_value', c: 'c_value') }
 
@@ -11,11 +11,11 @@ RSpec.describe ::EacRubyUtils::OptionsConsumer do
     let(:consumed_c) { instance.consume(:c) }
 
     it 'left data should be Hash' do
-      expect(instance.left_data).to be_a(::Hash)
+      expect(instance.left_data).to be_a(Hash)
     end
 
     it 'left data should be not empty' do
-      expect { instance.validate }.to raise_error(::StandardError)
+      expect { instance.validate }.to raise_error(StandardError)
     end
 
     context 'when no data is consumed' do

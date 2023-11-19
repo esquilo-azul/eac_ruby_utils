@@ -2,9 +2,9 @@
 
 require 'eac_ruby_utils/static_method_class'
 
-::RSpec.describe ::EacRubyUtils::StaticMethodClass do
+RSpec.describe EacRubyUtils::StaticMethodClass do
   let(:sender_class) do
-    ::Class.new do
+    Class.new do
       class << self
         def sender_value
           'AAA'
@@ -15,7 +15,7 @@ require 'eac_ruby_utils/static_method_class'
 
   let(:method_class) do
     the_described_class = described_class
-    ::Class.new do
+    Class.new do
       def self.name
         'TheSender::PerformX'
       end
@@ -35,7 +35,7 @@ require 'eac_ruby_utils/static_method_class'
   end
 
   before do
-    ::Object.const_set('TheSender', sender_class)
+    Object.const_set('TheSender', sender_class)
     sender_class.const_set('PerformX', method_class)
   end
 

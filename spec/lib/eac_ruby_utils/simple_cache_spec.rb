@@ -37,7 +37,7 @@ class CacheableObject
   end
 end
 
-RSpec.describe ::EacRubyUtils::SimpleCache do
+RSpec.describe EacRubyUtils::SimpleCache do
   let(:instance) { CacheableObject.new }
 
   describe 'cached value' do

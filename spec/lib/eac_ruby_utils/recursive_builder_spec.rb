@@ -2,9 +2,9 @@
 
 require 'eac_ruby_utils/recursive_builder'
 
-RSpec.describe ::EacRubyUtils::RecursiveBuilder do
+RSpec.describe EacRubyUtils::RecursiveBuilder do
   let(:item_class) do
-    ::Class.new do
+    Class.new do
       class << self
         def create(label, dependencies_keys)
           item = new(label, dependencies_keys)

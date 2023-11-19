@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support/concern'
-Dir["#{__dir__}/#{::File.basename(__FILE__, '.*')}/*.rb"].sort.each do |partial|
+Dir["#{__dir__}/#{File.basename(__FILE__, '.*')}/*.rb"].sort.each do |partial|
   require partial
 end
 

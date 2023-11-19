@@ -2,10 +2,10 @@
 
 require 'eac_ruby_utils/envs/execution_error'
 
-::RSpec.shared_examples 'with_command_env' do
+RSpec.shared_examples 'with_command_env' do
   let(:echo) { env.executable('echo', '--version') }
   let(:cat) { env.executable('cat', '--version') }
-  let(:not_existing_file) { ::Pathname.new('a_file_that_not_exists') }
+  let(:not_existing_file) { Pathname.new('a_file_that_not_exists') }
   let(:ok_command) { echo.command('-n', ok_command_output) }
   let(:ok_command_output) { 'THE OUTPUT' }
   let(:error_command) { cat.command(not_existing_file) }
@@ -29,7 +29,7 @@ require 'eac_ruby_utils/envs/execution_error'
 
     it do
       expect { error_command.execute! }.to(
-        raise_error(::EacRubyUtils::Envs::ExecutionError)
+        raise_error(EacRubyUtils::Envs::ExecutionError)
       )
     end
   end
@@ -44,7 +44,7 @@ require 'eac_ruby_utils/envs/execution_error'
 
     it do
       expect { error_command.system! }.to(
-        raise_error(::EacRubyUtils::Envs::ExecutionError)
+        raise_error(EacRubyUtils::Envs::ExecutionError)
       )
     end
   end

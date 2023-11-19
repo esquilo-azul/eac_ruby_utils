@@ -2,10 +2,10 @@
 
 require 'eac_ruby_utils/settings_provider'
 
-RSpec.describe ::EacRubyUtils::SettingsProvider do
+RSpec.describe EacRubyUtils::SettingsProvider do
   let(:stub_class) do
     the_described_class = described_class
-    r = ::Class.new do
+    r = Class.new do
       include the_described_class
 
       def key_a
@@ -46,7 +46,7 @@ RSpec.describe ::EacRubyUtils::SettingsProvider do
     end
 
     it do
-      expect { stub.setting_value('key_e') }.to raise_error(::StandardError)
+      expect { stub.setting_value('key_e') }.to raise_error(StandardError)
     end
 
     it do

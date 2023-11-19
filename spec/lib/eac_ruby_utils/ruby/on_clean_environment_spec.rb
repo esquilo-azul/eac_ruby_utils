@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/ruby'
 
-RSpec.describe ::EacRubyUtils::Ruby, '#on_clean_environment' do
+RSpec.describe EacRubyUtils::Ruby, '#on_clean_environment' do
   let(:envvar_name) { 'BUNDLE_NOT_EXISTENT_ENV_VAR' }
   let(:envvar_value) { 'any value' }
   let(:noruby_envvar_name) { 'ANY_ENVIRONMENT_VARIABLE' }

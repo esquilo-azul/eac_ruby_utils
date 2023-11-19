@@ -2,9 +2,9 @@
 
 require 'eac_ruby_utils/enum'
 
-::RSpec.describe ::EacRubyUtils::Enum do
+RSpec.describe EacRubyUtils::Enum do
   let(:klass) do
-    ::Class.new(described_class) do
+    Class.new(described_class) do
       attr_reader :color
 
       def initialize(key, color = :none)
@@ -38,7 +38,7 @@ require 'eac_ruby_utils/enum'
 
   describe '#enum' do
     it do
-      expect { klass.enum(:PiG) }.to raise_error(::ArgumentError)
+      expect { klass.enum(:PiG) }.to raise_error(ArgumentError)
     end
   end
 end

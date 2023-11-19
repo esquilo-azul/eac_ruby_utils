@@ -2,10 +2,10 @@
 
 require 'eac_ruby_utils/acts_as_immutable'
 
-::RSpec.describe ::EacRubyUtils::ActsAsImmutable::HashAccessor do
+RSpec.describe EacRubyUtils::ActsAsImmutable::HashAccessor do
   let(:stub_class) do
-    ::Class.new do
-      include ::EacRubyUtils::ActsAsImmutable
+    Class.new do
+      include EacRubyUtils::ActsAsImmutable
 
       immutable_accessor :the_hash, type: :hash
     end
