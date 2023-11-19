@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/IdenticalEqualityAssertion:
-  Exclude:
-  - spec/lib/eac_ruby_utils/simple_cache_spec.rb
 RSpec/IndexedLet:
   Exclude:
   - spec/lib/eac_ruby_utils/common_constructor_spec.rb

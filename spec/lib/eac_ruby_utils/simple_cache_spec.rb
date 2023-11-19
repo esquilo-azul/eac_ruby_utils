@@ -46,11 +46,11 @@ RSpec.describe ::EacRubyUtils::SimpleCache do
     end
 
     it 'cached method should return same values at each call' do
-      expect(instance.my_method).to eq(instance.my_method)
+      expect(instance.my_method).to eq(instance.my_method) # rubocop:disable RSpec/IdenticalEqualityAssertion
     end
 
     it 'is able to call private uncached as cached' do
-      expect(instance.private_method).to eq(instance.private_method)
+      expect(instance.private_method).to eq(instance.private_method) # rubocop:disable RSpec/IdenticalEqualityAssertion
     end
 
     it 'return value even if reset cache' do
@@ -70,11 +70,11 @@ RSpec.describe ::EacRubyUtils::SimpleCache do
     end
 
     it do
-      expect(instance.method_with_args('123')).to eq(instance.method_with_args('123'))
+      expect(instance.method_with_args('123')).to eq(instance.method_with_args('123')) # rubocop:disable RSpec/IdenticalEqualityAssertion
     end
 
     it do
-      expect(instance.method_with_args('456')).to eq(instance.method_with_args('456'))
+      expect(instance.method_with_args('456')).to eq(instance.method_with_args('456')) # rubocop:disable RSpec/IdenticalEqualityAssertion
     end
 
     it do
