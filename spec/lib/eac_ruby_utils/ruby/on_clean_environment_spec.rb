@@ -14,18 +14,18 @@ RSpec.describe ::EacRubyUtils::Ruby, '#on_clean_environment' do
   end
 
   it do # rubocop:disable RSpec/MultipleExpectations
-    expect(ENV[envvar_name]).to eq(envvar_value)
+    expect(ENV.fetch(envvar_name, nil)).to eq(envvar_value)
     described_class.on_clean_environment do
-      expect(ENV[envvar_name]).to be_nil
+      expect(ENV.fetch(envvar_name, nil)).to be_nil
     end
-    expect(ENV[envvar_name]).to eq(envvar_value)
+    expect(ENV.fetch(envvar_name, nil)).to eq(envvar_value)
   end
 
   it do # rubocop:disable RSpec/MultipleExpectations
-    expect(ENV[noruby_envvar_name]).to eq(noruby_envvar_value)
+    expect(ENV.fetch(noruby_envvar_name, nil)).to eq(noruby_envvar_value)
     described_class.on_clean_environment do
-      expect(ENV[noruby_envvar_name]).to eq(noruby_envvar_value)
+      expect(ENV.fetch(noruby_envvar_name, nil)).to eq(noruby_envvar_value)
     end
-    expect(ENV[noruby_envvar_name]).to eq(noruby_envvar_value)
+    expect(ENV.fetch(noruby_envvar_name, nil)).to eq(noruby_envvar_value)
   end
 end

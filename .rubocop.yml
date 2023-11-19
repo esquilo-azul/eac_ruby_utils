@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/FetchEnvVar:
-  Exclude:
-  - spec/lib/eac_ruby_utils/ruby/on_clean_environment_spec.rb
 Style/GlobalStdStream:
   Exclude:
   - lib/eac_ruby_utils/patches/object/debug.rb
