@@ -36,9 +36,9 @@ class Object
 
   def print_debug_title(title)
     char = '='
-    STDERR.write(char * (4 + title.length) + "\n")
+    STDERR.write((char * (4 + title.length)) + "\n")
     STDERR.write("#{char} #{title} #{char}\n")
-    STDERR.write(char * (4 + title.length) + "\n")
+    STDERR.write((char * (4 + title.length)) + "\n")
   end
 
   def to_debug
