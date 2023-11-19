@@ -1,10 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/Proc:
-  Exclude:
-  - spec/lib/eac_ruby_utils/common_constructor_spec.rb
-  - spec/lib/eac_ruby_utils/ruby/on_replace_objects_spec.rb
 Style/RedundantArgument:
   Exclude:
   - lib/eac_ruby_utils/string_delimited.rb

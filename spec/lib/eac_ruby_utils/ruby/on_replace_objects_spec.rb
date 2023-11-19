@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/ruby'
 
-RSpec.describe ::EacRubyUtils::Ruby, '#on_replace_objects' do
+RSpec.describe ::EacRubyUtils::Ruby do
   let(:stub_class) do
     ::Class.new do
       def self.my_class_method
@@ -18,7 +18,7 @@ RSpec.describe ::EacRubyUtils::Ruby, '#on_replace_objects' do
   let(:stub_instance) { stub_class.new }
 
   let(:replace_block) do
-    ::Proc.new { 'Replaced' }
+    proc { 'Replaced' }
   end
 
   describe '#my_instance_method' do

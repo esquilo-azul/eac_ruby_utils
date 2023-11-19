@@ -99,7 +99,7 @@ RSpec.describe ::EacRubyUtils::CommonConstructor do
     end
 
     let(:block) do
-      ::Proc.new { first + second }
+      proc { first + second }
     end
 
     let(:a_class) do
