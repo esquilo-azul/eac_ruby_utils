@@ -39,6 +39,7 @@ module EacRubyUtils
       attr_reader :uri
 
       def initialize(uri)
+        super()
         @uri = self.class.parse_uri(uri).freeze
       end
 
