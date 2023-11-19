@@ -47,7 +47,7 @@ module EacRubyUtils
 
     # @param big_endian [Boolean]
     # @return [EacRubyUtils::ByteArray]
-    def to_byte_array(big_endian = false)
+    def to_byte_array(big_endian = false) # rubocop:disable Style/OptionalBooleanParameter
       unless count.modulo(::EacRubyUtils::Byte::BIT_COUNT).zero?
         raise 'Bits returned is not multile of 8'
       end

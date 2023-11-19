@@ -1,15 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/OptionalBooleanParameter:
-  Exclude:
-  - lib/eac_ruby_utils/bit_array.rb
-  - lib/eac_ruby_utils/byte.rb
-  - lib/eac_ruby_utils/inflector.rb
-  - lib/eac_ruby_utils/patches/regexp/if_match.rb
-  - lib/eac_ruby_utils/patches/string/inflector.rb
-  - lib/eac_ruby_utils/settings_provider/setting_value.rb
-  - lib/eac_ruby_utils/settings_provider.rb
 Style/Proc:
   Exclude:
   - spec/lib/eac_ruby_utils/common_constructor_spec.rb

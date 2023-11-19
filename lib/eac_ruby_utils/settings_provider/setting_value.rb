@@ -21,7 +21,7 @@ module EacRubyUtils
         @options = options
       end
 
-      def constant_name(fullname = false)
+      def constant_name(fullname = false) # rubocop:disable Style/OptionalBooleanParameter
         name = key.to_s.underscore.upcase
         name = "#{source.class.name}::#{name}" if fullname
         name

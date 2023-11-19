@@ -14,7 +14,7 @@ module EacRubyUtils
       #   variable format. If `true`, it raises a {ArgumentError}. If `false`, return `nil`.
       # @return [String, nil]
       # @raise [ArgumentError]
-      def variableize(string, validate = true)
+      def variableize(string, validate = true) # rubocop:disable Style/OptionalBooleanParameter
         r = ::ActiveSupport::Inflector.transliterate(string).gsub(/[^_a-z0-9]/i, '_')
               .gsub(/_+/, '_').gsub(/_\z/, '').gsub(/\A_/, '').downcase
         m = VARIABLE_NAME_PATTERN.match(r)

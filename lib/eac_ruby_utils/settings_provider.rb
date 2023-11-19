@@ -8,7 +8,7 @@ module EacRubyUtils
   module SettingsProvider
     ::EacRubyUtils.require_sub __FILE__, base: self
 
-    def setting_constant_name(key, fullname = false)
+    def setting_constant_name(key, fullname = false) # rubocop:disable Style/OptionalBooleanParameter
       setting_value_instance(key).constant_name(fullname)
     end
 

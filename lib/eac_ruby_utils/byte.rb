@@ -18,7 +18,7 @@ module EacRubyUtils
         new(obj.to_i)
       end
 
-      def from_bit_array(bit_array, big_endian = false)
+      def from_bit_array(bit_array, big_endian = false) # rubocop:disable Style/OptionalBooleanParameter
         bit_array = ::EacRubyUtils::BitArray.assert(bit_array)
         raise ::ArgumentError, "Wrong bit array size: #{bit_array.size}" if
         bit_array.size != BIT_COUNT
