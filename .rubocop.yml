@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Layout/LineContinuationSpacing:
-  Exclude:
-  - lib/eac_ruby_utils/settings_provider/setting_value.rb
 Layout/LineEndStringConcatenationIndentation:
   Exclude:
   - lib/eac_ruby_utils/common_constructor/instance_initialize.rb

@@ -71,7 +71,7 @@ module EacRubyUtils
       end
 
       def raise_key_not_found
-        raise "Setting \"#{key}\" not found. Supply in #{source.settings_object_name}, implement "\
+        raise "Setting \"#{key}\" not found. Supply in #{source.settings_object_name}, implement " \
           "a \"#{key}\" method or declare a #{constant_name(true)} constant."
       end
     end
