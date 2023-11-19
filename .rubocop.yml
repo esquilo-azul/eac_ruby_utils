@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Naming/VariableNumber:
-  Exclude:
-  - spec/lib/eac_ruby_utils/common_constructor_spec.rb
 RSpec/BeEq:
   Exclude:
   - spec/lib/eac_ruby_utils/acts_as_immutable/common_accessor_spec.rb
