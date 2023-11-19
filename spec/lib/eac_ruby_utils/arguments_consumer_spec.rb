@@ -4,7 +4,7 @@ require 'eac_ruby_utils/arguments_consumer'
 
 RSpec.describe ::EacRubyUtils::ArgumentsConsumer do
   let(:instance) { described_class.new(%i[a b c d], d: 'd_value') }
-  let(:args) { ['a_value', 'b_value', e: 'e_value'] }
+  let(:args) { ['a_value', 'b_value', { e: 'e_value' }] }
   let(:result) { instance.parse(args) }
 
   it { expect(result).to be_a(::Hash) }

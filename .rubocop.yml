@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/HashAsLastArrayItem:
-  Exclude:
-  - spec/lib/eac_ruby_utils/arguments_consumer_spec.rb
 Style/HashConversion:
   Exclude:
   - lib/eac_ruby_utils/listable/integer_list.rb
