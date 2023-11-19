@@ -12,6 +12,7 @@ module EacRubyUtils
       include ::EacRubyUtils::SimpleCache
 
       attr_reader :source, :key, :options
+
       lists.add_symbol :option, :default, :order, :required
 
       def initialize(source, key, options)

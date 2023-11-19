@@ -51,6 +51,7 @@ module EacRubyUtils
     end
 
     attr_reader :value
+
     compare_by :value
 
     def initialize(value)

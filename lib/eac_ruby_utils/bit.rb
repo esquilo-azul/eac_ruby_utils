@@ -25,6 +25,7 @@ module EacRubyUtils
     end
 
     attr_reader :value
+
     compare_by :value
     delegate :to_s, :zero?, to: :value
 

@@ -7,6 +7,7 @@ RSpec.describe ::Module do
     ::Class.new do
       compare_by :field1, :field2
       attr_reader :field1, :field2
+
       def initialize(field1, field2)
         @field1 = field1
         @field2 = field2

@@ -6,6 +6,7 @@ module EacRubyUtils
   class CommonConstructor
     class SuperArgs
       attr_reader :class_initialize, :args, :object
+
       delegate :common_constructor, to: :class_initialize
 
       def initialize(class_initialize, args, object)

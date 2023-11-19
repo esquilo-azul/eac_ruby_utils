@@ -6,6 +6,7 @@ require 'eac_ruby_utils/enum'
   let(:klass) do
     ::Class.new(described_class) do
       attr_reader :color
+
       def initialize(key, color = :none)
         super(key)
         @color = color

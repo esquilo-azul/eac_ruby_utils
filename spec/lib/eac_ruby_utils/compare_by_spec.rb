@@ -7,6 +7,7 @@ RSpec.describe ::EacRubyUtils::CompareBy do
   let(:klass) do
     ::Class.new do
       attr_reader :field1, :field2
+
       def initialize(field1, field2)
         @field1 = field1
         @field2 = field2

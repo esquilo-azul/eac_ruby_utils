@@ -1,15 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Layout/EmptyLinesAroundAttributeAccessor:
-  Exclude:
-  - lib/eac_ruby_utils/bit.rb
-  - lib/eac_ruby_utils/byte.rb
-  - lib/eac_ruby_utils/common_constructor/super_args.rb
-  - lib/eac_ruby_utils/settings_provider/setting_value.rb
-  - spec/lib/eac_ruby_utils/compare_by_spec.rb
-  - spec/lib/eac_ruby_utils/enum_spec.rb
-  - spec/lib/eac_ruby_utils/patches/module/compare_by_spec.rb
 Layout/LineContinuationLeadingSpace:
   Exclude:
   - lib/eac_ruby_utils/common_constructor/instance_initialize.rb
