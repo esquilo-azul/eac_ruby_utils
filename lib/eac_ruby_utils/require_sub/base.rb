@@ -55,7 +55,7 @@ module EacRubyUtils
         INCLUDE_MODULES_MAP.key?(options[OPTION_INCLUDE_MODULES])
 
         raise ::ArgumentError, "Invalid value for 'options[OPTION_INCLUDE_MODULES]': " \
-          "\"#{options[OPTION_INCLUDE_MODULES]}\""
+                               "\"#{options[OPTION_INCLUDE_MODULES]}\""
       end
 
       # @return [Symbol]

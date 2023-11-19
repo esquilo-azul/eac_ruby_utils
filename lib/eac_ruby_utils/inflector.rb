@@ -22,7 +22,7 @@ module EacRubyUtils
         return nil unless validate
 
         raise ::ArgumentError, "Invalid variable name \"#{r}\" was generated " \
-          "from string \"#{string}\""
+                               "from string \"#{string}\""
       end
     end
   end

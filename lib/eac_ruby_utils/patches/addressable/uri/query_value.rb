@@ -16,7 +16,7 @@ module Addressable
         query_value_set(*args)
       else
         raise ::ArgumentError, "#{object.class}.#{__method__}: wrong number of arguments " \
-          "(given #{args.count}, expected 1..2)"
+                               "(given #{args.count}, expected 1..2)"
       end
     end
 

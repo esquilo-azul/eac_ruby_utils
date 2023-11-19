@@ -1,14 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Layout/LineEndStringConcatenationIndentation:
-  Exclude:
-  - lib/eac_ruby_utils/common_constructor/instance_initialize.rb
-  - lib/eac_ruby_utils/inflector.rb
-  - lib/eac_ruby_utils/listable/list.rb
-  - lib/eac_ruby_utils/patches/addressable/uri/query_value.rb
-  - lib/eac_ruby_utils/require_sub/base.rb
-  - lib/eac_ruby_utils/settings_provider/setting_value.rb
 Layout/SpaceAroundMethodCallOperator:
   Exclude:
   - spec/lib/eac_ruby_utils/patches/object/if_present_spec.rb

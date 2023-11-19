@@ -57,7 +57,7 @@ module EacRubyUtils
         return if common_constructor.args_count.include?(args.count)
 
         raise ArgumentError, "#{object.class}.initialize: wrong number of arguments " \
-          "(given #{args.count}, expected #{common_constructor.args_count})"
+                             "(given #{args.count}, expected #{common_constructor.args_count})"
       end
     end
   end
