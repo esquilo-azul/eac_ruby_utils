@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
 
   s.files = Dir['{lib}/**/*', 'MIT-LICENSE', 'README.rdoc']
+  s.required_ruby_version = '>= 2.7'
 
   s.add_dependency 'activesupport', '>= 4', '< 7'
   s.add_dependency 'addressable', '~> 2.8', '>= 2.8.5'
