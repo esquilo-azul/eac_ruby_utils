@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Rails/ShortI18n:
-  Exclude:
-  - lib/eac_ruby_utils/locales/module_i18n_translate.rb
 Style/ArgumentsForwarding:
   Exclude:
   - lib/eac_ruby_utils/patches/class/common_constructor.rb
