@@ -28,14 +28,14 @@ require 'eac_ruby_utils/module_ancestors_variable/hash'
   end
 
   it { expect(super_class.hash_variable).to be_a(described_class) }
-  it { expect(super_class.hash_variable.self_variable).to eq(::Hash.new) }
-  it { expect(super_class.hash_variable.ancestors_variable).to eq(::Hash.new) }
-  it { expect(super_class.hash_variable.to_h).to eq(::Hash.new) }
+  it { expect(super_class.hash_variable.self_variable).to eq({}) }
+  it { expect(super_class.hash_variable.ancestors_variable).to eq({}) }
+  it { expect(super_class.hash_variable.to_h).to eq({}) }
 
   it { expect(sub_class.hash_variable).to be_a(described_class) }
-  it { expect(sub_class.hash_variable.self_variable).to eq(::Hash.new) }
-  it { expect(sub_class.hash_variable.ancestors_variable).to eq(::Hash.new) }
-  it { expect(sub_class.hash_variable.to_h).to eq(::Hash.new) }
+  it { expect(sub_class.hash_variable.self_variable).to eq({}) }
+  it { expect(sub_class.hash_variable.ancestors_variable).to eq({}) }
+  it { expect(sub_class.hash_variable.to_h).to eq({}) }
 
   context 'when super class is changed' do
     before do
