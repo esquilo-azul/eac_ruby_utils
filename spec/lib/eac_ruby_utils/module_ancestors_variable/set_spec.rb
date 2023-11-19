@@ -9,7 +9,7 @@ require 'eac_ruby_utils/module_ancestors_variable/set'
         base.extend(ClassMethods)
       end
 
-      module ClassMethods # rubocop:disable RSpec/LeakyConstantDeclaration
+      module ClassMethods # rubocop:disable Lint/ConstantDefinitionInBlock, RSpec/LeakyConstantDeclaration
         def set_variable
           @set_variable ||= ::EacRubyUtils::ModuleAncestorsVariable::Set.new(self, __method__)
         end

@@ -9,7 +9,7 @@ require 'eac_ruby_utils/module_ancestors_variable/hash'
         base.extend(ClassMethods)
       end
 
-      module ClassMethods # rubocop:disable RSpec/LeakyConstantDeclaration
+      module ClassMethods # rubocop:disable Lint/ConstantDefinitionInBlock, RSpec/LeakyConstantDeclaration
         def hash_variable
           @hash_variable ||= ::EacRubyUtils::ModuleAncestorsVariable::Hash.new(self, __method__)
         end
