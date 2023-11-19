@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Layout/SpaceAroundMethodCallOperator:
-  Exclude:
-  - spec/lib/eac_ruby_utils/patches/object/if_present_spec.rb
 Lint/AmbiguousOperatorPrecedence:
   Exclude:
   - lib/eac_ruby_utils/patches/object/debug.rb
