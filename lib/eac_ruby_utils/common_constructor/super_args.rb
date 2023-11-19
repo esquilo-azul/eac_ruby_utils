@@ -35,9 +35,9 @@ module EacRubyUtils
       end
 
       def sub_args
-        common_constructor.args.each_with_index.map do |name, index|
+        common_constructor.args.each_with_index.to_h do |name, index|
           [name, args[index]]
-        end.to_h
+        end
       end
 
       def super_arg_index(name)

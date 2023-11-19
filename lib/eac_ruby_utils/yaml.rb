@@ -76,7 +76,7 @@ module EacRubyUtils
         end
 
         def result_hashable
-          source.to_h.map { |k, v| [k.to_sym, sanitize_value(v)] }.to_h
+          source.to_h.to_h { |k, v| [k.to_sym, sanitize_value(v)] }
         end
 
         def result_nil?

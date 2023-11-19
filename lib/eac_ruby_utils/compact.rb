@@ -16,7 +16,7 @@ module EacRubyUtils
 
     # @return [Hash]
     def to_h
-      attributes.map { |attr| [attr.to_sym, object.send(attr)] }.to_h
+      attributes.to_h { |attr| [attr.to_sym, object.send(attr)] }
     end
   end
 end
