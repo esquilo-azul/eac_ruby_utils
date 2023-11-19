@@ -1,13 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/OpenStructUse:
-  Exclude:
-  - lib/eac_ruby_utils/arguments_consumer.rb
-  - lib/eac_ruby_utils/common_constructor.rb
-  - lib/eac_ruby_utils/options_consumer.rb
-  - spec/lib/eac_ruby_utils/compact_spec.rb
-  - spec/lib/eac_ruby_utils/patches/object/compact_spec.rb
 Style/OptionalBooleanParameter:
   Exclude:
   - lib/eac_ruby_utils/bit_array.rb

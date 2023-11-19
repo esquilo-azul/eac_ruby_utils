@@ -4,7 +4,6 @@ require 'active_support/callbacks'
 require 'eac_ruby_utils/arguments_consumer'
 require 'eac_ruby_utils/common_constructor/class_accessors'
 require 'eac_ruby_utils/common_constructor/class_initialize'
-require 'ostruct'
 
 module EacRubyUtils
   class CommonConstructor
@@ -12,7 +11,7 @@ module EacRubyUtils
 
     class << self
       def parse_args_options(args)
-        result = ::OpenStruct.new(args: [], options: {})
+        result = ::Struct.new(:args, :options).new([], {})
         options_reached = false
         args.each do |arg|
           raise "Options reached and there is more arguments (Arguments: #{args})" if

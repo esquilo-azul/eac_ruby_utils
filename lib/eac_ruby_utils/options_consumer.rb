@@ -53,7 +53,7 @@ module EacRubyUtils
 
     def consume_all_build_result(keys, ostruct)
       if ostruct
-        ::OpenStruct.new(keys.index_with { |key| consume(key) })
+        ::OpenStruct.new(keys.index_with { |key| consume(key) }) # rubocop:disable Style/OpenStructUse
       else
         keys.map { |key| consume(key) }
       end

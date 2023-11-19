@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'active_support/hash_with_indifferent_access'
-require 'ostruct'
 
 module EacRubyUtils
   class ArgumentsConsumer
@@ -38,7 +37,7 @@ module EacRubyUtils
       private
 
       def add_arg(value, index)
-        arg = ::OpenStruct.new(value: value, index: index)
+        arg = ::Struct.new(:value, :index).new(value, index)
         if arg.value.is_a?(::Hash)
           add_hash_arg(arg)
         else
