@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/require_sub'
 
-class RequireSubStubClass
+class RequireSubStubClass # rubocop:disable Lint/EmptyClass
 end
 
 RSpec.describe ::EacRubyUtils::RequireSub::Base do
