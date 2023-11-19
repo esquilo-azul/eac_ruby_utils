@@ -34,7 +34,7 @@ module EacRubyUtils
     end
 
     def slice_fetch(*keys)
-      self.class.new(keys.map { |key| [key, fetch(key)] }.to_h)
+      self.class.new(keys.index_with { |key| fetch(key) })
     end
 
     def to_h

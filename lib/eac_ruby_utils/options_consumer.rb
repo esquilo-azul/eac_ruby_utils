@@ -53,7 +53,7 @@ module EacRubyUtils
 
     def consume_all_build_result(keys, ostruct)
       if ostruct
-        ::OpenStruct.new(keys.map { |key| [key, consume(key)] }.to_h)
+        ::OpenStruct.new(keys.index_with { |key| consume(key) })
       else
         keys.map { |key| consume(key) }
       end
