@@ -14,7 +14,7 @@ module EacRubyUtils
       private
 
       def parse_string(value)
-        ['', 'n', 'no', 'f', 'false'].include?(value.strip.downcase) ? false : true
+        ['', 'n', 'no', 'f', 'false'].exclude?(value.strip.downcase)
       end
 
       def parse_number(value)

@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/IfWithBooleanLiteralBranches:
-  Exclude:
-  - lib/eac_ruby_utils/boolean.rb
 Style/MapToHash:
   Exclude:
   - lib/eac_ruby_utils/common_constructor/super_args.rb
