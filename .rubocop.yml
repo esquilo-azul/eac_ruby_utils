@@ -1,20 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/BeEq:
-  Exclude:
-  - spec/lib/eac_ruby_utils/acts_as_immutable/common_accessor_spec.rb
-  - spec/lib/eac_ruby_utils/arguments_consumer_spec.rb
-  - spec/lib/eac_ruby_utils/envs/command/base_example.rb
-  - spec/lib/eac_ruby_utils/envs/executable_spec.rb
-  - spec/lib/eac_ruby_utils/listable_spec.rb
-  - spec/lib/eac_ruby_utils/options_consumer_spec.rb
-  - spec/lib/eac_ruby_utils/patches/enumerator/current_spec.rb
-  - spec/lib/eac_ruby_utils/patches/object/call_if_proc_spec.rb
-  - spec/lib/eac_ruby_utils/patches/object/if_present_spec.rb
-  - spec/lib/eac_ruby_utils/ruby/on_clean_environment_spec.rb
-  - spec/lib/eac_ruby_utils/settings_provider_spec.rb
-  - spec/lib/eac_ruby_utils/struct_spec.rb
 RSpec/ContextWording:
   Exclude:
   - spec/lib/eac_ruby_utils/common_constructor_spec.rb

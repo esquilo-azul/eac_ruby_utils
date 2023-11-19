@@ -11,7 +11,7 @@ RSpec.describe ::EacRubyUtils::ArgumentsConsumer do
   it { expect(result.count).to eq(5) }
   it { expect(result.fetch(:a)).to eq('a_value') }
   it { expect(result.fetch(:b)).to eq('b_value') }
-  it { expect(result.fetch(:c)).to eq(nil) }
+  it { expect(result.fetch(:c)).to be_nil }
   it { expect(result.fetch(:d)).to eq('d_value') }
   it { expect(result.fetch(:e)).to eq('e_value') }
 end

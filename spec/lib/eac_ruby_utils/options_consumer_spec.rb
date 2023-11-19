@@ -63,7 +63,7 @@ RSpec.describe ::EacRubyUtils::OptionsConsumer do
     end
 
     it 'raises if validate has left data' do
-      expect(instance.left_data.empty?).to eq(false)
+      expect(instance.left_data.empty?).to be(false)
     end
   end
 
@@ -75,6 +75,6 @@ RSpec.describe ::EacRubyUtils::OptionsConsumer do
     it { expect(all_consumed[0]).to eq('a_value') }
     it { expect(all_consumed[1]).to eq('b_value') }
     it { expect(all_consumed[2]).to eq('c_value') }
-    it { expect(all_consumed[3]).to eq(nil) }
+    it { expect(all_consumed[3]).to be_nil }
   end
 end

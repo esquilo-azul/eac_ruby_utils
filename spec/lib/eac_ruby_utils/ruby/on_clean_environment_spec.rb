@@ -17,7 +17,7 @@ RSpec.describe ::EacRubyUtils::Ruby do
     it do # rubocop:disable RSpec/MultipleExpectations
       expect(ENV[envvar_name]).to eq(envvar_value)
       described_class.on_clean_environment do
-        expect(ENV[envvar_name]).to eq(nil)
+        expect(ENV[envvar_name]).to be_nil
       end
       expect(ENV[envvar_name]).to eq(envvar_value)
     end

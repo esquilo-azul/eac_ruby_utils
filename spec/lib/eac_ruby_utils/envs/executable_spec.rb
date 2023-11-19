@@ -9,7 +9,7 @@ RSpec.describe ::EacRubyUtils::Envs::Executable do
   context 'when program exist' do
     let(:instance) { described_class.new(env, 'cat', '--version') }
 
-    it { expect(instance.exist?).to eq(true) }
+    it { expect(instance.exist?).to be(true) }
     it { expect { instance.validate! }.not_to raise_error }
     it { expect(instance.validate).to be_blank }
     it { expect(instance.command).to be_a(::EacRubyUtils::Envs::Command) }
@@ -18,7 +18,7 @@ RSpec.describe ::EacRubyUtils::Envs::Executable do
   context 'when program does not exist' do
     let(:instance) { described_class.new(env, 'this_cannot_exist', '--version') }
 
-    it { expect(instance.exist?).to eq(false) }
+    it { expect(instance.exist?).to be(false) }
 
     it {
       expect { instance.validate! }.to raise_error(

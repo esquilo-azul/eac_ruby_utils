@@ -21,6 +21,6 @@ RSpec.describe ::Enumerator do
       instance.next
     end
 
-    it { expect(instance.current).to eq(nil) }
+    it { expect(instance.current).to be_nil }
   end
 end

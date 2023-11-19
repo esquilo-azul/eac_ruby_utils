@@ -35,8 +35,8 @@ require 'eac_ruby_utils/envs/execution_error'
   end
 
   describe '#system' do
-    it { expect(ok_command.system).to eq(true) }
-    it { expect(error_command.system).to eq(false) }
+    it { expect(ok_command.system).to be(true) }
+    it { expect(error_command.system).to be(false) }
   end
 
   describe '#system!' do
