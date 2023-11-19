@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/envs/execution_error'
 
-::RSpec.shared_examples 'with_command_env' do # rubocop:disable Metrics/BlockLength
+::RSpec.shared_examples 'with_command_env' do
   let(:echo) { env.executable('echo', '--version') }
   let(:cat) { env.executable('cat', '--version') }
   let(:not_existing_file) { ::Pathname.new('a_file_that_not_exists') }

@@ -30,14 +30,14 @@ require 'eac_ruby_utils/unimplemented_method_error'
 
   class << self
     def specs_for_target(test_target, instances_hash)
-      describe "\##{test_target}" do # rubocop:disable RSpec/EmptyExampleGroup
+      describe "\##{test_target}" do
         specs_for_instances(test_target, instances_hash)
       end
     end
 
     def specs_for_instances(test_target, instances_hash)
       instances_hash.each do |instance_name, expected_values|
-        context "when instance is \"#{instance_name}\"" do # rubocop:disable RSpec/EmptyExampleGroup
+        context "when instance is \"#{instance_name}\"" do
           let(:instance) { send("#{instance_name}_class").new }
 
           specs_for_methods_values(test_target, expected_values)
@@ -48,7 +48,7 @@ require 'eac_ruby_utils/unimplemented_method_error'
     def specs_for_methods_values(test_target, expected_values)
       expected_values.each_with_index do |expected_value, method_index|
         method_name = "method#{method_index + 1}"
-        context "when method is \"#{method_name}\"" do # rubocop:disable RSpec/EmptyExampleGroup
+        context "when method is \"#{method_name}\"" do
           send("specs_for_#{test_target}", method_name, expected_value)
         end
       end

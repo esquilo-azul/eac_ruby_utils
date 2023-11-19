@@ -20,7 +20,7 @@ module EacRubyUtils
 
       def fatal_error(string)
         error(string)
-        ::Kernel.exit 1 # rubocop:disable Rails/Exit
+        ::Kernel.exit 1
       end
 
       # @see EacRubyUtils::Speaker::Sender.input

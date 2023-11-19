@@ -14,7 +14,7 @@ end
 
 RSpec.describe ::EacRubyUtils::CustomFormat do
   let(:instance) { described_class.new(x: :x_value, y: :y_value, z: :unexistent) }
-  let(:ok_format) { instance.format('|%%|%y|%x|%y|') } # rubocop:disable Style/FormatStringToken
+  let(:ok_format) { instance.format('|%%|%y|%x|%y|') }
   let(:ok_string_expected) { '|%|Y1|X1|Y1|' }
   let(:fail_format) { instance.format('|%z|') }
 

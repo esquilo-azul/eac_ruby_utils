@@ -15,7 +15,7 @@ require 'eac_ruby_utils/wildcards'
         let(:instance) { described_class.new(pattern) }
 
         examples.each do |string, expected_result|
-          context "when string is \"#{string}\"" do # rubocop:disable RSpec/NestedGroups
+          context "when string is \"#{string}\"" do
             it do
               expect(instance.match?(string)).to eq(expected_result)
             end

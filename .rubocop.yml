@@ -1,13 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Lint/RedundantCopDisableDirective:
-  Exclude:
-  - lib/eac_ruby_utils/speaker/receiver.rb
-  - spec/lib/eac_ruby_utils/acts_as_abstract_spec.rb
-  - spec/lib/eac_ruby_utils/custom_format_spec.rb
-  - spec/lib/eac_ruby_utils/envs/command/base_example.rb
-  - spec/lib/eac_ruby_utils/wildcards_spec.rb
 Lint/UselessMethodDefinition:
   Exclude:
   - spec/lib/eac_ruby_utils/common_constructor_spec.rb
