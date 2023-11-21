@@ -30,7 +30,7 @@ RSpec.describe(EacRubyUtils::ActsAsAbstract) do
 
   class << self
     def specs_for_target(test_target, instances_hash)
-      describe "\##{test_target}" do
+      describe "##{test_target}" do
         specs_for_instances(test_target, instances_hash)
       end
     end
