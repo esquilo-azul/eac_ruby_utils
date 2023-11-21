@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/RedundantRegexpEscape:
-  Exclude:
-  - lib/eac_ruby_utils/envs/base_command.rb
 Style/RedundantStringEscape:
   Exclude:
   - spec/lib/eac_ruby_utils/acts_as_abstract_spec.rb

@@ -37,7 +37,7 @@ module EacRubyUtils
 
       def escape(arg)
         arg = arg.to_s
-        m = /^\@ESC_(.+)$/.match(arg)
+        m = /^@ESC_(.+)$/.match(arg)
         m ? m[1] : Shellwords.escape(arg)
       end
     end
