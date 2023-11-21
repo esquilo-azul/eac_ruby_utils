@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/RedundantException:
-  Exclude:
-  - lib/eac_ruby_utils/patches/pathname/reqdir_glob.rb
 Style/RedundantInitialize:
   Exclude:
   - spec/lib/eac_ruby_utils/common_constructor_spec.rb
