@@ -40,7 +40,7 @@ module EacRubyUtils
 
       def lib_file_found?
         gemspec.require_paths.any? do |require_path|
-          ::Pathname.new(require_path).expand_path(gemspec.gem_dir).join(path_to_require + '.rb')
+          ::Pathname.new(require_path).expand_path(gemspec.gem_dir).join("#{path_to_require}.rb")
             .file?
         end
       end
@@ -54,7 +54,7 @@ module EacRubyUtils
 
       # @return [String]
       def path_to_require
-        gemspec.name.gsub('-', '/') + '/' + registry.module_suffix.underscore
+        "#{gemspec.name.gsub('-', '/')}/#{registry.module_suffix.underscore}"
       end
 
       def to_s

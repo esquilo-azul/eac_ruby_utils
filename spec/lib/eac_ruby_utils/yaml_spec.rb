@@ -64,7 +64,7 @@ RSpec.describe EacRubyUtils::Yaml do
       ['text'] => false,
       'text' => false,
       "--- Text\n\n" => true,
-      "---\n" + ":index: 0\n" + ":codec_name: h264\n" + ":codec_type: video\n" => true,
+      "---\n:index: 0\n:codec_name: h264\n:codec_type: video\n" => true,
       '--- - \n bla bla bla' => false,
       "---\n*STRING" => false
     }.each do |source, result|

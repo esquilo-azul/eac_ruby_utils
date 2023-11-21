@@ -12,9 +12,9 @@ module EacRubyUtils
 
         def result
           r = command_line
-          r = input.command + ' | ' + r if input
+          r = "#{input.command} | #{r}" if input
           r = "cat #{Shellwords.escape(input_file)} | #{r}" if input_file
-          r += ' > ' + Shellwords.escape(output_file) if output_file
+          r += " > #{Shellwords.escape(output_file)}" if output_file
           r
         end
 

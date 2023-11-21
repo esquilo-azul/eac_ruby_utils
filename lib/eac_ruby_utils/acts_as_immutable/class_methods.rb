@@ -7,7 +7,7 @@ module EacRubyUtils
         options = accessors.extract_options!
         options[:type] ||= const_get('TYPE_COMMON')
         accessors.each do |name|
-          class_name = options.fetch(:type).to_s.camelize + 'Accessor'
+          class_name = "#{options.fetch(:type).to_s.camelize}Accessor"
           ::EacRubyUtils::ActsAsImmutable.const_get(class_name).new(name).apply(self)
         end
       end
