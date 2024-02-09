@@ -19,7 +19,7 @@ module EacRubyUtils
       end
 
       def load(string)
-        ::YAML.safe_load(string, permitted_classes)
+        ::YAML.safe_load(string, permitted_classes: permitted_classes)
       end
 
       def load_file(path)
