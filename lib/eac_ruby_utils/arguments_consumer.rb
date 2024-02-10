@@ -73,7 +73,7 @@ module EacRubyUtils
       def initialize(args_consumer, arg, message)
         @args_consumer = args_consumer
         @arg = arg
-        super "#{message} (Arg: #{arg}, Args Consumer: #{args_consumer})"
+        super("#{message} (Arg: #{arg}, Args Consumer: #{args_consumer})")
       end
     end
   end

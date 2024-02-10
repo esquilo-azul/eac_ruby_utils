@@ -57,7 +57,7 @@ module EacRubyUtils
     end
 
     def property_methods
-      data.keys.flat_map { |k| [k.to_sym, "#{k}?".to_sym] }
+      data.keys.flat_map { |k| [k.to_sym, :"#{k}?"] }
     end
   end
 end
