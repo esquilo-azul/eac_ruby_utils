@@ -38,6 +38,7 @@ class Object
   end
 
   def print_debug_title(title)
+    title = title.to_s
     char = '='
     $stderr.write("#{char * (4 + title.length)}\n")
     $stderr.write("#{char} #{title} #{char}\n")
