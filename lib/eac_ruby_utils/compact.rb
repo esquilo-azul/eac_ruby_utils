@@ -9,14 +9,20 @@ module EacRubyUtils
       @attributes = attributes
     end
 
+    # @param attr [Symbol]
+    # @return [Object]
+    def attribute_value(attr)
+      object.send(attr)
+    end
+
     # @return [Array]
     def to_a
-      attributes.map { |attr| object.send(attr) }
+      attributes.map { |attr| attribute_value(attr) }
     end
 
     # @return [Hash]
     def to_h
-      attributes.to_h { |attr| [attr.to_sym, object.send(attr)] }
+      attributes.to_h { |attr| [attr.to_sym, attribute_value(attr)] }
     end
   end
 end
