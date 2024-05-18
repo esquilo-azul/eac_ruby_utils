@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/compact'
 require 'eac_ruby_utils/patches/object/if_present'
 require 'pp'
 
 class Object
-  def compact_debug(*methods_names)
-    methods_names.each do |method_name|
-      send(method_name).print_debug(label: method_name)
+  # @param attributes [Enumerable<Symbol>] Attributes for +EacRubyUtils::Compact.new+.
+  # @return [void]
+  def compact_debug(*attributes)
+    ::EacRubyUtils::Compact.new(self, attributes).to_h.each do |name, value|
+      value.print_debug(label: name)
     end
   end
 
