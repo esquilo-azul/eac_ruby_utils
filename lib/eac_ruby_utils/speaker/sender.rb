@@ -3,15 +3,8 @@
 module EacRubyUtils
   module Speaker
     module Sender
-      delegate :error, :fatal_error, :info, :infom, :title, :success, :warn, to: :speaker_receiver
-
-      def infov(*args)
-        speaker_receiver.infov(*args)
-      end
-
-      delegate :out, to: :speaker_receiver
-
-      delegate :puts, to: :speaker_receiver
+      delegate :error, :fatal_error, :info, :infom, :infov, :out, :puts, :title, :success, :warn,
+               to: :speaker_receiver
 
       # Shortcut to [EacRubyUtils::Speaker.current_receiver].
       #
