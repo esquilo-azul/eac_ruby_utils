@@ -2,6 +2,8 @@
 
 module EacRubyUtils
   class Compact
+    ATTRIBUTE_SEPARATOR = '.'
+
     attr_reader :object, :attributes
 
     def initialize(object, attributes)
@@ -9,10 +11,12 @@ module EacRubyUtils
       @attributes = attributes
     end
 
-    # @param attr [Symbol]
+    # @param attr_path [String, Symbol] A path separated by +ATTRIBUTE_SEPARATOR+.
     # @return [Object]
-    def attribute_value(attr)
-      object.send(attr)
+    def attribute_value(attr_path)
+      attr_path.to_s.split(ATTRIBUTE_SEPARATOR).inject(object) do |a, e|
+        a.send(e)
+      end
     end
 
     # @return [Array]
