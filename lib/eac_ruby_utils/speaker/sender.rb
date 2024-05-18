@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/compact'
+
 module EacRubyUtils
   module Speaker
     module Sender
@@ -11,6 +13,16 @@ module EacRubyUtils
       # @return [EacRubyUtils::Speaker::Receiver]
       def speaker_receiver
         ::EacRubyUtils::Speaker.current_receiver
+      end
+
+      # @param attributes [Enumerable<Symbol>] Attributes for +EacRubyUtils::Compact.new+.
+      # @return [self]
+      def compact_infov(*attributes)
+        ::EacRubyUtils::Compact.new(self, attributes).to_h.each do |k, v|
+          infov k, v
+        end
+
+        self
       end
 
       # Options:
