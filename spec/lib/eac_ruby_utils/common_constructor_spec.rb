@@ -127,7 +127,7 @@ RSpec.describe EacRubyUtils::CommonConstructor do
     let(:klass_1) do # rubocop:disable Naming/VariableNumber, RSpec/IndexedLet
       Class.new(klass_0) do
         def initialize(a_param) # rubocop:disable Lint/UselessMethodDefinition
-          super(a_param)
+          super
         end
       end
     end

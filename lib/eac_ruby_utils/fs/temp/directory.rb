@@ -7,7 +7,7 @@ module EacRubyUtils
     module Temp
       class Directory < ::EacRubyUtils::Fs::Temp::File
         def initialize(*tempfile_args)
-          super(*tempfile_args)
+          super
           mkpath
         end
       end
