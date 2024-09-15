@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'active_support/time_with_zone'
 require 'date'
 require 'yaml'
 
@@ -7,7 +8,8 @@ module EacRubyUtils
   # A safe YAML loader/dumper with common types included.
   class Yaml
     class << self
-      DEFAULT_PERMITTED_CLASSES = [::Array, ::Date, ::DateTime, ::FalseClass, ::Hash, ::NilClass,
+      DEFAULT_PERMITTED_CLASSES = [ActiveSupport::TimeWithZone, ActiveSupport::TimeZone,
+                                   ::Array, ::Date, ::DateTime, ::FalseClass, ::Hash, ::NilClass,
                                    ::Numeric, ::String, ::Symbol, ::Time, ::TrueClass].freeze
 
       def dump(object)
