@@ -10,6 +10,7 @@ module EacRubyUtils
         nil => nil,
         false => nil,
         true => :include,
+        extend: :extend,
         include: :include,
         prepend: :prepend
       }.freeze
