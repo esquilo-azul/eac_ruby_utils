@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/root_module_setup'
+EacRubyUtils::RootModuleSetup.perform
+
 module EacRubyUtils
-  require 'eac_ruby_utils/require_sub'
-  ::EacRubyUtils.require_sub __FILE__
 end
+
+require 'eac_ruby_utils/core_ext'
