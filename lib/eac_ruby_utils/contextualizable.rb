@@ -13,9 +13,7 @@ module EacRubyUtils
     end
 
     module InstanceMethods
-      def context
-        self.class.context
-      end
+      delegate :context, to: :class
     end
   end
 end

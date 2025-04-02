@@ -25,9 +25,7 @@ module EacRubyUtils
       end
 
       def mapping
-        @mapping ||= format.mapping.select do |k, _v|
-          sequences.include?(k)
-        end
+        @mapping ||= format.mapping.slice(*sequences)
       end
 
       def sequences

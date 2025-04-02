@@ -39,9 +39,7 @@ module EacRubyUtils
             end
           end
 
-          def nodasho_options
-            self.class.nodasho_options
-          end
+          delegate :nodasho_options, to: :class
 
           def uri_query_value(name)
             uri.query_values.if_present { |v| v[name] }

@@ -11,13 +11,13 @@ RSpec.describe EacRubyUtils::CommonConcern do
 
   let(:stub_module) do
     Module.new do
-      module ClassMethods # rubocop:disable Lint/ConstantDefinitionInBlock, RSpec/LeakyConstantDeclaration,
+      module ClassMethods # rubocop:disable Lint/ConstantDefinitionInBlock,RSpec/LeakyConstantDeclaration
         def my_class_method
           'class'
         end
       end
 
-      module InstanceMethods # rubocop:disable Lint/ConstantDefinitionInBlock, RSpec/LeakyConstantDeclaration
+      module InstanceMethods # rubocop:disable Lint/ConstantDefinitionInBlock,RSpec/LeakyConstantDeclaration
         def my_instance_method
           'from_module'
         end

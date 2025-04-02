@@ -7,7 +7,5 @@ class Object
     self.class.i18n_translate(entry_suffix, values)
   end
 
-  def on_i18n_locale(locale)
-    self.class.on_i18n_locale(locale)
-  end
+  delegate :on_i18n_locale, to: :class
 end

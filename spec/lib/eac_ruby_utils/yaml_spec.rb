@@ -10,9 +10,7 @@ RSpec.describe EacRubyUtils::Yaml do
         @value = value
       end
 
-      def to_s
-        @value.to_s
-      end
+      delegate :to_s, to: :@value
     end
   end
 
