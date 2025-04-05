@@ -4,6 +4,7 @@ require 'active_support/callbacks'
 require 'eac_ruby_utils/arguments_consumer'
 require 'eac_ruby_utils/common_constructor/class_accessors'
 require 'eac_ruby_utils/common_constructor/class_initialize'
+require 'eac_ruby_utils/patches/object/call_if_proc'
 
 module EacRubyUtils
   class CommonConstructor
@@ -66,8 +67,9 @@ module EacRubyUtils
       options[:block_arg] || false
     end
 
+    # @return [Enumerable]
     def default_values
-      options[:default] || []
+      options[:default].call_if_proc || []
     end
 
     def setup_class(klass)
