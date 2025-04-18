@@ -4,7 +4,10 @@ require 'eac_ruby_utils/regexp_parser'
 
 module EacRubyUtils
   class ObjectsTable
-    BY_PARSER = ::EacRubyUtils::RegexpParser.new(/\Aby_(.+)\z/) { |m| m[1] }
+    BY_PARSER = ::EacRubyUtils::RegexpParser.new(/\Aby_(.+)\z/) do |m|
+      BY_PARSER_PARSED_STRUCT.new(m[1], 'by_attribute')
+    end
+    BY_PARSER_PARSED_STRUCT = ::Struct.new(:attribute, :method_name)
 
     common_constructor :objects, default: [[]]
 
@@ -28,8 +31,8 @@ module EacRubyUtils
     end
 
     def method_missing(method_name, *arguments, &block)
-      if (attribute = BY_PARSER.parse(method_name))
-        return by_attribute(attribute, *arguments, &block)
+      if (parsed = BY_PARSER.parse(method_name))
+        return send(parsed.method_name, parsed.attribute, *arguments, &block)
       end
 
       super
