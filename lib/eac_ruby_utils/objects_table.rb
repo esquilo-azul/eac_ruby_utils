@@ -4,8 +4,8 @@ require 'eac_ruby_utils/regexp_parser'
 
 module EacRubyUtils
   class ObjectsTable
-    BY_PARSER = ::EacRubyUtils::RegexpParser.new(/\Aby_(.+)\z/) do |m|
-      BY_PARSER_PARSED_STRUCT.new(m[1], 'by_attribute')
+    BY_PARSER = ::EacRubyUtils::RegexpParser.new(/\Aby_([^!\?]+)(!)?\z/) do |m|
+      BY_PARSER_PARSED_STRUCT.new(m[1], "by_attribute#{m[2].present? ? '!' : ''}")
     end
     BY_PARSER_PARSED_STRUCT = ::Struct.new(:attribute, :method_name)
 
