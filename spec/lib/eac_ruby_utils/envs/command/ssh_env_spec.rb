@@ -13,5 +13,5 @@ RSpec.describe EacRubyUtils::Envs::Command, '#ssh_env' do
     ssh_server.on_run(&example)
   end
 
-  include_examples 'with_command_env'
+  it_behaves_like 'with_command_env'
 end
