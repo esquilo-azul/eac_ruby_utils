@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/fs/extname'
 require 'pathname'
 
 class Pathname
