@@ -29,11 +29,16 @@ module EacRubyUtils
 
     # @return [void]
     def perform_zeitwerk
-      ::Zeitwerk::Registry.loader_for_gem(
+      loader.setup
+    end
+
+    # @return [Zeitwerk::GemLoader]
+    def loader
+      @loader ||= ::Zeitwerk::Registry.loader_for_gem(
         root_module_file,
         namespace: Object,
         warn_on_extra_files: true
-      ).setup
+      )
     end
   end
 end
