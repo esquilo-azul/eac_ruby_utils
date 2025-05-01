@@ -5,6 +5,6 @@ require 'eac_ruby_utils/simple_cache'
 
 class Module
   def enable_simple_cache
-    ::EacRubyUtils.patch(self, ::EacRubyUtils::SimpleCache)
+    ::EacRubyUtils.patch_module(self, ::EacRubyUtils::SimpleCache)
   end
 end

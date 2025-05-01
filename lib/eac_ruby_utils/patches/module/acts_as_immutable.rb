@@ -5,6 +5,6 @@ require 'eac_ruby_utils/acts_as_immutable'
 
 class Module
   def acts_as_immutable
-    ::EacRubyUtils.patch(self, ::EacRubyUtils::ActsAsImmutable)
+    ::EacRubyUtils.patch_module(self, ::EacRubyUtils::ActsAsImmutable)
   end
 end

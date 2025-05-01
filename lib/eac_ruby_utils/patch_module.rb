@@ -7,7 +7,7 @@ module EacRubyUtils
     common_concern
 
     class_methods do
-      def patch(target, patch)
+      def patch_module(target, patch)
         return if target.included_modules.include?(patch)
 
         target.send(:include, patch)

@@ -6,6 +6,6 @@ require 'eac_ruby_utils/contextualizable'
 class Module
   # Patches module with [EacRubyUtils::Contextualizable].
   def enable_context
-    ::EacRubyUtils.patch(self, ::EacRubyUtils::Contextualizable)
+    ::EacRubyUtils.patch_module(self, ::EacRubyUtils::Contextualizable)
   end
 end

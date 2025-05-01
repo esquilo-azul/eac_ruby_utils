@@ -4,6 +4,6 @@ require 'eac_ruby_utils/method_class'
 
 class Module
   def enable_method_class
-    ::EacRubyUtils.patch(self, ::EacRubyUtils::MethodClass)
+    ::EacRubyUtils.patch_module(self, ::EacRubyUtils::MethodClass)
   end
 end

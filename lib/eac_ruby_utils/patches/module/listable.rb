@@ -5,6 +5,6 @@ require 'eac_ruby_utils/listable'
 
 class Module
   def enable_listable
-    ::EacRubyUtils.patch(self, ::EacRubyUtils::Listable)
+    ::EacRubyUtils.patch_module(self, ::EacRubyUtils::Listable)
   end
 end
