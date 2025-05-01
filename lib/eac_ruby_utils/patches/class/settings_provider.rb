@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patch'
+require 'eac_ruby_utils/patch_module'
 require 'eac_ruby_utils/settings_provider'
 
 class Class

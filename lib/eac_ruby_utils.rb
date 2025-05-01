@@ -9,6 +9,7 @@ EacRubyUtils::RootModuleSetup.perform __FILE__ do
 end
 
 module EacRubyUtils
+  include ::EacRubyUtils::PatchModule
 end
 
 require 'eac_ruby_utils/core_ext'
