@@ -5,7 +5,10 @@ require 'zeitwerk'
 module EacRubyUtils
   class RootModuleSetup
     class << self
-      def perform; end
+      # @param root_module_file [String]
+      def perform(root_module_file)
+        new(root_module_file).perform
+      end
     end
 
     attr_reader :root_module_file
