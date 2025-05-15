@@ -20,12 +20,17 @@ module EacRubyUtils
 
     # @return [void]
     def perform
-      loader = Zeitwerk::Loader.for_gem
-      loader.setup
+      perform_zeitwerk
     end
 
     protected
 
     attr_writer :root_module_file
+
+    # @return [void]
+    def perform_zeitwerk
+      loader = Zeitwerk::Loader.for_gem
+      loader.setup
+    end
   end
 end
