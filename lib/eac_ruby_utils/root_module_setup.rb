@@ -23,6 +23,12 @@ module EacRubyUtils
       perform_zeitwerk
     end
 
+    # @return [String]
+    def root_module_directory
+      ::File.expand_path(::File.basename(root_module_file, '.*'),
+                         ::File.dirname(root_module_file))
+    end
+
     protected
 
     attr_writer :root_module_file
