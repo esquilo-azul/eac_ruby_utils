@@ -7,6 +7,7 @@ require 'zeitwerk'
 module EacRubyUtils
   class RootModuleSetup
     DEFAULT_NAMESPACE = ::Object
+    LIB_DIRECTORY_BASENAME = 'lib'
 
     class << self
       # @param root_module_file [String]
@@ -46,6 +47,23 @@ module EacRubyUtils
     def perform
       perform_block
       perform_zeitwerk
+    end
+
+    # @return [String]
+    def relative_root_module_file
+      count = 0
+      current = ::File.basename(root_module_file, '.*')
+      dirname = ::File.dirname(root_module_file)
+      loop do
+        ibr if dirname == '/'
+
+        break current if ::File.basename(dirname) == LIB_DIRECTORY_BASENAME
+
+        current = ::File.join(::File.basename(dirname), current)
+        dirname = ::File.dirname(dirname)
+
+        count += 1
+      end
     end
 
     # @return [String]
