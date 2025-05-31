@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'active_support/inflector'
 require 'eac_ruby_utils/patches/pathname'
 require 'eac_ruby_utils/patches/object/to_pathname'
 require 'zeitwerk'
@@ -24,6 +25,15 @@ module EacRubyUtils
       self.block = block
     end
 
+    # @return [Module, nil]
+    def extension_for
+      dirname = ::File.dirname(relative_root_module_file)
+      return nil if ['.', '/', ''].include?(dirname)
+
+      require dirname
+      ::ActiveSupport::Inflector.constantize(dirname.classify)
+    end
+
     # @param path [String] Relative path to root module's directory.
     def ignore(path)
       count_before = loader.send(:ignored_paths).count
@@ -40,7 +50,7 @@ module EacRubyUtils
 
     # @return [Module]
     def namespace
-      DEFAULT_NAMESPACE
+      extension_for || DEFAULT_NAMESPACE
     end
 
     # @return [void]
