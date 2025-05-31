@@ -6,6 +6,8 @@ require 'zeitwerk'
 
 module EacRubyUtils
   class RootModuleSetup
+    DEFAULT_NAMESPACE = ::Object
+
     class << self
       # @param root_module_file [String]
       def perform(root_module_file, &block)
@@ -33,6 +35,11 @@ module EacRubyUtils
         "Trying to ignore path \"#{path}\" did not increase the ignored paths.",
         "Argument path: \"#{path}\"", "Target path: \"#{target_path}\"", "Ignored paths: #{result}"
       ].join("\n")
+    end
+
+    # @return [Module]
+    def namespace
+      DEFAULT_NAMESPACE
     end
 
     # @return [void]
@@ -64,7 +71,7 @@ module EacRubyUtils
     def loader
       @loader ||= ::Zeitwerk::Registry.loader_for_gem(
         root_module_file,
-        namespace: Object,
+        namespace: namespace,
         warn_on_extra_files: true
       )
     end
