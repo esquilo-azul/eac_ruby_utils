@@ -8,6 +8,8 @@ module EacRubyUtils
   class GemsRegistry
     class Gem
       module PathsToRequire
+        ROOT_MODULE_REQUIRE_PATTERNS = %w[EacRubyUtils::RootModuleSetup Zeitwerk].freeze
+
         # @return [Enumerable<Pathname>]
         def absolute_require_paths(lib_relative_path)
           gemspec.require_paths.lazy.map do |e|
@@ -18,7 +20,7 @@ module EacRubyUtils
 
         # @return [String]
         def path_to_require
-          direct_path_to_require
+          require_root_module? ? root_module_path_to_require : direct_path_to_require
         end
 
         # @return [String]
@@ -31,6 +33,16 @@ module EacRubyUtils
         # @return [String]
         def direct_path_to_require
           "#{root_module_path_to_require}/#{registry.module_suffix.underscore}"
+        end
+
+        # @return [Boolean]
+        def require_root_module?
+          absolute_require_paths(root_module_path_to_require).find do |e|
+            next false unless e.file?
+
+            content = e.read
+            ROOT_MODULE_REQUIRE_PATTERNS.any? { |e| content.include?(e) }
+          end
         end
 
         # @return [String]

@@ -9,6 +9,6 @@ RSpec.describe EacRubyUtils::GemsRegistry do
 
   it do
     expect(instance.registered.find { |e| e.gemspec.name == 'eac_ruby_utils' }.path_to_require)
-      .to eq('eac_ruby_utils/byte')
+      .to eq('eac_ruby_utils')
   end
 end
