@@ -2,6 +2,7 @@
 
 require 'active_support/core_ext/string/inflections'
 require 'eac_ruby_utils/gems_registry/gem/dependencies'
+require 'eac_ruby_utils/gems_registry/gem/paths_to_require'
 require 'eac_ruby_utils/simple_cache'
 
 module EacRubyUtils
@@ -9,6 +10,7 @@ module EacRubyUtils
     class Gem
       include ::Comparable
       include ::EacRubyUtils::GemsRegistry::Gem::Dependencies
+      include ::EacRubyUtils::GemsRegistry::Gem::PathsToRequire
       include ::EacRubyUtils::SimpleCache
 
       attr_reader :registry, :gemspec
@@ -43,15 +45,6 @@ module EacRubyUtils
 
         require path_to_require
         path_to_require.camelize.constantize
-      end
-
-      # @return [String]
-      def path_to_require
-        "#{gemspec.name.gsub('-', '/')}/#{registry.module_suffix.underscore}"
-      end
-
-      def to_s
-        "#{self.class.name}[#{gemspec.name}]"
       end
     end
   end
