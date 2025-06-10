@@ -35,7 +35,8 @@ module EacRubyUtils
 
       def lib_file_found?
         gemspec.require_paths.any? do |require_path|
-          ::Pathname.new(require_path).expand_path(gemspec.gem_dir).join("#{path_to_require}.rb")
+          ::Pathname.new(require_path).expand_path(gemspec.gem_dir)
+            .join("#{direct_path_to_require}.rb")
             .file?
         end
       end
@@ -44,7 +45,7 @@ module EacRubyUtils
         return nil unless lib_file_found?
 
         require path_to_require
-        path_to_require.camelize.constantize
+        direct_path_to_require.camelize.constantize
       end
     end
   end

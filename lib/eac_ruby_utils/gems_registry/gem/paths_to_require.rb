@@ -10,12 +10,19 @@ module EacRubyUtils
       module PathsToRequire
         # @return [String]
         def path_to_require
-          "#{gemspec.name.gsub('-', '/')}/#{registry.module_suffix.underscore}"
+          direct_path_to_require
         end
 
         # @return [String]
         def to_s
           "#{self.class.name}[#{gemspec.name}]"
+        end
+
+        protected
+
+        # @return [String]
+        def direct_path_to_require
+          "#{gemspec.name.gsub('-', '/')}/#{registry.module_suffix.underscore}"
         end
       end
     end
