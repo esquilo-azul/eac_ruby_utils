@@ -22,7 +22,12 @@ module EacRubyUtils
 
         # @return [String]
         def direct_path_to_require
-          "#{gemspec.name.gsub('-', '/')}/#{registry.module_suffix.underscore}"
+          "#{root_module_path_to_require}/#{registry.module_suffix.underscore}"
+        end
+
+        # @return [String]
+        def root_module_path_to_require
+          gemspec.name.gsub('-', '/')
         end
       end
     end
