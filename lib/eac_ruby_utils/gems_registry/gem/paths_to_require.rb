@@ -8,6 +8,14 @@ module EacRubyUtils
   class GemsRegistry
     class Gem
       module PathsToRequire
+        # @return [Enumerable<Pathname>]
+        def absolute_require_paths(lib_relative_path)
+          gemspec.require_paths.lazy.map do |e|
+            ::Pathname.new(e).expand_path(gemspec.gem_dir)
+              .join("#{lib_relative_path}.rb")
+          end
+        end
+
         # @return [String]
         def path_to_require
           direct_path_to_require

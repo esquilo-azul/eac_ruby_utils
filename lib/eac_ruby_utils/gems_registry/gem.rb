@@ -33,12 +33,9 @@ module EacRubyUtils
         lib_file_found? && registered_module.is_a?(::Module)
       end
 
+      # @return [Boolean]
       def lib_file_found?
-        gemspec.require_paths.any? do |require_path|
-          ::Pathname.new(require_path).expand_path(gemspec.gem_dir)
-            .join("#{direct_path_to_require}.rb")
-            .file?
-        end
+        absolute_require_paths(direct_path_to_require).any?(&:file?)
       end
 
       def registered_module
