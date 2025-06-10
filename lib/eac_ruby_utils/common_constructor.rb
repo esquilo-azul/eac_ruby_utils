@@ -25,7 +25,7 @@ module EacRubyUtils
 
       private
 
-      def parse_arg_options_process_arg(result, arg)
+      def parse_arg_options_process_arg(result, arg) # rubocop:disable Naming/PredicateMethod
         if arg.is_a?(::Hash)
           result.options = arg
           true

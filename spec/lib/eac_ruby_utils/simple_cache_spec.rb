@@ -10,7 +10,7 @@ class CacheableObject
     @counter += 1
   end
 
-  def method_with_question_uncached?
+  def method_with_question_uncached? # rubocop:disable Naming/PredicateMethod
     'question'
   end
 

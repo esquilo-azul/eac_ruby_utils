@@ -35,7 +35,7 @@ module EacRubyUtils
       added.include?(item) || to_check.include?(item)
     end
 
-    def check_next_item
+    def check_next_item # rubocop:disable Naming/PredicateMethod
       return false unless to_check.any?
 
       item = to_check.shift
