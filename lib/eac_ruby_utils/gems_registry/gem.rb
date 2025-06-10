@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/string/inflections'
-require 'eac_ruby_utils/recursive_builder'
+require 'eac_ruby_utils/gems_registry/gem/dependencies'
 require 'eac_ruby_utils/simple_cache'
 
 module EacRubyUtils
   class GemsRegistry
     class Gem
       include ::Comparable
+      include ::EacRubyUtils::GemsRegistry::Gem::Dependencies
       include ::EacRubyUtils::SimpleCache
 
       attr_reader :registry, :gemspec
@@ -15,14 +16,6 @@ module EacRubyUtils
       def initialize(registry, gemspec)
         @registry = registry
         @gemspec = gemspec
-      end
-
-      def depend_on(gem)
-        dependencies.lazy.map(&:name).include?(gem.gemspec.name)
-      end
-
-      def dependencies
-        @dependencies ||= dependencies_uncached # dependencies_uncached
       end
 
       def <=>(other)
@@ -59,21 +52,6 @@ module EacRubyUtils
 
       def to_s
         "#{self.class.name}[#{gemspec.name}]"
-      end
-
-      private
-
-      def dependencies_uncached
-        ::EacRubyUtils::RecursiveBuilder
-          .new(gemspec) { |item| gem_item_dependencies(item) }
-          .result
-      end
-
-      # @return [Array<Gem::Dependency>]
-      def gem_item_dependencies(item)
-        ::Gem::Specification.find_by_name(item.name).dependencies.select(&:runtime?)
-      rescue ::Gem::MissingSpecError
-        []
       end
     end
   end
