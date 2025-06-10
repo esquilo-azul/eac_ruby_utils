@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/object/call_if_proc'
-
 RSpec.describe Object, '#call_if_proc' do
   describe '#call_if_proc' do
     it { expect(nil.call_if_proc).to be_nil }

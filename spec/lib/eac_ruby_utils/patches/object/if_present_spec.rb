@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/object/if_present'
-
 RSpec.describe Object, '#if_present' do
   describe '#if_present' do
     it { expect(nil.if_present).to be_nil }

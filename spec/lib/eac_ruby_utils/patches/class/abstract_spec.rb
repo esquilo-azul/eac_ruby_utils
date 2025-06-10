@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/class/abstract'
-
 RSpec.describe Class, '#abstract' do
   let(:abstract_class) do
     described_class.new do

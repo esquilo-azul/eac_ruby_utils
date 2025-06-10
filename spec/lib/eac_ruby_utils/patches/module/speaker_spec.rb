@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/module/speaker'
-
 RSpec.describe Module, '#speaker' do
   let(:stub_class) do
     Class.new do

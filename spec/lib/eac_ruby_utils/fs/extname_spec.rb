@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/fs/extname'
-
 RSpec.describe EacRubyUtils::Fs, '#extname' do
   describe '#extname' do
     {

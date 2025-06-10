@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/local_time_zone'
-
 RSpec.describe(EacRubyUtils::LocalTimeZone) do
   describe '#auto' do
     context 'when TZ environment variable is set' do

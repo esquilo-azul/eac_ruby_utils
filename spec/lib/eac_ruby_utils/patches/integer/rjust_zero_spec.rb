@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/integer/rjust_zero'
-
 RSpec.describe Integer, '#rjust_zero' do
   [
     [0, 1, '0'],

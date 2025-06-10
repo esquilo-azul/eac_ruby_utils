@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/enum'
-
 RSpec.describe EacRubyUtils::Enum do
   let(:klass) do
     Class.new(described_class) do

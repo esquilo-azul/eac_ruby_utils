@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/envs/executable'
-require 'eac_ruby_utils/envs/local_env'
-
 RSpec.describe EacRubyUtils::Envs::Executable do
   let(:env) { EacRubyUtils::Envs::LocalEnv.new }
 

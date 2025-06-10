@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/settings_provider'
-
 RSpec.describe EacRubyUtils::SettingsProvider do
   let(:stub_class) do
     the_described_class = described_class

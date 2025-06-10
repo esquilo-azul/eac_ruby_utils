@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/hash/if_key'
-
 RSpec.describe Hash, '#if_key' do
   subject(:instance) { { a: 'a_value' } }
 

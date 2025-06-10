@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/acts_as_immutable'
-
 RSpec.describe EacRubyUtils::ActsAsImmutable::ArrayAccessor do
   let(:stub_class) do
     Class.new do

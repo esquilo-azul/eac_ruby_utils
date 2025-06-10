@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/blank_not_blank'
-
 RSpec.describe EacRubyUtils::BlankNotBlank do
   let(:instance) { described_class.instance }
 

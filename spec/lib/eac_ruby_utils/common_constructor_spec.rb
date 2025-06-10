@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/common_constructor'
-
 RSpec.describe EacRubyUtils::CommonConstructor do
   ARG_LIST = %i[a b c d].freeze # rubocop:disable Lint/ConstantDefinitionInBlock, RSpec/LeakyConstantDeclaration
 

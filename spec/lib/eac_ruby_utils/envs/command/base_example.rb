@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/envs/execution_error'
-
 RSpec.shared_examples 'with_command_env' do
   let(:echo) { env.executable('echo', '--version') }
   let(:cat) { env.executable('cat', '--version') }

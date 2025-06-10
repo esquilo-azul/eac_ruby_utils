@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/module/compare_by'
-
 RSpec.describe Module, '#compare_by' do
   let(:klass) do
     Class.new do

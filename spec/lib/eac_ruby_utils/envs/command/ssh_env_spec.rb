@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/eac_ubuntu_base0/rspec/ssh_docker_server'
-require 'eac_ruby_utils/envs/command'
-require 'eac_ruby_utils/envs/ssh_env'
+
 require_relative 'base_example'
 
 RSpec.describe EacRubyUtils::Envs::Command, '#ssh_env' do

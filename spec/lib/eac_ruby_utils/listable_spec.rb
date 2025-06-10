@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/listable'
-
 RSpec.describe EacRubyUtils::Listable do
   let(:stub_class) do
     the_described_class = described_class

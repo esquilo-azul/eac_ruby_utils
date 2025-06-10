@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/wildcards'
-
 RSpec.describe EacRubyUtils::Wildcards do
   describe '#match' do
     {

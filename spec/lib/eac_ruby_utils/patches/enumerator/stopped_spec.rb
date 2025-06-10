@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/enumerator/stopped'
-
 RSpec.describe Enumerator, '#stopped' do
   let(:list) { %w[a b] }
   let(:instance) { list.each }

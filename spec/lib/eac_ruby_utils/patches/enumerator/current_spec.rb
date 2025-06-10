@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/enumerator/current'
-
 RSpec.describe Enumerator, '#current' do
   let(:list) { %w[a b] }
   let(:instance) { list.each }

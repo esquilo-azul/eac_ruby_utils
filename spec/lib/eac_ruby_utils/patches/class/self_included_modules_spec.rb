@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/class/self_included_modules'
-
 RSpec.describe Class, '#self_included_modules' do
   let(:includeable_module) do
     Module.new

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/pathname/parent_n'
-
 RSpec.describe Pathname, '#assert_parent' do
   let(:root) { temp_dir }
   let(:parent_dir) { root.join('parent_dir') }

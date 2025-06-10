@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/compare_by'
-
 RSpec.describe EacRubyUtils::CompareBy do
   let(:instance) { described_class.new(%i[field1 field2]) }
   let(:klass) do

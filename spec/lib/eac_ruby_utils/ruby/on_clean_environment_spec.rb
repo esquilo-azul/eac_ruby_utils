@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/ruby'
-
 RSpec.describe EacRubyUtils::Ruby, '#on_clean_environment' do
   let(:envvar_name) { 'BUNDLE_NOT_EXISTENT_ENV_VAR' }
   let(:envvar_value) { 'any value' }

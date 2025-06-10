@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/module/listable'
-
 RSpec.describe Module, '#listable' do
   let(:stub_class) do
     Class.new do

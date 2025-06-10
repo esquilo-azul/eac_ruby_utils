@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/compact'
-
 RSpec.describe EacRubyUtils::Compact do
   let(:sub_object) { Struct.new(:c_attr).new('c_value') }
   let(:object) { Struct.new(:a_attr, :b_attr, :sub).new('a_value', 'b_value', sub_object) }

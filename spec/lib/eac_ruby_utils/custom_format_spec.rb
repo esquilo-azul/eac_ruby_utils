@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/custom_format'
-
 class StubObjectData
   def x_value
     'X1'

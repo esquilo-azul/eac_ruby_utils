@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/inflector'
-
 RSpec.describe EacRubyUtils::Inflector do
   describe '#variableize' do
     {

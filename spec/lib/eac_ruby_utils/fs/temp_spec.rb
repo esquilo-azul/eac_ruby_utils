@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/fs/temp'
-
 RSpec.describe EacRubyUtils::Fs::Temp do
   describe '#on_file' do
     it do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations

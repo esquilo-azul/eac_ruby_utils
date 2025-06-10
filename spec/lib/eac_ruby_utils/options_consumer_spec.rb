@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/options_consumer'
-
 RSpec.describe EacRubyUtils::OptionsConsumer do
   context 'with instance created with some data' do
     subject(:instance) { described_class.new(a: 'a_value', b: 'b_value', c: 'c_value') }

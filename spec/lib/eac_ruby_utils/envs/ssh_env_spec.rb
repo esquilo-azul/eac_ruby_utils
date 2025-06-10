@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/envs/ssh_env'
-
 RSpec.describe EacRubyUtils::Envs::SshEnv do
   describe '#ssh_command_line' do
     {

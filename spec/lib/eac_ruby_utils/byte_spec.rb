@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/byte'
-
 RSpec.describe EacRubyUtils::Byte do
   describe '#[]' do
     let(:instance) { described_class.new(0xDC) }

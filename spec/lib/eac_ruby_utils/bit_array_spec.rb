@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/bit_array'
-
 RSpec.describe EacRubyUtils::BitArray do
   describe '#to_byte_array' do
     let(:instance) { described_class.new([0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1]) }

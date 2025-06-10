@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/enumerable/boolean_combinations'
-
 RSpec.describe Enumerable, '#boolean_combinations' do
   let(:empty_instance) { [].to_enum }
   let(:a_instance) { [:a].to_enum }

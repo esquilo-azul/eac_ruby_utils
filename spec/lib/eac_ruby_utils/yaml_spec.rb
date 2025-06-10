@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'active_support/hash_with_indifferent_access'
-require 'eac_ruby_utils/yaml'
 
 RSpec.describe EacRubyUtils::Yaml do
   let(:unpermitted_class) do

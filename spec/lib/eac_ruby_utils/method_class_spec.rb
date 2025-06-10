@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/method_class'
-
 RSpec.describe EacRubyUtils::MethodClass do
   let(:sender_class) do
     Class.new do

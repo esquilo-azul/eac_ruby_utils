@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/module/simple_cache'
-
 RSpec.describe Module, '#simple_cache' do
   let(:stub_class) do
     Class.new do

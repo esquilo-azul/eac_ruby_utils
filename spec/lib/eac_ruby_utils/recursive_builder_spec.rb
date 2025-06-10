@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/recursive_builder'
-
 RSpec.describe EacRubyUtils::RecursiveBuilder do
   let(:item_class) do
     Class.new do

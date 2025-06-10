@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/common_concern'
-
 RSpec.describe EacRubyUtils::CommonConcern do
   let(:instance) do
     described_class.new do

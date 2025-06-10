@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/require_sub'
-
 class RequireSubStubClass # rubocop:disable Lint/EmptyClass
 end
 

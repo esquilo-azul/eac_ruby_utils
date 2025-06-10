@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/pathname/child_of'
-
 RSpec.describe Pathname, '#child_of' do
   describe 'child_of?' do
     [

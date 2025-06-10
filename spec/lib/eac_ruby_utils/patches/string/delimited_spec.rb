@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/string/delimited'
-
 RSpec.describe String, '#delimeted' do # rubocop:disable RSpec/RSpec/SpecFilePathFormat
   let(:instance) { 'A text with <b>content between</b> tags.' }
 

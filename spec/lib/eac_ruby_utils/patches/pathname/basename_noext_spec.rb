@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/pathname/basename_noext'
-
 RSpec.describe Pathname, '#basename_noext' do
   describe '#basename_noext' do
     {

@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/acts_as_abstract'
-require 'eac_ruby_utils/unimplemented_method_error'
-
 RSpec.describe(EacRubyUtils::ActsAsAbstract) do
   let(:base_class) do
     the_module = described_class

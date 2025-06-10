@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/module_ancestors_variable/set'
-
 RSpec.describe(EacRubyUtils::ModuleAncestorsVariable::Set) do
   let(:included_module) do
     Module.new do

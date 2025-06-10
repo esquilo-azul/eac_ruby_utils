@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/struct'
-
 RSpec.describe EacRubyUtils::Struct do
   let(:instance) { described_class.new('a' => 1, b: '') }
   let(:other) { described_class.new('a' => 'm1', c: 'm2') }

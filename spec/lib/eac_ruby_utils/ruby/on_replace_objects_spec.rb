@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/ruby'
-
 RSpec.describe EacRubyUtils::Ruby, '#on_replace_objects' do
   let(:stub_class) do
     Class.new do
