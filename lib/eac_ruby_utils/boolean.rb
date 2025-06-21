@@ -13,11 +13,11 @@ module EacRubyUtils
 
       private
 
-      def parse_string(value)
+      def parse_string(value) # rubocop:disable Naming/PredicateMethod
         ['', 'n', 'no', 'f', 'false'].exclude?(value.strip.downcase)
       end
 
-      def parse_number(value)
+      def parse_number(value) # rubocop:disable Naming/PredicateMethod
         value.zero?
       end
     end

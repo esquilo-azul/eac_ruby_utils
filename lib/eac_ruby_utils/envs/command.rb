@@ -13,7 +13,7 @@ module EacRubyUtils
         # @param command [Array]
         # @return [Array]
         def sanitize_initialize_arguments(arguments)
-          if arguments.count == 1 && arguments.first.is_a?(Array)
+          if arguments.one? && arguments.first.is_a?(Array)
             arguments.first
           elsif arguments.is_a?(Array)
             arguments

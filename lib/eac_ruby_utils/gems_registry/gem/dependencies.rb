@@ -6,7 +6,7 @@ module EacRubyUtils
   class GemsRegistry
     class Gem
       module Dependencies
-        def depend_on(gem)
+        def depend_on(gem) # rubocop:disable Naming/PredicateMethod
           dependencies.lazy.map(&:name).include?(gem.gemspec.name)
         end
 

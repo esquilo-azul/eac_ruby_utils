@@ -10,7 +10,7 @@ module Addressable
     end
 
     def query_value(*args)
-      if args.count == 1
+      if args.one?
         query_value_get(*args)
       elsif args.count == 2
         query_value_set(*args)

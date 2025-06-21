@@ -90,7 +90,7 @@ module EacRubyUtils
       def value_args
         r = if block
               block.call
-            elsif args.count == 1 && args.first.is_a?(::Enumerable)
+            elsif args.one? && args.first.is_a?(::Enumerable)
               args.first
             else
               args
