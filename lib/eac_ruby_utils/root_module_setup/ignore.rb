@@ -44,7 +44,12 @@ module EacRubyUtils
 
       # @return [Pathname]
       def target_paths_uncached
-        [absolute_path.basename_sub { |b| "#{b.basename('.*')}.rb" }]
+        return [absolute_path] if %w[* ?].any? { |e| absolute_path.to_path.include?(e) }
+
+        r = []
+        r << absolute_path if absolute_path.directory?
+        r << [absolute_path.basename_sub { |b| "#{b.basename('.*')}.rb" }]
+        r
       end
     end
   end
