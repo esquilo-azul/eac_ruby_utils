@@ -8,6 +8,7 @@ module EacRubyUtils
   class RootModuleSetup
     class Ignore
       acts_as_instance_method
+      enable_simple_cache
       common_constructor :setup, :path do
         self.path = path.to_pathname
       end
@@ -17,8 +18,7 @@ module EacRubyUtils
       def result
         count_before = loader.send(:ignored_paths).count
         result = loader.ignore target_path
-        target_path = path.basename_sub { |b| "#{b.basename('.*')}.rb" }
-                        .expand_path(root_module_directory)
+        target_path = absolute_path.basename_sub { |b| "#{b.basename('.*')}.rb" }
         return result if result.count > count_before
 
         raise ::ArgumentError, [
@@ -26,6 +26,13 @@ module EacRubyUtils
           "Argument path: \"#{path}\"", "Target path: \"#{target_path}\"",
           "Ignored paths: #{result}"
         ].join("\n")
+      end
+
+      protected
+
+      # @return [Pathname]
+      def absolute_path_uncached
+        path.expand_path(root_module_directory)
       end
     end
   end
