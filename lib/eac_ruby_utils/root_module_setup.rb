@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 require 'active_support/inflector'
-require 'eac_ruby_utils/patches/pathname'
-require 'eac_ruby_utils/patches/object/to_pathname'
+require 'eac_ruby_utils/patches/module/require_sub'
 require 'zeitwerk'
 
 module EacRubyUtils
   class RootModuleSetup
+    require_sub __FILE__, require_mode: :kernel
+
     DEFAULT_NAMESPACE = ::Object
     LIB_DIRECTORY_BASENAME = 'lib'
 
@@ -34,18 +35,13 @@ module EacRubyUtils
       ::ActiveSupport::Inflector.constantize(dirname.classify)
     end
 
-    # @param path [String] Relative path to root module's directory.
-    def ignore(path)
-      count_before = loader.send(:ignored_paths).count
-      target_path = path.to_pathname.basename_sub { |b| "#{b.basename('.*')}.rb" }
-                      .expand_path(root_module_directory)
-      result = loader.ignore target_path
-      return result if result.count > count_before
-
-      raise ::ArgumentError, [
-        "Trying to ignore path \"#{path}\" did not increase the ignored paths.",
-        "Argument path: \"#{path}\"", "Target path: \"#{target_path}\"", "Ignored paths: #{result}"
-      ].join("\n")
+    # @return [Zeitwerk::GemLoader]
+    def loader
+      @loader ||= ::Zeitwerk::Registry.loader_for_gem(
+        root_module_file,
+        namespace: namespace,
+        warn_on_extra_files: true
+      )
     end
 
     # @return [Module]
@@ -93,15 +89,6 @@ module EacRubyUtils
     # @return [void]
     def perform_zeitwerk
       loader.setup
-    end
-
-    # @return [Zeitwerk::GemLoader]
-    def loader
-      @loader ||= ::Zeitwerk::Registry.loader_for_gem(
-        root_module_file,
-        namespace: namespace,
-        warn_on_extra_files: true
-      )
     end
   end
 end
