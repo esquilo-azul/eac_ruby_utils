@@ -16,16 +16,8 @@ module EacRubyUtils
 
       # @return [Set]
       def result
-        count_before = loader.send(:ignored_paths).count
-        result = loader.ignore target_path
         target_path = absolute_path.basename_sub { |b| "#{b.basename('.*')}.rb" }
-        return result if result.count > count_before
-
-        raise ::ArgumentError, [
-          "Trying to ignore path \"#{path}\" did not increase the ignored paths.",
-          "Argument path: \"#{path}\"", "Target path: \"#{target_path}\"",
-          "Ignored paths: #{result}"
-        ].join("\n")
+        expect_count_increment(target_path) { loader.ignore target_path }
       end
 
       protected
@@ -33,6 +25,19 @@ module EacRubyUtils
       # @return [Pathname]
       def absolute_path_uncached
         path.expand_path(root_module_directory)
+      end
+
+      # @return [Set]
+      def expect_count_increment(target_path)
+        count_before = loader.send(:ignored_paths).count
+        result = yield
+        return result if result.count > count_before
+
+        raise ::ArgumentError, [
+          "Trying to ignore path \"#{path}\" did not increase the ignored paths.",
+          "Argument path: \"#{path}\"", "Target path: \"#{target_path}\"",
+          "Ignored paths: #{result}"
+        ].join("\n")
       end
     end
   end
