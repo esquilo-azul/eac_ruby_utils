@@ -17,7 +17,9 @@ module EacRubyUtils
 
       # @return [Set]
       def result
-        expect_count_increment { loader.ignore target_path }
+        target_paths.each do |target_path|
+          expect_count_increment { loader.ignore target_path }
+        end
       end
 
       protected
@@ -41,8 +43,8 @@ module EacRubyUtils
       end
 
       # @return [Pathname]
-      def target_path_uncached
-        absolute_path.basename_sub { |b| "#{b.basename('.*')}.rb" }
+      def target_paths_uncached
+        [absolute_path.basename_sub { |b| "#{b.basename('.*')}.rb" }]
       end
     end
   end
