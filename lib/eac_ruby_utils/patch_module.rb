@@ -7,6 +7,10 @@ module EacRubyUtils
     common_concern
 
     class_methods do
+      delegate :patch_module, to: :'::EacRubyUtils::PatchModule'
+    end
+
+    class << self
       def patch_module(target, patch)
         return if target.included_modules.include?(patch)
 
