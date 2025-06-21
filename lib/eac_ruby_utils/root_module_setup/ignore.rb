@@ -2,6 +2,7 @@
 
 require 'eac_ruby_utils/patches/module/acts_as_instance_method'
 require 'eac_ruby_utils/patches/object/to_pathname'
+require 'eac_ruby_utils/patches/module/simple_cache'
 require 'eac_ruby_utils/patches/pathname/basename_sub'
 
 module EacRubyUtils
@@ -16,8 +17,7 @@ module EacRubyUtils
 
       # @return [Set]
       def result
-        target_path = absolute_path.basename_sub { |b| "#{b.basename('.*')}.rb" }
-        expect_count_increment(target_path) { loader.ignore target_path }
+        expect_count_increment { loader.ignore target_path }
       end
 
       protected
@@ -28,7 +28,7 @@ module EacRubyUtils
       end
 
       # @return [Set]
-      def expect_count_increment(target_path)
+      def expect_count_increment
         count_before = loader.send(:ignored_paths).count
         result = yield
         return result if result.count > count_before
@@ -38,6 +38,11 @@ module EacRubyUtils
           "Argument path: \"#{path}\"", "Target path: \"#{target_path}\"",
           "Ignored paths: #{result}"
         ].join("\n")
+      end
+
+      # @return [Pathname]
+      def target_path_uncached
+        absolute_path.basename_sub { |b| "#{b.basename('.*')}.rb" }
       end
     end
   end
