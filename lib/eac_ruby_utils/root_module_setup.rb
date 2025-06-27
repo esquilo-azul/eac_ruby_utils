@@ -32,7 +32,7 @@ module EacRubyUtils
       return nil if ['.', '/', ''].include?(dirname)
 
       require dirname
-      ::ActiveSupport::Inflector.constantize(dirname.classify)
+      ::ActiveSupport::Inflector.constantize(dirname.camelize)
     end
 
     # @return [Zeitwerk::GemLoader]
