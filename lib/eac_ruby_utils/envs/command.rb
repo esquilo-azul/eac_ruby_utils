@@ -6,7 +6,7 @@ require 'eac_ruby_utils/envs/base_command'
 module EacRubyUtils
   module Envs
     class Command
-      require_sub __FILE__, include_modules: true, require_dependency: true
+      require_sub __FILE__, include_modules: true, require_mode: :kernel
       include ::EacRubyUtils::Envs::BaseCommand
 
       class << self
