@@ -16,6 +16,7 @@ module EacRubyUtils
       }.freeze
 
       include ::EacRubyUtils::Listable
+
       lists.add_symbol :option, :base, :include_modules, :require_dependency, :require_mode
       lists.add_symbol :require_mode, :active_support, :autoload, :kernel
 

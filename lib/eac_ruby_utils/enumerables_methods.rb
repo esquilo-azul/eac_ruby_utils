@@ -5,7 +5,7 @@ require 'eac_ruby_utils/patches/object/debug'
 module EacRubyUtils
   module EnumerablesMethods
     class << self
-      WRITE_METHOD_PATTERNS = [/\A[a-z].*[\!\=]\z/i] +
+      WRITE_METHOD_PATTERNS = [/\A[a-z].*[!=]\z/i] +
                               %i[\[\]= <<].map { |m| /\A#{::Regexp.quote(m)}\z/ } +
                               %i[add clear delete divide keep reset shift subtract]
                                 .map { |m| /\A#{::Regexp.quote(m)}.*\z/ }

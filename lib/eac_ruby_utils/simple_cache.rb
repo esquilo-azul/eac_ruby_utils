@@ -4,7 +4,7 @@ module EacRubyUtils
   module SimpleCache
     UNCACHED_METHOD_NAME_SUFFIX = '_uncached'
     UNCACHED_METHOD_PATTERN = /
-      \A(\s+)_#{::Regexp.quote(UNCACHED_METHOD_NAME_SUFFIX)}([\!\?]?)\z
+      \A(\s+)_#{::Regexp.quote(UNCACHED_METHOD_NAME_SUFFIX)}([!?]?)\z
     /x.freeze
 
     class << self

@@ -13,8 +13,10 @@ module EacRubyUtils
 
         included do
           include ::EacRubyUtils::Envs::SshEnv::DashoOptions
+
           add_nodasho_option('Terminal')
           include ::EacRubyUtils::Listable
+
           lists.add_string :terminal_option, :auto, :disable, :enable, :force
         end
 

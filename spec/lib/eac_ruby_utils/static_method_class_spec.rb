@@ -19,6 +19,7 @@ RSpec.describe EacRubyUtils::StaticMethodClass do
       end
 
       include the_described_class
+
       attr_accessor :sender, :method_param
 
       def initialize(sender, method_param)

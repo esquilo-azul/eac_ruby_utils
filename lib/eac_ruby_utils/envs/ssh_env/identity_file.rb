@@ -13,6 +13,7 @@ module EacRubyUtils
 
         included do
           include ::EacRubyUtils::Envs::SshEnv::DashoOptions
+
           add_nodasho_option('IdentityFile')
         end
 

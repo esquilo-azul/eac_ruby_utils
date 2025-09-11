@@ -8,6 +8,7 @@ module EacRubyUtils
   class CommonConcern
     class ClassSetup
       include ::EacRubyUtils::SimpleCache
+
       attr_reader :a_class, :module_setup, :include_method
 
       def initialize(module_setup, a_class, include_method)

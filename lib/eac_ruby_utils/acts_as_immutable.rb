@@ -9,6 +9,7 @@ module EacRubyUtils
 
     common_concern do
       include ::EacRubyUtils::Listable
+
       lists.add_symbol :type, :array, :boolean, :common, :hash
     end
   end

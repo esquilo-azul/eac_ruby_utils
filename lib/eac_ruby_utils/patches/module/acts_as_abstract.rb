@@ -9,6 +9,7 @@ class Module
   # @return [void]
   def acts_as_abstract(*methods)
     include ::EacRubyUtils::ActsAsAbstract
+
     abstract_methods(*methods)
   end
 end
