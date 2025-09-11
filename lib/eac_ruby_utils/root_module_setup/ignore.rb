@@ -37,7 +37,7 @@ module EacRubyUtils
 
         raise ::ArgumentError, [
           "Trying to ignore path \"#{path}\" did not increase the ignored paths.",
-          "Argument path: \"#{path}\"", "Target path: \"#{target_path}\"",
+          "Argument path: \"#{path}\"", "Target path: \"#{target_paths}\"",
           "Ignored paths: #{result}"
         ].join("\n")
       end
