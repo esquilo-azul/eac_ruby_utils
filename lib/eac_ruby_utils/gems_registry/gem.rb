@@ -30,19 +30,15 @@ module EacRubyUtils
       end
 
       def found?
-        lib_file_found? && registered_module.is_a?(::Module)
+        registered_module.is_a?(::Module)
       end
 
-      # @return [Boolean]
-      def lib_file_found?
-        absolute_require_paths(direct_path_to_require).any?(&:file?)
-      end
-
+      # @return [Module, nil]
       def registered_module
-        return nil unless lib_file_found?
-
         require path_to_require
         direct_path_to_require.camelize.constantize
+      rescue ::LoadError, ::NameError
+        nil
       end
     end
   end
