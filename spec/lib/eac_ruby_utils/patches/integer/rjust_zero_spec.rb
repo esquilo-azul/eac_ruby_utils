@@ -7,7 +7,7 @@ RSpec.describe Integer, '#rjust_zero' do
     [5, 2, '05'],
     [123, 6, '000123']
   ].each do |sample|
-    instance, size, expected_value = sample
+    instance, size, expected_value = sample # rubocop:disable RSpec/LeakyLocalVariable
 
     context "when instance is #{instance} and size is #{size}" do
       it do

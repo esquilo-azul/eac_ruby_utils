@@ -24,7 +24,7 @@ RSpec.describe EacRubyUtils::CommonConstructor do
   it { expect(a_class_instance.z).to eq('Vz') }
 
   ARG_LIST.each do |attr|
-    expected_value = "V#{attr}"
+    expected_value = "V#{attr}" # rubocop:disable RSpec/LeakyLocalVariable
     it "attribute \"#{attr}\" equal to \"#{expected_value}\"" do
       expect(a_class_instance.send(attr)).to eq(expected_value)
     end

@@ -17,7 +17,7 @@ RSpec.describe EacRubyUtils::EnumerablesMethods do
      %i[\[\]= compact! delete default= keep_if shift]],
     [:set, %i[<= include?], %i[<< add clear collect! divide delete keep_if merge reset subtract]]
   ].each do |test_values|
-    klass_underscore, read_methods, write_methods = test_values
+    klass_underscore, read_methods, write_methods = test_values # rubocop:disable RSpec/LeakyLocalVariable
 
     context "when class/module is #{klass_underscore}" do
       let(:const_prefix) { klass_underscore.to_s.upcase }

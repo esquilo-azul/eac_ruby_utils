@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe String, '#delimeted' do # rubocop:disable RSpec/RSpec/SpecFilePathFormat
+RSpec.describe String, '#delimeted' do # rubocop:disable RSpec/SpecFilePathFormat
   let(:instance) { 'A text with <b>content between</b> tags.' }
 
   {
@@ -22,7 +22,7 @@ RSpec.describe String, '#delimeted' do # rubocop:disable RSpec/RSpec/SpecFilePat
       let(:edel) { delimiters[1] }
 
       expected_values.each do |method_suffix, expected_value|
-        method_name = "delimited_#{method_suffix}"
+        method_name = "delimited_#{method_suffix}" # rubocop:disable RSpec/LeakyLocalVariable
         it "#{method_name} should return \"#{expected_value}\"" do
           expect(instance.send(method_name, bdel, edel)).to eq(expected_value)
         end

@@ -13,7 +13,7 @@ RSpec.describe Pathname, '#child_of' do
       ['/foo', '/bar', false],
       ['/foo', '/foo', false]
     ].each do |test_values|
-      child_path, parent_path, expected_value = test_values
+      child_path, parent_path, expected_value = test_values # rubocop:disable RSpec/LeakyLocalVariable
       context "when child=\"#{child_path}\" and parent=\"#{parent_path}\"" do
         it do
           expect(Pathname(child_path).child_of?(Pathname(parent_path))).to be(expected_value)

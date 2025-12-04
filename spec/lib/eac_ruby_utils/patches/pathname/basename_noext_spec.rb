@@ -11,7 +11,7 @@ RSpec.describe Pathname, '#basename_noext' do
       '/path/to/file.tar.gz' => %w[file file.tar.gz file.tar file file]
     }.each do |source, expected_values|
       expected_values.each_with_index do |expected_value, index|
-        limit = index - 1
+        limit = index - 1 # rubocop:disable RSpec/LeakyLocalVariable
         context "when source is \"#{source}\" and limit is \"#{limit}\"" do
           let(:instance) { described_class.new(source) }
           let(:expected_path) { described_class.new(expected_value) }

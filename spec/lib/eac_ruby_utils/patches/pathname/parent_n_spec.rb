@@ -16,7 +16,7 @@ RSpec.describe Pathname, '#parent_n' do
     ['relative/path/to/file', 5, '..'],
     ['relative/path/to/file', 6, '../..']
   ].each do |test_data|
-    input_path = test_data[0]
+    input_path = test_data[0] # rubocop:disable RSpec/LeakyLocalVariable
     context "when path is \"#{input_path}\"" do
       let(:n) { test_data[1] }
       let(:expected_path) { test_data[2] }
