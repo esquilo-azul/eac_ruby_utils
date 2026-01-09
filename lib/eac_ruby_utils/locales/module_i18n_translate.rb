@@ -33,7 +33,7 @@ module EacRubyUtils
       end
 
       def i18n_translate
-        ::I18n.t(i18n_key, i18n_options)
+        ::I18n.t(i18n_key, **i18n_options)
       end
 
       def locale
