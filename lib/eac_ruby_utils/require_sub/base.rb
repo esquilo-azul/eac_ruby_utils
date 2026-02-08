@@ -17,7 +17,8 @@ module EacRubyUtils
 
       include ::EacRubyUtils::Listable
 
-      lists.add_symbol :option, :base, :include_modules, :require_dependency, :require_mode
+      lists.add_symbol :option, :base, :include_modules, :recursive, :require_dependency,
+                       :require_mode
       lists.add_symbol :require_mode, :active_support, :autoload, :kernel
 
       attr_reader :file, :options
@@ -36,8 +37,15 @@ module EacRubyUtils
       end
 
       def apply
-        require_sub_files
-        include_modules
+        raise('Options :base and :recursive cannot be simultaneously present/true') if
+          base? && recursive?
+
+        if recursive?
+          require_sub_files_recursively
+        else
+          require_sub_files
+          include_modules
+        end
       end
 
       def base
@@ -60,6 +68,11 @@ module EacRubyUtils
                                "\"#{options[OPTION_INCLUDE_MODULES]}\""
       end
 
+      # @return [Boolean]
+      def recursive?
+        options.fetch(OPTION_RECURSIVE, false) ? true : false
+      end
+
       # @return [Symbol]
       def require_mode
         return options[OPTION_REQUIRE_MODE] if options[OPTION_REQUIRE_MODE]
@@ -70,6 +83,10 @@ module EacRubyUtils
       end
 
       def require_sub_files
+        sub_files.each(&:require_file)
+      end
+
+      def require_sub_files_recursively
         sub_files.each(&:require_file)
       end
 

@@ -41,6 +41,11 @@ module EacRubyUtils
         send("#{owner.require_mode}_require")
       end
 
+      def require_file_recursively
+        require_file
+        ::EacRubyUtils::RequireSub::Base.new(path, owner.options).apply
+      end
+
       private
 
       def active_support_require
