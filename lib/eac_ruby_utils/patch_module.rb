@@ -12,7 +12,7 @@ module EacRubyUtils
 
     class << self
       def patch_module(target, patch)
-        return if target.included_modules.include?(patch)
+        return if target.include?(patch)
 
         target.send(:include, patch)
       end
