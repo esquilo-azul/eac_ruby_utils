@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'activesupport', '>= 4', '< 7'
   s.add_dependency 'addressable', '~> 2.8', '>= 2.8.8'
   s.add_dependency 'bundler'
-  s.add_dependency 'filesize', '~> 0.2'
   s.add_dependency 'net-ssh', '~> 4.2'
   s.add_dependency 'zeitwerk', '~> 2.7', '>= 2.7.4'
   s.add_development_dependency 'avm-eac_ubuntu_base0', '~> 0.7'
