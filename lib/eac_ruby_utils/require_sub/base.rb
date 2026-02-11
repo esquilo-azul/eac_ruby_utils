@@ -40,12 +40,8 @@ module EacRubyUtils
         raise('Options :base and :recursive cannot be simultaneously present/true') if
           base? && recursive?
 
-        if recursive?
-          require_sub_files_recursively
-        else
-          require_sub_files
-          include_modules
-        end
+        require_sub_files
+        include_modules
       end
 
       def base
@@ -86,13 +82,11 @@ module EacRubyUtils
         sub_files.each(&:require_file)
       end
 
-      def require_sub_files_recursively
-        sub_files.each(&:require_file)
-      end
-
+      # @return [Enumerable<EacRubyUtils::RequireSub::SubFile>]
       def sub_files
-        @sub_files ||= Dir["#{File.dirname(file)}/#{::File.basename(file, '.*')}/*.rb"].sort
-                         .map { |path| ::EacRubyUtils::RequireSub::SubFile.new(self, path) }
+        @sub_files ||= Dir["#{File.dirname(file)}/#{::File.basename(file, '.*')}" \
+                           "#{'/**' if recursive?}/*.rb"].sort
+                       .map { |path| ::EacRubyUtils::RequireSub::SubFile.new(self, path) }
       end
     end
   end
