@@ -19,11 +19,23 @@ module EacRubyUtils
     end
 
     attr_reader :block, :root_module_file
+    attr_writer :logging
 
     # @param root_module_file [String]
     def initialize(root_module_file, &block)
       self.root_module_file = root_module_file
       self.block = block
+    end
+
+    # @param enable [Boolean] `true` to enable, `false` (default) to disable.
+    # @return
+    def logging(enable)
+      @logging = enable
+    end
+
+    # @return [Boolean]
+    def logging?
+      @logging ? true : false
     end
 
     # @return [Module, nil]
@@ -88,6 +100,7 @@ module EacRubyUtils
 
     # @return [void]
     def perform_zeitwerk
+      loader.log! if logging?
       loader.setup
     end
   end
