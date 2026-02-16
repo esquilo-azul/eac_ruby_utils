@@ -86,7 +86,7 @@ module EacRubyUtils
       def sub_files
         @sub_files ||= Dir["#{File.dirname(file)}/#{::File.basename(file, '.*')}" \
                            "#{'/**' if recursive?}/*.rb"].sort
-                       .map { |path| ::EacRubyUtils::RequireSub::SubFile.new(self, path) }
+                         .map { |path| ::EacRubyUtils::RequireSub::SubFile.new(self, path) }
       end
     end
   end
