@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'activesupport', '>= 4', '< 7'
   s.add_dependency 'addressable', '~> 2.9'
   s.add_dependency 'bundler'
+  s.add_dependency 'memoized', '~> 1.1', '>= 1.1.3'
   s.add_dependency 'net-ssh', '~> 4.2'
   s.add_dependency 'zeitwerk', '~> 2.7', '>= 2.7.5'
   s.add_development_dependency 'avm-eac_ubuntu_base0', '~> 0.7'
