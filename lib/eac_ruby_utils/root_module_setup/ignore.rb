@@ -2,14 +2,15 @@
 
 require 'eac_ruby_utils/patches/module/acts_as_instance_method'
 require 'eac_ruby_utils/patches/object/to_pathname'
-require 'eac_ruby_utils/patches/module/simple_cache'
 require 'eac_ruby_utils/patches/pathname/basename_sub'
+require 'memoized'
 
 module EacRubyUtils
   class RootModuleSetup
     class Ignore
+      include ::Memoized
+
       acts_as_instance_method
-      enable_simple_cache
       common_constructor :setup, :path do
         self.path = path.to_pathname
       end
@@ -25,7 +26,7 @@ module EacRubyUtils
       protected
 
       # @return [Pathname]
-      def absolute_path_uncached
+      memoize def absolute_path
         path.expand_path(root_module_directory)
       end
 
@@ -43,7 +44,7 @@ module EacRubyUtils
       end
 
       # @return [Pathname]
-      def target_paths_uncached
+      memoize def target_paths
         return [absolute_path] if %w[* ?].any? { |e| absolute_path.to_path.include?(e) }
 
         r = []

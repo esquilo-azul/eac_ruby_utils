@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 require 'active_support/concern'
-require 'eac_ruby_utils/simple_cache'
+require 'memoized'
 require 'eac_ruby_utils/patches/object/if_present'
 
 module EacRubyUtils
   class CommonConcern
     class ClassSetup
-      include ::EacRubyUtils::SimpleCache
+      include ::Memoized
 
       attr_reader :a_class, :module_setup, :include_method
 
@@ -37,13 +37,13 @@ module EacRubyUtils
         end
       end
 
-      def class_methods_module_uncached
+      memoize def class_methods_module
         module_setup.a_module.const_get(CLASS_METHODS_MODULE_NAME)
       rescue NameError
         nil
       end
 
-      def instance_methods_module_uncached
+      memoize def instance_methods_module
         module_setup.a_module.const_get(INSTANCE_METHODS_MODULE_NAME)
       rescue NameError
         nil

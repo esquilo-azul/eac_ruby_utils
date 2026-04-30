@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/listable'
-require 'eac_ruby_utils/simple_cache'
+require 'memoized'
 
 module EacRubyUtils
   module Envs
     class Executable
       include ::EacRubyUtils::Listable
-      include ::EacRubyUtils::SimpleCache
+      include ::Memoized
 
       lists.add_symbol :option, :check_args, :exec_args, :auto_validate
 
@@ -80,7 +80,7 @@ module EacRubyUtils
 
       attr_writer :options
 
-      def exist_uncached
+      memoize def exist
         env.command(*executable_args, *check_args).execute!
         true
       rescue Errno::ENOENT

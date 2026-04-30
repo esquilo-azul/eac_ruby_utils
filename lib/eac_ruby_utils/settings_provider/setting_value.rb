@@ -2,14 +2,14 @@
 
 require 'active_support/core_ext/string/inflections'
 require 'eac_ruby_utils/listable'
-require 'eac_ruby_utils/simple_cache'
+require 'memoized'
 require 'eac_ruby_utils/struct'
 
 module EacRubyUtils
   module SettingsProvider
     class SettingValue
       include ::EacRubyUtils::Listable
-      include ::EacRubyUtils::SimpleCache
+      include ::Memoized
 
       attr_reader :source, :key, :options
 
@@ -63,7 +63,7 @@ module EacRubyUtils
 
       private
 
-      def parsed_options_uncached
+      memoize def parsed_options
         r = self.class.lists.option.hash_keys_validate!(options.symbolize_keys)
         r[:required] = true unless r.key?(OPTION_REQUIRED)
         r[:order] = source.setting_search_order if r[OPTION_ORDER].nil?

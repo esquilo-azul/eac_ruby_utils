@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/simple_cache'
+require 'memoized'
 
 module EacRubyUtils
   class RecursiveBuilder
-    include ::EacRubyUtils::SimpleCache
+    include ::Memoized
 
     attr_reader :root, :neighbors_block
 
@@ -13,11 +13,7 @@ module EacRubyUtils
       @neighbors_block = neighbors_block
     end
 
-    private
-
-    attr_reader :added, :to_check
-
-    def result_uncached
+    memoize def result
       @added = []
       @to_check = []
       item_try_add_to_check(root)
@@ -26,6 +22,10 @@ module EacRubyUtils
       end
       added
     end
+
+    private
+
+    attr_reader :added, :to_check
 
     def item_try_add_to_check(item)
       to_check << item unless item_added?(item)

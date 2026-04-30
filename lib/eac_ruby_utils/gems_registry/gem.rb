@@ -3,7 +3,7 @@
 require 'active_support/core_ext/string/inflections'
 require 'eac_ruby_utils/gems_registry/gem/dependencies'
 require 'eac_ruby_utils/gems_registry/gem/paths_to_require'
-require 'eac_ruby_utils/simple_cache'
+require 'memoized'
 
 module EacRubyUtils
   class GemsRegistry
@@ -11,7 +11,7 @@ module EacRubyUtils
       include ::Comparable
       include ::EacRubyUtils::GemsRegistry::Gem::Dependencies
       include ::EacRubyUtils::GemsRegistry::Gem::PathsToRequire
-      include ::EacRubyUtils::SimpleCache
+      include ::Memoized
 
       attr_reader :registry, :gemspec
 

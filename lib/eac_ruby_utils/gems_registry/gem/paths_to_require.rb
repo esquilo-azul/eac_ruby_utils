@@ -2,7 +2,7 @@
 
 require 'active_support/core_ext/string/inflections'
 require 'eac_ruby_utils/recursive_builder'
-require 'eac_ruby_utils/simple_cache'
+require 'memoized'
 
 module EacRubyUtils
   class GemsRegistry
