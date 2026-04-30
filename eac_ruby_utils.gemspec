@@ -17,10 +17,10 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.7'
 
   s.add_dependency 'activesupport', '>= 4', '< 7'
-  s.add_dependency 'addressable', '~> 2.8', '>= 2.8.8'
+  s.add_dependency 'addressable', '~> 2.9'
   s.add_dependency 'bundler'
   s.add_dependency 'net-ssh', '~> 4.2'
-  s.add_dependency 'zeitwerk', '~> 2.7', '>= 2.7.4'
+  s.add_dependency 'zeitwerk', '~> 2.7', '>= 2.7.5'
   s.add_development_dependency 'avm-eac_ubuntu_base0', '~> 0.7'
-  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.12', '>= 0.12.1'
+  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.12', '>= 0.12.2'
 end
