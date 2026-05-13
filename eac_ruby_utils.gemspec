@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.files = Dir['{lib}/**/*', 'MIT-LICENSE', 'README.rdoc']
   s.required_ruby_version = '>= 2.7'
 
-  s.add_dependency 'activesupport', '>= 4', '< 7'
+  s.add_dependency 'activesupport', '>= 6.1.7.10'
   s.add_dependency 'addressable', '~> 2.9'
   s.add_dependency 'bundler'
   s.add_dependency 'memoized', '~> 1.1', '>= 1.1.3'
