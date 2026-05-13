@@ -7,8 +7,8 @@ module EacRubyUtils
   module Ruby
     class << self
       # Executes a block in an environment when the variables BUNDLE* and RUBY* are removed.
-      def on_clean_environment(&block)
-        OnCleanEnvironment.new(&block).perform
+      def on_clean_environment(&)
+        OnCleanEnvironment.new(&).perform
       end
 
       class OnCleanEnvironment

@@ -21,7 +21,7 @@ module EacRubyUtils
         end
       end
 
-      def method_missing(name, *args, &block)
+      def method_missing(name, *args, &)
         list = find_list_by_method(name)
         list || super
       end

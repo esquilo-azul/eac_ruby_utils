@@ -30,9 +30,9 @@ module EacRubyUtils
       super || BY_PARSER.parse?(method_name)
     end
 
-    def method_missing(method_name, *arguments, &block)
+    def method_missing(method_name, *, &)
       if (parsed = BY_PARSER.parse(method_name))
-        return send(parsed.method_name, parsed.attribute, *arguments, &block)
+        return send(parsed.method_name, parsed.attribute, *, &)
       end
 
       super

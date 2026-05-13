@@ -76,7 +76,7 @@ module EacRubyUtils
         super || abstract_method?(method_name)
       end
 
-      def method_missing(method_name, *arguments, &block)
+      def method_missing(method_name, *arguments, &)
         raise_abstract_method(method_name) if abstract_method?(method_name)
 
         super

@@ -5,7 +5,7 @@ module EacRubyUtils
     UNCACHED_METHOD_NAME_SUFFIX = '_uncached'
     UNCACHED_METHOD_PATTERN = /
       \A(\s+)_#{::Regexp.quote(UNCACHED_METHOD_NAME_SUFFIX)}([!?]?)\z
-    /x.freeze
+    /x
 
     class << self
       def uncached_method_name(method_name)
@@ -19,9 +19,9 @@ module EacRubyUtils
       end
     end
 
-    def method_missing(method, *args, &block)
+    def method_missing(method, *args, &)
       if respond_to?(uncached_method_name(method), true)
-        call_method_with_cache(method, args, &block)
+        call_method_with_cache(method, args, &)
       else
         super
       end

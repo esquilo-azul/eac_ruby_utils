@@ -8,8 +8,8 @@ module EacRubyUtils
   class Byte
     ASSEMBLY_HEXADECIMAL_PREFIX = '$'
     BIT_COUNT = 8
-    BIT_INDEX_RANGE = (0..7).freeze
-    VALUE_RANGE = (0..255).freeze
+    BIT_INDEX_RANGE = (0..7)
+    VALUE_RANGE = (0..255)
 
     class << self
       def assert(obj)

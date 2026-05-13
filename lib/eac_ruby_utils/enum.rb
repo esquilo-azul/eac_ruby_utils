@@ -6,8 +6,8 @@ module EacRubyUtils
   # Similar to Java's enum type (https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html).
   class Enum
     class << self
-      def enum(key, *args, &block)
-        value = Value.new(self, key, args, &block)
+      def enum(key, *args, &)
+        value = Value.new(self, key, args, &)
         raise ::ArgumentError, "#{self} already has a value with key=#{value.key}" if
           value_set.include?(value)
 

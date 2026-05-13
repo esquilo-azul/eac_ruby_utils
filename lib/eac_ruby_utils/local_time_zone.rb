@@ -8,7 +8,7 @@ module EacRubyUtils
     DEBIAN_CONFIG_PATH = '/etc/timezone'
 
     class << self
-      TIMEDATECTL_TIMEZONE_LINE_PATTERN = %r{\s*Time zone:\s*(\S+/\S+)\s}.freeze
+      TIMEDATECTL_TIMEZONE_LINE_PATTERN = %r{\s*Time zone:\s*(\S+/\S+)\s}
 
       # @return [ActiveSupport::TimeZone]
       def auto

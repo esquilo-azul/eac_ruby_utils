@@ -85,7 +85,7 @@ module EacRubyUtils
       # @return [Enumerable<EacRubyUtils::RequireSub::SubFile>]
       def sub_files
         @sub_files ||= Dir["#{File.dirname(file)}/#{::File.basename(file, '.*')}" \
-                           "#{'/**' if recursive?}/*.rb"].sort
+                           "#{'/**' if recursive?}/*.rb"]
                          .map { |path| ::EacRubyUtils::RequireSub::SubFile.new(self, path) }
       end
     end

@@ -9,8 +9,8 @@ module EacRubyUtils
       extend ::EacRubyUtils::ActsAsAbstract
 
       module ClassMethods
-        def on(*args, &block)
-          ::EacRubyUtils::Speaker.context.on(new(*args), &block)
+        def on(*, &)
+          ::EacRubyUtils::Speaker.context.on(new(*), &)
         end
       end
 

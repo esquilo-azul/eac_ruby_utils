@@ -21,8 +21,8 @@ module EacRubyUtils
         @blank_value ||= ::EacRubyUtils::Listable::Item.new(self, BLANK_VALUE, BLANK_KEY, false)
       end
 
-      def each_value(&block)
-        values.each(&block)
+      def each_value(&)
+        values.each(&)
       end
 
       # @return [EacRubyUtils::Listable::Item, nil]
@@ -51,7 +51,7 @@ module EacRubyUtils
         [blank_value.to_option] + options
       end
 
-      def method_missing(name, *args, &block)
+      def method_missing(name, *args, &)
         list = find_list_by_method(name)
         list || super
       end

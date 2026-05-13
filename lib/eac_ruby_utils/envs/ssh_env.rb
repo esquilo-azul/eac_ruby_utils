@@ -12,9 +12,9 @@ module EacRubyUtils
     class SshEnv < ::EacRubyUtils::Envs::BaseEnv
       require_sub __FILE__, include_modules: true
 
-      USER_PATTERN = /[a-z_][a-z0-9_-]*/.freeze
-      HOSTNAME_PATTERN = /[^@]+/.freeze
-      USER_HOSTNAME_PATTERN = /\A(?:(#{USER_PATTERN})@)?(#{HOSTNAME_PATTERN})\z/.freeze
+      USER_PATTERN = /[a-z_][a-z0-9_-]*/
+      HOSTNAME_PATTERN = /[^@]+/
+      USER_HOSTNAME_PATTERN = /\A(?:(#{USER_PATTERN})@)?(#{HOSTNAME_PATTERN})\z/
 
       class << self
         def parse_uri(uri)

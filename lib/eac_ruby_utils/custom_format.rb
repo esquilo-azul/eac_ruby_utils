@@ -3,8 +3,8 @@
 module EacRubyUtils
   # A formatter like [String.sprintf].
   class CustomFormat
-    TYPE_PATTERN = /[a-zA-Z]/.freeze
-    SEQUENCE_PATTERN = /(?<!%)%(#{TYPE_PATTERN})/.freeze
+    TYPE_PATTERN = /[a-zA-Z]/
+    SEQUENCE_PATTERN = /(?<!%)%(#{TYPE_PATTERN})/
 
     attr_reader :mapping
 

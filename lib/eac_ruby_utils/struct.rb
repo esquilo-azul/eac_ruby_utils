@@ -25,7 +25,7 @@ module EacRubyUtils
       self.class.new(to_h.merge(other.to_h))
     end
 
-    def method_missing(method_name, *arguments, &block)
+    def method_missing(method_name, *arguments, &)
       property_method?(method_name) ? fetch(method_name) : super
     end
 

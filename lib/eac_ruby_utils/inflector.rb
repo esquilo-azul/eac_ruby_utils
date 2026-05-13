@@ -5,7 +5,7 @@ require 'active_support/inflector'
 module EacRubyUtils
   class Inflector
     class << self
-      VARIABLE_NAME_PATTERN = /[_a-z][_a-z0-9]*/i.freeze
+      VARIABLE_NAME_PATTERN = /[_a-z][_a-z0-9]*/i
 
       # Convert a string to a variable format: first character as a lowercase letter or underscore
       # and other as a lowercase letter, underscore or numbers.

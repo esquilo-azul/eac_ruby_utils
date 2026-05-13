@@ -5,9 +5,9 @@ require 'pathname'
 class Pathname
   # A .glob that raises a ::RuntimeError if +self+ is not a directory.
   # @return [Pathname]
-  def reqdir_glob(*args)
+  def reqdir_glob(*)
     raise "\"#{self}\" is not a directory" unless directory?
 
-    glob(*args)
+    glob(*)
   end
 end

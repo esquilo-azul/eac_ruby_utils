@@ -5,7 +5,7 @@ module EacRubyUtils
     module InstanceMethods
       LISTABLE_INSTANCE_VALUE_METHODS = %w[label description].freeze
 
-      def method_missing(name, *args, &block)
+      def method_missing(name, *args, &)
         list, method = parse_method(name)
         list && method ? list.instance_value(self).send(method) : super
       end

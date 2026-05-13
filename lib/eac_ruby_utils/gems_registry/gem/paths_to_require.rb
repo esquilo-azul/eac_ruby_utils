@@ -41,7 +41,7 @@ module EacRubyUtils
             next false unless e.file?
 
             content = e.read
-            ROOT_MODULE_REQUIRE_PATTERNS.any? { |e| content.include?(e) }
+            ROOT_MODULE_REQUIRE_PATTERNS.any? { |e| content.include?(e) } # rubocop:disable Style/ArrayIntersect
           end
         end
 

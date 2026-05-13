@@ -13,8 +13,8 @@ module EacRubyUtils
 
     class << self
       # @param root_module_file [String]
-      def perform(root_module_file, &block)
-        new(root_module_file, &block).perform
+      def perform(root_module_file, &)
+        new(root_module_file, &).perform
       end
     end
 

@@ -22,18 +22,18 @@ module EacRubyUtils
         restore_replacements
       end
 
-      def replace_instance_method(a_module, method_name, &block)
-        add_replacement(__method__, a_module, method_name, &block)
+      def replace_instance_method(a_module, method_name, &)
+        add_replacement(__method__, a_module, method_name, &)
       end
 
-      def replace_self_method(object, method_name, &block)
-        add_replacement(:replace_instance_method, object.singleton_class, method_name, &block)
+      def replace_self_method(object, method_name, &)
+        add_replacement(:replace_instance_method, object.singleton_class, method_name, &)
       end
 
       private
 
-      def add_replacement(method_name, *args, &block)
-        @replacements << replacement_class(method_name).new(*args, &block).apply
+      def add_replacement(method_name, *, &)
+        @replacements << replacement_class(method_name).new(*, &).apply
       end
 
       def replacement_class(method_name)

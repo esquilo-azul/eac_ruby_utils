@@ -6,8 +6,8 @@ module EacRubyUtils
       @object_provider = object_provider
     end
 
-    def method_missing(method_name, *arguments, &block)
-      return object.send(method_name, *arguments, &block) if object.respond_to?(method_name)
+    def method_missing(method_name, *, &)
+      return object.send(method_name, *, &) if object.respond_to?(method_name)
 
       super
     end
