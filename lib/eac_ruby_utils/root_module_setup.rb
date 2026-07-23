@@ -5,6 +5,7 @@ require 'eac_ruby_utils/patches/module/require_sub'
 require 'zeitwerk'
 
 module EacRubyUtils
+  # @deprecated Use `EacRubyBase1::RootModuleSetup` instead.
   class RootModuleSetup
     require_sub __FILE__, require_mode: :kernel
 
