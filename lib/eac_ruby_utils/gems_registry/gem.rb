@@ -35,10 +35,15 @@ module EacRubyUtils
 
       # @return [Module, nil]
       def registered_module
-        require path_to_require
-        direct_path_to_require.camelize.constantize
-      rescue ::LoadError, ::NameError
-        nil
+        begin
+          require path_to_require
+        rescue ::LoadError # rubocop:disable Lint/SuppressedException
+        end
+        begin
+          direct_path_to_require.camelize.constantize
+        rescue ::LoadError, ::NameError
+          nil
+        end
       end
     end
   end
