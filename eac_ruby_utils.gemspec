@@ -22,6 +22,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'memoized', '~> 1.1', '>= 1.1.3'
   s.add_dependency 'net-ssh', '~> 4.2'
   s.add_dependency 'zeitwerk', '~> 2.8', '>= 2.8.2'
-  s.add_development_dependency 'avm-eac_ubuntu_base0', '~> 0.7'
-  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.13'
+  s.add_development_dependency 'avm-eac_ubuntu_base0', '~> 0.7', '>= 0.7.1'
+  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.14'
 end
