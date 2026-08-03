@@ -45,7 +45,7 @@ module EacRubyUtils
 
       # @return [Pathname]
       memoize def target_paths
-        return [absolute_path] if %w[* ?].any? { |e| absolute_path.to_path.include?(e) } # rubocop:disable Style/ArrayIntersect
+        return [absolute_path] if %w[* ?].any? { |e| absolute_path.to_path.include?(e) }
 
         r = []
         r << absolute_path if absolute_path.directory?

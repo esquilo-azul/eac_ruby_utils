@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
 
   s.files = Dir['{lib}/**/*', 'MIT-LICENSE', 'README.rdoc']
-  s.required_ruby_version = '>= 3.2'
+  s.required_ruby_version = '>= 3.2' # rubocop:disable Gemspec/RequiredRubyVersion
 
   s.add_dependency 'activesupport', '>= 6.1.7.10'
   s.add_dependency 'addressable', '~> 2.9'

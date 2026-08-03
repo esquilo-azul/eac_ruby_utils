@@ -34,9 +34,9 @@ module EacRubyUtils
 
         private
 
-        def bundler_with_unbundled_env(&block)
+        def bundler_with_unbundled_env(&)
           with_bundler_modified do
-            ::Bundler.send(bundler_with_env_method_name, &block)
+            ::Bundler.send(bundler_with_env_method_name, &)
           end
         end
 
