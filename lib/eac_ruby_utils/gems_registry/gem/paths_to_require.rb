@@ -8,7 +8,9 @@ module EacRubyUtils
   class GemsRegistry
     class Gem
       module PathsToRequire
-        ROOT_MODULE_REQUIRE_PATTERNS = %w[EacRubyUtils::RootModuleSetup Zeitwerk].freeze
+        ROOT_MODULE_REQUIRE_PATTERNS = %w[
+          EacRubyUtils::RootModuleSetup EacRubyBase1::RootModuleSetup Zeitwerk
+        ].freeze
 
         # @return [Enumerable<Pathname>]
         def absolute_require_paths(lib_relative_path)
