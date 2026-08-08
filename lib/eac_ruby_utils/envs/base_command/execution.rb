@@ -10,6 +10,12 @@ module EacRubyUtils
   module Envs
     module BaseCommand
       module Execution
+        common_concern do
+          include ActiveSupport::Callbacks
+
+          define_callbacks :any_execution, :execute, :spawn, :system
+        end
+
         def execute!(options = {})
           options[:exit_outputs] = status_results.merge(options[:exit_outputs].presence || {})
           er = ::EacRubyUtils::Envs::ExecutionResult.new(execute(options), options)
@@ -23,7 +29,9 @@ module EacRubyUtils
           c = command(options)
           debug_print("BEFORE: #{c}")
           t1 = Time.now
-          r = ::EacRubyUtils::Envs::Process.new(c).to_h
+          r = run_callbacks :any_execution, :execute do
+            ::EacRubyUtils::Envs::Process.new(c).to_h
+          end
           i = Time.now - t1
           debug_print("AFTER [#{i}]: #{c}")
           r
@@ -32,7 +40,9 @@ module EacRubyUtils
         def spawn(options = {})
           c = command(options)
           debug_print("SPAWN: #{c}")
-          ::EacRubyUtils::Envs::Spawn.new(c)
+          run_callbacks :any_execution, :spawn do
+            ::EacRubyUtils::Envs::Spawn.new(c)
+          end
         end
 
         def system!(options = {})
@@ -44,7 +54,7 @@ module EacRubyUtils
         def system(options = {})
           c = command(options)
           debug_print(c)
-          Kernel.system(c)
+          run_callbacks(:any_execution, :system) { Kernel.system(c) }
         end
       end
     end
