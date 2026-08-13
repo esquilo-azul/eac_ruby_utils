@@ -2,12 +2,18 @@
 
 require 'active_support/core_ext/module/introspection'
 require 'eac_ruby_utils/patches/class/common_constructor'
+require 'eac_ruby_utils/patches/module/listable'
 require 'eac_ruby_utils/patches/module/module_parent'
 require 'eac_ruby_utils/patches/string/inflector'
 
 module EacRubyUtils
   class ActsAsInstanceMethod
-    common_constructor :method_class
+    enable_listable
+    lists.add_symbol :option
+
+    common_constructor :method_class, :options, default: [{}] do
+      self.options = ::EacRubyUtils::ActsAsInstanceMethod.lists.option.hash_keys_validate!(options)
+    end
 
     # @param sender_module [Module, nil]
     # @return [self]

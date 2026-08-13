@@ -11,8 +11,10 @@ module EacRubyUtils
     end
 
     class Setup < ::EacRubyUtils::ActsAsInstanceMethod
-      common_constructor :method_class, :static_method, default: [false],
-                                                        super_args: -> { [method_class] } do
+      common_constructor :method_class, :static_method, :options, default: [false, {}],
+                                                                  super_args: lambda {
+                                                                    [method_class, options]
+                                                                  } do
         perform
       end
 
