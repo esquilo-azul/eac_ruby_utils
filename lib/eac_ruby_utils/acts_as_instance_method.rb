@@ -9,7 +9,8 @@ require 'eac_ruby_utils/patches/string/inflector'
 module EacRubyUtils
   class ActsAsInstanceMethod
     enable_listable
-    lists.add_symbol :option
+    lists.add_symbol :option, :name_mark
+    lists.add_symbol :name_mark, '': :none, '!': :exclamation, '?': :interrogation
 
     common_constructor :method_class, :options, default: [{}] do
       self.options = ::EacRubyUtils::ActsAsInstanceMethod.lists.option.hash_keys_validate!(options)
@@ -29,7 +30,12 @@ module EacRubyUtils
 
     # @return [String]
     def method_name
-      method_class.name.demodulize.underscore.variableize
+      "#{method_class.name.demodulize.underscore.variableize}#{method_name_mark}"
+    end
+
+    # @return [Symbol]
+    def method_name_mark
+      options[OPTION_NAME_MARK] || NAME_MARK_NONE
     end
 
     # @return [Module]
