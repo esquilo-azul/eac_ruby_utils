@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module EacRubyUtils
-  VERSION = '0.133.0'
+  VERSION = '0.134.0'
 end
