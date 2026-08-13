@@ -3,13 +3,13 @@
 require 'eac_ruby_utils/patches/module/common_concern'
 
 module EacRubyUtils
-  module PatchModule
-    common_concern
-
-    class_methods do
-      delegate :patch_module, to: :'::EacRubyUtils::PatchModule'
+  class << self
+    def patch_module(*)
+      ::EacRubyUtils::PatchModule.patch_module(*)
     end
+  end
 
+  module PatchModule
     class << self
       def patch_module(target, patch)
         return if target.include?(patch)
