@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/patches/module/acts_as_instance_method'
+require 'eac_ruby_utils/patches/class/acts_as_instance_method'
 require 'eac_ruby_utils/patches/object/to_pathname'
 require 'eac_ruby_utils/patches/pathname/basename_sub'
 require 'memoized'

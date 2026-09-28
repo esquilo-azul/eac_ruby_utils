@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/acts_as_instance_method'
 
-class Module
+class Class
   # @param options [Hash]
   # @return [EacRubyUtils::ActsAsInstanceMethod]
   def acts_as_instance_method(**options)
