@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Class, '#method_class' do
+RSpec.describe Class, '#acts_as_instance_method' do
   it_behaves_like 'acts_as_method' do
     before do
-      method_class.enable_method_class
+      method_class.acts_as_instance_method
     end
 
     let(:sender_object) { sender_class.new('AAA') }
