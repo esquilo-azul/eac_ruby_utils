@@ -2,7 +2,7 @@
 
 require 'eac_ruby_utils/method_class'
 
-class Module
+class Class
   def enable_method_class
     ::EacRubyUtils.patch_module(self, ::EacRubyUtils::MethodClass)
   end
