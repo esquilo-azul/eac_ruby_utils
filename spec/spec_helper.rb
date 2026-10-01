@@ -9,3 +9,5 @@ require 'eac_ruby_gem_support'
 require 'avm/eac_ubuntu_base0'
 require 'avm/rspec/setup/launcher'
 EacRubyUtils::Rspec.default_setup_create(File.expand_path('..', __dir__))
+
+EacRubyUtils.require_sub __FILE__, recursive: true
